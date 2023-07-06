@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Hands Free Orgasms - Free</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/VRhfo.UI.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/8b1653d39b.js" crossorigin="anonymous"></script>
+    <style>
+        .custom-navbar {
+            background-color: #191919;
+        }
+
+        .navbar-nav {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+            .navbar-nav .search {
+                flex-grow: 1;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .navbar-nav .nav-link {
+                margin-left: auto;
+            }
+
+        /* change button color to pink and search box width */
+        .btn-outline-primary {
+            color: #ff69b4;
+            border-color: #ff69b4;
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #ff69b4;
+                color: white;
+                border: hidden;
+            }
+
+        .form-control {
+            width: 400px; /* change this as per your requirement */
+        }
+        /* reduce space between links */
+        .navbar-nav .nav-item {
+            margin-left: 10px; /* change this as per your requirement */
+        }
+
+        .nav-item .search{
+            max-width: 50%;
+            margin: 50% auto;
+        }
+
+        .custom-search{
+            width: 100%;
+        }
+
+        .join-now{
+            background-color: #E00095;
+            border-radius: 4px;
+        }
+
+        .join-now:hover{
+                background-color: #F77FCB;
+        }
+
+        .login{
+            border-radius: 4px;
+            border: 1px solid pink;
+            background-color: #3F2D39;
+            margin-right: 10px;
+            color: #EB7FCB;
+        }
+
+        .login:hover {
+            background-color: #F77FCB;
+        }
+        .center{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar custom-navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3">
+            <div class="container-fluid">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-lg-row">
+                        <li class="nav-item">
+                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img class="site-logo" src="/img/vrhfo.com.png" /></a>
+                        </li>
+                        <li class="nav-item search">
+                            <form class="form-inline my-2 my-lg-0 search">
+                                <div class="input-group">
+                                    <input type="search" class="form-control rounded custom-search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                    <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light join-now" href="your-join-link-here">Join Now</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light login" href="your-login-link-here">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="  footer text-muted">
+        <div class="container center">
+            <p class="center"> &copy; 2023 - vrhfo.com- <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></p>
+           
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
