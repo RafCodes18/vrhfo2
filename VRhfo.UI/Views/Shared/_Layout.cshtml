@@ -104,6 +104,12 @@
         .cust{
             border: 1px solid grey;
         }
+
+        .no-hands{
+            position: relative;
+            top: 10px;
+            font-family: 'Sans Serif Collection';
+        }
     </style>
 </head>
 <body>
@@ -114,6 +120,9 @@
                     <ul class="navbar-nav flex-lg-row">
                         <li class="nav-item">
                             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img class="site-logo" src="/img/vrhfo.com.png" /></a>
+                        </li>
+                        <li class="nav-item no-hands">
+                            <p>(no hands)</p>
                         </li>
                         <li class="nav-item search">
                             <form class="form-inline my-2 my-lg-0 search">

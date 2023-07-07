@@ -7,28 +7,32 @@
     .card-container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
+        gap: 10px;
         justify-content: center;
-        margin-top: 100px;
+        margin-top: 70px;
         margin-left: 0;
     }
 
     .card {
-        border: 1px solid #ddd;
         border-radius: 4px;
-        padding: 20px;
+        padding: 10px;
         text-align: center;
         width: 320px;
         height: 280px;
-        margin:0; padding: 0;
+        margin:0; 
+        padding: 0;
+        margin-top: 20px;
     }
 
     .vid-img{
-        height: 200px;
+        height: 270px;
     }
 
     .description{
     background-color: black;
+    max-height: 20px;
+    padding: 0;
+    margin: 0;
     }
 
 </style>
@@ -38,7 +42,7 @@
     {
         <div class="card">
             <a href="@item.VideoUrl">
-                <img class="vid-img" src="/img/vrpic.jpg" alt="@item.Title" style="width: 100%;">
+                <img class="vid-img" src="~/img/@item.ThumbnailUrl" alt="@item.Title" style="width: 100%;">
             </a>
             <div class="description">
                 <h4>@item.Title</h4>
