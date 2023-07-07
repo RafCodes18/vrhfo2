@@ -6,35 +6,51 @@
 <style>
     .card-container {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 8px;
         justify-content: center;
         margin-top: 70px;
-        margin-left: 0;
+        padding: 0 0px; /* Added padding to the sides */
+        gap: 0px; 
+        margin-right: 90px;
     }
 
     .card {
-        border-radius: 4px;
-        padding: 10px;
+        border-radius: 8px 8px 8px 8px;
         text-align: center;
-        width: 320px;
-        height: 280px;
-        margin:0; 
-        padding: 0;
+        margin: 0;
         margin-top: 20px;
+        border: none;
+        background-color: black;
+        padding: 10px; /* Moved padding from .card-container to here */
+        margin-top: 0px;
+        width: 340px;
     }
 
-    .vid-img{
-        height: 270px;
+    .vid-img {
+        max-width: 100%; /* Changed from a fixed height to a max-width */
+        height: auto; /* Ensures aspect ratio is maintained */
+        border-radius: 8px 8px 8px 8px;
+        height: 300px;
+        padding: 1px;
+        
     }
 
-    .description{
-    background-color: black;
-    max-height: 20px;
-    padding: 0;
-    margin: 0;
-    }
 
+    .description {
+        background-color: black;
+        min-height: 20px;
+        padding: 10px;
+        margin: 0;
+        font-size: small;
+        text-align: left;
+        height: 80px;
+        color: #ffffff; /* added color white for text visibility on black background */
+    }
+    p{
+        color: darkgrey;
+        margin: 0; padding: 0;
+    }
 </style>
 
 <div class="card-container">
@@ -48,7 +64,6 @@
                 <h4>@item.Title</h4>
                 <p>@item.Studio</p>
                 <p>@item.Description</p>
-                <a href="@item.VideoUrl"></a>
             </div>
         </div>
     }

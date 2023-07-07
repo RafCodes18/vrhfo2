@@ -64,6 +64,46 @@ namespace VRhfo.UI.Controllers
             video6.Studio = "NaughtyAmerica";
             list.Add(video6);
 
+            Video video7 = new Video();
+            video7.Description = "Description";
+            video7.Title = "Squat";
+            video7.Id = 1;
+            video7.VideoUrl = "ffsjof";
+            video7.UploadDate = DateTime.Now;
+            video7.ThumbnailUrl = "squat.jpg";
+            video7.Studio = "NaughtyAmerica";
+            list.Add(video7);
+
+            Video video8 = new Video();
+            video8.Description = "Description";
+            video8.Title = "Puss";
+            video8.Id = 1;
+            video8.VideoUrl = "ffsjof";
+            video8.UploadDate = DateTime.Now;
+            video8.ThumbnailUrl = "puss.jpg";
+            video8.Studio = "NaughtyAmerica";
+            list.Add(video8);
+
+            Video video9 = new Video();
+            video9.Description = "Description";
+            video9.Title = "Squat";
+            video9.Id = 1;
+            video9.VideoUrl = "ffsjof";
+            video9.UploadDate = DateTime.Now;
+            video9.ThumbnailUrl = "squat.jpg";
+            video9.Studio = "NaughtyAmerica";
+            list.Add(video9);
+
+            Video video10 = new Video();
+            video10.Description = "Description";
+            video10.Title = "Puss";
+            video10.Id = 1;
+            video10.VideoUrl = "ffsjof";
+            video10.UploadDate = DateTime.Now;
+            video10.ThumbnailUrl = "puss.jpg";
+            video10.Studio = "NaughtyAmerica";
+            list.Add(video10);
+
             return View(list);
         }
 
