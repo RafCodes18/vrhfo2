@@ -16,6 +16,7 @@
         .navbar-nav {
             width: 100%;
             justify-content: space-between;
+
         }
 
             .navbar-nav .search {
@@ -60,10 +61,12 @@
         .join-now{
             background-color: #E00095;
             border-radius: 4px;
+            width: 100px;
+            text-align: center;           
         }
 
         .join-now:hover{
-                background-color: #F77FCB;
+                background-color: #DB64B0;
         }
 
         .login{
@@ -72,13 +75,34 @@
             background-color: #3F2D39;
             margin-right: 10px;
             color: #EB7FCB;
+            width: 70px;
+            text-align: center;
+            height: 40px;
         }
 
         .login:hover {
-            background-color: #F77FCB;
+            background-color: #DA6EB2;
         }
         .center{
             text-align: center;
+        }
+        a{
+            text-decoration: none; 
+        }
+        .buttons{
+            display: flex;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .search{
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding: 0;
+        }
+        
+        .cust{
+            border: 1px solid grey;
         }
     </style>
 </head>
@@ -99,12 +123,14 @@
                                 </div>
                             </form>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light join-now" href="your-join-link-here">Join Now</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light login" href="your-login-link-here">Login</a>
-                        </li>
+                        <div class="buttons">
+                            <li class="nav-item">
+                                 <a class="nav-link text-light join-now" href="your-join-link-here">Join Now</a>
+                            </li>
+                            <li class="nav-item">
+                                 <a class="nav-link text-light login" href="your-login-link-here">Login</a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </div>
