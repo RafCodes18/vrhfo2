@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRhfo.UI", "VRhfo.UI\VRhfo.UI.csproj", "{C3FB285F-C15E-4013-9444-BF0BE0487831}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRhfo.BL.Models", "VRhfo.BL.Models\VRhfo.BL.Models.csproj", "{96FA45B6-9E55-41E6-BB68-FE9F83A2B6BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C3FB285F-C15E-4013-9444-BF0BE0487831}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3FB285F-C15E-4013-9444-BF0BE0487831}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3FB285F-C15E-4013-9444-BF0BE0487831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96FA45B6-9E55-41E6-BB68-FE9F83A2B6BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96FA45B6-9E55-41E6-BB68-FE9F83A2B6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96FA45B6-9E55-41E6-BB68-FE9F83A2B6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96FA45B6-9E55-41E6-BB68-FE9F83A2B6BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

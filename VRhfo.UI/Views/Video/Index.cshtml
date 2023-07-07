@@ -1,0 +1,51 @@
+﻿@model IEnumerable<VRhfo.BL.Models.Video>
+
+@{
+    ViewData["Title"] = "Video Gallery";
+}
+<style>
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        justify-content: center;
+        margin-top: 100px;
+        margin-left: 0;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 20px;
+        text-align: center;
+        width: 320px;
+        height: 280px;
+        margin:0; padding: 0;
+    }
+
+    .vid-img{
+        height: 200px;
+    }
+
+    .description{
+    background-color: black;
+    }
+
+</style>
+
+<div class="card-container">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <a href="@item.VideoUrl">
+                <img class="vid-img" src="/img/vrpic.jpg" alt="@item.Title" style="width: 100%;">
+            </a>
+            <div class="description">
+                <h4>@item.Title</h4>
+                <p>@item.Studio</p>
+                <p>@item.Description</p>
+                <a href="@item.VideoUrl"></a>
+            </div>
+        </div>
+    }
+</div>
