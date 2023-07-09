@@ -35,7 +35,7 @@
         border-radius: 8px 8px 8px 8px;
         height: 300px;
         padding: 1px;
-        width: 200px;
+        min-width: 200px;
         object-fit: cover;
     }
 
@@ -62,6 +62,15 @@
             grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
         }
     }
+
+    @@media (max-width: 660px) {
+        .card-container {
+            margin: 0;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+
+    }
+
 </style>
 
 <div class="card-container">
