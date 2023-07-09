@@ -8,7 +8,6 @@
         public string PasswordHash { get; set; }
         public DateTime RegistrationDate { get; set; }
         public bool IsSubscribed { get; set; }
-        // You can also add properties like subscription expiration date, payment info, etc.
     }
 
 }

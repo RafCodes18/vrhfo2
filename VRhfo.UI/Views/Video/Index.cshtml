@@ -11,8 +11,9 @@
         justify-content: center;
         margin-top: 70px;
         padding: 0 0px; /* Added padding to the sides */
-        gap: 0px; 
+        gap: 0px;
         margin-right: 90px;
+        margin-left: 80px;
     }
 
     .card {
@@ -24,7 +25,8 @@
         background-color: black;
         padding: 10px; /* Moved padding from .card-container to here */
         margin-top: 0px;
-        width: 340px;
+        padding: 6px; /* Moved padding from .card-container to here */
+        width: 100%;
     }
 
     .vid-img {
@@ -33,7 +35,8 @@
         border-radius: 8px 8px 8px 8px;
         height: 300px;
         padding: 1px;
-        
+        width: 200px;
+        object-fit: cover;
     }
 
 
@@ -47,9 +50,17 @@
         height: 80px;
         color: #ffffff; /* added color white for text visibility on black background */
     }
-    p{
+
+    p {
         color: darkgrey;
-        margin: 0; padding: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    @@media (max-width: 1170px) {
+        .card-container {
+            grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
+        }
     }
 </style>
 
@@ -57,7 +68,7 @@
     @foreach (var item in Model)
     {
         <div class="card">
-            <a href="@item.VideoUrl">
+            <a asp-controller="Video" asp-action="Details" asp-route-id="@item.Id">
                 <img class="vid-img" src="~/img/@item.ThumbnailUrl" alt="@item.Title" style="width: 100%;">
             </a>
             <div class="description">
@@ -68,3 +79,4 @@
         </div>
     }
 </div>
+
