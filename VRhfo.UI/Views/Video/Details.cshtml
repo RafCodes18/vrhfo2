@@ -4,28 +4,39 @@
     ViewData["Title"] = "Details";
 }
 
+<style>
+    .suggested{
+        margin-left: 20px;
+    }
+
+    .vid-player{
+        margin-left: 20px;
+    }
+</style>
+
 <div>
     <!-- Video Player -->
-    <div>
-        <video width="800" height="600" controls>
+    <div class="vid-player">
+        <video width="800" height="540" controls>
             <source src="@Model.video.VideoUrl" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
-    <div>
+    <div class="vid-player">
         <h2>@Model.video.Title</h2>
         <p>@Model.video.Description</p>
     </div>
     <!-- Suggested videos -->
-    <div style="display: grid; grid-template-columns: repeat(5, 1fr);">
+    <div class="suggested" style="width: 60%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 0px;">
         @foreach (var item in Model.suggestedVideos)
         {
             <div>
                 <a asp-controller="Video" asp-action="Details" asp-route-id="@item.Id">
-                    <img width="150" src="~/img/@item.ThumbnailUrl" alt="@item.Title" />
+                    <img width="180" src="~/img/@item.ThumbnailUrl" alt="@item.Title" />
                 </a>
                 <p>@item.Title</p>
             </div>
         }
     </div>
+
 </div>

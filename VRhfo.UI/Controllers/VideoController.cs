@@ -29,7 +29,7 @@ namespace VRhfo.UI.Controllers
             video2.Studio = "XXX";
             list.Add(video2);
             Video video3 = new Video();
-            video3.Description = "Description";
+            video3.Description = "Shes on fire.";
             video3.Title = "Nicole Aniston";
             video3.Id = 16;
             video3.VideoUrl = "ffsjof";
@@ -143,7 +143,7 @@ namespace VRhfo.UI.Controllers
             video2.Studio = "XXX";
             list.Add(video2);
             Video video3 = new Video();
-            video3.Description = "Description";
+            video3.Description = "Shes on fire.";
             video3.Title = "Nicole Aniston";
             video3.Id = 1;
             video3.VideoUrl = "ffsjof";
