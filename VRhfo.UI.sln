@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRhfo.UI", "VRhfo.UI\VRhfo.UI.csproj", "{C3FB285F-C15E-4013-9444-BF0BE0487831}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRhfo.UI", "VRhfo.UI\VRhfo.UI.csproj", "{C3FB285F-C15E-4013-9444-BF0BE0487831}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRhfo.BL.Models", "VRhfo.BL.Models\VRhfo.BL.Models.csproj", "{96FA45B6-9E55-41E6-BB68-FE9F83A2B6BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRhfo.BL.Models", "VRhfo.BL.Models\VRhfo.BL.Models.csproj", "{96FA45B6-9E55-41E6-BB68-FE9F83A2B6BE}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "VRhfo.DB", "VRhfo.DB\VRhfo.DB.sqlproj", "{19A23628-3B29-4F77-A4BA-A314CE878A9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,12 @@ Global
 		{96FA45B6-9E55-41E6-BB68-FE9F83A2B6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96FA45B6-9E55-41E6-BB68-FE9F83A2B6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96FA45B6-9E55-41E6-BB68-FE9F83A2B6BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19A23628-3B29-4F77-A4BA-A314CE878A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A23628-3B29-4F77-A4BA-A314CE878A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A23628-3B29-4F77-A4BA-A314CE878A9A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{19A23628-3B29-4F77-A4BA-A314CE878A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A23628-3B29-4F77-A4BA-A314CE878A9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19A23628-3B29-4F77-A4BA-A314CE878A9A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
