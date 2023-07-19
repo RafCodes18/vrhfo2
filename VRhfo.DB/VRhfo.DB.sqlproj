@@ -59,6 +59,7 @@
     <Folder Include="PreDeploy" />
     <Folder Include="PostDeploy" />
     <Folder Include="PostDeploy\DefaultData" />
+    <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeploy\Script.PostDeployment1.sql" />
@@ -67,5 +68,9 @@
     <Build Include="PostDeploy\DefaultData\Comments.sql" />
     <Build Include="PostDeploy\DefaultData\Videos.sql" />
     <Build Include="PostDeploy\DefaultData\Users.sql" />
+    <Build Include="Tables\tblVideo.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="PreDeploy\Script.PreDeployment1.sql" />
   </ItemGroup>
 </Project>
