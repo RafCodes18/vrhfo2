@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{19a23628-3b29-4f77-a4ba-a314ce878a9a}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -76,5 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="VRhfo.DB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Local.publish.xml" />
   </ItemGroup>
 </Project>
