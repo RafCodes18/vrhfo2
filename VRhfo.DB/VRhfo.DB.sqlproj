@@ -65,9 +65,6 @@
     <PostDeploy Include="PostDeploy\Script.PostDeployment1.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="PostDeploy\DefaultData\Comments.sql" />
-    <Build Include="PostDeploy\DefaultData\Videos.sql" />
-    <Build Include="PostDeploy\DefaultData\Users.sql" />
     <Build Include="Tables\tblVideo.sql" />
     <Build Include="Tables\tblUser.sql" />
   </ItemGroup>
@@ -78,6 +75,8 @@
     <RefactorLog Include="VRhfo.DB.refactorlog" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Local.publish.xml" />
+    <None Include="PostDeploy\DefaultData\Videos.sql" />
+    <None Include="PostDeploy\DefaultData\Users.sql" />
+    <None Include="local.DB.publish.xml" />
   </ItemGroup>
 </Project>

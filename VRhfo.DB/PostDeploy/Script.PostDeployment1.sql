@@ -9,6 +9,5 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-:r .\DefaultData\Comments.sql
 :r .\DefaultData\Videos.sql
 :r .\DefaultData\Users.sql
