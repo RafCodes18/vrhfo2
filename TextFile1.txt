@@ -1,0 +1,9 @@
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Tools
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=VRhfo.DB;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -Context VRhfoEntities -UseDatabaseNames -force
+
+
+//this is scaffolding the DB, it looks at the DB and pulls in classes for each table from the DB
+//When do we scaffold? If we do not have .cs files representing each table or, If the database changes at all (Add a column, delete a column, change a data type, add a table, rename a table, rename column, etc)

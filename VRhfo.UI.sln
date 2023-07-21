@@ -9,6 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRhfo.BL.Models", "VRhfo.BL
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "VRhfo.DB", "VRhfo.DB\VRhfo.DB.sqlproj", "{19A23628-3B29-4F77-A4BA-A314CE878A9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRhfo.PL", "VRhfo.PL\VRhfo.PL.csproj", "{DCFA3F5F-CD59-49EE-BC97-0E2A2219EF85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{22A91EAF-2D83-4D1E-AB70-1B44661EAC4F}"
+	ProjectSection(SolutionItems) = preProject
+		TextFile1.txt = TextFile1.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +36,10 @@ Global
 		{19A23628-3B29-4F77-A4BA-A314CE878A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19A23628-3B29-4F77-A4BA-A314CE878A9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19A23628-3B29-4F77-A4BA-A314CE878A9A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DCFA3F5F-CD59-49EE-BC97-0E2A2219EF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCFA3F5F-CD59-49EE-BC97-0E2A2219EF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCFA3F5F-CD59-49EE-BC97-0E2A2219EF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCFA3F5F-CD59-49EE-BC97-0E2A2219EF85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
