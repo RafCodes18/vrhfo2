@@ -53,5 +53,41 @@ namespace VRhfo.BL
                 return list;
             }
         }
+
+
+        public static Video LoadById(int id)
+        {
+            using (VRhfoEntities dc = new VRhfoEntities())
+            {
+                var videoEntity = dc.tblVideos.FirstOrDefault(v => v.Id == id);
+
+                if (videoEntity != null)
+                {
+                    return new Video
+                    {
+                        Id = videoEntity.Id,
+                        Title = videoEntity.Title,
+                        Studio = videoEntity.Studio,
+                        ThumbnailUrl = videoEntity.ThumbnailUrl,
+                        VideoUrl = videoEntity.VideoUrl,
+                        Description = videoEntity.Description,
+                        Genre = videoEntity.Genre,
+                        UploadDate = videoEntity.UploadDate,
+                        Duration = videoEntity.Duration,
+                        Views = videoEntity.Views,
+                        RatingCount = videoEntity.RatingCount,
+                        IsPublic = videoEntity.IsPublic == 1,
+                        IsPreview = videoEntity.IsPreview == 1,
+                        ContentWarning = videoEntity.ContentWarning,
+                        Likes = videoEntity.Likes,
+                        Dislikes = videoEntity.Dislikes
+                    };
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
     }
 }
