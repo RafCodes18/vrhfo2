@@ -89,5 +89,32 @@ namespace VRhfo.BL
                 }
             }
         }
+
+        public static int Insert(Video video, bool rollback = false)
+        {
+            try
+            {
+                int results = 0;
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    tblVideo row = new tblVideo();
+                    row.Id = video.Id;
+                    row.Title = video.Title;
+                    row.Studio = video.Studio;
+                    row.ThumbnailUrl = video.ThumbnailUrl;
+                    row.VideoUrl = video.VideoUrl;
+                    row.ContentWarning = video.ContentWarning;
+
+                    //Todo
+                    row.Likes = video.Likes;
+                }
+                return results;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
