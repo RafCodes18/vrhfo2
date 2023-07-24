@@ -116,5 +116,19 @@ namespace VRhfo.BL
                 throw ex;
             }
         }
+
+        public static int Delete(Video video, bool rollback = false)
+        {
+            try
+            {
+                int results = 0;
+                return results;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
