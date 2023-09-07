@@ -1,14 +1,14 @@
-﻿BEGIN 
-	INSERT INTO dbo.tblVideo (Title, Studio, ThumbnailUrl, VideoUrl, Description, Genre, UploadDate, Duration, Views, RatingCount, IsPreview, IsPublic, ContentWarning, Likes, Dislikes )
-VALUES ('Title', 'Studio', 'lana.jpg', 'VideoUrl', 'desc', 'genre', '2021-11-01', '01:00:00', 1000, 500, 0, 1, 'No content warning', 400, 100),
-       ('Title2', 'Studio2', 'vrpic.jpg', 'VideoUrl2', 'desc2', 'genre2', '2021-12-01', '02:00:00', 2000, 1000, 0, 1, 'No content warning', 800, 200),
-       ('Title2', 'Studio2', 'azz.jpg', 'VideoUrl2', 'desc2', 'genre2', '2021-12-01', '02:00:00', 2000, 1000, 0, 1, 'No content warning', 800, 200),
-       ('Title2', 'Studio2', 'reily.jpg', 'VideoUrl2', 'desc2', 'genre2', '2021-12-01', '02:00:00', 2000, 1000, 0, 1, 'No content warning', 800, 200),
-       ('Title2', 'Studio2', 'ang.jpg', 'VideoUrl2', 'desc2', 'genre2', '2021-12-01', '02:00:00', 2000, 1000, 0, 1, 'No content warning', 800, 200),
-       ('Title2', 'Studio2', 'squat.jpg', 'VideoUrl2', 'desc2', 'genre2', '2021-12-01', '02:00:00', 2000, 1000, 0, 1, 'No content warning', 800, 200),
-       ('Title2', 'Studio2', 'puss.jpg', 'VideoUrl2', 'desc2', 'genre2', '2021-12-01', '02:00:00', 2000, 1000, 0, 1, 'No content warning', 800, 200),
-       ('Title2', 'Studio2', 'squat.jpg', 'VideoUrl2', 'desc2', 'genre2', '2021-12-01', '02:00:00', 2000, 1000, 0, 1, 'No content warning', 800, 200),
-       ('Title2', 'Studio2', 'puss.jpg', 'VideoUrl2', 'desc2', 'genre2', '2021-12-01', '02:00:00', 2000, 1000, 0, 1, 'No content warning', 800, 200),
-       ('Title3', 'Studio3', 'nicole.jpg', 'VideoUrl3', 'desc3', 'genre3', '2022-01-01', '03:00:00', 3000, 1500, 0, 1, 'No content warning', 1200, 300);
-
-END 
+﻿BEGIN
+    INSERT INTO dbo.tblVideo (Title, Studio, ThumbnailUrl, VideoUrl, Description, Genre, UploadDate, Duration, Views, RatingCount, IsPreview, IsPublic, ContentWarning, Likes, Dislikes)
+    VALUES
+        ('Lana Rhoades', 'BangBros', 'lana.jpg', '#', 'desc', 'genre', '2023-09-05', '01:30:45', 5500, 2300, 0, 1, 'No content warning', 1200, 300),
+        ('Fat Ass VR', 'NaughtyAmerica', 'vrpic.jpg', 'VideoUrl2', 'desc2', 'genre2', '2023-09-04', '02:15:30', 6500, 3100, 0, 1, 'No content warning', 1600, 400),
+        ('Beautiful Ass', 'XXXNiX', 'azz.jpg', '#', 'desc3', 'genre3', '2023-09-03', '01:45:15', 7000, 3200, 0, 1, 'No content warning', 1800, 500),
+        ('Reily Reed HFO Hypnosis', 'VRHFO', 'reily.jpg', '#', 'desc4', 'genre4', '2023-09-02', '01:20:00', 4800, 1900, 0, 1, 'No content warning', 1400, 350),
+        ('Angela White HFO Binaural Beats', 'SpankBang', 'ang.jpg', '#', 'desc5', 'genre5', '2023-09-01', '02:05:30', 7200, 3400, 0, 1, 'No content warning', 2000, 600),
+        ('Squat HFO', 'VRHFO', 'squat.jpg', '#', 'desc6', 'genre6', '2023-08-31', '01:55:45', 6600, 2900, 0, 1, 'No content warning', 1800, 550),
+        ('Pussy Leak HFO VR', 'VRHFO', 'puss.jpg', '#', 'desc7', 'genre7', '2023-08-30', '02:10:15', 7800, 3800, 0, 1, 'No content warning', 2200, 700),
+        ('Squating VR HFO', 'BangBros', 'squat.jpg', '#', 'desc8', 'genre8', '2023-08-29', '01:40:30', 6100, 2700, 0, 1, 'No content warning', 1600, 450),
+        ('Pussy VR HFO', 'VRHFO', 'puss.jpg', '#', 'desc9', 'genre9', '2023-08-28', '02:25:00', 8000, 4000, 0, 1, 'No content warning', 2400, 750),
+        ('Nicole Aniston HFO Hypnosis', 'VRHFO', 'nicole.jpg', '#', 'desc10', 'genre10', '2023-08-27', '02:30:45', 8500, 4200, 0, 1, 'No content warning', 2600, 800);
+END
