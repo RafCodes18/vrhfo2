@@ -1,0 +1,71 @@
+﻿@page
+<style>
+    body {
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        padding: 50px;
+    }
+
+    h2 {
+        color: #DB64B0;
+    }
+
+    form {
+        display: inline-block;
+        background-color: #333;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 111, 97, 0.5);
+        min-width: 500px;
+    }
+
+    .form-group {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+    label {
+        color: #DB64B0;
+    }
+
+    input[type="email"],
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #777;
+        border-radius: 5px;
+    }
+
+    button[type="submit"] {
+        background-color: #E00095;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+
+<h2>Join Today</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="Email" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="Username" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="Password" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
