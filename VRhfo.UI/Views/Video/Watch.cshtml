@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Video - vrhfo.com";
+
+
 }
 
 <style>
@@ -31,7 +33,7 @@
         @foreach (var item in Model.suggestedVideos)
         {
             <div>
-                <a asp-controller="Video" asp-action="Details" asp-route-id="@item.Id">
+                <a asp-controller="Video" asp-action="Watch" asp-route-title="@item.Title">
                     <img width="180" src="~/img/@item.ThumbnailUrl" alt="@item.Title" />
                 </a>
                 <p>@item.Title</p>
@@ -40,3 +42,6 @@
     </div>
 
 </div>
+
+
+    

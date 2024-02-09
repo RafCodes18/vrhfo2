@@ -7,24 +7,24 @@ namespace VRhfo.UI.Controllers
     public class UserController : Controller
     {
 
-        [HttpPost]
-        public ActionResult CreateAccount(User user)
-        {
-            try
-            {
-                int results = UserManager.Insert(user);
+        /*  [HttpPost]
+          public ActionResult CreateAccount(User user)
+          {
+              try
+              {
+                  int results = UserManager.Insert(user);
 
-                if (results != 0)
-                {
-                    Login(user);
-                }
-            }
-            catch (Exception)
-            {
+                  if (results != 0)
+                  {
+                      Login(user);
+                  }
+              }
+              catch (Exception)
+              {
 
-                throw;
-            }
-        }
+                  throw;
+              }
+          }*/
 
         private void Login(User user)
         {

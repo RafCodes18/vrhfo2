@@ -14,15 +14,15 @@ namespace VRhfo.UI.Controllers
 
             return View(videoList);
         }
-
-        // GET: VideoController/Details/5
-        public ActionResult Details(int id)
+        // GET: VideoController/Watch/how-to-build-a-tube-site (example URL)
+        public ActionResult Watch(string title)
         {
             VideoViewModel videoViewModel = new VideoViewModel();
 
-            Video vid = VideoManager.LoadById(id);
-            videoViewModel.video = vid;
+            // Important change: Look up the video by title (slug) now       
 
+            videoViewModel.video = VideoManager.LoadByTitle(title);
+            // ... Rest of your logic remains the same
             List<Video> list = VideoManager.LoadAll();
             videoViewModel.suggestedVideos = list;
 
