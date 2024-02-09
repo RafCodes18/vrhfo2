@@ -15,9 +15,12 @@
             background-color: #191919;
         }
 
+
+
         .navbar-nav {
             width: 100%;
             justify-content: space-between;
+            margin-bottom: 0;
         }
 
             .navbar-nav .search {
@@ -64,8 +67,9 @@
         .join-now {
             background-color: #E00095;
             border-radius: 4px;
-            width: 100px;
+            width: 110px;
             text-align: center;
+            height: 38px;
         }
 
             .join-now:hover {
@@ -78,7 +82,7 @@
             background-color: #3F2D39;
             margin-right: 10px;
             color: #EB7FCB;
-            width: 70px;
+            width: 75px;
             text-align: center;
             height: 40px;
         }
@@ -131,11 +135,44 @@
             color: white !important;
         }
 
+        .lik-box {
+            width: 100%; /* Device width */
+            height: 40px; /* Desired height */
+            background-color: rgb(49, 49, 49); /* Light grey */
+            /* Modern styles */
+            margin-top: 0px !important;
+
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            border-radius: 4px; /* Slightly rounded corners */
+            display: flex; /* Enable proper link arrangement */
+            align-items: center; /* Vertically center links */
+
+        }
+
+        .sub-link-item{
+            color: white !important;
+            margin-left: 60px;
+            white-space: nowrap; /* Prevent text wrapping */
+            overflow: hidden; /* Hide text if it exceeds the container */
+            text-overflow: ellipsis;
+        }
+
+        .sub-link-item:hover{
+            color: rgb(255, 84, 167) !important;
+        }
+
+        .link-box{
+            padding: 20px;
+        }
+
+
+        <!-- TOGGLE BUTTON-->
+
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar custom-navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3">
+        <nav class="navbar custom-navbar navbar-expand-sm navbar-toggleable-sm box-shadow ">
             <div class="container-fluid">
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-lg-row">
@@ -163,8 +200,28 @@
                 </div>
                 </ul>
             </div>
-            </div>
         </nav>
+
+        <div class="lik-box">
+            <div class="link-box">
+                <a class="sub-link-item" asp-controller="Home" asp-action="Index">Home</a>
+            </div>
+            <div class="link-box">
+                <a class="sub-link-item" asp-controller="Home" asp-action="Index">Latest</a>
+            </div>
+            <div class="link-box">
+                <a class="sub-link-item" asp-controller="Home" asp-action="Index">Cateories</a>
+            </div>
+            <div class="link-box">
+                <a class="sub-link-item" asp-controller="Home" asp-action="Index">Hypnosis</a>
+            </div>
+            <div class="link-box">
+                <a class="sub-link-item" asp-controller="Home" asp-action="Index">VR Gooning</a>
+            </div>
+
+         
+        </div>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
