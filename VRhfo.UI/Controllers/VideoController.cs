@@ -9,13 +9,28 @@ namespace VRhfo.UI.Controllers
     public class VideoController : Controller
     {
         // GET: VideoController
-        public ActionResult Index(int? page)
+        public ActionResult Index(string? category, int? page)
         {
+
             //grab all videos in DB
             List<Video> videos = VideoManager.LoadAll();
 
+            //check if needs to load by category
+            // Filtering and Sorting
+            if (!string.IsNullOrEmpty(category))
+            {
+                if (category == "Latest")
+                {
+                    videos = videos.OrderByDescending(v => v.UploadDate).ToList();
+                }
+                else
+                {
+                    videos = videos.Where(v => v.Category == category).ToList();
+                }
+            }
+
             // 2. Set up paging parameters
-            int pageSize = 2; // Videos per page
+            int pageSize = 5; // Videos per page
             int pageNumber = (page ?? 1); // Default to page 1
 
             return View(videos.ToPagedList(pageNumber, pageSize));

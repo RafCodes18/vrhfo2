@@ -18,7 +18,7 @@ namespace VRhfo.BL
                     {
                         Id = videoEntity.Id,
                         Title = videoEntity.Title,
-                        Studio = videoEntity.Studio,
+                        Category = videoEntity.Category,
                         ThumbnailUrl = videoEntity.ThumbnailUrl,
                         VideoUrl = videoEntity.VideoUrl,
                         Description = videoEntity.Description,
@@ -51,7 +51,7 @@ namespace VRhfo.BL
                  {
                      v.Id,
                      v.Title,
-                     v.Studio,
+                     v.Category,
                      v.ThumbnailUrl,
                      v.VideoUrl,
                      v.Description,
@@ -69,7 +69,7 @@ namespace VRhfo.BL
                  {
                      Id = video.Id,
                      Title = video.Title,
-                     Studio = video.Studio,
+                     Category = video.Category,
                      ThumbnailUrl = video.ThumbnailUrl,
                      VideoUrl = video.VideoUrl,
                      Description = video.Description,
@@ -102,7 +102,7 @@ namespace VRhfo.BL
                     {
                         Id = videoEntity.Id,
                         Title = videoEntity.Title,
-                        Studio = videoEntity.Studio,
+                        Category = videoEntity.Category,
                         ThumbnailUrl = videoEntity.ThumbnailUrl,
                         VideoUrl = videoEntity.VideoUrl,
                         Description = videoEntity.Description,
@@ -135,7 +135,7 @@ namespace VRhfo.BL
                     tblVideo row = new tblVideo();
                     row.Id = video.Id;
                     row.Title = video.Title;
-                    row.Studio = video.Studio;
+                    row.Category = video.Category;
                     row.ThumbnailUrl = video.ThumbnailUrl;
                     row.VideoUrl = video.VideoUrl;
                     row.ContentWarning = video.ContentWarning;

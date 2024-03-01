@@ -48,7 +48,7 @@ public partial class VRhfoEntities : DbContext
 
             entity.Property(e => e.ContentWarning).HasMaxLength(255);
             entity.Property(e => e.Genre).HasMaxLength(50);
-            entity.Property(e => e.Studio).HasMaxLength(255);
+            entity.Property(e => e.Category).HasMaxLength(255);
             entity.Property(e => e.Title).HasMaxLength(255);
             entity.Property(e => e.UploadDate).HasColumnType("datetime");
         });

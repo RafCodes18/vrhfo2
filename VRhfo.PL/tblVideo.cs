@@ -9,7 +9,7 @@ public partial class tblVideo
 
     public string Title { get; set; } = null!;
 
-    public string Studio { get; set; } = null!;
+    public string Category { get; set; } = null!;
 
     public string ThumbnailUrl { get; set; } = null!;
 

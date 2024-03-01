@@ -2,7 +2,7 @@
 (
 	[Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
     [Title] NVARCHAR(255) NOT NULL, 
-    [Studio] NVARCHAR(255) NOT NULL, 
+    [Category] NVARCHAR(255) NOT NULL, 
     [ThumbnailUrl] NVARCHAR(MAX) NOT NULL, 
     [VideoUrl] NVARCHAR(MAX) NOT NULL, 
     [Description] NVARCHAR(MAX) NOT NULL, 

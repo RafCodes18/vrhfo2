@@ -1,6 +1,7 @@
 ﻿@model  IPagedList<VRhfo.BL.Models.Video>
 @using X.PagedList.Mvc.Core; 
 @using X.PagedList;
+@using X.PagedList.Web.Common
 @{
     ViewData["Title"] = "Video Gallery";
 }
@@ -130,7 +131,7 @@
             </a>
             <div class="description">
                 <h4>@item.Title</h4>
-                <p>@item.Studio</p>
+                <p>@item.Category</p>
                 <p>@item.Description</p>
             </div>
         </div>
@@ -139,7 +140,7 @@
 </div>
 
 <div class="pagination-container">
-    <div class="pagination"> 
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    <div class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
     </div>
 </div>
