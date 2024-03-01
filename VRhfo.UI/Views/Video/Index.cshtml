@@ -1,5 +1,6 @@
-﻿@model IEnumerable<VRhfo.BL.Models.Video>
-
+﻿@model  IPagedList<VRhfo.BL.Models.Video>
+@using X.PagedList.Mvc.Core; 
+@using X.PagedList;
 @{
     ViewData["Title"] = "Video Gallery";
 }
@@ -71,6 +72,53 @@
 
     }
 
+
+
+    <!--PAGINATION -->
+ 
+
+        .pagination ul {
+            display: inline-block;
+        }
+
+        .pagination li {
+            display: inline;
+            margin: 0 5px;
+        }
+
+            .pagination li a {
+                color: white;
+                background-color: black;
+                padding: 8px 16px;
+                border: 2px solid #ddd;
+                font-weight: 800;
+            }
+
+            .pagination li.active a {
+                background-color: #4CAF50 !important;
+                color: white;
+            }
+
+            .page-links{
+        text-align: center;
+    }
+
+    /* Assuming you still have a container for your pagination links */
+    .pagination-container { /* Add a container around the pagination */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative; /* Make the container a positioning reference */
+        margin-bottom: 20px; /* Add margin to the bottom to push it away from content */
+        margin-top: 150px;
+    }
+
+    .pagination {
+        position: absolute; /* Position the pagination absolutely within the container */
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 </style>
 
 <div class="card-container">
@@ -87,5 +135,11 @@
             </div>
         </div>
     }
+
 </div>
 
+<div class="pagination-container">
+    <div class="pagination"> 
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+</div>

@@ -2,18 +2,26 @@
 using VRhfo.BL;
 using VRhfo.BL.Models;
 using VRhfo.UI.Views.ViewModels;
+using X.PagedList;
 
 namespace VRhfo.UI.Controllers
 {
     public class VideoController : Controller
     {
         // GET: VideoController
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            List<Video> videoList = VideoManager.LoadAll();
+            //grab all videos in DB
+            List<Video> videos = VideoManager.LoadAll();
 
-            return View(videoList);
+            // 2. Set up paging parameters
+            int pageSize = 2; // Videos per page
+            int pageNumber = (page ?? 1); // Default to page 1
+
+            return View(videos.ToPagedList(pageNumber, pageSize));
         }
+        
+        
         // GET: VideoController/Watch/how-to-build-a-tube-site (example URL)
         public ActionResult Watch(string title)
         {
