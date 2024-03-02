@@ -5,6 +5,7 @@
         background-color: #000;
         color: #fff;
         text-align: center;
+        background:
     }
 
     h2 {
@@ -16,9 +17,10 @@
         background-color: #333;
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 0 0 10px rgba(255, 111, 97, 0.5);
-        min-width: 500px;
+        box-shadow: 0 0 10px rgba(255, 0, 255, 0.50);
+        min-width: 400px;
         margin-top: 70px;
+        font-size: large;
     }
 
     .form-group {
@@ -50,16 +52,38 @@
     .header{
         margin-top: 50px;
     }
-   
+
+    #bgVideo {
+        position: fixed;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        right: 0;
+        bottom: 0;    
+        z-index: -1; /* Place the video behind other content */
+        background-color: black; /* Black for darkening */
+        opacity: 0.1;
+    }
+
+    input.form-control:focus {
+        border-color: #ced4da; /* Or your desired color */
+        box-shadow: none; /* Remove the default blue glow */
+    }
+    .inpts{
+        width: 400px;
+    }
 </style>
 
+<video autoplay muted loop id="bgVideo">
+    <source src="~/video/spiralshort.mp4" type="video/mp4">
+</video>
 
 <h2 class="header">Join Today</h2>
 
 <form method="post">
     <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="Email" class="form-control" required />
+        <input type="email" id="email" name="Email" class="form-control inpts" required />
     </div>
 
     <div class="form-group">
@@ -74,3 +98,8 @@
 
     <button type="submit" class="btn btn-primary" asp-action="CreateAccount" asp-controller="User">Register</button>
 </form>
+
+<script type="text/javascript">
+    document.getElementById('bgVideo').playbackRate = 0.6;
+
+</script>

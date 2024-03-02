@@ -1,7 +1,7 @@
 ﻿BEGIN
     INSERT INTO dbo.tblVideo (Title, Category, ThumbnailUrl, VideoUrl, Description, Genre, UploadDate, Duration, Views, RatingCount, IsPreview, IsPublic, ContentWarning, Likes, Dislikes)
     VALUES
-        ('Lana Rhoades', 'Brainwashing', 'lana.jpg', '#', 'desc', 'genre', '2023-09-05', '01:30:45', 5500, 2300, 0, 1, 'No content warning', 1200, 300),
+        ('Lana Rhoades', 'Brainwashing', 'lana.jpg', 'spiralshort.mp4', 'desc', 'genre', '2023-09-05', '01:30:45', 5500, 2300, 0, 1, 'No content warning', 1200, 300),
         ('Fat Ass VR', 'Hypnosis', 'vrpic.jpg', 'VideoUrl2', 'desc2', 'genre2', '2023-09-04', '02:15:30', 6500, 3100, 0, 1, 'No content warning', 1600, 400),
         ('Beautiful Ass', 'Brainwashing', 'azz.jpg', '#', 'desc3', 'genre3', '2023-09-03', '01:45:15', 7000, 3200, 0, 1, 'No content warning', 1800, 500),
         ('Reily Reed HFO Hypnosis', 'Gooning', 'reily.jpg', '#', 'desc4', 'genre4', '2023-09-02', '01:20:00', 4800, 1900, 0, 1, 'No content warning', 1400, 350),
