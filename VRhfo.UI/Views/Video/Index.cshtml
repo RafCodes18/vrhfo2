@@ -5,6 +5,7 @@
 @{
     ViewData["Title"] = "Video Gallery";
 }
+
 <style>
     .card-container {
         display: grid;
@@ -143,52 +144,5 @@
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
     </div>
 </div>
+ 
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.127.0/examples/js/loaders/VideoTextureLoader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.127.0/examples/js/vr/WebXR.js"></script>
-<script src="https://threejs.org/build/three.min.js"></script>
-
-@* <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Set up renderer
-        var renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        // Set up camera
-        var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 10);
-        camera.position.set(0, 1.6, 0);
-
-        // Set up scene
-        var scene = new THREE.Scene();
-
-        // Set up VR
-        var controller = new THREE.WebXRController();
-
-        // Set up video texture
-        var video = document.createElement('video');
-        video.src = @Url.Content("~/video/spiralshort.mp4");
-        video.crossOrigin = 'anonymous';
-        video.loop = true;
-        video.muted = true;
-        video.play();
-
-        var videoTexture = new THREE.VideoTexture(video);
-        videoTexture.minFilter = THREE.LinearFilter;
-        videoTexture.magFilter = THREE.LinearFilter;
-        videoTexture.format = THREE.RGBFormat;
-
-        // Set up sphere geometry
-        var geometry = new THREE.SphereGeometry(5, 60, 40);
-        var material = new THREE.MeshBasicMaterial({ map: videoTexture, side: THREE.DoubleSide });
-        var sphere = new THREE.Mesh(geometry, material);
-        scene.add(sphere);
-
-        // Render loop
-        function animate() {
-            renderer.render(scene, camera);
-            requestAnimationFrame(animate);
-        }
-        animate();
-    });
-</script> *@

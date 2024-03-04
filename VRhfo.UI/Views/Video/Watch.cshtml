@@ -11,21 +11,44 @@
         margin-left: 20px;
     }
 
-    .vid-player{
+    .vid-details{
         margin-left: 20px;
         margin-top: 15px;
     }
+
+    .vid-container{
+        margin-left: 20px;
+        margin-top: 15px;
+        max-width: 800px;
+    }
+
+    #videoCanvas{
+        outline: 1px solid white;
+    }
 </style>
 
+ 
 <div>
-    <!-- Video Player -->
-    <div class="vid-player">
-        <video width="800" height="540" controls>
-            <source src="~/video/@Model.video.VideoUrl" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="vid-player">
+
+    @if (Model.video.Title == "Lana Rhoades")
+    {
+        <!-- Video Player -->
+        <div class="vid-player">
+            <video width="800" height="540" controls>
+                <source src="~/video/@Model.video.VideoUrl" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    }
+    else
+    {
+        <!-- Video Player -->
+        <div class="vid-container">
+            <canvas id="videoCanvas"></canvas>
+        </div>
+    }
+    
+    <div class="vid-details">
         <h2>@Model.video.Title</h2>
         <p>@Model.video.Description</p>
     </div>
@@ -43,6 +66,46 @@
     </div>
 
 </div>
+<script defer type="module">
+    import * as THREE from '/js/three.module.js';
 
+    // Get reference to the video player container
+    const videoPlayerContainer = document.getElementById('videoPlayerContainer');
+    const canvas = document.getElementById('videoCanvas');
 
-    
+    canvas.width = 800;
+    canvas.height = 540;
+
+    // Create WebGL renderer with canvas
+    const renderer = new THREE.WebGLRenderer({ canvas });
+
+    // Create a scene and camera
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
+
+    // Create a sphere geometry and add it to the scene
+    const geometry = new THREE.SphereGeometry(3, 32, 32); // Radius, width segments, height segments
+    const material = new THREE.MeshBasicMaterial({ color: 0x20b2aa });
+    const sphere = new THREE.Mesh(geometry, material);
+    scene.add(sphere);
+
+    // Create edges for visualization (optional)
+    const edges = new THREE.EdgesGeometry(geometry);
+    const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x000000 }));
+    scene.add(line);
+
+    // Position the camera
+    camera.position.z = 10;
+    camera.position.y = 0;
+
+    // Function to animate the scene
+    function animate() {
+        requestAnimationFrame(animate);
+        sphere.rotation.x += 0.01;
+        sphere.rotation.y += 0.01;
+        line.rotation.x += 0.01;
+        line.rotation.y += 0.01;
+        renderer.render(scene, camera);
+    }
+    animate();
+</script>
