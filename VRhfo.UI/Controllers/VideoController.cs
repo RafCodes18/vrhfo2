@@ -30,13 +30,13 @@ namespace VRhfo.UI.Controllers
             }
 
             // 2. Set up paging parameters
-            int pageSize = 5; // Videos per page
+            int pageSize = 10; // Videos per page
             int pageNumber = (page ?? 1); // Default to page 1
 
             return View(videos.ToPagedList(pageNumber, pageSize));
         }
-        
-        
+
+
         // GET: VideoController/Watch/how-to-build-a-tube-site (example URL)
         public ActionResult Watch(string title)
         {
