@@ -84,8 +84,8 @@
     const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
 
     // Create a sphere geometry and add it to the scene
-    const geometry = new THREE.SphereGeometry(3, 32, 32); // Radius, width segments, height segments
-    const material = new THREE.MeshBasicMaterial({ color: 0x20b2aa });
+    const geometry = new THREE.SphereGeometry(6, 32, 32); // Radius, width segments, height segments
+    const material = new THREE.MeshPhongMaterial({ color: 0x20b2aa, shininess: 80 });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
@@ -93,6 +93,11 @@
     const edges = new THREE.EdgesGeometry(geometry);
     const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x000000 }));
     scene.add(line);
+
+    //add light
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(1, 1, 2); // Adjust position as needed
+    scene.add(directionalLight);
 
     // Position the camera
     camera.position.z = 10;
