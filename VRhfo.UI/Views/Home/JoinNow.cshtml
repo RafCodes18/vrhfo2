@@ -2,19 +2,112 @@
 @{
     Layout = "";
 }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
 <style>
-    body {
-        background-color: #333;
+    .hover-text {
+        display: none;
+        position: absolute;
+        bottom: 20px;
+        left: 0px; /* Initially position the text outside the card */
         color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: left 0.8s ease; /* Smooth transition for left property */
+        
+    }
+
+    .card:hover .hover-text {
+        display: block;
+        left: 10px;
+    }
+
+    .hover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Transparent black overlay */
+        opacity: 0; /* Initially transparent */
+        transition: opacity 0.3s ease; /* Smooth transition */
+        border-radius: 10px; /* Match card's border-radius */
+    }
+
+    .card:hover .hover-overlay {
+        opacity: 1; /* Show overlay on hover */
+    }
+    .card:hover{
+        cursor: pointer;
+    }
+  
+
+    @@media (max-width: 768px) {
+        .main-product-cards {
+            flex-direction: column; /* Change to column layout for smaller screens */
+            align-items: center; /* Center-align cards in column layout */ 
+        }
+
+        .card {
+            width: 100% !important  ; /* Make cards full width with some spacing */
+            width: 560px !important;
+            margin-bottom: 0px !important; /* Reduce bottom margin for spacing */
+            margin-top: 0px !important;
+            max-height: 120px;
+           height: 90px !important;
+        }
+
+        .img-container{
+            display: none;
+        }
+
+        .subscription-content{
+            width: 100%;
+        }
+
+        .main-page{
+            margin-top: 30px;
+        }
+    }
+
+    .bottom-info-container {
+        flex: 1;
+    }
+
+    .top-3-rows {
+        flex-direction: column;
+    }
+
+    .choose-plan {
+        margin-top: 10px;
+        font-family: "Raleway", sans-serif !important;
+        font-size: 32px;
+        font-weight: 700 !important;
+        margin-bottom: 5px;
+        background-image: linear-gradient(to right,#B347FF, #FF2969);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .sit-logo {
+        margin-top: 20px;
+
+    }
+
+    body {
+        background-color: #222;
         text-align: center;
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: 14px;
+        line-height: 24px;
     }
 
     h2 {
-        color: lightblue;
+        color: black;
     }
 
     .main-page {
@@ -23,9 +116,8 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
-        font-family: "Raleway", sans-serif;
-        font-size: 32px;
-        font-weight: 700 !important;
+        margin-top: 50px !important;
+        height: 100vh; /* Keep the container at full viewport height */
     }
 
     .top-3-rows {
@@ -33,71 +125,167 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 20px;
+        margin-bottom: 0px !important;
     }
 
     .main-product-cards {
         flex: 1;
         display: flex;
         justify-content: center;
-        gap: 20px;
+        gap: 20px; /* Initial gap between cards */
+         margin: 0 auto; /* Center-align cards */
+        max-width: 100%; /* Make the container take up the full available width */
     }
 
     .card {
-        width: 280px;
-        height: 400px;
-        background-color: #444;
-        color: #fff;
+        width: 280px; /* Set width of each card */
+        height: 380px;
+        background-color: white;
+        color: black;
         display: flex;
         border-radius: 10px;
-=    }
+        margin-bottom: 20px; /* Add bottom margin to each card */
+        display: flex; 
+        flex-direction: column;
+    }
+ 
 
         .card img {
             width: 100%;
-            height: 70%; /* Set the image height to 70% of the card */
-            object-fit: cover; /* Maintain aspect ratio and cover the space */
-            margin-top: -40px;
-            border-radius: 10px;
+             object-fit: cover; /* Maintain aspect ratio and cover the space */
+             border-radius: 10px;
+             background-color: #333;
         }
 
+        .img-container{
+            height: 200px;
+            position: relative;
+        }
 
-    .bottom-info-container {
-        flex: 1;
-    }
-
-    .top-3-rows{
-        flex-direction: column;
-    }
-
-    .choose-plan{
-        margin-top: 10px;
-    }
-    .sit-logo{
-
-        margin-top: -20px;
-    }
+        
 </style>
 
 <div class="main-page">
 
+    <!--TOP 3 ITEMS-->
     <div class="top-3-rows">
-        <img src="~/img/goonvr.png" height="60" width="240" class="sit-logo" />
+        <a asp-action="Index" asp-controller="Home"><img src="~/img/goonvr.png" height="45" width="250" class="sit-logo" /> </a>
         <p class="choose-plan">Choose Your Plan</p>
+        <div class="main-features">
+            <div class="main_feature">
+                <div class="feature-top-text">
+                    900+ Studios
+                </div>
+                <div class="feature-bottom-text">
+                    8k and 4k video
+                </div>
+            </div>
+
+            <div class="main_feature">
+                <div class="feature-top-text">
+                    Exclusive Videos
+                </div>
+                <div class="feature-bottom-text">
+                    2+ Updates per Week
+                </div>
+            </div>
+
+            <div class="main_feature">
+                <div class="feature-top-text">
+                    500+  
+                </div>
+                <div class="feature-bottom-text">
+                    The Best VR Pornstars
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!--SUBSCRIPTION CARDS CONTAINER-->
     <div class="main-product-cards">
+       
+        <!-- CARD 1 -->
         <div class="card">
-            <img src="~/img/one-month.png" />
-            <p>fssf</p>
+            <div class="img-container">
+                <img src="@* ~/img/one-month.png *@" />
+                <div class="hover-overlay"></div> <!-- Add this line for overlay -->
+
+                <span class="hover-text">The Best Gooning Experience</span>
+            </div>
+            <div class="subscription-content">
+                <div class="discount">
+                    37% off
+                </div>
+                <h2>Monthly</h2>
+                <ul class="subscription-features">
+                    <li><span>Unlimited streaming and downloads</span></li>
+                    <li><span>+250 interactive syncs videos</span></li>
+                    <li><span>Foreplay videos</span></li>
+                </ul>
+            </div>
         </div>
+
+        <!-- CARD 2 -->
         <div class="card">
-            <p>fssf</p>
+            <div class="img-container">
+                <img src="@* ~/img/one-month.png *@" />
+                <div class="hover-overlay"></div> <!-- Add this line for overlay -->
+
+                <span class="hover-text">The Best Gooning Experience</span>
+            </div>
+            <div class="subscription-content">
+                <div class="discount">
+                    37% off
+                </div>
+                <h2>3 Months</h2>
+                <ul class="subscription-features">
+                    <li><span>Unlimited streaming and downloads</span></li>
+                    <li><span>+250 interactive syncs videos</span></li>
+                    <li><span>Foreplay videos</span></li>
+                </ul>
+            </div>
         </div>
+
+        <!-- CARD 3 -->
         <div class="card">
-            <p>fssf</p>
+            <div class="img-container">
+                <img src="@* ~/img/one-month.png *@" />
+                <div class="hover-overlay"></div> <!-- Add this line for overlay -->
+                <span class="hover-text">The Best Gooning Experience</span>
+
+            </div>
+            <div class="subscription-content">
+                <div class="discount">
+                    35% off
+                </div>
+                <h2>Yearly</h2>
+                <ul class="subscription-features">
+                    <li><span>Unlimited streaming and downloads</span></li>
+                    <li><span>+250 interactive syncs videos</span></li>
+                    <li><span>Foreplay videos</span></li>
+                </ul>
+            </div>
         </div>
+
+        <!-- CARD 4 -->
         <div class="card">
-            <p>fssf</p>
+            <div class="img-container">
+                <img src="@* ~/img/one-month.png *@" />
+                <div class="hover-overlay"></div> <!-- Add this line for overlay -->
+                <span class="hover-text">The Best Gooning Experience</span>
+
+            </div>
+            <div class="subscription-content">
+                <div class="discount">
+                    40% off
+                </div>
+                <h2>Lifetime</h2>
+                <ul class="subscription-features">
+                    <li><span>Unlimited streaming and downloads</span></li>
+                    <li><span>+250 interactive syncs videos</span></li>
+                    <li><span>Foreplay videos</span></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -106,30 +294,30 @@
     </div>
 
 </div>
+ 
 
+<style>
+    .main-features{
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0 40px;
+        position: relative;
+        
+    }
 
-@* 
-<h2 class="header">Join Today</h2>
+    .main_feature{
+        text-align: center;
+        background: #333 !important;
+        border-radius: 10px;
+        padding: 5px 10px;
+        margin: 0 5px;
+    }
 
-<form method="post">
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="Email" class="form-control inpts" required />
-    </div>
-
-    <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="Username" class="form-control" required />
-    </div>
-
-    <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="Password" class="form-control" required />
-    </div>
-
-    <button type="submit" class="btn btn-primary" asp-action="CreateAccount" asp-controller="User">Register</button>
-</form>
- *@
-<script type="text/javascript">
-    // You can keep any other JavaScript logic here
-</script>
+        .main_feature .feature-top-text {
+            font-weight: 800 !important;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+</style>
