@@ -14,16 +14,71 @@
     .vid-details{
         margin-left: 20px;
         margin-top: 15px;
+
+       
     }
 
     .vid-container{
-        margin-left: 20px;
+        margin-left: 80px !important;
         margin-top: 15px;
         max-width: 800px;
+
     }
 
     #videoCanvas{
         outline: 1px solid white;
+    }
+
+    .lik-box{
+        padding: 0;
+        height: 30px;
+        background-color: black;
+        margin-bottom: -20px;
+
+    }
+
+        .lik-box.p {
+            padding: 22px;
+        }
+
+        .sug{
+        border-radius: 10px !important;
+        
+        }
+
+        .sug-card{
+            width: 100px;
+            margin-left: 40px;
+            margin-right: 8px;
+    }
+    .sug-card:hover{
+            z-index: 999;
+        }
+      
+        .sug-img{
+           width: 215px;
+        }
+        .sug-img:hover{
+        -webkit-box-shadow: 10 10  hotpink;
+        box-shadow: 0 0 10px rgb(255, 0, 255);
+        z-index: -999;
+        }
+
+        .vid{
+            margin-left: 50px;
+        }
+
+    /* Add this to your existing styles */
+    .separator {
+        position: absolute;
+
+        height: 33px; /* Adjust thickness as desired */
+        background-color: #ccc; /* Adjust color as desired */
+        margin: 10px 0; /* Adjust spacing above/below the line */
+    }
+    .sug-title{
+        width: 200px;
+        flex-wrap: wrap;
     }
 </style>
 
@@ -34,8 +89,8 @@
     {
         <!-- Video Player -->
         <div class="vid-player">
-            <video width="800" height="540" controls>
-                <source src="~/video/@Model.video.VideoUrl" type="video/mp4">
+            <video class="vid" width="800" height="540" controls>
+                <source src="~/video/@Model.video.VideoUrl" type="video/mp4" >
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -50,18 +105,23 @@
     
     <div class="vid-details">
         <h2>@Model.video.Title</h2>
-        <p>@Model.video.Description</p>
+        <p >@Model.video.Description</p>
     </div>
     <!-- Suggested videos -->
     <div class="suggested" style="width: 60%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 0px;">
-        @foreach (var item in Model.suggestedVideos)
+        @for (int i = 0; i < Model.suggestedVideos.Count; i++)
         {
-            <div>
-                <a asp-controller="Video" asp-action="Watch" asp-route-title="@item.Title">
-                    <img width="180" src="~/img/@item.ThumbnailUrl" alt="@item.Title" />
+            <div class="sug-card">
+                <a asp-controller="Video" asp-action="Watch" asp-route-title="@Model.suggestedVideos[i].Title">
+                    <img width="180" src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" alt="@Model.suggestedVideos[i].Title" class="sug sug-img" />
                 </a>
-                <p>@item.Title</p>
+                <p class="sug-title">@Model.suggestedVideos[i].Title</p>
             </div>
+
+            @if ((i + 1) % 2 == 0 && i < Model.suggestedVideos.Count - 1)
+            {
+                <div class="separator"></div>
+            }
         }
     </div>
 
@@ -113,4 +173,8 @@
         renderer.render(scene, camera);
     }
     animate();
+
+
+
+
 </script>
