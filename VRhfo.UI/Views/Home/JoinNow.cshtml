@@ -185,7 +185,7 @@
     }
 </style>
 
-<div class="main-page">
+<div class="main-page step">
 
     <!--TOP 3 ITEMS-->
     <div class="top-3-rows">
@@ -362,6 +362,8 @@
 </div>
  
 
+<div class="main-page step ">aifdidgnagdi</div>
+
 <style>
     .arrow-icon {
         width: 20px; /* Adjust the width as needed */
@@ -472,6 +474,9 @@
             font-size: 24px;
             margin-bottom: 5px;
         }
+        .hidden{
+            display: none;
+        }
 </style>
 
 <script>
@@ -504,5 +509,20 @@
             }
         }
 
-
+    // Event listener for the continue button
+    document.addEventListener('DOMContentLoaded', function () {
+        var continueButtons = document.querySelectorAll('.continue-button');
+        continueButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var pages = document.querySelectorAll('.main-product-cards');
+                var features = document.querySelectorAll('.main-features');
+                pages.forEach(function (page) {
+                    page.classList.add('hidden');
+                });
+                features.forEach(function (feature) {
+                    feature.classList.add('hidden');
+                })
+            });
+        });
+    });
 </script>
