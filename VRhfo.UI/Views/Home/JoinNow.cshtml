@@ -8,16 +8,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
 <style>
+    *{
+           box-sizing: border-box;
+    }
+
     .hover-text {
         display: none;
         position: absolute;
         bottom: 20px;
-        left: 0px; /* Initially position the text outside the card */
+        left: 0px;  
         color: #fff;
-        padding: 10px;
+        padding: 10px 0px;
         border-radius: 5px;
         font-size: 16px;
-        transition: left 0.8s ease; /* Smooth transition for left property */
+        transition: left 0.8s ease;  
         
     }
 
@@ -117,7 +121,7 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
-        margin-top: 50px !important;
+        margin-top: 25px !important;
         height: 100vh; /* Keep the container at full viewport height */
     }
 
@@ -140,7 +144,6 @@
 
     .card {
         width: 300px; /* Set width of each card */
-        height: 400px;
         background-color: white;
         color: black;
         display: flex;
@@ -154,9 +157,11 @@
 
         .card img {
             width: 100%;
-             object-fit: cover; /* Maintain aspect ratio and cover the space */
              border-radius: 10px 10px 0 0;
              background-color: #333;
+             max-height: 200px;
+             height: 100%;
+            object-fit: cover !important;
         }
 
         .img-container{
@@ -164,7 +169,14 @@
             position: relative;
         }
 
-        
+    suscription_features li span {
+        margin-left: -0.4em;
+    }
+
+    .subscription-content h2 {
+        margin-left: 20px !important;
+        font-size: xx-large;
+    }
 </style>
 
 <div class="main-page">
@@ -209,7 +221,7 @@
         <!-- CARD 1 -->
         <div class="card">
             <div class="img-container">
-                <img src="@* ~/img/one-month.png *@" />
+                <img src="~/img/one-month.png" />
                 <div class="hover-overlay"></div> <!-- Add this line for overlay -->
 
                 <span class="hover-text">The Best Gooning Experience</span>
@@ -224,21 +236,21 @@
                     <li><span>+250 interactive syncs videos</span></li>
                     <li><span>Foreplay videos</span></li>
                 </ul>
-                @* <div class="price">
+                <div class="price">
                     <div class="old-price">
                         $29.95
                     </div>
                     <div class="offer-price">
-                        <h2>$19.99</h2>/month
+                        <h2 class="offer-num">$19.95</h2><span class="sub-price">/month</span>
                     </div>
-                </div> *@
+                </div>
             </div>
         </div>
 
         <!-- CARD 2 -->
         <div class="card">
             <div class="img-container">
-                <img src="@* ~/img/one-month.png *@" />
+                <img src="~/img/3mon.jpg" />
                 <div class="hover-overlay"></div> <!-- Add this line for overlay -->
 
                 <span class="hover-text">The Best Gooning Experience</span>
@@ -253,13 +265,22 @@
                     <li><span>+250 interactive syncs videos</span></li>
                     <li><span>Foreplay videos</span></li>
                 </ul>
+
+                <div class="price">
+                    <div class="old-price">
+                        $54.95
+                    </div>
+                    <div class="offer-price">
+                        <h2 class="offer-num">$11.45</h2><span class="sub-price">/month</span>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- CARD 3 -->
         <div class="card">
             <div class="img-container">
-                <img src="@* ~/img/one-month.png *@" />
+                <img src="~/img/jasmine-rain-1.jpg" />
                 <div class="hover-overlay"></div> <!-- Add this line for overlay -->
                 <span class="hover-text">The Best Gooning Experience</span>
 
@@ -274,13 +295,21 @@
                     <li><span>+250 interactive syncs videos</span></li>
                     <li><span>Foreplay videos</span></li>
                 </ul>
+                <div class="price">
+                    <div class="old-price">
+                        $129.95
+                    </div>
+                    <div class="offer-price">
+                        <h2 class="offer-num">$6.95</h2><span class="sub-price">/month</span>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- CARD 4 -->
         <div class="card">
             <div class="img-container">
-                <img src="@* ~/img/one-month.png *@" />
+                <img src="~/img/yearly-img.jpg" />
                 <div class="hover-overlay"></div> <!-- Add this line for overlay -->
                 <span class="hover-text">The Best Gooning Experience</span>
 
@@ -295,6 +324,14 @@
                     <li><span>+250 interactive syncs videos</span></li>
                     <li><span>Foreplay videos</span></li>
                 </ul>
+                <div class="price">
+                    <div class="old-price">
+                        $499
+                    </div>
+                    <div class="offer-price">
+                        <h2 class="offer-num">$299</h2><span class="sub-price">/month</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -307,10 +344,33 @@
  
 
 <style>
-    .subscription-content h2{
-        margin-left: 20px !important;
-         font-size: xx-large;
+
+    .offer-num{
+        font-size: xx-large !important;
+        font-weight: 900 !important;
+        font-family: Raleway', Arial, sans-serif;
     }
+    .sub-price{
+        position: relative;
+        top: 30px;
+        left: 5px;
+    }
+
+    .old-price{
+        position: relative;
+        left: 20px;
+        margin-bottom: -20px;
+    }
+    .price .old-price {
+        color: #777;
+        font-size: 18px;
+        text-decoration: line-through;
+    }
+    .offer-price{
+        display: flex;    
+    }
+
+
     .subscription-content{
         text-align: left !important;
     }
