@@ -4,6 +4,12 @@
 @using X.PagedList.Web.Common
 @{
     ViewData["Title"] = "Video Gallery";
+    string pageTitle = "Today's Picks";
+}
+
+@if (ViewData["PageTitle"] != null)
+{
+    pageTitle = ViewData["PageTitle"].ToString();
 }
 
 <style>
@@ -12,7 +18,7 @@
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         gap: 8px;
         justify-content: center;
-        margin-top: 70px;
+        margin-top: 40px;
         padding: 0 0px; /* Added padding to the sides */
         gap: 0px;
         margin-right: 90px;
@@ -120,10 +126,19 @@
         left: 50%;
         transform: translateX(-50%);
     }
-
+    .page-title{
+        position: relative;
+        font-size: xx-large;
+        left: 80px;
+        top: 30px;
+    }
 
 </style>
 
+<div class="main-pg">
+<div class="page-title">
+    @pageTitle
+</div>
 <div class="card-container">
     @foreach (var item in Model)
     {
@@ -147,4 +162,5 @@
     </div>
 </div>
  
+</div>
 

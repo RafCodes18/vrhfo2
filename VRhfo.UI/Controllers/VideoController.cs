@@ -33,6 +33,9 @@ namespace VRhfo.UI.Controllers
             int pageSize = 10; // Videos per page
             int pageNumber = (page ?? 1); // Default to page 1
 
+            ViewData["PageTitle"] = category; // Set the category as the page title
+
+
             return View(videos.ToPagedList(pageNumber, pageSize));
         }
 
