@@ -315,7 +315,7 @@
                 </div>
             </div>
             <div class="button-continue">
-                <button class="continue-button">Continue</button>
+                <button class="continue-button">Continue <img src="~/img/icons8-arrow-60.png" class="cont-arrow" /></button>
             </div>
         </div>
 
@@ -348,8 +348,8 @@
                 </div>
             </div>
             <div class="button-continue">
-             <button class="continue-button">Continue</button>
-            </div>           
+                <button class="continue-button">Continue <img src="~/img/icons8-arrow-60.png" class="cont-arrow" /></button>
+            </div>
         </div>
 
         <!-- CARD 3 -->
@@ -380,7 +380,7 @@
                 </div>
             </div>
             <div class="button-continue">
-                <button class="continue-button">Continue</button>
+                <button class="continue-button">Continue <img src="~/img/icons8-arrow-60.png" class="cont-arrow" /></button>
             </div>
         </div>
 
@@ -412,8 +412,8 @@
                 </div>
             </div>
             <div class="button-continue">
-                <div class="continue-button">
-                    Continue </div>
+                <button class="continue-button">Continue <img src="~/img/icons8-arrow-60.png" class="cont-arrow" /></button>
+
             </div>
         </div>        
     </div>
@@ -440,7 +440,16 @@
                 </div>
             </div>
         </div>
-        <footer> <small>&copy; Copyright GoonVRR LLC, VirtualLust LLC</small> </footer>
+        <footer>
+            <div class="payment-logos">
+            <img src="~/img/mc_symbol_opt_53_1x.png" class="mast-logo"/>
+                <img src="~/img/paypal.png" class="pay-logo"/>
+                <img src="~/img/discover-logo-png-pic-5667.png" class="pay-logo" />
+                <img src="~/img/Visa_Brandmark_Blue_RGB_2021.png" class="pay-logo" />
+            </div>
+            <small>&copy; Copyright GoonVRR LLC, VirtualLust LLC</small> 
+            
+        </footer>
     </div>
 
 </div>
@@ -449,13 +458,29 @@
 <div class="main-page step-2 ">aifdidgnagdi</div>
 
 <style>
-     
-
+    .payment-logos{
+        margin-bottom: 20px;
+    }
+    .mast-logo{
+        width: 50px;
+    }
+     .pay-logo{
+         height: 28px;
+         width: 90px;
+     }
+    .cont-arrow{
+        background-color: transparent !important;
+        color: white !important;
+        width: 24px !important;
+        height: 22px !important;
+        margin-left: 5px;
+    }
      
     footer{
         color: black;
         font-size: 18px;
         font-weight: 600 !important;
+        padding-bottom: 20px;
     }
     .step-2{
         display: none;
