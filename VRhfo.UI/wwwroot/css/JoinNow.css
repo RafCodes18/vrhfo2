@@ -352,16 +352,34 @@ footer {
 
 .page-container{
     display: flex;
+    flex-direction: column;
 }
 
+.payment-options{
+    display: flex;
+}
 
+ 
+.container-2{
+    display: flex;
+}
 
+.join-now-form{
+    display: flex;
+    flex-direction: column;
+}
 
+.newsletter{
+    display: flex;
+}
 
+.mh{
+    min-width: 700px;
+}
 
-
-
-
+.button-like{
+    display: none;
+}
 /*Mobile nEXT button*/
 /*#fixed-button {
     position: fixed;
