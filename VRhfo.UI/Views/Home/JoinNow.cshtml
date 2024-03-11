@@ -92,11 +92,11 @@
                             <!-- this container is flex column-->
                             <div class="join-now-form">
                                 <h2>Lets create an account</h2>
-                                <input class="join-now-form-txt" type="text" placeholder="Enter your email" />
-                                <input class="join-now-form-txt" type="text" placeholder="Create a password" />
+                                <input class="join-now-form-txt" type="text" placeholder="Enter your email" required/>
+                                <input class="join-now-form-txt" type="text" placeholder="Create a password" required />
                                 
                                 <div class="newsletter"><input type="checkbox" />
-                                    <p>Check to Join the weekly newsletter!  </p>
+                                    <p>Join the weekly newsletter!  </p>
                                 </div>
 
                                 <div class="join-now-button">
@@ -113,10 +113,10 @@
               </div>
 
               <div class="payment-logo">
+                 @*  <img src="#" />
                   <img src="#" />
                   <img src="#" />
-                  <img src="#" />
-                  <img src="#" />
+                  <img src="#" /> *@
               </div>
               <div class="payment-processor-info">
                   <p>You will be redirected to our trusted payment processor. </p>
@@ -288,7 +288,7 @@
                 <img src="~/img/discover-logo-png-pic-5667.png" class="pay-logo" />
                 <img src="~/img/Visa_Brandmark_Blue_RGB_2021.png" class="pay-logo" />
             </div>
-            <small>&copy; Copyright GoonVR 2024, Bit Crave LLC</small>
+            <small class="footer-txt">&copy; Copyright GoonVR 2024, Bit Crave LLC</small>
 
         </footer>
     </div>
@@ -301,7 +301,9 @@
 <style>
     .hidden-2{
         display: none !important; 
-
+    }
+    .footer-txt{
+        color: #232323 !important;
     }
 </style>
  
