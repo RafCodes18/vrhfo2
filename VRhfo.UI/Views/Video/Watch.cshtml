@@ -12,23 +12,11 @@
     }
 
     .vid-details{
-        margin-left: 20px;
-        margin-top: 15px;
-
-       
+        margin-left: 110px;
+        margin-top: 15px;       
     }
 
-    .vid-container{
-        margin-left: 80px !important;
-        margin-top: 15px;
-        max-width: 800px;
-
-    }
-
-    #videoCanvas{
-        outline: 1px solid white;
-    }
-
+    
     .lik-box{
         padding: 0;
         height: 30px;
@@ -80,35 +68,89 @@
         width: 200px;
         flex-wrap: wrap;
     }
+
+    .vid-details-top-row{
+        display: flex;
+        justify-content: space-between;
+    }
+    .page-left-container{
+        max-width: 1000px;
+    }
+    .vid-player{
+        height: 500px; width: 700px;
+    }
+
+    .canvas-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        flex-direction: column;
+    }
+
+    #videoCanvas {
+/*         outline: 1px solid white;
+ */        max-height: 500px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .canvas-details{
+        width: 70%;
+    }
+
 </style>
 
  
-<div>
+<div class="page-left-container">
 
     @if (Model.video.Title == "Lana Rhoades")
     {
         <!-- Video Player -->
         <div class="vid-player">
-            <video class="vid" width="800" height="540" controls>
+            <video class="vid" width="700" height="500" controls>
                 <source src="~/video/@Model.video.VideoUrl" type="video/mp4" >
                 Your browser does not support the video tag.
             </video>
         </div>
+        <!--Vid details-->
+        <div class="vid-details">
+            <div class="vid-details-top-row">
+                <h2>@Model.video.Title</h2>
+                <p>@Model.video.AverageRating</p>
+            </div>
+            <div class="vid-details-bottom-row">
+                <p>@Model.video.Category</p>
+            </div>
+        </div>
     }
     else
     {
-        <!-- Video Player -->
-        <div class="vid-container">
+        <!-- Canvas Player -->
+        <div class="canvas-container">
             <canvas id="videoCanvas"></canvas>
+            <!--Vid details-->
+            <div class="canvas-details">
+                <div class="vid-details-top-row">
+                    <h2>@Model.video.Title</h2>
+                    <p>                        <p>
+                        <img src="~/img/like.png" alt="Heart Icon" height="15" width="15">
+                            @Model.video.FormattedLikes  | 
+                         <img src="~/img/dislike.png" height="18" width="18" />   @Model.video.FormattedDislikes
+                    </p>
+                </div>
+                <div class="vid-details-bottom-row">
+                    <p>@Model.video.Category</p>
+                </div>
+            </div>
         </div>
+       
     }
     
-    <div class="vid-details">
-        <h2>@Model.video.Title</h2>
-        <p >@Model.video.Description</p>
-    </div>
+    
     <!-- Suggested videos -->
-    <div class="suggested" style="width: 60%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 0px;">
+    <div class="suggested" style="width: 90%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 0px;">
         @for (int i = 0; i < Model.suggestedVideos.Count; i++)
         {
             <div class="sug-card">

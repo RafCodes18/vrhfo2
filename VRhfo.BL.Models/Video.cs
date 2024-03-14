@@ -51,6 +51,25 @@
             }
         }
 
+        public string FormattedDislikes
+        {
+            get
+            {
+                if (Dislikes < 1000)
+                {
+                    return Dislikes.ToString();
+                }
+                else if (Dislikes < 1000000)
+                {
+                    return (Dislikes / 1000.0).ToString("F1") + "k";
+                }
+                else
+                {
+                    return (Dislikes / 1000000.0).ToString("F1") + "m";
+                }
+            }
+        }
+
         //Think IceCube, "EXPLICIT CONTENT" sold more NWA albums. Viewers of my site are degenerates, like me, adding "WARNING: STRONG HYPNOSIS", or "WARNING: STRONG HYPNOTIC CONTENT"  adds to the experience.
         public string ContentWarning { get; set; }
         public int Likes { get; set; }
