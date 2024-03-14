@@ -4,7 +4,7 @@
 @using X.PagedList.Web.Common
 @{
     ViewData["Title"] = "Video Gallery";
-    string pageTitle = "Today's Picks";
+    string pageTitle = "Trending Now";
 }
 
 @if (ViewData["PageTitle"] != null)
@@ -20,7 +20,7 @@
         justify-content: center;
         margin-top: 40px;
         padding: 0 0px; /* Added padding to the sides */
-        gap: 0px;
+        gap: 10px;
         margin-right: 90px;
         margin-left: 80px;
     }
@@ -32,9 +32,9 @@
         margin-top: 20px;
         border: none;
         background-color: black;
-        padding: 10px; /* Moved padding from .card-container to here */
+        padding: 20px; /* Moved padding from .card-container to here */
         margin-top: 0px;
-        padding: 6px; /* Moved padding from .card-container to here */
+        padding: 0px; /* Moved padding from .card-container to here */
         width: 100%;
     }
 
@@ -42,7 +42,7 @@
         max-width: 100%; /* Changed from a fixed height to a max-width */
         height: auto; /* Ensures aspect ratio is maintained */
         border-radius: 8px 8px 8px 8px;
-        height: 300px;
+        height: 220px;
         padding: 1px;
         min-width: 200px;
         object-fit: cover;
