@@ -164,6 +164,9 @@
     .d-bottom-row{
         text-align: center;
     }
+    .vid-title{
+        max-width: 170px;
+    }
 </style>
 
 <div class="main-pg">
@@ -186,7 +189,7 @@
                 
                 <div class="description">
                     <div class="d-top-row">
-                        <h4>@item.Title</h4>
+                        <h4 class="vid-title">@item.Title</h4>
                         <p><img src="~/img/heart.svg" alt="Heart Icon" height="13" width="13">
                             @item.FormattedLikes
                         </p>
