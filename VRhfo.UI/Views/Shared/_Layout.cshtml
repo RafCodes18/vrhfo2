@@ -144,21 +144,21 @@
 
         .lik-box {
             width: 100%; /* Device width */
-            height: 40px; /* Desired height */
-            background-color: rgb(49, 49, 49); /* Light grey */
+            height: 40px !important; /* Desired height */
+            background-color: rgb(20, 20, 20) !important; /* Light grey */
             /* Modern styles */
             margin-top: 0px !important;
-
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             border-radius: 4px; /* Slightly rounded corners */
             display: flex; /* Enable proper link arrangement */
             align-items: center; /* Vertically center links */
-
+            flex-wrap: nowrap;
+            padding-left: 70px;
         }
 
         .sub-link-item{
             color: white !important;
-            margin-left: 60px;
+            margin-left: 10px;
             white-space: nowrap; /* Prevent text wrapping */
             overflow: hidden; /* Hide text if it exceeds the container */
             text-overflow: ellipsis;
@@ -170,8 +170,7 @@
         }
 
         .link-box{
-            padding: 5px;
-            margin-left: 10px;
+            margin-left: 25px;
         }
 
         .input-group {
@@ -179,7 +178,19 @@
         }
 
         <!-- TOGGLE BUTTON-->
+        @@media (max-width: 767px) {
+    .sub-link-item {
+        font-size: 14px; /* Reduce font size for smaller screens */
+        margin-left: 20px; /* Reduce spacing between links */
+    }
+}
 
+@@media (max-width: 575px) {
+    .sub-link-item {
+        font-size: 12px; /* Further reduce font size for smaller screens */
+        margin-left: 10px; /* Further reduce spacing between links */
+    }
+}
     </style>
 </head>
 <body>
