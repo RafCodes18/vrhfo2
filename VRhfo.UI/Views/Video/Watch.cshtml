@@ -7,24 +7,47 @@
 }
 
 <style>
+    <!-- LIKE BUTTONS -->
+    .o-icon-svg {
+        pointer-events: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .o-icon {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        position: relative;
+        vertical-align: middle;
+        fill: grey;
+        width: 24px;
+        height: 24px;
+    }
+
+    <!--SUGGESTED VIDEOS -->
     .suggested{
         margin-left: 20px;
     }
 
+    <!--VIDEO DETAILS CONTAINER -->
     .vid-details{
         margin-left: 110px;
         margin-top: 15px;       
     }
-
-    
     .lik-box{
         padding: 0;
         height: 30px;
         background-color: black;
         margin-bottom: -20px;
-
     }
-
         .lik-box.p {
             padding: 22px;
         }
@@ -54,26 +77,15 @@
 
         .vid{
             margin-left: 50px;
-        }
-
-    /* Add this to your existing styles */
-    .separator {
-        position: absolute;
-
-        height: 33px; /* Adjust thickness as desired */
-        background-color: #ccc; /* Adjust color as desired */
-        margin: 10px 0; /* Adjust spacing above/below the line */
-    }
+        }    
     .sug-title{
         width: 200px;
         flex-wrap: wrap;
     }
-
     .vid-details-top-row{
         display: flex;
         justify-content: space-between;
     }
-
     .vid-details-top-row p {
         font-size: large;
     }
@@ -83,6 +95,7 @@
     .vid-player{
         height: 500px; width: 700px;
     }
+
 
     .canvas-container {
         position: relative;
@@ -103,9 +116,6 @@
     .canvas-details{
         width: 76%;
      }
-
-
-
 
 
      @@media (max-width: 1109px) {
@@ -133,32 +143,8 @@
         grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns as needed */
     }
 }
-
-
-
-    .o-icon-svg {
-        pointer-events: none;
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-
-    .o-icon {
-        display: -webkit-inline-box;
-        display: -ms-inline-flexbox;
-        display: inline-flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        position: relative;
-        vertical-align: middle;
-        fill: grey;
-        width: 24px;
-        height: 24px;
-    }
+<!--END MEDIA QUERIES -->
+ 
 </style>
 
  
@@ -210,14 +196,74 @@
        
     }
 
-    <div class="comments-container">
-        <div class="comments-header">
-            <p>Top</p>
-
+    <div class="comments-section">
+        <div class="comments-header">             
+            <div class="comments-header-title">
+                <p>Comments  <span class="dot">• </span> </p>
+                    <span class="comments-number">
+                        16
+                    </span>
+            </div>
         </div>
+            
+            <div class="comment ">
+                <img class="avatar" src="~/img/nicole.jpg" />
+                <p>JmoneySH: this sucks</p>
+            </div>
+            <div class="comment ">
+                <img class="avatar" src="~/img/reily.jpg" />
+            <p class="content">HopelessGooner6969: Love the audio on this one Love the audio on this one Love the audio on this one</p>
+            </div>
+            <div class="comment ">
+                <img class="avatar" src="~/img/ang.jpg" />
+                <p class="content">jack3d: <3</p>
+            </div>
     </div>
 
+    <style>
+    .dot{
+        margin-left: 10px;
+    }
+    .comments-number{
+        padding: 0px 10px;
+    }
 
+        .comments-header {
+            display: flex;
+
+        }
+        .comments-header-title{
+            display: flex;
+            padding: 10px;
+        }
+        .comments-section {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column layout */
+            gap: 10px; /* Adjust the gap between comments */
+            background: black;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .comment {
+            display: flex;
+            gap: 8px;
+        }
+
+            .comment .avatar {
+                flex: 0 0 auto; /* Prevent avatar from shrinking */
+                height: 30px;
+                border-radius: 10px;                
+            }
+
+            .comment .content {
+                flex: 1 1 auto; /* Allow content to grow/shrink */
+            }
+            main{
+                display: flex;
+                flex-direction: row;
+            }
+    </style>
     
     
       <!-- Suggested videos -->
@@ -239,6 +285,36 @@
     </div>   *@
 
 </div>
+
+
+
+
+<div class="page-right-container">
+    <!--join premium container-->
+    <div class="join-premium-container">
+        <p>Join Premium</p>
+    </div>
+
+    <!--Suggested videos -->
+    <div class="suggested-videos">
+        <div class="video">
+            <img src="~/img/azz.jpg" height="200px" width="150px" />
+            <p>Title</p>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .page-right-container{
+ 
+    }
+</style>
+
+
+
+ 
+
 <script defer type="module">
     import * as THREE from '/js/three.module.js';
 
@@ -286,8 +362,5 @@
         renderer.render(scene, camera);
     }
     animate();
-
-
-
-
+ 
 </script>
