@@ -134,6 +134,31 @@
     }
 }
 
+
+
+    .o-icon-svg {
+        pointer-events: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .o-icon {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        position: relative;
+        vertical-align: middle;
+        fill: grey;
+        width: 24px;
+        height: 24px;
+    }
 </style>
 
  
@@ -168,10 +193,13 @@
             <div class="canvas-details">
                 <div class="vid-details-top-row">
                     <h2>@Model.video.Title</h2>
-                    <p>                        <p>
-                        <img src="~/img/like.png" alt="Heart Icon" height="15" width="15">
-                            @Model.video.FormattedLikes  | 
-                         <img src="~/img/dislike.png" height="18" width="18" />   @Model.video.FormattedDislikes
+                    <p>                      
+                        <svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero">
+                                <path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero"></path>
+                        </svg>
+                            @Model.video.FormattedLikes  |
+                        <svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 2h-4v12h4V2zM1 13c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 22l6.58-6.59c.37-.36.59-.86.59-1.41V4c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z" fill-rule="nonzero"></path></svg>    @Model.video.FormattedDislikes
                     </p>
                 </div>
                 <div class="vid-details-bottom-row">
@@ -181,6 +209,15 @@
         </div>
        
     }
+
+    <div class="comments-container">
+        <div class="comments-header">
+            <p>Top</p>
+
+        </div>
+    </div>
+
+
     
     
       <!-- Suggested videos -->
