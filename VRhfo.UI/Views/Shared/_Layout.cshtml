@@ -17,7 +17,10 @@
         }
 
 
-
+        .search-form{
+            max-width: 600px;
+            margin-left: 20px;
+        }
         .navbar-nav {
             width: 100%;
             justify-content: space-between;
@@ -60,6 +63,7 @@
         }
 
         .custom-search {
+            position: relative;
             width: 100%;
             background-color: black;
             border: 1px solid hotpink;
@@ -197,7 +201,7 @@
             
         }
 
-        @@media (max-width: 675px) {
+        @@media (max-width: 715px) {
             .sub-link-item {
                 font-size: 12px; /* Further reduce font size for smaller screens */
                 margin-left: 10px; /* Further reduce spacing between links */
@@ -268,8 +272,22 @@
             .goggles{
                 margin-top: 10px;
             }
-
-    </style>
+            .searchbar{
+                width: 100%;
+            }
+            @@media (max-width: 1001px){
+                .navbar-nav{
+                    height: 40px !important;
+                }
+                .searchbar{
+                    margin: 0;
+                    padding: 0;
+                    margin-top: -10px;
+                    margin-bottom: 5px !important;
+                    min-width: 100px;
+                }
+            }
+</style>
 </head>
 <body>
     <header>
@@ -287,8 +305,8 @@
                             <p></p>
                         </li>
                         <li class="nav-item search">
-                            <form class="form-inline my-2 my-lg-0 search">
-                                <div class="input-group">
+                            <form class="form-inline my-2 my-lg-0 search-form">
+                                <div class="input-group searchbar">
                                     <input type="search" class="form-control rounded custom-search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                                     <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </div>
