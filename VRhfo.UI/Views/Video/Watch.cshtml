@@ -91,6 +91,7 @@
     }
     .page-left-container{
         max-width: 70%;
+        margin-left: 20px;
     }
     .vid-player{
         height: 500px; width: 700px;
@@ -102,7 +103,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 30px;
+        margin-top: 26px;
         flex-direction: column;
         
     }
@@ -114,37 +115,55 @@
     }
 
     .canvas-details{
-        width: 76%;
+        width: 100%;
+        justify-content: flex-end;
      }
 
 
      @@media (max-width: 1109px) {
-    /* Styles for screens below 1110 pixels */
-    .canvas-container {
-        width: 100%;
+        /* Styles for screens below 1110 pixels */
+        .canvas-container {
+            width: 100%;
+        }
+
+        #videoCanvas {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Add additional styles for other elements */
+        .page-left-container {
+            max-width: 100%;
+        }
+
+        .vid-details {
+            margin-left: 0;       
+        }
+
+        .suggested {
+            margin-left: 0;
+            grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns as needed */
+        }
+     }
+
+    @@media (max-width: 675px) {
+        main{
+            flex-direction: column !important;
+        }
+        .page-left-container{
+            margin: 0;
+            margin-top: 0;
+        }
+        .canvas-container{
+            margin-top: -10px !important;
+        }
     }
 
-    #videoCanvas {
-        width: 100%;
-        height: auto;
-    }
-
-    /* Add additional styles for other elements */
-    .page-left-container {
-        max-width: 100%;
-    }
-
-    .vid-details {
-        margin-left: 0;       
-    }
-
-    .suggested {
-        margin-left: 0;
-        grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns as needed */
-    }
-}
 <!--END MEDIA QUERIES -->
  
+    .pb-3{
+        margin-top: 300px !important;
+    }
 </style>
 
  
@@ -263,26 +282,7 @@
                 display: flex;
                 flex-direction: row;
             }
-    </style>
-    
-    
-      <!-- Suggested videos -->
-    @* <div class="suggested" style="width: 90%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 0px;">
-        @for (int i = 0; i < Model.suggestedVideos.Count; i++)
-        {
-            <div class="sug-card">
-                <a asp-controller="Video" asp-action="Watch" asp-route-title="@Model.suggestedVideos[i].Title">
-                    <img width="180" src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" alt="@Model.suggestedVideos[i].Title" class="sug sug-img" />
-                </a>
-                <p class="sug-title">@Model.suggestedVideos[i].Title</p>
-            </div>
-
-            @if ((i + 1) % 2 == 0 && i < Model.suggestedVideos.Count - 1)
-            {
-                <div class="separator"></div>
-            }
-        }
-    </div>   *@
+    </style>    
 
 </div>
 
@@ -307,7 +307,7 @@
 
 <style>
     .page-right-container{
- 
+        flex-grow: 1;
     }
 </style>
 

@@ -131,6 +131,8 @@
         .container {
             margin: 0; /* Remove container margin */
             max-width: 100%; /* Ensure container takes up full width */
+            margin-top: 16px;
+            padding: 0;
         }
 
         /* Media query for iPhone 12 screen */
@@ -149,7 +151,7 @@
             /* Modern styles */
             margin-top: 0px !important;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            border-radius: 4px; /* Slightly rounded corners */
+            
             display: flex; /* Enable proper link arrangement */
             align-items: center; /* Vertically center links */
             flex-wrap: nowrap;
@@ -266,6 +268,7 @@
             .goggles{
                 margin-top: 10px;
             }
+
     </style>
 </head>
 <body>
@@ -325,7 +328,7 @@
 
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" >
             @RenderBody()
         </main>
     </div>
@@ -336,6 +339,7 @@
 
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
