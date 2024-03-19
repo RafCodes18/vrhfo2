@@ -520,17 +520,17 @@ footer {
 
 
 /*MEDIA QUERIES*/
-/*@media (max-width: 760px) {
+@media (max-width: 760px) {
     .main-product-cards {
-        flex-direction: column;*/ /* Change to column layout for smaller screens */
-        /*align-items: center;*/ /* Center-align cards in column layout */
-        /*width: 700px !important;
+        flex-direction: column;  Change to column layout for smaller screens 
+        align-items: center;  Center-align cards in column layout 
+        width: 700px !important;
     }
 
     .card {
-        width: 100% !important;*/ /* Make cards full width with some spacing */
-        /*margin-bottom: 0px !important;*/ /* Reduce bottom margin for spacing */
-        /*margin-top: 0px !important;
+        width: 100% !important;  Make cards full width with some spacing 
+        margin-bottom: 0px !important;  Reduce bottom margin for spacing 
+        margin-top: 0px !important;
         max-height: 120px;
         height: 90px !important;
         min-width: 200px !important;
@@ -614,4 +614,4 @@ footer {
     .top-3-rows {
         margin-top: 770px !important;
     }
-}*/
+}
