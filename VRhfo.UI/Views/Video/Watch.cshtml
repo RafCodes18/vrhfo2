@@ -336,20 +336,16 @@
     </div>
 
     <!--Suggested videos -->
-    <div class="suggested-videos">
-        <div class="video">
-            <img src="~/img/azz.jpg" height="100px" width="150px" />
-            <p class="video-title">Gooner Hypnosis</p>
+     @for (int i = 0; i < Model.suggestedVideos.Count; i++)
+     {
+        <div class="suggested-videos">
+            <div class="video">
+                <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title"><img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" /> </a>
+                <p class="video-title">@Model.suggestedVideos[i].Title</p>
+            </div>           
         </div>
-        <div class="video">
-            <img src="~/img/reily.jpg" height="100px" width="150px" />
-            <p class="video-title">Angela white hfo</p>
-        </div>
-        <div class="video">
-            <img src="~/img/nicole.jpg" height="100px" width="150px" />
-            <p class="video-title">Reily Reed hfo</p>
-        </div>
-    </div>
+
+     }
 </div>
 
 
