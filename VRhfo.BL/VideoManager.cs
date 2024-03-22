@@ -6,6 +6,61 @@ namespace VRhfo.BL
     public static class VideoManager
     {
 
+        public static List<Video> GetSuggestedVideos(int maxSuggestions, string watchedVideoTitle)
+        {
+            using (VRhfoEntities dc = new VRhfoEntities())
+            {
+                var random = new Random();
+                var unwatchedVideos = dc.tblVideos.Where(v => v.Title != watchedVideoTitle).ToList();
+                var shuffledVideos = unwatchedVideos.OrderBy(v => random.Next()).ToList();
+
+                if (shuffledVideos.Count <= maxSuggestions)
+                {
+                    return shuffledVideos.Select(v => new Video
+                    {
+                        Id = v.Id,
+                        Title = v.Title,
+                        Category = v.Category,
+                        ThumbnailUrl = v.ThumbnailUrl,
+                        VideoUrl = v.VideoUrl,
+                        Description = v.Description,
+                        Genre = v.Genre,
+                        UploadDate = v.UploadDate,
+                        Duration = v.Duration,
+                        Views = v.Views,
+                        RatingCount = v.RatingCount,
+                        IsPublic = v.IsPublic == 1,
+                        IsPreview = v.IsPreview == 1,
+                        ContentWarning = v.ContentWarning,
+                        Likes = v.Likes,
+                        Dislikes = v.Dislikes
+                    }).ToList();
+                }
+                else
+                {
+                    return shuffledVideos.Take(maxSuggestions).Select(v => new Video
+                    {
+                        Id = v.Id,
+                        Title = v.Title,
+                        Category = v.Category,
+                        ThumbnailUrl = v.ThumbnailUrl,
+                        VideoUrl = v.VideoUrl,
+                        Description = v.Description,
+                        Genre = v.Genre,
+                        UploadDate = v.UploadDate,
+                        Duration = v.Duration,
+                        Views = v.Views,
+                        RatingCount = v.RatingCount,
+                        IsPublic = v.IsPublic == 1,
+                        IsPreview = v.IsPreview == 1,
+                        ContentWarning = v.ContentWarning,
+                        Likes = v.Likes,
+                        Dislikes = v.Dislikes
+                    }).ToList();
+                }
+            }
+        }
+
         public static Video LoadByTitle(string title)
         {
             using (VRhfoEntities dc = new VRhfoEntities())

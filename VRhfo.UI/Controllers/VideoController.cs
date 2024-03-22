@@ -49,7 +49,7 @@ namespace VRhfo.UI.Controllers
 
             videoViewModel.video = VideoManager.LoadByTitle(title);
             // ... Rest of your logic remains the same
-            List<Video> list = VideoManager.LoadAll();
+            List<Video> list = VideoManager.GetSuggestedVideos(8, title);
             videoViewModel.suggestedVideos = list;
 
             return View(videoViewModel);
