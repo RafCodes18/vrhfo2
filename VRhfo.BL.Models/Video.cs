@@ -12,6 +12,7 @@
         public DateTime UploadDate { get; set; }
         public TimeSpan Duration { get; set; }
         public List<string> Tags { get; set; }
+        public List<Comment> Comments { get; set; }
         public int Views { get; set; }
         public int RatingCount { get; set; }
         public bool IsPublic { get; set; }  //For full length vids that are free, but not previews

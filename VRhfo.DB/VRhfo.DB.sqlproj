@@ -67,6 +67,7 @@
   <ItemGroup>
     <Build Include="Tables\tblVideo.sql" />
     <Build Include="Tables\tblUser.sql" />
+    <Build Include="Tables\tblComment.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeploy\Script.PreDeployment1.sql" />
