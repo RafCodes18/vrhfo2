@@ -11,3 +11,4 @@ Post-Deployment Script Template
 */
 :r .\DefaultData\Videos.sql
 :r .\DefaultData\Users.sql
+:r .\DefaultData\Comments.sql

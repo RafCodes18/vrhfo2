@@ -85,8 +85,6 @@
             }
         }
 
-        public virtual ICollection<Comment> Comments { get; set; }
-
 
 
     }

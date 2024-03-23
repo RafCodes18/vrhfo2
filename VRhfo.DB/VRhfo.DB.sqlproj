@@ -79,5 +79,6 @@
     <None Include="PostDeploy\DefaultData\Videos.sql" />
     <None Include="PostDeploy\DefaultData\Users.sql" />
     <None Include="local.DB.publish.xml" />
+    <None Include="PostDeploy\DefaultData\Comments.sql" />
   </ItemGroup>
 </Project>

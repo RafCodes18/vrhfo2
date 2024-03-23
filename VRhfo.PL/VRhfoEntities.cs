@@ -15,6 +15,8 @@ public partial class VRhfoEntities : DbContext
     {
     }
 
+    public virtual DbSet<tblComment> tblComments { get; set; }
+
     public virtual DbSet<tblUser> tblUsers { get; set; }
 
     public virtual DbSet<tblVideo> tblVideos { get; set; }
@@ -25,9 +27,24 @@ public partial class VRhfoEntities : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<tblComment>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC07EC035FAC");
+
+            entity.ToTable("tblComment");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Content)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.DatePosted)
+                .HasMaxLength(10)
+                .IsFixedLength();
+        });
+
         modelBuilder.Entity<tblUser>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC079F64D3FC");
+            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC0708F506E0");
 
             entity.ToTable("tblUser");
 
@@ -42,13 +59,13 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC079FD0C44A");
+            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC077616B1CA");
 
             entity.ToTable("tblVideo");
 
+            entity.Property(e => e.Category).HasMaxLength(255);
             entity.Property(e => e.ContentWarning).HasMaxLength(255);
             entity.Property(e => e.Genre).HasMaxLength(50);
-            entity.Property(e => e.Category).HasMaxLength(255);
             entity.Property(e => e.Title).HasMaxLength(255);
             entity.Property(e => e.UploadDate).HasColumnType("datetime");
         });
