@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace VRhfo.PL;
+﻿namespace VRhfo.PL;
 
 public partial class tblComment
 {
@@ -14,4 +11,6 @@ public partial class tblComment
     public int UserId { get; set; }
 
     public int VideoId { get; set; }
+    public virtual tblUser tblUser { get; set; }
+
 }

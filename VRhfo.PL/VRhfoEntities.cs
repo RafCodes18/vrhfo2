@@ -35,6 +35,12 @@ public partial class VRhfoEntities : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
             entity.Property(e => e.DatePosted).HasColumnType("datetime");
+
+            // Define the one-to-many relationship between tblUser and tblComment
+            entity.HasOne(c => c.tblUser)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<tblUser>(entity =>
@@ -50,6 +56,10 @@ public partial class VRhfoEntities : DbContext
             entity.Property(e => e.RegistrationDate).HasColumnType("date");
             entity.Property(e => e.SubscribedDate).HasColumnType("datetime");
             entity.Property(e => e.Username).HasMaxLength(120);
+            // Define the navigation property for comments
+            entity.HasMany(u => u.Comments)
+                .WithOne(c => c.tblUser)
+                .HasForeignKey(c => c.UserId);
         });
 
         modelBuilder.Entity<tblVideo>(entity =>

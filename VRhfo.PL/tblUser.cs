@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace VRhfo.PL;
+﻿namespace VRhfo.PL;
 
 public partial class tblUser
 {
@@ -18,4 +15,6 @@ public partial class tblUser
     public byte IsSubscribed { get; set; }
 
     public DateTime SubscribedDate { get; set; }
+
+    public virtual ICollection<tblComment> Comments { get; set; }
 }
