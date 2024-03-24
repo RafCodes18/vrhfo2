@@ -9,5 +9,7 @@
         public DateTime RegistrationDate { get; set; }
         public DateTime SubscribedDate { get; set; }
         public bool IsSubscribed { get; set; }
+        public char AvatarLetter => string.IsNullOrEmpty(Username) ? ' ' : char.ToUpper(Username[0]);
+
     }
 }
