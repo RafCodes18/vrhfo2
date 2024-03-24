@@ -52,6 +52,7 @@ namespace VRhfo.UI.Controllers
             List<Video> list = VideoManager.GetSuggestedVideos(8, title);
             videoViewModel.suggestedVideos = list;
 
+            videoViewModel.video.Comments = CommentManager.GetCommentsByVideoId(videoViewModel.video.Id);
             return View(videoViewModel);
         }
 

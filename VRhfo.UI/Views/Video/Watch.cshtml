@@ -70,7 +70,7 @@
            width: 215px;
         }
         .sug-img:hover{
-        -webkit-box-shadow: 10 10  hotpink;
+        -webkit-box-shadow: 10px 10px hotpink;
         box-shadow: 0 0 10px rgb(255, 0, 255);
         z-index: -999;
         }
@@ -225,7 +225,7 @@
             <div class="comments-header-title">
                 <p>Comments  <span class="dot">• </span> </p>
                     <span class="comments-number">
-                        16
+                    16
                     </span>
             </div>
         </div>
@@ -242,6 +242,14 @@
                 <img class="avatar" src="~/img/ang.jpg" />
                 <p class="content">jack3d: <3</p>
             </div>
+
+        @foreach (var comment in Model.video.Comments)
+        {
+            <div class="comment">
+                <img class="avatar" src="~/img/#" />
+                <p class="content">@(comment.User.Username): @comment.Content</p>
+            </div>
+        }
     </div>
 
     <style>

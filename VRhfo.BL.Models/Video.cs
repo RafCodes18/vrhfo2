@@ -18,6 +18,7 @@
         public bool IsPublic { get; set; }  //For full length vids that are free, but not previews
         public bool IsPreview { get; set; }// If True, returns 5 min preview, if false must be paid.
 
+
         public string FormattedDuration
         {
             get

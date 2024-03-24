@@ -9,7 +9,7 @@ public partial class tblComment
 
     public string Content { get; set; } = null!;
 
-    public string? DatePosted { get; set; }
+    public DateTime DatePosted { get; set; }
 
     public int UserId { get; set; }
 

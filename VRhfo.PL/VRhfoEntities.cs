@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace VRhfo.PL;
 
@@ -29,22 +27,19 @@ public partial class VRhfoEntities : DbContext
     {
         modelBuilder.Entity<tblComment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC07EC035FAC");
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC07A26F4D7C");
 
             entity.ToTable("tblComment");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Content)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            entity.Property(e => e.DatePosted)
-                .HasMaxLength(10)
-                .IsFixedLength();
+            entity.Property(e => e.DatePosted).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<tblUser>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC0708F506E0");
+            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC074C5EC30A");
 
             entity.ToTable("tblUser");
 
@@ -59,7 +54,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC077616B1CA");
+            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC075C164A42");
 
             entity.ToTable("tblVideo");
 

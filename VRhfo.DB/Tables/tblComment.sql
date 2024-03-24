@@ -2,7 +2,7 @@
 (
 	[Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
     [Content] VARCHAR(100) NOT NULL, 
-    [DatePosted] NCHAR(10) NULL, 
+    [DatePosted] DATETIME NOT NULL, 
     [UserId] INT NOT NULL, 
     [VideoId] INT NOT NULL
 )
