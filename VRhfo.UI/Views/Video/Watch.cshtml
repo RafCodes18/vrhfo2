@@ -256,9 +256,11 @@
 
                 <div class="comment-box">
                     <div class="comment-input" contenteditable="true" role="textbox"> <span class="placeholdert">Add a comment...</span> </div>
-                    <button class="comment-submit">COMMENT</button>
                 </div>
+
             </div>
+            <button class="comment-submit" id="btnComment">COMMENT</button>
+
         </div>
                         
         <!--LOOOP THROUGH EACH COMMENT -->
@@ -297,6 +299,9 @@
             background-color: #555;
             border-radius: 3px;
             border: 0;
+            position: relative;
+            margin-top: auto;    
+            margin-right: 15px;
         }
         .comment-submit:hover{
             background-color: #666;
@@ -304,15 +309,22 @@
         .comment-box{
             display: flex;
             position: relative;
+            height: auto;
+            width: auto;
+
         }
         .comment-input{
-            width: 300px;
+            width: 400px !important;
             height: 30px;
             margin-left: 20px;
             border-bottom: 1px solid grey;
+            overflow: auto;
         }
         .comments-input-container{
-            height: 50px;
+            display: flex;
+            height: 50px; 
+            justify-content: space-between;
+            bottom: 0;
         }
         .user-txt{
             display:flex;
@@ -412,7 +424,7 @@
             align-items: center;
             border-radius: 5px !important;
         }
-
+ 
         .comment {
             display: flex;
             gap: 8px;
@@ -511,7 +523,11 @@
     const commentSubmit = document.querySelector('.comment-submit');
     const commentsContainer = document.querySelector('.comments-section');
     const placeholder = commentInput.querySelector('.placeholdert');
-
+    const btnComment = document.getElementById('btnComment');
+    
+     btnComment.onclick = function () {
+         commentInput.innerHTML = "";
+     }
     // Remove the placeholder when the user clicks inside the contenteditable div
     commentInput.addEventListener('click', () => {
         if (placeholder) {
