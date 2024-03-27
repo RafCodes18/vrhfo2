@@ -252,12 +252,12 @@
             <div class="avatar-container user-txt">
                 <div class="avatar-circle">
                     <span class="avatar-letter">U</span>
+                </div>               
+            </div>
+            <div class="comment-box">
+                <div class="comment-input" contenteditable="true" role="textbox">
+                    <span class="placeholdert">Add a comment...</span>
                 </div>
-
-                <div class="comment-box">
-                    <div class="comment-input" contenteditable="true" role="textbox"> <span class="placeholdert">Add a comment...</span> </div>
-                </div>
-
             </div>
             <button class="comment-submit" id="btnComment">COMMENT</button>
 
@@ -310,20 +310,21 @@
             display: flex;
             position: relative;
             height: auto;
-            width: auto;
+            width: 400px !important;
 
         }
         .comment-input{
-            width: 400px !important;
+            position: relative;
+            width: 80%;
             height: 30px;
-            margin-left: 20px;
+            margin-left: -20px !important;
             border-bottom: 1px solid grey;
             overflow: auto;
         }
         .comments-input-container{
             display: flex;
             height: 50px; 
-            justify-content: space-between;
+            justify-content: space-around;
             bottom: 0;
         }
         .user-txt{
@@ -488,6 +489,19 @@
         .page-right-container {
             flex-grow: 1;
         }
+        .sug-vid-content{
+            margin-left: 5px;
+        }
+        .suggested-videos p{
+            color: #666666;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .sug-vid-content-bottom{
+            color: #b0b0b0;
+            padding: 0 !important;
+        }
     </style>    
 
 </div>
@@ -507,8 +521,16 @@
      {
         <div class="suggested-videos">
             <div class="video">
-                <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title"><img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" /> </a>
-                <p class="video-title">@Model.suggestedVideos[i].Title</p>
+                <div class="sug-vid-img">
+                    <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title"><img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" /> </a>
+                </div>
+                <div class="sug-vid-content">
+                        <h5 class="video-title">@Model.suggestedVideos[i].Title</h5>
+                        <p>@Model.suggestedVideos[i].Category</p>
+                    <div class="sug-vid-content-bottom">
+                        <img src="~/img/view.png" height="20px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
+                    </div>
+                </div>
             </div>           
         </div>
 

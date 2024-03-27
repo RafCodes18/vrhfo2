@@ -87,6 +87,63 @@
         }
 
 
+        public string FormattedViews
+        {
+            get
+            {
+                if (Views < 1000)
+                {
+                    return Views.ToString();
+                }
+                else if (Views < 1000000)
+                {
+                    return (Views / 1000.0).ToString("F1") + "k";
+                }
+                else
+                {
+                    return (Views / 1000000.0).ToString("F1") + "M";
+                }
+            }
+        }
+
+        public string FormattedUploadDate
+        {
+            get
+            {
+                var currentDate = DateTime.UtcNow;
+                var dateDifference = currentDate - UploadDate;
+
+                if (dateDifference.TotalDays < 1)
+                {
+                    return "Today";
+                }
+                else if (dateDifference.TotalDays < 2)
+                {
+                    return "1 day ago";
+                }
+                else if (dateDifference.TotalDays < 7)
+                {
+                    return $"{(int)dateDifference.TotalDays} days ago";
+                }
+                else if (dateDifference.TotalDays < 14)
+                {
+                    return "1 wk ago";
+                }
+                else if (dateDifference.TotalDays < 30)
+                {
+                    return $"{(int)(dateDifference.TotalDays / 7)} wks ago";
+                }
+                else if (dateDifference.TotalDays < 365)
+                {
+                    return $"{(int)(dateDifference.TotalDays / 30)} months ago";
+                }
+                else
+                {
+                    return $"{(int)(dateDifference.TotalDays / 365)} years ago";
+                }
+            }
+        }
+
 
     }
 }
