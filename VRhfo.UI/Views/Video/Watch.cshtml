@@ -67,13 +67,14 @@
         }
       
         .sug-img{
-           width: 215px;
-        }
-        .sug-img:hover{
-        -webkit-box-shadow: 10px 10px hotpink;
-        box-shadow: 0 0 10px rgb(255, 0, 255);
-        z-index: -999;
-        }
+            border-radius: 3px;
+        object-fit: cover;
+    }
+        .video:hover{
+            -webkit-box-shadow: 10px 10px hotpink;
+            box-shadow: 0 0 10px rgb(255, 0, 255);
+            cursor: pointer;
+         }
 
         .vid{
             margin-left: 50px;
@@ -170,6 +171,7 @@
     .pb-3{
         margin-top: 300px !important;
     }
+
 </style>
 
  
@@ -248,17 +250,20 @@
         </div>
 
         <!--ADD A COMMENT -->
-        <div class="comments-input-container">
-            <div class="avatar-container user-txt">
-                <div class="avatar-circle">
-                    <span class="avatar-letter">U</span>
-                </div>               
-            </div>
-            <div class="comment-box">
-                <div class="comment-input" contenteditable="true" role="textbox">
-                    <span class="placeholdert">Add a comment...</span>
+        <div class="addComment-container">
+            <div class="addComment-topRow">
+                <div class="avatar-container user-txt">
+                    <div class="avatar-circle">
+                        <span class="avatar-letter">U</span>
+                    </div>               
+                </div>
+                <div class="comment-box">
+                    <div class="comment-input" contenteditable="true" role="textbox">
+                        <span class="placeholdert">Add a comment...</span>
+                    </div>
                 </div>
             </div>
+
             <button class="comment-submit" id="btnComment">COMMENT</button>
 
         </div>
@@ -288,44 +293,47 @@
     </div>
 
     <style>
+        .addComment-container{
+            display: flex;
+            flex-direction: column;            
+        }
+        .addComment-topRow{
+            display: flex;
+        }
         .placeholdert {
             color: #999;
             pointer-events: none;
         }
- 
+        
         .comment-submit{
-            height: 30px;
-            width: 100px;
-            background-color: #555;
-            border-radius: 3px;
-            border: 0;
-            position: relative;
-            margin-top: auto;    
-            margin-right: 15px;
+            align-self: flex-end;
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: 1px solid hotpink;
+            padding: 5px;
+            margin-right: 20%;
+            transition: all .3s ease;
+            -webkit-transition: all .3s ease;
         }
         .comment-submit:hover{
-            background-color: #666;
+                background-color: rgb(218, 110, 178, .8);
         }
-        .comment-box{
-            display: flex;
-            position: relative;
-            height: auto;
-            width: 400px !important;
-
-        }
-        .comment-input{
-            position: relative;
-            width: 80%;
-            height: 30px;
-            margin-left: -20px !important;
+            .comment-submit:focus {
+                outline: 1px solid hotpink; /* Add focus styling here */
+            }
+         .comment-input{
             border-bottom: 1px solid grey;
             overflow: auto;
-        }
-        .comments-input-container{
-            display: flex;
-            height: 50px; 
-            justify-content: space-around;
-            bottom: 0;
+            margin-top: 2%;
+         }
+
+         .comment-box{
+            width: 55%;
+            margin-left: 20px;
         }
         .user-txt{
             display:flex;
@@ -420,7 +428,7 @@
             grid-template-columns: 1fr; /* Single column layout */
             gap: 10px; /* Adjust the gap between comments */
             background: #222;
-            padding: 0 !important;
+            padding: 5px !important;
             margin: 0 !important;
             align-items: center;
             border-radius: 5px !important;
@@ -502,6 +510,7 @@
             color: #b0b0b0;
             padding: 0 !important;
         }
+
     </style>    
 
 </div>
@@ -522,13 +531,13 @@
         <div class="suggested-videos">
             <div class="video">
                 <div class="sug-vid-img">
-                    <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title"><img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" /> </a>
+                    <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title"><img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" class="sug-img" /> </a>
                 </div>
                 <div class="sug-vid-content">
                         <h5 class="video-title">@Model.suggestedVideos[i].Title</h5>
                         <p>@Model.suggestedVideos[i].Category</p>
                     <div class="sug-vid-content-bottom">
-                        <img src="~/img/view.png" height="20px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
+                        <img src="~/img/vision.png" height="22px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
                     </div>
                 </div>
             </div>           
@@ -569,10 +578,31 @@
         }
     });
 
+    // Restore placeholder when the input loses focus (user clicks anywhere else on the page)
+    document.addEventListener('click', (event) => {
+        const isCommentInput = event.target.closest('.comment-input');
+        if (!isCommentInput && commentInput.textContent.trim() === '') {
+            if (!placeholder) {
+                const newPlaceholder = document.createElement('span');
+                newPlaceholder.classList.add('placeholdert');
+                newPlaceholder.textContent = 'Add a comment...';
+                commentInput.appendChild(newPlaceholder);
+            }
+        }
+    });
+
     commentSubmit.addEventListener('click', () => {
         const commentText = commentInput.textContent.trim();
         if (commentText) {
-            // ... (same as before)
+            // Your logic to submit the comment
+            console.log('Comment submitted:', commentText);
+            // Clear the input after submitting
+            commentInput.textContent = '';
+            // Restore placeholder after clearing input
+            const newPlaceholder = document.createElement('span');
+            newPlaceholder.classList.add('placeholdert');
+            newPlaceholder.textContent = 'Add a comment...';
+            commentInput.appendChild(newPlaceholder);
         }
     });
 </script>

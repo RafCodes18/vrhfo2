@@ -48,7 +48,10 @@
         min-width: 200px;
         object-fit: cover;
     }
-
+    .card:hover{
+        -webkit-box-shadow: 10px 10px hotpink;
+        box-shadow: 0 0 10px rgb(255, 0, 255);
+     }
 
     .description {
         background-color: #222;
@@ -167,6 +170,8 @@
     }
     .d-bottom-row{
         text-align: center;
+        display: flex;
+        justify-content: space-between;
     }
     .vid-title{
         max-width: 170px;
@@ -193,13 +198,14 @@
                 
                 <div class="description">
                     <div class="d-top-row">
-                        <h4 class="vid-title">@item.Title</h4>
+                        <h5 class="vid-title">@item.Title</h5>
                         <p><img src="~/img/heart.svg" alt="Heart Icon" height="13" width="13">
                             @item.FormattedLikes
                         </p>
                     </div>
                     <div class="d-bottom-row">
                         <p>@item.Category</p>
+                        @item.FormattedUploadDate
                     </div>
                 </div>
         </div>
