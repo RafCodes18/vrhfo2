@@ -55,7 +55,7 @@
 
 .top-3-rows {
     flex-direction: column;
-    margin-top: 280px;
+    margin-top: 260px;
 }
 
 .choose-plan {
@@ -467,7 +467,7 @@ footer {
 }
 
 .top-3-rows{
-    margin-top: 390px;
+    margin-top: 350px;
     margin-bottom: -16px !important;
 }
 
