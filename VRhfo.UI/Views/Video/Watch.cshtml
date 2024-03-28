@@ -64,6 +64,7 @@
     }
     .sug-card:hover{
             z-index: 999;
+
         }
       
         .sug-img{
@@ -73,7 +74,6 @@
         .video:hover{
             -webkit-box-shadow: 10px 10px hotpink;
             box-shadow: 0 0 10px rgb(255, 0, 255);
-            cursor: pointer;
          }
 
         .vid{
@@ -492,26 +492,39 @@
             }
             .video-title{
                 padding-left: 5px;
+                min-width: 160px !important;
+                max-width: 300px;
             }
 
         .page-right-container {
             flex-grow: 1;
         }
         .sug-vid-content{
+            position: relative;
             margin-left: 5px;
+
         }
         .suggested-videos p{
             color: #666666;
             padding: 0 !important;
             margin: 0 !important;
+            padding-left: 5px !important;
         }
 
         .sug-vid-content-bottom{
             color: #b0b0b0;
             padding: 0 !important;
+            position: absolute;
+            bottom: 0 !important;
         }
+        .title-link{
+            color: white;
+        }
+        .title-link:hover{
+            color: white;
+        }     
 
-    </style>    
+ </style>    
 
 </div>
 
@@ -531,11 +544,13 @@
         <div class="suggested-videos">
             <div class="video">
                 <div class="sug-vid-img">
-                    <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title"><img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" class="sug-img" /> </a>
+                    <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title">
+                        <img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" class="sug-img" /> 
+                       </a>
                 </div>
                 <div class="sug-vid-content">
-                        <h5 class="video-title">@Model.suggestedVideos[i].Title</h5>
-                        <p>@Model.suggestedVideos[i].Category</p>
+                    <a class="title-link" asp-action="watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title"><h5 class="video-title">@Model.suggestedVideos[i].Title</h5></a>
+                    <a asp-action="Index" asp-controller="Video" asp-route-category="@Model.suggestedVideos[i].Category"><p class="vid-category">@Model.suggestedVideos[i].Category</p></a>
                     <div class="sug-vid-content-bottom">
                         <img src="~/img/vision.png" height="22px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
                     </div>
