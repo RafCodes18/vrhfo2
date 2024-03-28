@@ -2,29 +2,26 @@
 using VRhfo.BL;
 using VRhfo.BL.Models;
 
+
 namespace VRhfo.UI.Controllers
 {
     public class UserController : Controller
     {
+        public void SetUser(User user)
+        {
+            if (user != null)
+            {
+                HttpContext.Session.SetObject("user", user);
+                HttpContext.Session.SetString("username", user.Username);
+                Console.WriteLine(HttpContext.Session.GetString("username"));
+            }
+            else
+            {
+                HttpContext.Session.SetObject("username", string.Empty);
 
-        /*  [HttpPost]
-          public ActionResult CreateAccount(User user)
-          {
-              try
-              {
-                  int results = UserManager.Insert(user);
+            }
+        }
 
-                  if (results != 0)
-                  {
-                      Login(user);
-                  }
-              }
-              catch (Exception)
-              {
-
-                  throw;
-              }
-          }*/
 
         private void Login(User user)
         {
@@ -106,5 +103,26 @@ namespace VRhfo.UI.Controllers
                 return View();
             }
         }
+
+
+        /*   [HttpPost]
+           public ActionResult CreateAccount(User user)
+           {
+               try
+               {
+                   int results = UserManager.Insert(user);
+
+                   if (results != 0)
+                   {
+                       Login(user);
+                   }
+               }
+               catch (Exception)
+               {
+
+                   throw;
+               }
+           } */
+
     }
 }
