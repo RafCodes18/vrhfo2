@@ -38,5 +38,10 @@ namespace VRhfo.UI.Controllers
         {
             return View();
         }
+
+        public IActionResult LearnHow()
+        {
+            return View();
+        }
     }
 }

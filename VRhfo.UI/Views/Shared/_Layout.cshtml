@@ -162,6 +162,7 @@
             align-items: center; /* Vertically center links */
             flex-wrap: nowrap;
             padding-left: 70px;
+            position: relative;
         }
 
         .sub-link-item{
@@ -289,6 +290,14 @@
                     min-width: 100px;
                 }
             }
+            .right{
+                    margin-left: 100px;
+            }
+            .right-lnk{
+            color: hotpink !important;
+            font-weight: 700;
+            text-decoration: underline;
+        }
 </style>
 </head>
 <body>
@@ -348,6 +357,10 @@
 
             <div class="link-box">
                 <a class="sub-link-item" asp-controller="Video" asp-action="Index" asp-route-category="HFO">HFO</a>
+            </div>
+
+            <div class="link-box right">
+                <a class="sub-link-item right-lnk" asp-action="LearnHow" asp-controller="Home">HOW TO</a>
             </div>
         </div>
 

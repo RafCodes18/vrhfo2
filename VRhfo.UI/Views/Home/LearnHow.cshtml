@@ -1,0 +1,67 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    .learn-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 460px;
+        padding: 30px;
+        background-color: rgb(17, 17, 17, .6);
+        border-radius: 10px;
+        height: 400px;
+    }
+
+    .step{
+        padding-top: 10px;
+    }
+
+    .feature-update{
+        color: #777;
+    }
+
+    body {
+        min-height: 100vh;
+        margin: 0;
+        background: hsla(183, 65%, 63%, 1);
+        background: linear-gradient(90deg, hsla(183, 65%, 63%, 1) 0%, hsla(238, 67%, 67%, 1) 50%, hsla(296, 91%, 59%, 1) 100%);
+        background: -moz-linear-gradient(90deg, hsla(183, 65%, 63%, 1) 0%, hsla(238, 67%, 67%, 1) 50%, hsla(296, 91%, 59%, 1) 100%);
+        background: -webkit-linear-gradient(90deg, hsla(183, 65%, 63%, 1) 0%, hsla(238, 67%, 67%, 1) 50%, hsla(296, 91%, 59%, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#61D8DE", endColorstr="#7478E4", GradientType=1);
+    }
+
+    .learn-card h5{
+        position: relative;
+       margin-top: 30px;
+       left: 40%;
+       margin-bottom: 20px;
+       font-weight: 700;
+       letter-spacing: 3px;
+    }
+    .enjoy{
+        color: deeppink !important;
+    }
+    .enjoy:hover{
+        color: #ff8899 !important;
+    }
+</style>
+
+<div class="learn-card">
+    <div class="content">
+        <h3 class="step one">Step 1. Enter fullscreen  </h3>
+        <h3 class="step two">Step 2. Select VR 180°</h3>
+        <h3 class="step three">Step 3: Select Side By Side video </h3>
+
+        <h5> <a asp-action="Index" asp-controller="Video" class="enjoy">Enjoy! </a></h5>
+
+        <p class="feature-update">We are actively building our own VR Video Player from scratch to improve the user experience. Our current, temporary, VR Video player is a free to use software provided by videojs.com. By using this website you agree to all <a href="#">Terms and Conditions.</a> </p>
+    </div>
+</div>

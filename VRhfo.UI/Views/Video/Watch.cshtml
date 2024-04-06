@@ -565,8 +565,28 @@
         </div>
 
      }
+    @* <video id="my-video" class="video-js" controls preload="auto" width="640" height="360" data-setup="{}">
+        <source src="~/video/spiralshort.mp4" type="video/mp4">
+        <!-- Add more <source> elements for different video formats if needed -->
+    </video> *@
 </div>
 
+
+
+<!-- Include VideoJS  -->
+<script src="~/node_modules/video.js/dist/video.js"></script>
+<script src="~/node_modules/videojs-vr/dist/videojs-vr.js"></script>
+<link href="~/node_modules/video.js/dist/video-js.css" rel="stylesheet" />
+
+
+<!-- Include VideoJS-VR JavaScript -->
+<script src="~/node_modules/videojs-vr/dist/videojs-vr.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var player = videojs('my-video');
+        player.vr({ projection: '360' });
+    });
+</script>
  
 
 <!--JS TO HANDLE ADDING COMMENTS-->
