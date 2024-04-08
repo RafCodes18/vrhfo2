@@ -444,10 +444,11 @@ footer {
 .join-now-button {
     background-color: #e4003a;
     padding: 15px 40px;
-    margin: 30px 0 5px 0;
+    margin: 20px 0 5px 0;
     border-radius: 10px 10px;
     color: white !important;
     font-size: x-large;
+    min-width: 100%;
 }
     .join-now-button:hover{
         background-color: black;

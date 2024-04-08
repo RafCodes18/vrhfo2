@@ -10,7 +10,10 @@
  <link rel="stylesheet" href="~/css/JoinNow.css" />
 
  <style>
-    
+    a{
+        color: white;
+        text-decoration: none;
+    }
  </style>
 <div class="main-page step">
 
@@ -93,22 +96,29 @@
                             <!-- END OF CARD-->
 
                             <!-- this container is flex column-->
-                            <div class="join-now-form">
-                                <h2>Lets create an account</h2>
-                                <input class="join-now-form-txt" type="text" placeholder="Enter your email" required/>
-                                <input class="join-now-form-txt" type="text" placeholder="Create a password" required />
-                                
-                                <div class="newsletter"><input type="checkbox" />
-                                    <p>Join the weekly newsletter!  </p>
-                                </div>
+                            <form asp-action="Create" asp-controller="User" method="Post">
+                                <div class="join-now-form">
+                                    <h2>Lets create an account</h2>
+                                    <input class="join-now-form-txt" type="text" placeholder="Enter your email" required/>
 
-                                <div class="join-now-button">
-                                    <div>Join Now</div>
+                                    <input class="join-now-form-txt" type="text" placeholder="Create a username" required/>                                                                
+                                    <input class="join-now-form-txt" type="text" placeholder="Create a password" required /> 
+ 
+                                
+                                    <div class="newsletter"><input type="checkbox" />
+                                        <p>Join the weekly newsletter!  </p>
+                                    </div>
+
+                                    <div>
+                                       
+                                            <input class="join-now-button" type="submit" value="Join Now"/>
+                                      
+                                    </div>
+                                    <div class="terms-info">
+                                            By submitting this form, you certify that you are 18 years of age or older, and agree to the <a href="#" class="terms-link">Terms-of-Service Agreement</a>
+                                    </div>
                                 </div>
-                                <div class="terms-info">
-                                        By submitting this form, you certify that you are 18 years of age or older, and agree to the <a href="#" class="terms-link">Terms-of-Service Agreement</a>
-                                </div>
-                            </div>
+                            </form>
                     </div>
     
               <div class="back" id="back-button">

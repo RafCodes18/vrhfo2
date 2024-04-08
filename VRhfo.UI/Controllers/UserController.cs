@@ -54,7 +54,7 @@ namespace VRhfo.UI.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), "Video");
             }
             catch
             {
