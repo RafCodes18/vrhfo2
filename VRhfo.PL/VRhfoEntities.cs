@@ -56,6 +56,7 @@ public partial class VRhfoEntities : DbContext
             entity.Property(e => e.RegistrationDate).HasColumnType("date");
             entity.Property(e => e.SubscribedDate).HasColumnType("datetime");
             entity.Property(e => e.Username).HasMaxLength(120);
+            entity.Property(e => e.Password).HasMaxLength(120);
             // Define the navigation property for comments
             entity.HasMany(u => u.Comments)
                 .WithOne(c => c.tblUser)

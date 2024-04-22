@@ -7,4 +7,5 @@
     [RegistrationDate] DATE NOT NULL, 
     [IsSubscribed] TINYINT NOT NULL, 
     [SubscribedDate] DATETIME NOT NULL, 
+    [Password] VARCHAR(50) NOT NULL, 
 )

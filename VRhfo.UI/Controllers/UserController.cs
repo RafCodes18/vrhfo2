@@ -22,10 +22,23 @@ namespace VRhfo.UI.Controllers
             }
         }
 
-
-        private void Login(User user)
+        [HttpGet]
+        private ActionResult Login(string returnURL)
         {
-            throw new NotImplementedException();
+            return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        private IActionResult Login(User user)
+        {
+            bool loginWorked = UserManager.Login(user);
+            if (HttpContext != null && loginWorked == true) SetUser(user);
+
+            if (TempData?["returnUrl"] != null)
+                return Redirect(TempData["returnUrl"]?.ToString());
+            else
+                return RedirectToAction("Video", "Index");
+
         }
 
         // GET: User/Profile

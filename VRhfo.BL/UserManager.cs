@@ -62,5 +62,27 @@ namespace VRhfo.BL
             }
         }
 
+
+        public static bool Login(User user)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(user.Username))
+                {
+                    if (!string.IsNullOrEmpty(user.Password))
+                    {
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return true;
+        }
+
     }
 }
