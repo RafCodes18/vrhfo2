@@ -71,7 +71,26 @@ namespace VRhfo.BL
                 {
                     if (!string.IsNullOrEmpty(user.Password))
                     {
+                        using (VRhfoEntities db = new VRhfoEntities())
+                        {
+                            tblUser row = db.tblUsers.FirstOrDefault(u => u.Username == user.Username);
 
+                            if (row != null)
+                            {
+                                //check password 
+                                if (row.Password == GetHash(user.Password) || row.Password == user.Password)
+                                {
+                                    //login successful with correct hashed or unhashed password
+
+                                    user.SubscribedDate = row.SubscribedDate;
+                                    user.RegistrationDate = row.RegistrationDate;
+                                    user.Username = row.Username;
+                                    user.IsSubscribed = row.IsSubscribed != 0;
+                                    user.Email = row.Email;
+                                    return true;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -84,5 +103,15 @@ namespace VRhfo.BL
             return true;
         }
 
+
+
+        private static string GetHash(string password)
+        {
+            using (var hasher = new System.Security.Cryptography.SHA1Managed())
+            {
+                var hashbytes = System.Text.Encoding.UTF8.GetBytes(password);
+                return Convert.ToBase64String(hasher.ComputeHash(hashbytes));
+            }
+        }
     }
 }
