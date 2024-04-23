@@ -5,6 +5,19 @@ namespace VRhfo.BL
 {
     public static class UserManager
     {
+        public class LoginFailureException : Exception
+        {
+            public LoginFailureException() : base("Invalid Username or Password.")
+            {
+
+            }
+
+            public LoginFailureException(string message) : base(message)
+            {
+
+            }
+        }
+
         public static User LoadById(int id)
         {
             try
@@ -89,18 +102,34 @@ namespace VRhfo.BL
                                     user.Email = row.Email;
                                     return true;
                                 }
+                                else
+                                {
+                                    throw new LoginFailureException();
+                                    return false;
+                                }
+                            }
+                            else
+                            {
+                                throw new LoginFailureException("Username was not found.");
                             }
                         }
                     }
+                    else
+                    {
+                        throw new LoginFailureException("Password was not set. ");
+                    }
                 }
+                else
+                {
+                    throw new LoginFailureException("Username was not set. ");
+                }
+
             }
             catch (Exception)
             {
 
                 throw;
             }
-
-            return true;
         }
 
 
