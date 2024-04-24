@@ -22,14 +22,14 @@ namespace VRhfo.UI.Controllers
             }
         }
 
-        [HttpGet]
-        private ActionResult Login(string returnURL)
-        {
-            return RedirectToAction("Login");
-        }
+        /*  [HttpGet]
+          private ActionResult Login(string returnURL)
+          {
+              return View();
+          }*/
 
         [HttpPost]
-        private IActionResult Login(User user)
+        private ActionResult Login(User user)
         {
             bool loginWorked = UserManager.Login(user);
             if (HttpContext != null && loginWorked == true) SetUser(user);
