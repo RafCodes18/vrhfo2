@@ -176,6 +176,7 @@
         margin-top: 300px !important;
     }
 
+
 </style>
 
  
@@ -203,7 +204,7 @@
     }
     else
     {
-        <!-- Canvas Player -->
+        @* <!-- Canvas Player SPHERE  -->
         <div class="canvas-container">
             <canvas id="videoCanvas"></canvas>
             <!--Vid details-->
@@ -222,8 +223,31 @@
                     <p>@Model.video.Category</p>
                 </div>
             </div>
+        </div> *@
+
+
+        <!--NEW PLAYER THAT WILL WORK VIDEO VR JS -->
+        <div class="canvas-container">
+            <video id="my-video" class="video-js  video-playa" controls preload="auto" width="860" height="515" data-setup="{}">
+                <source  src="~/video/my-video.mp4" type="video/mp4">
+                <!-- Add more <source> elements for different video formats if needed -->
+            </video>
         </div>
-       
+         <div class="canvas-details">
+                <div class="vid-details-top-row">
+                    <h2>@Model.video.Title</h2>
+                    <p>                      
+                        <svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero"></path>
+                        </svg>
+                            @Model.video.FormattedLikes  |
+                        <svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 2h-4v12h4V2zM1 13c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 22l6.58-6.59c.37-.36.59-.86.59-1.41V4c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z" fill-rule="nonzero"></path></svg>    @Model.video.FormattedDislikes
+                    </p>
+                </div>
+                <div class="vid-details-bottom-row">
+                    <p>@Model.video.Category</p>
+                </div>
+            </div>
     }
 
     <!--COMMMENT SECTION-->
@@ -296,6 +320,7 @@
         }
     </div>
 
+    <!--Comment Section CSS -->
     <style>
         .addComment-container{
             display: flex;
@@ -534,9 +559,7 @@
 
 </div>
 
-
-
-
+<!--RIGHT SIDE OF PAGE (SUGGESTED VIDEOS) -->
 <div class="page-right-container">
     <!--join premium container-->
     <div class="join-premium-container">
@@ -565,12 +588,7 @@
         </div>
 
      }
-    @* <video id="my-video" class="video-js" controls preload="auto" width="640" height="360" data-setup="{}">
-        <source src="~/video/spiralshort.mp4" type="video/mp4">
-        <!-- Add more <source> elements for different video formats if needed -->
-    </video> *@
 </div>
-
 
 
 <!-- Include VideoJS  -->
@@ -578,16 +596,17 @@
 <script src="~/node_modules/videojs-vr/dist/videojs-vr.js"></script>
 <link href="~/node_modules/video.js/dist/video-js.css" rel="stylesheet" />
 
+<link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
 
 <!-- Include VideoJS-VR JavaScript -->
 <script src="~/node_modules/videojs-vr/dist/videojs-vr.js"></script>
 <script>
-   @*  document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
         var player = videojs('my-video');
-        player.vr({ projection: '360' });
-    }); *@
+        player.vr({ projection: '180_LR' });
+    });
 </script>
- 
+
 
 <!--JS TO HANDLE ADDING COMMENTS-->
  <script type="text/javascript">
@@ -649,7 +668,7 @@
 </script>
 
 
-
+<!-- SPINNING BLUE SPHERE  THREE JS PLAYER-->
 <script defer type="module">
     import * as THREE from '/js/three.module.js';
 
