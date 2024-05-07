@@ -15,5 +15,6 @@
     [IsPreview] TINYINT NOT NULL, 
     [ContentWarning] NVARCHAR(255) NOT NULL, 
     [Likes] INT NOT NULL, 
-    [Dislikes] INT NOT NULL
+    [Dislikes] INT NOT NULL, 
+    [UserId] INT NOT NULL
 )

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace VRhfo.PL;
+﻿namespace VRhfo.PL;
 
 public partial class tblVideo
 {
     public int Id { get; set; }
+    public int UserId { get; set; }
 
     public string Title { get; set; } = null!;
 

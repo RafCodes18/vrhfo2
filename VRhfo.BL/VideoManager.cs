@@ -19,6 +19,7 @@ namespace VRhfo.BL
                     return shuffledVideos.Select(v => new Video
                     {
                         Id = v.Id,
+                        UserId = v.UserId,
                         Title = v.Title,
                         Category = v.Category,
                         ThumbnailUrl = v.ThumbnailUrl,
@@ -41,6 +42,7 @@ namespace VRhfo.BL
                     return shuffledVideos.Take(maxSuggestions).Select(v => new Video
                     {
                         Id = v.Id,
+                        UserId = v.UserId,
                         Title = v.Title,
                         Category = v.Category,
                         ThumbnailUrl = v.ThumbnailUrl,
@@ -72,6 +74,7 @@ namespace VRhfo.BL
                     return new Video
                     {
                         Id = videoEntity.Id,
+                        UserId = videoEntity.UserId,
                         Title = videoEntity.Title,
                         Category = videoEntity.Category,
                         ThumbnailUrl = videoEntity.ThumbnailUrl,
@@ -105,6 +108,7 @@ namespace VRhfo.BL
                  select new
                  {
                      v.Id,
+                     v.UserId,
                      v.Title,
                      v.Category,
                      v.ThumbnailUrl,
@@ -123,6 +127,7 @@ namespace VRhfo.BL
                  }).ToList().ForEach(video => list.Add(new Video
                  {
                      Id = video.Id,
+                     UserId = video.UserId,
                      Title = video.Title,
                      Category = video.Category,
                      ThumbnailUrl = video.ThumbnailUrl,
@@ -156,6 +161,7 @@ namespace VRhfo.BL
                     return new Video
                     {
                         Id = videoEntity.Id,
+                        UserId = videoEntity.UserId,
                         Title = videoEntity.Title,
                         Category = videoEntity.Category,
                         ThumbnailUrl = videoEntity.ThumbnailUrl,
@@ -189,6 +195,7 @@ namespace VRhfo.BL
                 {
                     tblVideo row = new tblVideo();
                     row.Id = video.Id;
+                    row.UserId = video.UserId;
                     row.Title = video.Title;
                     row.Category = video.Category;
                     row.ThumbnailUrl = video.ThumbnailUrl;

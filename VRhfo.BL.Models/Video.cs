@@ -3,6 +3,7 @@
     public class Video
     {
         public int Id { get; set; }
+        public int UserId { get; set; }
         public string Title { get; set; }
         public string Category { get; set; }
         public string ThumbnailUrl { get; set; }
@@ -18,7 +19,7 @@
         public bool IsPublic { get; set; }  //For full length vids that are free, but not previews
         public bool IsPreview { get; set; }// If True, returns 5 min preview, if false must be paid.
 
-
+        public User user { get; set; }
         public string FormattedUploadDateDMY
         {
             get

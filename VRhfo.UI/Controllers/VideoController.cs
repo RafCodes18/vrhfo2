@@ -48,6 +48,7 @@ namespace VRhfo.UI.Controllers
             // Important change: Look up the video by title (slug) now       
 
             videoViewModel.video = VideoManager.LoadByTitle(title);
+            videoViewModel.video.user = UserManager.LoadById(videoViewModel.video.UserId);
             // ... Rest of your logic remains the same
             List<Video> list = VideoManager.GetSuggestedVideos(8, title);
             videoViewModel.suggestedVideos = list;
