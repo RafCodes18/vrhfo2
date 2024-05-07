@@ -252,12 +252,15 @@
                 </div>
                 <div class="vid-details-bottom-row">
                     <p ><a class="category-txt" asp-action="Index" asp-controller="Video" asp-route-category="@Model.video.Category">@Model.video.Category </a></p>
-                    <p class="views-txt">@Model.video.FormattedViews views</p>
+                    
                 </div>
 
                 <div class="vid-details-last">
-                    <p>Uploaded: @Model.video.FormattedUploadDateDMY</p>
-                    <p class="username-txt">@@goddesslana</p>
+                    <div class="details-last-first2">
+                        <p>Uploaded: @Model.video.FormattedUploadDateDMY</p> 
+                        <p class="username-txt">@@goddesslana</p>
+                    </div>
+                <p class="views-txt">@Model.video.FormattedViews views</p>
                 </div>
             </div>
     }
@@ -334,16 +337,28 @@
 
     <!--Comment Section CSS -->
     <style>
+
+        .details-last-first2{
+            display: flex;
+        }
+
+        .username-txt:hover {
+            color: #0993c1;
+            cursor: pointer;
+        }       
         .username-txt{
             margin-left: 10px;
+            color:deepskyblue;
         }
         .vid-details-last{
             display: flex;
            margin-top: -10px;
-           color: #444;
+           color: #555;
+           justify-content: space-between;
         }
         .views-txt{
-            font-size: medium;
+            font-size: large;
+            color: #778;
         }
         .vid-details-bottom-row{
             display: flex;
@@ -353,15 +368,15 @@
             margin-top: 4px;
         }
         .category-txt{
-            color: #666 !important;
+            color: #777 !important;
             font-size: large;
         }
         .category-txt:hover{
-                color: #444 !important;
+                color: #555 !important;
             cursor: pointer;
         }    
         .likes-ratio{
-            font-size: xx-large;
+            font-size: x-large;
             font-weight: 700;
             color: hotpink;
             margin-top: 10px;
