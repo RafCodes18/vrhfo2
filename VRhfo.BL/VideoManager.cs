@@ -227,5 +227,62 @@ namespace VRhfo.BL
                 throw ex;
             }
         }
+
+        public static List<Video> LoadByUserId(int userId)
+        {
+            List<Video> list = new List<Video>();
+
+            using (VRhfoEntities dc = new VRhfoEntities())
+            {
+                var videosForUser = (from v in dc.tblVideos
+                                     where v.UserId == userId
+                                     select new
+                                     {
+                                         v.Id,
+                                         v.UserId,
+                                         v.Title,
+                                         v.Category,
+                                         v.ThumbnailUrl,
+                                         v.VideoUrl,
+                                         v.Description,
+                                         v.Genre,
+                                         v.UploadDate,
+                                         v.Duration,
+                                         v.Views,
+                                         v.RatingCount,
+                                         v.IsPublic,
+                                         v.IsPreview,
+                                         v.ContentWarning,
+                                         v.Likes,
+                                         v.Dislikes
+                                     }).ToList();
+
+                foreach (var video in videosForUser)
+                {
+                    list.Add(new Video
+                    {
+                        Id = video.Id,
+                        UserId = video.UserId,
+                        Title = video.Title,
+                        Category = video.Category,
+                        ThumbnailUrl = video.ThumbnailUrl,
+                        VideoUrl = video.VideoUrl,
+                        Description = video.Description,
+                        Genre = video.Genre,
+                        UploadDate = video.UploadDate,
+                        Duration = video.Duration,
+                        Views = video.Views,
+                        RatingCount = video.RatingCount,
+                        IsPublic = video.IsPublic == 1,
+                        IsPreview = video.IsPreview == 1,
+                        ContentWarning = video.ContentWarning,
+                        Likes = video.Likes,
+                        Dislikes = video.Dislikes
+                    });
+                }
+            }
+
+            return list;
+        }
     }
 }

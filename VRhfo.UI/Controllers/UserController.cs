@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VRhfo.BL;
 using VRhfo.BL.Models;
+using VRhfo.UI.ViewModels;
 
 
 namespace VRhfo.UI.Controllers
@@ -44,8 +45,10 @@ namespace VRhfo.UI.Controllers
         // GET: User/Profile
         public ActionResult Profile(int userId)
         {
-            User user = UserManager.LoadById(userId);
-            return View(user);
+            ProfileViewModel pVM = new ProfileViewModel();
+            pVM.User = UserManager.LoadById(userId);
+            pVM.Videos = VideoManager.LoadByUserId(userId);
+            return View(pVM);
         }
 
         // GET: UserController/Details/5
