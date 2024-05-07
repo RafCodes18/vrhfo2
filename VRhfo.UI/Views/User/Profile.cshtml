@@ -86,7 +86,7 @@
         font-size: x-large;
         left: 80px;
         top: 30px;
-        width: 300px;
+        width: 500px;
         display: flex;
     }
 
@@ -131,11 +131,18 @@
     .vid-title {
         max-width: 170px;
     }
+    .profile-username{
+        color: deepskyblue;
+        width: 100%;
+    }
+    .titl{
+    color: white;
+    }
 </style>
 
 <div class="main-pg">
     <div class="page-title">
-        @Model.User.Username's Uploads
+        <p class="titl"><span class="profile-username">@@@Model.User.Username</span>'s Uploads </p>
     </div>
     <div class="card-container">
         @foreach (var item in Model.Videos)
