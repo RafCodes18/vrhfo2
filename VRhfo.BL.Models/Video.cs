@@ -19,6 +19,14 @@
         public bool IsPreview { get; set; }// If True, returns 5 min preview, if false must be paid.
 
 
+        public string FormattedUploadDateDMY
+        {
+            get
+            {
+                return UploadDate.ToString("MMM dd, yyyy");
+            }
+        }
+
         public string FormattedDuration
         {
             get
@@ -82,7 +90,7 @@
             get
             {
                 int totalVotes = Likes + Dislikes;
-                return totalVotes > 0 ? (double)Likes / totalVotes * 100 : 0;
+                return totalVotes > 0 ? (int)((double)Likes / totalVotes * 100) : 0;
             }
         }
 
