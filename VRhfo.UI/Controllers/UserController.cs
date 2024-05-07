@@ -30,7 +30,7 @@ namespace VRhfo.UI.Controllers
           }*/
 
         [HttpPost]
-        private ActionResult Login(User user)
+        public ActionResult Login(User user)
         {
             bool loginWorked = UserManager.Login(user);
             if (HttpContext != null && loginWorked == true) SetUser(user);
@@ -38,7 +38,7 @@ namespace VRhfo.UI.Controllers
             if (TempData?["returnUrl"] != null)
                 return Redirect(TempData["returnUrl"]?.ToString());
             else
-                return RedirectToAction("Video", "Index");
+                return RedirectToAction("Index", "Video");
 
         }
 
@@ -118,6 +118,11 @@ namespace VRhfo.UI.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Index()
+        {
+            return View();
         }
 
 

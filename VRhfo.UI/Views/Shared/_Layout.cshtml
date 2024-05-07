@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -13,7 +16,14 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <style>
+        .username-txt{
+            color: deepskyblue;
+        }
 
+        .username-txt:hover{
+            cursor: pointer;
+            color: #0098cb;
+        }
         .custom-navbar {
             background-color: #191919;
         }
@@ -302,6 +312,9 @@
         .right-lnk:hover{
             color: #e058bb !important;
         }
+        .welcum{
+            min-width: 180px;
+        }
 </style>
 </head>
 <body>
@@ -327,7 +340,17 @@
                                 </div>
                             </form>
                         </li>
+                       
                         <div class="buttons">
+                            <!--WELCOME USER-->
+                            <ul class="navbar-nav">
+                                <li class="nav-item welcum">
+                                    @{
+                                        var username = HttpContextAccessor.HttpContext?.Session.GetString("username");
+                                    }
+                                    <p class="nav-link text-light">Welcome back Gooner! <a asp-controller="User" asp-action="Index"><span class="username-txt">@@@username</span></a></p>
+                                </li>
+                            </ul>
                         <li class="nav-item">
                             <a class="nav-link text-light join-now" asp-controller="Home" asp-action="JoinNow">Join Now</a>
                         </li>
