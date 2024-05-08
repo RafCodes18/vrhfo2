@@ -43,7 +43,7 @@
     <!--VIDEO DETAILS CONTAINER -->
     .vid-details{
         margin-left: 110px;
-        margin-top: 15px;       
+        margin-top: 15px;      
     }
     .lik-box{
         padding: 0;
@@ -89,6 +89,8 @@
     .vid-details-top-row{
         display: flex;
         justify-content: space-between;
+        padding: 0;
+        height: 40px;
     }
     .vid-details-top-row p {
         font-size: large;
@@ -228,7 +230,7 @@
 
         <!--NEW PLAYER THAT WILL WORK VIDEO VR JS -->
         <div class="canvas-container">
-            <video id="my-video" class="video-js  video-playa" controls preload="auto" width="860" height="515" data-setup="{}">
+            <video id="my-video" class="video-js  video-playa" controls preload="auto" width="820" height="515" data-setup="{}">
                 <source  src="~/video/my-video.mp4" type="video/mp4">
                 <!-- Add more <source> elements for different video formats if needed -->
             </video>
@@ -245,9 +247,10 @@
                                     </p> *@
                     <div class="top-row-second-box">
                         <div class="likes-ratio">
+                            <div id='heartH' class='buttonH'></div>
+
                             @Model.video.AverageRating %
-                            </div>
-                        <div id='heartH' class='buttonH'></div>
+                        </div>
                     </div>
                 </div>
                 <div class="vid-details-bottom-row">
@@ -258,7 +261,7 @@
                 <div class="vid-details-last">
                     <div class="details-last-first2">
                         <p>Uploaded: @Model.video.FormattedUploadDateDMY</p>
-                    <p><a class="username-txt" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
+                    <p> <span class="by-txt">By:</span><a class="username-txt" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
                     </div>
                 <p class="views-txt">@Model.video.FormattedViews views</p>
                 </div>
@@ -337,7 +340,13 @@
 
     <!--Comment Section CSS -->
     <style>
-
+        .by-txt{
+            color: #555;
+            margin-left: 10px;
+        }
+        .top-row-second-box{
+            display: flex;;
+        }
         .details-last-first2{
             display: flex;
         }
@@ -347,7 +356,7 @@
             cursor: pointer;
         }       
         .username-txt{
-            margin-left: 10px;
+            margin-left: 5px;
             color:deepskyblue;
         }
         .vid-details-last{
@@ -376,13 +385,14 @@
             cursor: pointer;
         }    
         .likes-ratio{
-            font-size: x-large;
+            font-size: xx-large;
             font-weight: 700;
             color: hotpink;
             margin-top: 10px;
             margin-right: 5px;
-            padding: 0;
+            padding: 0 !important;
             font-family: Dubai;
+            display: flex;
         }
         .top-row-second-box{
             display: flex;
@@ -401,12 +411,14 @@
             background: none;
             cursor: pointer;
             transition: background 0.5s ease;
-            margin-right: 40px;
+            margin-right: 20px;
 
         }
-        .buttonH:hover{
-                background: black !important;
-            }
+
+        #heartH:hover:before,
+        #heartH:hover:after {
+            background: hotpink !important; /* Change to the desired hover background color */
+        }
 
         .active#heartH:before, .active#heartH:after {
             background: hotpink !important;
@@ -424,12 +436,12 @@
                 transition: background 0.5s ease;
                 position: absolute;
                 content: "";
-                left: 25px; /* Adjust left position */
-                top: -10px; /* Adjust top position */
-                width: 25px; /* Decrease width */
-                height: 40px; 
+                left: 15px; /* Adjust left position */
+                top: 2px; /* Adjust top position */
+                width: 15px; /* Decrease width */
+                height: 25px; 
                 background: dimgrey;
-                border-radius: 50px 50px 0 0;
+                border-radius: 30px 30px 0 0;
                 transform: rotate(-45deg);
                 transform-origin: 0 100%;
             }

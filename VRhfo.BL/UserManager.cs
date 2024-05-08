@@ -118,6 +118,7 @@ namespace VRhfo.BL
                     {
                         throw new LoginFailureException("Password was not set. ");
                     }
+
                 }
                 else
                 {

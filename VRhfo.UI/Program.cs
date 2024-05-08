@@ -34,13 +34,17 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
-        name: "VideoWatch",
-        pattern: "Video/Watch/{title}",
-        defaults: new { controller = "Video", action = "Watch" }
-     );
+     name: "VideoWatch",
+     pattern: "Video/Watch/{title}",
+     defaults: new { controller = "Video", action = "Watch" }
+ );
 
     endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+        name: "Default",
+        pattern: "{controller=Home}/{action=Index}/{id?}"
+    );
+
 });
+
+
 app.Run();

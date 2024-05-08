@@ -32,13 +32,21 @@ namespace VRhfo.UI.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            bool loginWorked = UserManager.Login(user);
-            if (HttpContext != null && loginWorked == true) SetUser(user);
+            try
+            {
+                bool loginWorked = UserManager.Login(user);
+                if (HttpContext != null && loginWorked == true) SetUser(user);
 
-            if (TempData?["returnUrl"] != null)
-                return Redirect(TempData["returnUrl"]?.ToString());
-            else
-                return RedirectToAction("Index", "Video");
+                if (TempData?["returnUrl"] != null)
+                    return Redirect(TempData["returnUrl"]?.ToString());
+                else
+                    return RedirectToAction("Index", "Video");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return RedirectToAction("Login", "User");
+            }
 
         }
 
