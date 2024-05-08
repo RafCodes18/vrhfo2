@@ -65,24 +65,32 @@ namespace VRhfo.UI.Controllers
             return View();
         }
 
-        // GET: UserController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(User user)
         {
             try
             {
-                return RedirectToAction(nameof(Index), "Video");
+                user.SubscribedDate = DateTime.Now;
+                user.IsSubscribed = false;
+                user.Auth0UserId = "";
+                user.RegistrationDate = DateTime.Now;
+
+                if (UserManager.Insert(user) > 0)
+                {
+                    SetUser(user);
+                    return RedirectToAction(nameof(Index), "Video");
+                }
+                else
+                {
+                    throw new Exception();
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return RedirectToAction("JoinNow", "Home");
             }
         }
 

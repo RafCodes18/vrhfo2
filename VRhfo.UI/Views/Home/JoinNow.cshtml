@@ -1,7 +1,8 @@
-﻿@page
+﻿
 @{
     Layout = "";
 }
+@model VRhfo.BL.Models.User
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,10 +100,10 @@
                             <form asp-action="Create" asp-controller="User" method="Post">
                                 <div class="join-now-form">
                                     <h2>Lets create an account</h2>
-                                    <input class="join-now-form-txt" type="text" placeholder="Enter your email" required/>
-
-                                    <input class="join-now-form-txt" type="text" placeholder="Create a username" required/>                                                                
-                                    <input class="join-now-form-txt" type="text" placeholder="Create a password" required /> 
+                                    <input for="Email" class="join-now-form-txt" type="email" placeholder="Enter your email" asp-for="Email" required/>
+                                    
+                                    <input for="Username" class="join-now-form-txt" type="text" placeholder="Create a username" asp-for="Username" required/>                                                                
+                                    <input for="Password" class="join-now-form-txt" type="text" placeholder="Create a password" asp-for="Password" required /> 
  
                                 
                                     <div class="newsletter"><input type="checkbox" />

@@ -33,6 +33,7 @@ namespace VRhfo.BL
                     user.Auth0UserId = tblUser.Auth0UserId;
                     user.IsSubscribed = tblUser.IsSubscribed == 1 ? true : false;
                     user.RegistrationDate = tblUser.RegistrationDate;
+                    user.Password = tblUser.Password;
 
                     return user;
                 }
@@ -58,6 +59,7 @@ namespace VRhfo.BL
                         RegistrationDate = user.RegistrationDate,
                         Username = user.Username,
                         SubscribedDate = user.SubscribedDate,
+                        Password = user.Password
                     };
 
                     dc.tblUsers.Add(tb);
@@ -91,7 +93,7 @@ namespace VRhfo.BL
                             if (row != null)
                             {
                                 //check password 
-                                if (row.Password == GetHash(user.Password) || row.Password == user.Password)
+                                if (row.Password == GetHash(user.Password))
                                 {
                                     //login successful with correct hashed or unhashed password
 
@@ -100,6 +102,17 @@ namespace VRhfo.BL
                                     user.Username = row.Username;
                                     user.IsSubscribed = row.IsSubscribed != 0;
                                     user.Email = row.Email;
+                                    user.Password = GetHash(user.Password);
+                                    return true;
+                                }
+                                else if (row.Password == user.Password)
+                                {
+                                    user.SubscribedDate = row.SubscribedDate;
+                                    user.RegistrationDate = row.RegistrationDate;
+                                    user.Username = row.Username;
+                                    user.IsSubscribed = row.IsSubscribed != 0;
+                                    user.Email = row.Email;
+                                    user.Password = user.Password;
                                     return true;
                                 }
                                 else
