@@ -133,6 +133,13 @@ namespace VRhfo.UI.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            User nullUser = new User();
+            nullUser.Username = "";
+            SetUser(nullUser);
+            return RedirectToAction("Index", "Video");
+        }
 
         /*   [HttpPost]
            public ActionResult CreateAccount(User user)

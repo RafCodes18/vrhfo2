@@ -146,11 +146,15 @@
        
             <h1>Premium Login</h1>
         <div class="input-box">
-                <input asp-for="Username" type="text"  placeholder="Enter your username" required />
+                <input for="Username" type="text"  placeholder="Enter your username" asp-for="Username" required />
+                    <span asp-validation-for="Username"></span>
+    
             <i class='bx bxs-user'></i>
         </div>
             <div class="input-box">
-                <input asp-for="Password" type="password" placeholder="Enter your password" required/>
+                <input for="Password" type="password" asp-for="Password" placeholder="Enter your password" required/>
+            <span asp-validation-for="Password"></span>
+
                 <i class="bx bxs-lock-alt"></i>
             </div>
 

@@ -395,7 +395,7 @@
                         @{
                             var username = HttpContextAccessor.HttpContext?.Session.GetString("username");
                         }
-                        @if (Authenticate.IsAuthenticated(Context))
+                        @if (Authenticate.IsAuthenticated(Context) && username != "")
                         {
                             
                             <div class="buttons">
@@ -414,7 +414,7 @@
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-light login" asp-controller="Home" asp-action="Login">Logout</a>
+                                        <a class="nav-link text-light login" asp-controller="User" asp-action="Logout">Logout</a>
                                     </li>
                                 </ul>
                             </div>
