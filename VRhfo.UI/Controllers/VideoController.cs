@@ -57,16 +57,16 @@ namespace VRhfo.UI.Controllers
             return View(videoViewModel);
         }
 
-        // GET: VideoController/Create
-        public ActionResult Create()
+        // GET: VideoController/Upload
+        public ActionResult Upload()
         {
             return View();
         }
 
-        // POST: VideoController/Create
+        // POST: VideoController/Upload
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Upload(IFormCollection collection)
         {
             try
             {

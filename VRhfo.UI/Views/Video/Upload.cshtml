@@ -1,0 +1,135 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    .learn-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 460px;
+        padding: 30px;
+        background-color: rgb(17, 17, 17, .6);
+        border-radius: 10px;
+        height: 400px;
+    }
+
+    .step {
+        padding-top: 10px;
+    }
+
+    .feature-update {
+        color: #777;
+        margin-top: 10px;
+    }
+
+    body {
+        min-height: 100vh;
+        margin: 0;
+        background: hsla(280, 84%, 41%, 1);
+        background: linear-gradient(90deg, hsla(280, 84%, 41%, 1) 0%, hsla(218, 97%, 56%, 1) 100%);
+        background: -moz-linear-gradient(90deg, hsla(280, 84%, 41%, 1) 0%, hsla(218, 97%, 56%, 1) 100%);
+        background: -webkit-linear-gradient(90deg, hsla(280, 84%, 41%, 1) 0%, hsla(218, 97%, 56%, 1) 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#8711C1", endColorstr="#2472FC", GradientType=1 );
+    }
+
+    .learn-card h5 {
+        position: relative;
+        margin-top: 30px;
+        left: 40%;
+        margin-bottom: 20px;
+        font-weight: 700;
+        letter-spacing: 3px;
+    }
+
+    .enjoy {
+        color: #e058bb !important;
+    }
+
+        .enjoy:hover {
+            color: #b6549b !important;
+            text-decoration: underline;
+        }
+        .top-row{
+            display: flex;
+            flex-direction: column;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        margin-bottom: 20px; /* Optional spacing */
+        }
+        .outline-box{
+            outline: 2px dashed #b9b9b9 !important;
+            padding: 30px 0px;
+            border-radius: 10px;
+        }
+</style>
+
+<div class="learn-card">
+    <div class="content">
+        <div class="outline-box" id="droppable-area">
+            <div class="top-row">
+                <img src="~/img/upload.png" height="60px" width="65px" />
+                <p>Upload Video</p>
+                <span class="small-txt">Drag and drop here or <a href="#">Browse</a></span>
+            </div>
+        </div>
+            <p class="feature-update">Due to current server restrictions, please ensure videos do not exceed 2GB. All video uploads are reviewed before going public. By uploading you agree to all  <a href="#">Terms and Conditions.</a> </p>             
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    // Get the droppable area
+    const droppableArea = document.getElementById('droppable-area');
+
+    // Prevent default behavior on dragover to allow dropping files
+    droppableArea.addEventListener('dragover', (event) => {
+        event.preventDefault();
+    });
+
+    // Handle the file drop event
+    droppableArea.addEventListener('drop', (event) => {
+        event.preventDefault();
+
+        const files = event.dataTransfer.files;
+        handleFileUpload(files);
+    });
+
+    // Optional: Handle file upload when using the Browse link
+    document.getElementById('browse-link').addEventListener('click', (event) => {
+        event.preventDefault();
+
+        // Trigger file input click event
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'video/*'; // Accept only video files
+        fileInput.click();
+
+        fileInput.addEventListener('change', () => {
+            handleFileUpload(fileInput.files);
+        });
+    });
+
+    // Function to handle file upload
+    function handleFileUpload(files) {
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const fileType = file.type.split('/')[0]; // Get the file type (e.g., 'video', 'image', 'application')
+
+            if (fileType === 'video') {
+                // Handle the uploaded video file here (e.g., send it to the server)
+                console.log('Uploaded video file:', file);
+            } else {
+                // Display an error message or do nothing if the file type is not a video
+                console.log('Error: Only video files are allowed.');
+            }
+        }
+    }
+
+</script>                

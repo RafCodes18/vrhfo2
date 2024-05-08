@@ -23,12 +23,6 @@ namespace VRhfo.UI.Controllers
             }
         }
 
-        /*  [HttpGet]
-          private ActionResult Login(string returnURL)
-          {
-              return View();
-          }*/
-
         [HttpPost]
         public ActionResult Login(User user)
         {
@@ -147,6 +141,11 @@ namespace VRhfo.UI.Controllers
             nullUser.Username = "";
             SetUser(nullUser);
             return RedirectToAction("Index", "Video");
+        }
+
+        public ActionResult ManageAccount(int userid)
+        {
+            return View();
         }
 
         /*   [HttpPost]
