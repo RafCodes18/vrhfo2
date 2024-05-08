@@ -68,6 +68,7 @@
     <Build Include="Tables\tblVideo.sql" />
     <Build Include="Tables\tblUser.sql" />
     <Build Include="Tables\tblComment.sql" />
+    <Build Include="Tables\tblVideosLiked.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeploy\Script.PreDeployment1.sql" />
@@ -80,5 +81,6 @@
     <None Include="PostDeploy\DefaultData\Users.sql" />
     <None Include="local.DB.publish.xml" />
     <None Include="PostDeploy\DefaultData\Comments.sql" />
+    <None Include="PostDeploy\DefaultData\VideosLiked.sql" />
   </ItemGroup>
 </Project>

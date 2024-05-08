@@ -9,7 +9,7 @@
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
+DROP TABLE IF EXISTS tblVideosLiked
 DROP TABLE IF EXISTS tblUser
 DROP TABLE IF EXISTS tblVideo
 DROP TABLE IF EXISTS tblComment
