@@ -318,50 +318,119 @@
             min-width: 180px;
             white-space: nowrap;
         }
+
+        
+
+
+
+        .dropdown  {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #111;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 10px;
+            padding: 0px !important;
+            font-size: large;
+            margin-left: -80px;
+        }
+
+            .dropdown-content a {
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                border-radius: 10px;
+                transition: background-color 0.4s ease;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #222;
+                    color: white !important;
+                    border-radius: 0 s10px ;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+        .forgot{
+            font-size: small;
+        }
 </style>
 </head>
 <body>
     <header>
         <nav class="navbar custom-navbar navbar-expand-sm navbar-toggleable-sm box-shadow ">
+          
             <div class="container-fluid">
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-lg-row">
-                        <li class="nav-item">
-                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                                <img class="goggles" src="~/img/goggles-logo-rm.png" height="30" width="50" />
-                                <img class="site-logo" src="/img/goonvr.png" />
-                            </a>
-                        </li>
-                        <li class="nav-item no-hands">
-                            <p></p>
-                        </li>
-                        <li class="nav-item search">
-                            <form class="form-inline my-2 my-lg-0 search-form">
-                                <div class="input-group searchbar">
-                                    <input type="search" class="form-control rounded custom-search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                    <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </div>
-                            </form>
-                        </li>
-                       
-                        <div class="buttons">
-                            <!--WELCOME USER-->
-                            <ul class="navbar-nav">
-                                <li class="nav-item welcum">
-                                    @{
-                                        var username = HttpContextAccessor.HttpContext?.Session.GetString("username");
-                                    }
-                                    <p class="nav-link text-light">Welcome back Gooner! <a asp-controller="User" asp-action="Index"><span class="username-txt">@@@username</span></a></p>
-                                </li>
-                            </ul>
-                        <li class="nav-item">
-                            <a class="nav-link text-light join-now" asp-controller="Home" asp-action="JoinNow">Join Now</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light login" asp-controller="Home" asp-action="Login">Login</a>
-                        </li>
-                </div>
-                </ul>
+                            <li class="nav-item">
+                                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                                    <img class="goggles" src="~/img/goggles-logo-rm.png" height="30" width="50" />
+                                    <img class="site-logo" src="/img/goonvr.png" />
+                                </a>
+                            </li>
+                            <li class="nav-item no-hands">
+                                <p></p>
+                            </li>
+                            <li class="nav-item search">
+                                <form class="form-inline my-2 my-lg-0 search-form">
+                                    <div class="input-group searchbar">
+                                        <input type="search" class="form-control rounded custom-search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                        <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </div>
+                                </form>
+                            </li>
+                        @{
+                            var username = HttpContextAccessor.HttpContext?.Session.GetString("username");
+                        }
+                        @if (Authenticate.IsAuthenticated(Context))
+                        {
+                            
+                            <div class="buttons">
+                                    <!--WELCOME USER-->
+                                <ul class="navbar-nav">
+                                    <li class="nav-item welcum">
+                                        <p class="nav-link text-light dropdown">Welcome back GOONER <a asp-controller="User" asp-action="Index"></a></p>
+                                        <div class="dropdown">
+                                            <span class="username-txt">@@@username</span>
+                                            <div class="dropdown-content">
+                                                <a href="#">Your favorites</a>
+                                                <a href="#">Upload +</a>
+                                                <a href="#">Manage Account</a>
+                                                <a href="#" class="forgot">Forgot Password</a><!-- this will just be change username and password page, user can select which -->
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light login" asp-controller="Home" asp-action="Login">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light join-now" asp-controller="Home" asp-action="JoinNow">Join Now</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light login" asp-controller="Home" asp-action="Login">Login</a>
+                            </li>
+                        }
+
+
             </div>
         </nav>
 
