@@ -24,7 +24,6 @@
         background-color: rgba(10, 10, 10, .2);
         padding: 20px;
         border-radius: 8px;
-        text-align: center;
         width: 620px;
         height: 400px;
         margin-top: 80px;
@@ -38,12 +37,11 @@
     .wrapper {
         display: flex;
         justify-content: center;
-        align-items: center;
+        
     }
 
         .wrapper h1 {
             font-size: 36px;
-            text-align: center;
         }
 
         .wrapper .input-box {
@@ -153,16 +151,22 @@
         width: 24px;
         height: 24px;
     }
+    .form-title{
+        position: relative;
+        left: 0;
+    }
 </style>
 
 <div class="wrapper">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <form method="post" asp-controller="User" asp-action="Login" class="login-form">
-
+        <h2 class="form-title">Account Settings</h2>
+        <label>Username</label><input type="tel" /> </br> 
+        <label>Password</label><input type="tel" /> </br> 
 
     </form>
-</div>s
+</div>
 
 @section Scripts {
     @{
