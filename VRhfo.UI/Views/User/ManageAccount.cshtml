@@ -1,16 +1,171 @@
 ﻿@model VRhfo.BL.Models.User
-@{
-    ViewData["Title"] = "ManageAccount";
-}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 <style>
-    .page{
+    body {
+        background: hsla(213, 77%, 14%, 1);
+        background: linear-gradient(90deg, hsla(213, 77%, 14%, 1) 0%, hsla(202, 27%, 45%, 1) 100%);
+        background: -moz-linear-gradient(90deg, hsla(213, 77%, 14%, 1) 0%, hsla(202, 27%, 45%, 1) 100%);
+        background: -webkit-linear-gradient(90deg, hsla(213, 77%, 14%, 1) 0%, hsla(202, 27%, 45%, 1) 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#08203E", endColorstr="#557C93", GradientType=1 );
+
+        /* background: hsla(54, 56%, 66%, 1);
+        background: linear-gradient(90deg, hsla(54, 56%, 66%, 1) 0%, hsla(261, 84%, 45%, 1) 100%);
+        background: -moz-linear-gradient(90deg, hsla(54, 56%, 66%, 1) 0%, hsla(261, 84%, 45%, 1) 100%);
+        background: -webkit-linear-gradient(90deg, hsla(54, 56%, 66%, 1) 0%, hsla(261, 84%, 45%, 1) 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#D9CF79", endColorstr="#5612D6", GradientType=1 ); */
+    }
+
+    .login-form {
+        background-color: rgba(10, 10, 10, .2);
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 620px;
+        height: 400px;
+        margin-top: 80px;
+    }
+
+        .login-form h1, label {
+            margin-bottom: 20px;
+            color: White;
+        }
+
+    .wrapper {
         display: flex;
         justify-content: center;
+        align-items: center;
+    }
+
+        .wrapper h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+
+        .wrapper .input-box {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin: 30px 0;
+        }
+
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 40px;
+        font-size: 16px;
+        color: #fff;
+        padding: 20px 45px 20px 20px;
+    }
+
+        .input-box input::placeholder {
+            color: #fff;
+        }
+
+    .input-box i {
+        position: absolute;
+        right: 20px;
+        top: 35%;
+        font-size: 20px;
+    }
+
+    .wrapper .remember-forgot {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14.5px;
+        margin: -15px 0 15px;
+    }
+
+    .remember-forgot label input {
+        accent-color: #fff;
+        margin-right: 3px;
+    }
+
+    .remember-forgot a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+
+    .wrapper .btn-submit {
+        width: 100%;
+        height: 45px;
+        background: #fff;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0,0, .1);
+        font-weight: 600;
+        color: #333;
+    }
+
+    .wrapper .join-now-cta {
+        font-size: 14.5px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    form a {
+        color: pink;
+    }
+
+    .join-now-cta {
+        position: relative;
+    }
+
+    .diamond {
+        position: absolute;
+        bottom: 22px;
+        right: 65px;
+        height: 0px !important;
+    }
+
+    .o-icon-svg {
+        pointer-events: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .o-icon {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        position: relative;
+        vertical-align: middle;
+        fill: grey;
+        width: 24px;
+        height: 24px;
     }
 </style>
-<div class="page">
 
-    <h2>Manage Account</h2>
+<div class="wrapper">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-</div>
+    <form method="post" asp-controller="User" asp-action="Login" class="login-form">
 
+
+    </form>
+</div>s
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

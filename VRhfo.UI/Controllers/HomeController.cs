@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using VRhfo.BL;
 using VRhfo.UI.Models;
+using VRhfo.UI.ViewModels;
 
 namespace VRhfo.UI.Controllers
 {
@@ -42,6 +44,13 @@ namespace VRhfo.UI.Controllers
         public IActionResult LearnHow()
         {
             return View();
+        }
+
+        public ActionResult liked()
+        {
+            ProfileViewModel pvm = new ProfileViewModel();
+            pvm.Videos = VideoManager.LoadAll();
+            return View(pvm);
         }
     }
 }
