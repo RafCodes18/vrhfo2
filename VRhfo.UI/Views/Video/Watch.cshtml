@@ -184,51 +184,7 @@
  
 <div class="page-left-container">
 
-    @if (Model.video.Title == "Lana Rhoades")
-    {
-        <!-- Video Player -->
-        <div class="vid-player">
-            <video class="vid" width="700" height="500" controls>
-                <source src="~/video/@Model.video.VideoUrl" type="video/mp4" >
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <!--Vid details-->
-        <div class="vid-details">
-            <div class="vid-details-top-row">
-                <h2>@Model.video.Title</h2>
-                <p>@Model.video.AverageRating</p>
-            </div>
-            <div class="vid-details-bottom-row">
-                <p>@Model.video.Category</p>
-            </div>
-        </div>
-    }
-    else
-    {
-        @* <!-- Canvas Player SPHERE  -->
-        <div class="canvas-container">
-            <canvas id="videoCanvas"></canvas>
-            <!--Vid details-->
-            <div class="canvas-details">
-                <div class="vid-details-top-row">
-                    <h2>@Model.video.Title</h2>
-                    <p>                      
-                        <svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero"></path>
-                        </svg>
-                            @Model.video.FormattedLikes  |
-                        <svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 2h-4v12h4V2zM1 13c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 22l6.58-6.59c.37-.36.59-.86.59-1.41V4c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z" fill-rule="nonzero"></path></svg>    @Model.video.FormattedDislikes
-                    </p>
-                </div>
-                <div class="vid-details-bottom-row">
-                    <p>@Model.video.Category</p>
-                </div>
-            </div>
-        </div> *@
-
-
-        <!--NEW PLAYER THAT WILL WORK VIDEO VR JS -->
+        <!--VIDEOJS  PLAYER THAT WILL WORK VIDEO VR JS -->
         <div class="canvas-container">
             <video id="my-video" class="video-js  video-playa" controls preload="auto" width="820" height="515" data-setup="{}">
                 <source  src="~/video/my-video.mp4" type="video/mp4">
@@ -247,7 +203,10 @@
                                     </p> *@
                     <div class="top-row-second-box">
                         <div class="likes-ratio">
-                            <div id='heartH' class='buttonH'></div>
+
+<!-- LIKE BUTTON ON VIDEO-->
+                    <div id='likeButton_@Model.video.Id' class='buttonH heartH like-btn' data-post-id="@Model.video.Id"></div>
+
 
                             @Model.video.AverageRating %
                         </div>
@@ -266,7 +225,7 @@
                 <p class="views-txt">@Model.video.FormattedViews views</p>
                 </div>
             </div>
-    }
+ 
 
     <!--COMMMENT SECTION-->
     <div class="comments-section">
@@ -310,7 +269,7 @@
                 </div>
             </div>
 
-            <button class="comment-submit" id="btnComment">COMMENT</button>
+            <button class="comment-submit like-btn" id="btnComment">COMMENT</button>
 
         </div>
                         
@@ -416,24 +375,24 @@
 
         }
 
-        #heartH:hover:before,
-        #heartH:hover:after {
+        .heartH:hover:before,
+        .heartH:hover:after {
             background: #444 !important; /* Change to the desired hover background color */
         }
 
-        .active#heartH:before, .active#heartH:after {
+        .active.heartH:before, .active.heartH:after {
             background: hotpink !important;
         }
 
-        #heartH {
+        .heartH {
             width: 20px; /* Decrease width */
             height: 20px; /* Decrease height */
             transition: background 0.5s ease;
             
         }
 
-            #heartH:before,
-            #heartH:after {
+            .heartH:before,
+            .heartH:after {
                 transition: background 0.5s ease;
                 position: absolute;
                 content: "";
@@ -447,7 +406,7 @@
                 transform-origin: 0 100%;
             }
 
-            #heartH:after {
+            .heartH:after {
                 left: 0px;
                 transform: rotate(45deg);
                 transform-origin: 100% 100%;
@@ -747,6 +706,32 @@
 </script>
 
 
+
+
+<!--LIKE BUTTON JS-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const likeButtons = document.querySelectorAll('.like-btn');
+        const currentUser = @Html.Raw(Json.Serialize(ViewBag.CurrentUser)); // Access the user from the ViewBag
+
+        if(currentUser != null)
+        {
+            console.log("Current user: " + currentUser.username);
+
+        }
+        //GET THE USER  WORKS
+
+        likeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const postId = button.dataset.postId;
+                console.log("VideoID: " + postId);
+
+            });
+        });
+    });
+</script>
+
+
 <!--JS TO HANDLE ADDING COMMENTS-->
  <script type="text/javascript">
 
@@ -876,53 +861,21 @@
 </script>
 
 
-<!-- SPINNING BLUE SPHERE  THREE JS PLAYER-->
-<script defer type="module">
-    import * as THREE from '/js/three.module.js';
 
-    // Get reference to the video player container
-    const videoPlayerContainer = document.getElementById('videoPlayerContainer');
-    const canvas = document.getElementById('videoCanvas');
 
-    canvas.width = 860;
-    canvas.height = 515;
 
-    // Create WebGL renderer with canvas
-    const renderer = new THREE.WebGLRenderer({ canvas });
 
-    // Create a scene and camera
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
 
-    // Create a sphere geometry and add it to the scene
-    const geometry = new THREE.SphereGeometry(6, 32, 32); // Radius, width segments, height segments
-    const material = new THREE.MeshPhongMaterial({ color: 0x20b2aa, shininess: 80 });
-    const sphere = new THREE.Mesh(geometry, material);
-    scene.add(sphere);
 
-    // Create edges for visualization (optional)
-    const edges = new THREE.EdgesGeometry(geometry);
-    const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x000000 }));
-    scene.add(line);
 
-    //add light
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(1, 1, 2); // Adjust position as needed
-    scene.add(directionalLight);
 
-    // Position the camera
-    camera.position.z = 10;
-    camera.position.y = 0;
 
-    // Function to animate the scene
-    function animate() {
-        requestAnimationFrame(animate);
-        sphere.rotation.x += 0.01;
-        sphere.rotation.y += 0.01;
-        line.rotation.x += 0.01;
-        line.rotation.y += 0.01;
-        renderer.render(scene, camera);
-    }
-    animate();
- 
-</script>
+
+
+
+
+
+
+
+
+

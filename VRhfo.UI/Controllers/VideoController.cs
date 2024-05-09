@@ -3,6 +3,8 @@ using VRhfo.BL;
 using VRhfo.BL.Models;
 using VRhfo.UI.Views.ViewModels;
 using X.PagedList;
+using Microsoft.AspNetCore.Http.Extensions;
+
 
 namespace VRhfo.UI.Controllers
 {
@@ -43,6 +45,10 @@ namespace VRhfo.UI.Controllers
         // GET: VideoController/Watch/how-to-build-a-tube-site (example URL)
         public ActionResult Watch(string title)
         {
+
+            User currentUser = HttpContext.Session.GetObject<User>("user");
+            ViewBag.CurrentUser = currentUser;
+
             VideoViewModel videoViewModel = new VideoViewModel();
 
             // Important change: Look up the video by title (slug) now       
