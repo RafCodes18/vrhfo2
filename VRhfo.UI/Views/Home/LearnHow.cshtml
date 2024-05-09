@@ -66,3 +66,12 @@
         <p class="feature-update">We are actively building our own VR Video Player from scratch to improve the user experience. Our current, temporary, VR Video player is a free to use software provided by videojs.com. By using this website you agree to all <a href="#">Terms and Conditions.</a> </p>
     </div>
 </div>
+<script>
+  
+    document.addEventListener('DOMContentLoaded', function () {
+        var learnElement = document.getElementById('learn');
+        if (learnElement) {
+            learnElement.parentNode.removeChild(learnElement);
+        }
+    });
+</script>
