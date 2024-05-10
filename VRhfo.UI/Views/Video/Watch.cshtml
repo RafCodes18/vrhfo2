@@ -281,7 +281,7 @@
                     <div class="avatar-circle">
                         <span class="avatar-letter">@comment.User.AvatarLetter</span>
                     </div>
-                    <span class="diamond di">
+                    <span class="diamondD di">
                         <svg class="o-icon o-icon-svg " viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.06419 14.7411c-.10982-.0012-.21803-.0265-.31697-.0742-.09894-.0477-.18618-.1166-.25554-.2017L.672817 6.15741c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.5931c.06641-.10241.15756-.18643.26503-.2443.10747-.05787.2278-.08772.34985-.08679l8.695.06208c.1236.00146.2448.03333.3531.0928.1083.05946.2002.14469.2677.24815l2.4389 3.70997c.0882.13302.1318.29072.1244.4502-.0075.15947-.0655.31243-.1658.43665L8.63276 14.475c-.06879.0842-.15557.1519-.25396.1981-.0984.0462-.2059.0698-.31461.069v-.001z" fill="#37C4B3"></path>
                             <path d="M10.9376 5.80361L8.06418 14.743 5.08044 5.76223l-4.578103-.0335c-.012524-.16198.028313-.3236.116275-.46018L3.00522 1.59306c.06943-.10727.16597-.19429.27984-.25225l2.91083 4.4293 3.60848.02562 2.84773-4.38792c.1124.05814.2109.14485.2838.25423L15.3748 5.373c.09.13702.1332.2995.1231.46313l-4.5603-.0335v.00098z" fill="#53E7D3"></path>
@@ -365,7 +365,7 @@
             width: 10px;
             height: 10px;
             position: relative;
-            margin-top: 10px;
+            margin-top: 2px;
             margin-left: 0px;
             border-radius: 5px;
             background: none;
@@ -377,7 +377,7 @@
 
         .heartH:hover:before,
         .heartH:hover:after {
-            background: #444 !important; /* Change to the desired hover background color */
+            background: rgba(68, 68, 68, 0.96) !important; /* Change to the desired hover background color */
         }
 
         .active.heartH:before, .active.heartH:after {
@@ -522,7 +522,7 @@
             color: white;
         }
 
-        .diamond {
+        .diamondD {
             position: absolute;
             bottom: 6px;  
             right: -6px; 
@@ -755,7 +755,7 @@
                 children: {
                     shape: 'circle',
                     radius: 30,
-                    fill: ['pink', 'white'],
+                    fill: ['white', '#rgba(0, 249, 255, 0.92)'],
                     strokeWidth: 15,
                     duration: 500,
                 }
@@ -779,7 +779,7 @@
             children: {
                 shape: 'circle',
                 radius: 30,
-                fill: ['white', 'hotpink'],
+                fill: ['#0ff', 'rgba(255, 0, 249, 0.96)'],
                 strokeWidth: 15,
                 duration: 400,
             }
