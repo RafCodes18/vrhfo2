@@ -43,7 +43,7 @@
     <!--VIDEO DETAILS CONTAINER -->
     .vid-details{
         margin-left: 110px;
-        margin-top: 15px;      
+        margin-top: 15px;
     }
     .lik-box{
         padding: 0;
@@ -124,9 +124,15 @@
     .canvas-details{
         width: 100%;
         justify-content: flex-end;
-     }
+        border: 1px dotted rgba(37, 37, 37, 0.00);
+        border-radius: 5px;
+        background-color: rgba(40, 40, 40, 0.80);
+        margin: 10px 0;
+        outline: 1px solid rgba(160, 160, 160, 0.61);
+        padding: 12px;
+    }
 
-
+     
      @@media (max-width: 1109px) {
         /* Styles for screens below 1110 pixels */
         .canvas-container {
@@ -191,6 +197,8 @@
                 <!-- Add more <source> elements for different video formats if needed -->
             </video>
         </div>
+
+<!--Video Details-->
          <div class="canvas-details">
                 <div class="vid-details-top-row">
                     <h2 class="vid-title-txt">@Model.video.Title</h2>
@@ -204,7 +212,7 @@
                     <div class="top-row-second-box">
                         <div class="likes-ratio">
 
-<!-- LIKE BUTTON ON VIDEO-->
+            <!-- LIKE BUTTON ON VIDEO-->
                     <div id='likeButton_@Model.video.Id' class='buttonH heartH like-btn' data-post-id="@Model.video.Id"></div>
 
 
@@ -216,11 +224,10 @@
                     <p ><a class="category-txt" asp-action="Index" asp-controller="Video" asp-route-category="@Model.video.Category">@Model.video.Category </a></p>
                     
                 </div>
-
                 <div class="vid-details-last">
                     <div class="details-last-first2">
                         <p>Uploaded: @Model.video.FormattedUploadDateDMY</p>
-                    <p> <span class="by-txt">By:</span><a class="username-txt" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
+                     <span class="by-txt">By:</span><a class="username-txt" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
                     </div>
                 <p class="views-txt">@Model.video.FormattedViews views</p>
                 </div>
@@ -318,6 +325,7 @@
         .username-txt{
             margin-left: 5px;
             color:deepskyblue;
+            margin-top: -3px !important;
         }
         .vid-details-last{
             display: flex;
@@ -332,9 +340,11 @@
         .vid-details-bottom-row{
             display: flex;
             justify-content: space-between;
+            border-radius: 10px;
         }
         .vid-title-txt{
             margin-top: 4px;
+
         }
         .category-txt{
             color: #777 !important;
@@ -495,7 +505,7 @@
         }
 
         .comments-section p{
-            margin: 0 !important;
+            margin: 0 !important;s
         }
         .avatar-container {
             width: 40px;
@@ -555,7 +565,8 @@
             padding: 5px !important;
             margin: 0 !important;
             align-items: center;
-            border-radius: 5px !important;
+            border-radius: 15px !important;
+            margin-top: 20px !important;
         }
  
         .comment {
