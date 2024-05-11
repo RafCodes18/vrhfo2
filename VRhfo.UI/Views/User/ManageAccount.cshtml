@@ -7,11 +7,7 @@
 
 <style>
     body {
-        background: hsla(213, 77%, 14%, 1);
-        background: linear-gradient(90deg, hsla(213, 77%, 14%, 1) 0%, hsla(202, 27%, 45%, 1) 100%);
-        background: -moz-linear-gradient(90deg, hsla(213, 77%, 14%, 1) 0%, hsla(202, 27%, 45%, 1) 100%);
-        background: -webkit-linear-gradient(90deg, hsla(213, 77%, 14%, 1) 0%, hsla(202, 27%, 45%, 1) 100%);
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#08203E", endColorstr="#557C93", GradientType=1 );
+        background: rgb(21, 21, 21)
 
         /* background: hsla(54, 56%, 66%, 1);
         background: linear-gradient(90deg, hsla(54, 56%, 66%, 1) 0%, hsla(261, 84%, 45%, 1) 100%);
@@ -21,7 +17,7 @@
     }
 
     .login-form {
-        background-color: rgba(10, 10, 10, .2);
+        background-color: rgba(100, 100, 100, .1);
         padding: 20px;
         border-radius: 8px;
         width: 620px;
@@ -143,6 +139,22 @@
         position: relative;
         left: 0;
     }
+
+    .input-box input {
+        width: 50%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 40px;
+        font-size: 16px;
+        color: #fff;
+    }
+
+        .input-box input::placeholder {
+            color: #fff;
+        }
 </style>
 
 <div class="wrapperM">
@@ -150,8 +162,8 @@
 
     <form method="post" asp-controller="User" asp-action="Login" class="login-form">
         <h2 class="form-title">Account Settings</h2>
-        <label>Username</label><input type="tel" /> </br> 
-        <label>Password</label><input type="tel" /> </br> 
+        <label>Username</label><input class="input-box" type="tel" /> </br> 
+        <label>Password</label><input class="input-box" type="tel" /> </br> 
 
     </form>
 </div>

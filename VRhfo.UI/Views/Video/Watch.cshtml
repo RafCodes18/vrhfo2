@@ -124,11 +124,11 @@
     .canvas-details{
         width: 100%;
         justify-content: flex-end;
-        border: 1px dotted rgba(37, 37, 37, 0.00);
+        border: 1px dotted rgba(86, 86, 86, 0.00);
         border-radius: 5px;
         background-color: rgba(40, 40, 40, 0.80);
         margin: 10px 0;
-        outline: 1px solid rgba(160, 160, 160, 0.61);
+        outline: 1px solid rgba(74, 74, 74, 0.61);
         padding: 12px;
     }
 
@@ -236,8 +236,18 @@
 
     <!--COMMMENT SECTION-->
     <div class="comments-section">
-        <div class="comments-header">             
-            <div class="comments-header-title">
+        <!--CHATANGO CHAT SOLUTION-->
+        <script id="cid0020000376387150944" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"goonvr","arch":"js","styles":{"a":"383838","c":"ffffff","d":"cc33cc","f":0,"g":"ffffff","i":0,"j":"ffffff","k":"ffffff","l":"e0e0e0","m":"383838","n":"FFFFFF","p":"10","q":"383838","usricon":0,"cnrs":"0.35","fwtickm":1}}</script>
+
+
+
+
+
+
+
+        <!-- OLD COMMENT SECTION-->
+        @*  <div class="comments-header">
+        <div class="comments-header-title">
                 <div class="comments-header-title-left">
                     <p>Comments</p>
                     <span class=" dot ">• </span>
@@ -301,12 +311,11 @@
 
                 <p class="content">@(comment.User.Username): @comment.Content</p>
             </div>
-        }
+        } *@
     </div>
 
     <!--Comment Section CSS -->
     <style>
-
         .by-txt{
             color: #555;
             margin-left: 10px;
@@ -324,7 +333,7 @@
         }       
         .username-txt{
             margin-left: 5px;
-            color:deepskyblue;
+            color:#0078a0;
             margin-top: -3px !important;
         }
         .vid-details-last{
@@ -505,7 +514,7 @@
         }
 
         .comments-section p{
-            margin: 0 !important;s
+            margin: 0 !important;
         }
         .avatar-container {
             width: 40px;
@@ -561,12 +570,16 @@
             display: grid;
             grid-template-columns: 1fr; /* Single column layout */
             gap: 10px; /* Adjust the gap between comments */
-            background: #222;
+/*             background: #222;
+ */            
             padding: 5px !important;
             margin: 0 !important;
             align-items: center;
             border-radius: 15px !important;
             margin-top: 20px !important;
+            width: 810px !important;
+            height: 240px !important;
+            background: #222;
         }
  
         .comment {
