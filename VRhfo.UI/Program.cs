@@ -41,7 +41,7 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapControllerRoute(
         name: "Default",
-        pattern: "{controller=Home}/{action=Index}/{id?}"
+        pattern: "{controller=Video}/{action=Index}/{id?}"
     );
 
 });
