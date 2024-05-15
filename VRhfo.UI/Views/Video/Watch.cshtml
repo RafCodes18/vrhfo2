@@ -1,4 +1,5 @@
 ﻿@model VRhfo.UI.Views.ViewModels.VideoViewModel
+@inject IHttpContextAccessor HttpContextAccessor
 
 @{
     ViewData["Title"] = "Video - vrhfo.com";
@@ -91,6 +92,7 @@
         justify-content: space-between;
         padding: 0;
         height: 40px;
+        margin-top: -10px;
     }
     .vid-details-top-row p {
         font-size: large;
@@ -325,7 +327,6 @@
         #tooltip {
             position: relative !important;
             display: inline-block !important;
-            border-bottom: 1px dotted black !important;
         }
 
 
@@ -373,7 +374,6 @@
         }
         .vid-details-last{
             display: flex;
-           margin-top: -10px;
            color: #555;
            justify-content: space-between;
         }
@@ -716,11 +716,18 @@
 
 <!--RIGHT SIDE OF PAGE (SUGGESTED VIDEOS) -->
 <div class="page-right-container">
-    <!--join premium container-->
-    <div class="join-premium-container">
-        <p class="cta-text">Watch this video and 1000+ more with Premium</p>
-        <a asp-action="JoinNow" asp-controller="Home">JOIN NOW</a>
-    </div>
+    @{
+        var username = HttpContextAccessor.HttpContext?.Session.GetString("username");
+    }
+    @if (!Authenticate.IsAuthenticated(Context)|| username == "")
+    {
+        <!--join premium container-->
+        <div class="join-premium-container">
+            <p class="cta-text">Watch this video and 1000+ more with Premium</p>
+            <a asp-action="JoinNow" asp-controller="Home">JOIN NOW</a>
+        </div>
+    }
+           
 
     <!--Suggested videos -->
      @for (int i = 0; i < Model.suggestedVideos.Count; i++)
@@ -810,7 +817,7 @@
 </script>
 
 
-<!--JS TO HANDLE ADDING COMMENTS-->
+<!--LIKEBUTTON ANIMATION AND JS COMMENTS-->
  <script type="text/javascript">
 
      //LIKE BUTTON 
@@ -833,7 +840,7 @@
                 children: {
                     shape: 'circle',
                     radius: 30,
-                    fill: ['white', '#rgba(0, 249, 255, 0.92)'],
+                    fill: ['#c90084', 'hotpink)'],
                     strokeWidth: 15,
                     duration: 500,
                 }
@@ -857,7 +864,7 @@
             children: {
                 shape: 'circle',
                 radius: 30,
-                fill: ['#0ff', 'rgba(255, 0, 249, 0.96)'],
+                fill: ['deeppink', 'hotpink'],
                 strokeWidth: 15,
                 duration: 400,
             }
