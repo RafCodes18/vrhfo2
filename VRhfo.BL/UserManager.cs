@@ -156,5 +156,31 @@ namespace VRhfo.BL
                 return Convert.ToBase64String(hasher.ComputeHash(hashbytes));
             }
         }
+
+        public static User LoadByUsername(string username)
+        {
+            using (VRhfoEntities dc = new VRhfoEntities())
+            {
+                // Correct the query to retrieve the user
+                tblUser row = dc.tblUsers.FirstOrDefault(u => u.Username == username);
+
+                if (row == null)
+                {
+                    return null; // or handle it as per your requirement, e.g., throw an exception
+                }
+
+                // Map tblUser to User
+                return new User()
+                {
+                    Username = row.Username,
+                    Id = row.Id,
+                    Password = row.Password,
+                    Email = row.Email,
+                    RegistrationDate = row.RegistrationDate,
+                    SubscribedDate = row.SubscribedDate,
+                    Auth0UserId = row.Auth0UserId,
+                };
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using VRhfo.BL.Models;
+﻿using System.Collections.Generic;
+using VRhfo.BL.Models;
 using VRhfo.PL;
 
 namespace VRhfo.BL
@@ -6,6 +7,48 @@ namespace VRhfo.BL
     public static class VideoManager
     {
 
+        public static List<Video> GetUsersLikedVideos(int userId)
+        {
+            List<Video> likedVids = new List<Video>();
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    var likedVideoIds = dc.tblVideosLikes
+                                          .Where(vl => vl.UserID == userId)
+                                          .Select(vl => vl.VideoID)
+                                          .ToList();
+
+                    likedVids = dc.tblVideos
+                                  .Where(v => likedVideoIds.Contains(v.Id))
+                                  .Select(v => new Video
+                                  {
+                                      Id = v.Id,
+                                      UserId = userId,
+                                      VideoUrl = v.VideoUrl,
+                                      Category = v.Category,
+                                      Likes = v.Likes,
+                                      UploadDate = v.UploadDate,
+                                      Description = v.Description,
+                                      Dislikes = v.Dislikes,
+                                      Views = v.Views,
+                                      Title = v.Title,
+                                      Genre = v.Genre,
+                                      Duration = v.Duration,
+                                      RatingCount = v.RatingCount,
+                                      ThumbnailUrl = v.ThumbnailUrl,
+                                  })
+                                  .ToList();
+                };
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return likedVids;
+        }
         public static List<Video> GetSuggestedVideos(int maxSuggestions, string watchedVideoTitle)
         {
             using (VRhfoEntities dc = new VRhfoEntities())

@@ -12,7 +12,7 @@ namespace VRhfo.BL
             {
                 List<tblComment> tblComments = db.tblComments
                     .Where(c => c.VideoId == videoId)
-                    .Include(c => c.tblUser) // Include the tblUser navigation property
+                    .Include(c => c.User) // Include the tblUser navigation property
                     .ToList();
 
                 List<Comment> comments = new List<Comment>();
@@ -27,7 +27,7 @@ namespace VRhfo.BL
                         Id = tblComment.Id,
                         User = new User
                         {
-                            Username = tblComment.tblUser.Username
+                            Username = tblComment.User.Username,
                         }
                     });
                 }

@@ -1,4 +1,7 @@
-﻿namespace VRhfo.PL;
+﻿using System;
+using System.Collections.Generic;
+
+namespace VRhfo.PL;
 
 public partial class tblUser
 {
@@ -17,5 +20,6 @@ public partial class tblUser
 
     public DateTime SubscribedDate { get; set; }
 
-    public virtual ICollection<tblComment> Comments { get; set; }
+
+    public virtual ICollection<tblVideosLiked> tblVideosLikeds { get; set; } = new List<tblVideosLiked>();
 }

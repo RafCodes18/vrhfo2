@@ -1,9 +1,11 @@
-﻿namespace VRhfo.PL;
+﻿using System;
+using System.Collections.Generic;
+
+namespace VRhfo.PL;
 
 public partial class tblVideo
 {
     public int Id { get; set; }
-    public int UserId { get; set; }
 
     public string Title { get; set; } = null!;
 
@@ -34,4 +36,8 @@ public partial class tblVideo
     public int Likes { get; set; }
 
     public int Dislikes { get; set; }
+
+    public int UserId { get; set; }
+
+    public virtual ICollection<tblVideosLiked> tblVideosLikeds { get; set; } = new List<tblVideosLiked>();
 }

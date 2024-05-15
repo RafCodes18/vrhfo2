@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using VRhfo.BL;
+using VRhfo.BL.Models;
 using VRhfo.UI.Models;
 using VRhfo.UI.ViewModels;
 
@@ -48,8 +49,10 @@ namespace VRhfo.UI.Controllers
 
         public ActionResult liked()
         {
+            User currentUser = HttpContext.Session.GetObject<User>("user");
+
             ProfileViewModel pvm = new ProfileViewModel();
-            pvm.Videos = VideoManager.LoadAll();
+            pvm.Videos = VideoManager.GetUsersLikedVideos(currentUser.Id);
             return View(pvm);
         }
     }

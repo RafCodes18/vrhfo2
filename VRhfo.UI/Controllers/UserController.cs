@@ -29,7 +29,9 @@ namespace VRhfo.UI.Controllers
             try
             {
                 bool loginWorked = UserManager.Login(user);
-                if (HttpContext != null && loginWorked == true) SetUser(user);
+                User user1 = UserManager.LoadByUsername(user.Username);
+                
+                if (HttpContext != null && loginWorked == true) SetUser(user1);
 
                 if (TempData?["returnUrl"] != null)
                     return Redirect(TempData["returnUrl"]?.ToString());
