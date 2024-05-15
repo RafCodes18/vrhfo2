@@ -213,7 +213,13 @@
                         <div class="likes-ratio">
 
             <!-- LIKE BUTTON ON VIDEO-->
-                    <div id='likeButton_@Model.video.Id' class='buttonH heartH like-btn' data-post-id="@Model.video.Id"></div>
+
+                        <div id="tooltip">
+                                     <div id='likeButton_@Model.video.Id' class='buttonH heartH like-btn' data-post-id="@Model.video.Id"></div>
+
+                        <span id="tooltiptext"><a class="tip-link" asp-action="JoinNow" asp-controller="Home">Login</a> to like</span>
+                        </div>
+
 
 
                             @Model.video.AverageRating %
@@ -232,7 +238,6 @@
                 <p class="views-txt">@Model.video.FormattedViews views</p>
                 </div>
             </div>
- 
 
     <!--COMMMENT SECTION-->
     <div class="comments-section">
@@ -316,6 +321,36 @@
 
     <!--Comment Section CSS -->
     <style>
+
+        #tooltip {
+            position: relative !important;
+            display: inline-block !important;
+            border-bottom: 1px dotted black !important;
+        }
+
+
+            #tooltip #tooltiptext {
+                visibility: hidden !important;
+                background-color: rgba(19, 19, 19, 0.76) !important;
+                color: #fff !important;
+                text-align: center !important;
+                border-radius: 6px !important;
+                padding: 2px 0px;
+                font-size: large;
+
+                /* Position the tooltip */
+                position: absolute !important;
+                width: 110px;
+                bottom: 100%;
+                left: 50%;
+                margin-left: -40px; 
+                margin-bottom: -2px !important
+            }
+
+            #tooltip:hover #tooltiptext {
+                visibility: visible !important;
+            }
+
         .by-txt{
             color: #555;
             margin-left: 10px;
@@ -744,14 +779,32 @@
 
         }
         //GET THE USER  WORKS
-
         likeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const postId = button.dataset.postId;
-                console.log("VideoID: " + postId);
+            const tooltip = button.parentElement.querySelector('#tooltiptext');
+            if (currentUser && currentUser.username != "") {
+                // If user is logged in, hide the tooltip
+                tooltip.style.display = 'none';
+                console.log("user is logged in");
+            } else {
+                // If user is not logged in, show the tooltip
+                tooltip.style.display = 'block';
+                console.log("user is not logged in");
 
+            }
+
+            button.addEventListener('click', () => {
+                if (!userLoggedIn) {
+                    console.log("User must log in to like this video.");
+                    // Optionally, you can trigger a login modal or redirect to the login page here
+                } else {
+                    const postId = button.dataset.postId;
+                    console.log("VideoID: " + postId);
+                    // Add your like functionality here
+                }
             });
         });
+
+       
     });
 </script>
 
