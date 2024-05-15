@@ -780,10 +780,11 @@
     document.addEventListener('DOMContentLoaded', function () {
         const likeButtons = document.querySelectorAll('.like-btn');
         const currentUser = @Html.Raw(Json.Serialize(ViewBag.CurrentUser)); // Access the user from the ViewBag
-
+ 
+        console.log(currentUser.username + " " + currentUser.Id);
         if(currentUser != null)
         {
-            console.log("Current user: " + currentUser.username);
+            console.log("Current user: " + currentUser.username + " Id: " + currentUser.id);
 
         }
         //GET THE USER  WORKS
@@ -810,6 +811,7 @@
             button.addEventListener('click', () => {
                 if (!currentUser || currentUser.username == "") {
                     //USER CLICKED LIKE BUT IS NOT LOGGED IN
+                   
                     console.log("User must log in to like this video.");
                     
                     // Display login modal or redirect to login.
@@ -823,31 +825,49 @@
 
                     //get post liked
                     const postId = button.dataset.postId;
-                    console.log("VideoID: " + postId);
-                    // Add your like functionality here
-                    fetch(`/Video/Like/${postId}`, {
+                    console.log("VideoID: " + postId + currentUser.id);
+
+                    // Check if the video is already liked
+                    fetch(`/Video/CheckIfLiked?userId=${currentUser.Id}&postId=${postId}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                             'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
-                        },
-                        body: JSON.stringify({ postId, user: currentUser }) // Pass post ID and user in the request body)
+                        }
                     })
-
                         .then(response => response.json())
                         .then(data => {
-                            
+                            if (data.isLiked) {
+                                console.log("Video is already liked by the user.");
+                                // Handle case where video is already liked
+                                // This means they are unliking it, in which case need to remove row from DB.
 
-                            console.log("like count:" + data.isLiked);
-
+                            } else {
+                                console.log("Video is not liked by the user. Proceeding to like...");
+                                // Proceed with liking the video
+                                fetch(`/Video/Like/${postId}`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
+                                    },
+                                    body: JSON.stringify({ postId }) // Pass post ID and user ID in the request body
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        console.log("Like count:" + data.likeCount);
+                                        // Handle success response
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                        // Handle error
+                                    });
+                            }
                         })
                         .catch(error => {
                             console.error('Error:', error);
+                            // Handle error
                         });
-
-                    return; // Exit the event listener
-                    //send like to server
-
                 }
             });
         });

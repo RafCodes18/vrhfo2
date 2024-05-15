@@ -11,6 +11,14 @@ namespace VRhfo.UI.Controllers
     public class VideoController : Controller
     {
         [HttpPost]
+        public ActionResult CheckIfLiked(int userId, int postId)
+        {
+            bool isLiked = LikedVideosManager.CheckIfLiked(userId, postId);
+            return Json(new { isLiked });
+        }
+
+
+        [HttpPost]
         public ActionResult Like(int id, VideosLiked vidsLiked)
         {
             
@@ -20,6 +28,18 @@ namespace VRhfo.UI.Controllers
             vidsLiked.LikedDate = DateTime.Now;
             LikedVideosManager.Insert(vidsLiked);
             return Json(new { PostId = vidsLiked.VideoID, isLiked = true });
+        }
+
+        [HttpPost]
+        public ActionResult Unlike(int id, VideosLiked vidsLiked)
+        {
+            var user = HttpContext.Session.GetObject<User>("user");
+            vidsLiked.VideoID = id;
+            vidsLiked.UserID = user.Id;
+
+            LikedVideosManager.Delete(vidsLiked.UserID, vidsLiked.VideoID);
+            return Json(new {PostId = vidsLiked.VideoID, isLiked = false});
+
         }
 
         // GET: VideoController
@@ -60,7 +80,7 @@ namespace VRhfo.UI.Controllers
 
             User currentUser = HttpContext.Session.GetObject<User>("user");
             ViewBag.CurrentUser = currentUser;
-
+                        
             VideoViewModel videoViewModel = new VideoViewModel();
 
             // Important change: Look up the video by title (slug) now       
