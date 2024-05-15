@@ -10,6 +10,18 @@ namespace VRhfo.UI.Controllers
 {
     public class VideoController : Controller
     {
+        [HttpPost]
+        public ActionResult Like(int id, VideosLiked vidsLiked)
+        {
+            
+            var user = HttpContext.Session.GetObject<User>("user");
+            vidsLiked.VideoID = id;
+            vidsLiked.UserID = user.Id;
+            vidsLiked.LikedDate = DateTime.Now;
+            LikedVideosManager.Insert(vidsLiked);
+            return Json(new { PostId = vidsLiked.VideoID, isLiked = true });
+        }
+
         // GET: VideoController
         public ActionResult Index(string? category, int? page)
         {

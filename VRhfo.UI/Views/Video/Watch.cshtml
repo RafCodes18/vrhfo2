@@ -775,7 +775,7 @@
 
 
 
-<!--LIKE BUTTON JS-->
+<!--LIKE BUTTON FUNCTIONALITY (NOT ANIMATION JS-->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const likeButtons = document.querySelectorAll('.like-btn');
@@ -787,37 +787,81 @@
 
         }
         //GET THE USER  WORKS
+
+       //grab like button
         likeButtons.forEach(button => {
+            // grab tooltip
             const tooltip = button.parentElement.querySelector('#tooltiptext');
+            
+            // if user logged in and user is not empty
             if (currentUser && currentUser.username != "") {
-                // If user is logged in, hide the tooltip
-                tooltip.style.display = 'none';
-                console.log("user is logged in");
+
+                // USER IS LOGGED IN HERE, hide tooltip and send 
+                    tooltip.style.display = 'none';
+                    console.log("user is logged in");
+
             } else {
-                // If user is not logged in, show the tooltip
+                // user is not logged in, so show the tooltip
                 tooltip.style.display = 'block';
                 console.log("user is not logged in");
-
             }
 
+            // listen for clicks
             button.addEventListener('click', () => {
-                if (!userLoggedIn) {
+                if (!currentUser || currentUser.username == "") {
+                    //USER CLICKED LIKE BUT IS NOT LOGGED IN
                     console.log("User must log in to like this video.");
-                    // Optionally, you can trigger a login modal or redirect to the login page here
+                    
+                    // Display login modal or redirect to login.
+                    // Get the current base URL of the application
+                    var baseUrl = window.location.origin;
+
+                    window.location.href = baseUrl + '/Home/Login'
                 } else {
+
+                    // USER IS LOGGED IN AND CLICKED LIKE BUTTON
+
+                    //get post liked
                     const postId = button.dataset.postId;
                     console.log("VideoID: " + postId);
                     // Add your like functionality here
+                    fetch(`/Video/Like/${postId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
+                        },
+                        body: JSON.stringify({ postId, user: currentUser }) // Pass post ID and user in the request body)
+                    })
+
+                        .then(response => response.json())
+                        .then(data => {
+                            
+
+                            console.log("like count:" + data.isLiked);
+
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+                    return; // Exit the event listener
+                    //send like to server
+
                 }
             });
         });
 
-       
+        // Function to retrieve the anti-forgery token from the page
+        function getAntiForgeryToken() {
+            const tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
+            return tokenElement ? tokenElement.value : '';
+        }
     });
 </script>
 
 
-<!--LIKEBUTTON ANIMATION AND JS COMMENTS-->
+<!--LIKEBUTTON BURST ANIMATION   AND  COMMENT JS-->
  <script type="text/javascript">
 
      //LIKE BUTTON 
@@ -826,11 +870,10 @@
         var el = document.querySelector('.buttonH'),
             // mo.js timeline obj
             timeline = new mojs.Timeline(),
-
-            // tweens for the animation:
-
-            // burst animation
-            tween1 = new mojs.Burst({
+   
+       // tweens for the animation:
+       // burst animation
+        tween1 = new mojs.Burst({
                 parent: el,
                 radius: { 0: 100 },
                 angle: { 0: 45 },
@@ -845,8 +888,6 @@
                     duration: 500,
                 }
             });
-
-
         tween2 = new mojs.Tween({
             duration: 900,
             onUpdate: function (progress) {
@@ -873,7 +914,6 @@
         // add tweens to timeline:
         timeline.add(tween1, tween2, tween3);
 
-
         // when clicking the button start the timeline/animation:
         $(".buttonH").click(function () {
             if ($(this).hasClass('active')) {
@@ -883,8 +923,6 @@
                 $(this).addClass('active');
             }
         });
-
-
     });
 
 
