@@ -798,114 +798,86 @@
 
     document.addEventListener('DOMContentLoaded', function () {
 
-
-        const likes = document.querySelectorAll(".likeL");
-        likes.forEach(like => {
-            like.addEventListener("click", (event) => {
-                event.target.classList.toggle("like-no");
-                event.target.classList.toggle("like-yes");
-                if (event.target.classList.contains("like-yes")) {
-                    console.log("✅💾 Saving Favorite...");
-                     
-                } else {
-                    console.log("❌ Removing Favorite...");
-                    
-                }
-            })
-        })
-
-
-
-        const likeButtons = document.querySelectorAll('.like');
+        const likeButtons = document.querySelectorAll('.likeL');
         const currentUser = @Html.Raw(Json.Serialize(ViewBag.CurrentUser)); // Access the user from the ViewBag
- 
-        console.log(currentUser.username + " " + currentUser.id);
-        if(currentUser != null)
-        {
-            console.log("Current user: " + currentUser.username + " Id: " + currentUser.id);
 
-        }
-        //GET THE USER  WORKS
+        console.log(currentUser?.username + " " + currentUser?.id);
 
-       //grab like button
+        // Check if user is logged in
+        const isLoggedIn = currentUser && currentUser.username && currentUser.username !== "";
+
         likeButtons.forEach(button => {
-            // grab tooltip
             const tooltip = button.parentElement.querySelector('#tooltiptext');
-            
-            // if user logged in and user is not empty
-            if (currentUser && currentUser.username != "") {
 
-                // USER IS LOGGED IN HERE, hide tooltip and send 
-                    tooltip.style.display = 'none';
-                    console.log("user is logged in");
-
+            if (isLoggedIn) {
+                // User is logged in, hide tooltip
+                tooltip.style.display = 'none';
+                console.log("User is logged in");
             } else {
-                // user is not logged in, so show the tooltip
+                // User is not logged in, show tooltip
                 tooltip.style.display = 'block';
-                console.log("user is not logged in");
+                console.log("User is not logged in");
             }
 
-            // listen for clicks
-            button.addEventListener('click', () => {
-                if (!currentUser || currentUser.username == "" || currentUser == undefined || currentUser == null) {
-                    //USER CLICKED LIKE BUT IS NOT LOGGED IN
-                   
+            button.addEventListener('click', (event) => {
+                if (!isLoggedIn) {
+                    // User is not logged in, redirect to login
+                    event.preventDefault();
                     console.log("User must log in to like this video.");
-                    
-                    // Display login modal or redirect to login.
-                    // Get the current base URL of the application
-                    var baseUrl = window.location.origin;
-                    window.location.href = baseUrl + '/Home/Login'
-
+                    const baseUrl = window.location.origin;
+                    window.location.href = `${baseUrl}/Home/Login`;
                 } else {
+                    // User is logged in, toggle like state
+                    event.target.classList.toggle("like-noL");
+                    event.target.classList.toggle("like-yes");
 
-                    // USER IS LOGGED IN AND CLICKED LIKE BUTTON
-
-                    //get post liked
                     const postId = button.dataset.postId;
-                    console.log("VideoID: " + postId + currentUser.id);
+                    const isLiked = event.target.classList.contains("like-yes");
 
-                    // Check if the video is already liked
-                    fetch(`/Video/CheckIfLiked?userId=${currentUser.Id}&postId=${postId}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
-                        }
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.isLiked) {
-                                console.log("Video is already liked by the user.");
-                                // Handle case where video is already liked
-                                // This means they are unliking it, in which case need to remove row from DB.
+                    if (isLiked) {
+                        console.log("✅💾 Saving Favorite...");
 
-                            } else {
-                                console.log("Video is not liked by the user. Proceeding to like...");
-                                // Proceed with liking the video
-                                fetch(`/Video/Like/${postId}`, {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
-                                    },
-                                    body: JSON.stringify({ postId }) // Pass post ID and user ID in the request body
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        console.log("Like count:" + data.likeCount);
-                                        // Handle success response
-                                    })
-                                    .catch(error => {
-                                        console.error('Error:', error);
-                                        // Handle error
-                                    });
-                            }
+                        // Proceed with liking the video
+                        fetch(`/Video/Like/${postId}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
+                            },
+                            body: JSON.stringify({ postId }) // Pass post ID in the request body
                         })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            // Handle error
-                        });
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("Like count: " + data.likeCount);
+                                // Handle success response
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                // Handle error
+                            });
+
+                    } else {
+                        console.log("❌ Removing Favorite...");
+
+                        // Proceed with unliking the video
+                        fetch(`/Video/Unlike/${postId}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
+                            },
+                            body: JSON.stringify({ postId }) // Pass post ID in the request body
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("Like count: " + data.likeCount);
+                                // Handle success response
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                // Handle error
+                            });
+                    }
                 }
             });
         });
