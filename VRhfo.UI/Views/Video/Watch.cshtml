@@ -219,7 +219,7 @@
 
                             <div id="tooltip">
                                          @* <div id='likeButton_@Model.video.Id' class='buttonH heartH like-btn' data-post-id="@Model.video.Id"></div> *@
-                                <div class="likeL @Model.likeState"></div>
+                        <div class="likeL @Model.likeState" data-video-id=@Model.video.Id></div>
 
                         <span id="tooltiptext"><a class="tip-link"   asp-action="Login" asp-controller="Home">Login</a> or <a asp-action="JoinNow" asp-controller="Home">Join</a> to like</span>
                         </div>
@@ -717,7 +717,7 @@
 </script>
 
 
-<!--LIKE BUTTON FUNCTIONALITY (NOT ANIMATION JS) -->
+<!--NEWWw LIKE BUTTON FUNCTIONALITY-->
 <script>
      
        
@@ -757,20 +757,23 @@
                     event.target.classList.toggle("like-noL");
                     event.target.classList.toggle("like-yes");
 
-                    const postId = button.dataset.postId;
+                    const videoId = button.getAttribute('data-video-id');
+
                     const isLiked = event.target.classList.contains("like-yes");
 
                     if (isLiked) {
-                        console.log("✅💾 Saving Favorite...");
+                        console.log("✅💾 Saving Favorite... " + videoId);
+
+
 
                         // Proceed with liking the video
-                        @* fetch(`/Video/Like/${postId}`, {
+                         fetch(`/Video/Like/${videoId}`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
                             },
-                            body: JSON.stringify({ postId }) // Pass post ID in the request body
+                            body: JSON.stringify({ videoId }) // Pass post ID in the request body
                         })
                             .then(response => response.json())
                             .then(data => {
@@ -780,19 +783,19 @@
                             .catch(error => {
                                 console.error('Error:', error);
                                 // Handle error
-                            }); *@
+                            }); 
 
                     } else {
-                        console.log("❌ Removing Favorite...");
+                        console.log("❌ Removing Favorite..." + videoId);
 
                         // Proceed with unliking the video
-@*                         fetch(`/Video/Unlike/${postId}`, {
+                         fetch(`/Video/Unlike/${videoId}`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
                             },
-                            body: JSON.stringify({ postId }) // Pass post ID in the request body
+                            body: JSON.stringify({ videoId }) // Pass post ID in the request body
                         })
                             .then(response => response.json())
                             .then(data => {
@@ -802,7 +805,7 @@
                             .catch(error => {
                                 console.error('Error:', error);
                                 // Handle error
-                            }); *@
+                            }); 
                     }
                 }
             });
