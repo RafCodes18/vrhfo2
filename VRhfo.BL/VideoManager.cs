@@ -327,5 +327,15 @@ namespace VRhfo.BL
 
             return list;
         }
+
+        public static string checkIfCurrentVideoLiked(Video video, User currentUser)
+        {
+            using(VRhfoEntities dc = new VRhfoEntities())
+            {
+                 var isLiked = dc.tblVideosLikes
+                              .Any(vl => vl.VideoID == video.Id && vl.UserID == currentUser.Id);
+                return isLiked ? "like-yes" : "like-noL";
+            }
+        }
     }
 }

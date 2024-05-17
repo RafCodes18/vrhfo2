@@ -219,7 +219,7 @@
 
                             <div id="tooltip">
                                          @* <div id='likeButton_@Model.video.Id' class='buttonH heartH like-btn' data-post-id="@Model.video.Id"></div> *@
-                                <div class="likeL like-noL"></div>
+                                <div class="likeL @Model.likeState"></div>
 
                         <span id="tooltiptext"><a class="tip-link"   asp-action="Login" asp-controller="Home">Login</a> or <a asp-action="JoinNow" asp-controller="Home">Join</a> to like</span>
                         </div>

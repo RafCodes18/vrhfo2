@@ -7,5 +7,8 @@ namespace VRhfo.UI.Views.ViewModels
         public Video video { get; set; }
 
         public List<Video> suggestedVideos { get; set; }
+
+        public string likeState { get; set; }   
+
     }
 }

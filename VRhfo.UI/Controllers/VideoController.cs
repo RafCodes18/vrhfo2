@@ -80,16 +80,26 @@ namespace VRhfo.UI.Controllers
 
             User currentUser = HttpContext.Session.GetObject<User>("user");
             ViewBag.CurrentUser = currentUser;
-                        
+            
             VideoViewModel videoViewModel = new VideoViewModel();
 
             // Important change: Look up the video by title (slug) now       
 
             videoViewModel.video = VideoManager.LoadByTitle(title);
             videoViewModel.video.user = UserManager.LoadById(videoViewModel.video.UserId);
-            // ... Rest of your logic remains the same
+            // 
             List<Video> list = VideoManager.GetSuggestedVideos(8, title);
             videoViewModel.suggestedVideos = list;
+
+            if(currentUser != null)
+            {
+                videoViewModel.likeState = VideoManager.checkIfCurrentVideoLiked(videoViewModel.video, currentUser);
+            }
+            else
+            {
+                videoViewModel.likeState = "like-noL";
+            }
+            
 
             videoViewModel.video.Comments = CommentManager.GetCommentsByVideoId(videoViewModel.video.Id);
             return View(videoViewModel);
