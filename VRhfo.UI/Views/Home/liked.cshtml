@@ -164,6 +164,7 @@
                             <p class="card-time"> @item.FormattedDuration  </p>
                         </div>
 
+                        <div class="likeL like-yes"></div>
                     </div>
 
                     <div class="description">
@@ -185,3 +186,31 @@
 
 
     </div>
+</div>
+
+
+
+<style>
+    .likeL:hover {
+        cursor: pointer;
+    }
+
+    .likeL {
+        margin-top: 0px;
+        height: 35px !important;
+        width: 35px !important;
+        position: absolute;
+        top: 0;
+        right: 0;
+        
+    }
+
+    .like-noL {
+        background: url("/img/dislike.svg") no-repeat;
+    }
+
+    .like-yes {
+        background: url("/img/like.svg") no-repeat;
+        margin-right: 2px;
+    }
+</style>
