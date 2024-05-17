@@ -185,8 +185,7 @@
     .pb-3{
         margin-top: 300px !important;
     }
-
-
+    
 
 </style>
 
@@ -222,7 +221,7 @@
                                          @* <div id='likeButton_@Model.video.Id' class='buttonH heartH like-btn' data-post-id="@Model.video.Id"></div> *@
                                 <div class="likeL like-noL"></div>
 
-                        <span id="tooltiptext"><a class="tip-link" asp-action="JoinNow" asp-controller="Home">Login</a> or <a asp-action="JoinNow" asp-controller="Home">Join</a> to like</span>
+                        <span id="tooltiptext"><a class="tip-link" asp-action="Login" asp-controller="Home">Login</a> or <a asp-action="JoinNow" asp-controller="Home">Join</a> to like</span>
                         </div>
 
 
@@ -247,86 +246,15 @@
     <!--COMMMENT SECTION-->
     <div class="comments-section">
         <!--CHATANGO CHAT SOLUTION-->
-@*         <script id="cid0020000376387150944" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"goonvr","arch":"js","styles":{"a":"383838","c":"ffffff","d":"cc33cc","f":0,"g":"ffffff","i":0,"j":"ffffff","k":"ffffff","l":"e0e0e0","m":"383838","n":"FFFFFF","p":"10","q":"383838","usricon":0,"cnrs":"0.35","fwtickm":1}}</script>
- *@
-
-
-
-
-
-
-        <!-- OLD COMMENT SECTION-->
-        @*  <div class="comments-header">
-        <div class="comments-header-title">
-                <div class="comments-header-title-left">
-                    <p>Comments</p>
-                    <span class=" dot ">• </span>
-                    <span class="comments-number ">
-                        @Model.video.Comments.Count
-                    </span>
-                </div>
-                
-                <div class="comments-header-title-right">
-                    <div class="cht-new" id="cht-new">
-                        <svg class="fire-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="grey" class="bi bi-fire" viewBox="0 0 16 16">
-                            <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15" />
-                        </svg> 
-                        <p>New</p>
-                    </div>
-                    <div class="cht-top" id="cht-top">
-                        <span class="o-icon"><svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.902 10.768l-6.676-6.67a.333.333 0 00-.473 0l-6.656 6.67a.333.333 0 00.237.568h3.67v8.33c0 .185.15.334.334.334h5.338c.184 0 .334-.15.334-.333v-8.33h3.656a.334.334 0 00.309-.207.331.331 0 00-.073-.362z" fill-rule="nonzero"></path></svg></span>
-                        <p>Top</p>
-                    </div>
-                </div>
-            </div>           
-        </div>
-
-        <!--ADD A COMMENT -->
-        <div class="addComment-container">
-            <div class="addComment-topRow">
-                <div class="avatar-container user-txt">
-                    <div class="avatar-circle">
-                        <span class="avatar-letter">U</span>
-                    </div>               
-                </div>
-                <div class="comment-box">
-                    <div class="comment-input" contenteditable="true" role="textbox">
-                        <span class="placeholdert">Add a comment...</span>
-                    </div>
-                </div>
-            </div>
-
-            <button class="comment-submit like-btn" id="btnComment">COMMENT</button>
-
-        </div>
-                        
-        <!--LOOOP THROUGH EACH COMMENT -->
-        @foreach (var comment in Model.video.Comments)
-        {
-            <div class="comment" data-datePosted=@comment.DatePosted>
-                <div class="avatar-container">
-                    <div class="avatar-circle">
-                        <span class="avatar-letter">@comment.User.AvatarLetter</span>
-                    </div>
-                    <span class="diamondD di">
-                        <svg class="o-icon o-icon-svg " viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.06419 14.7411c-.10982-.0012-.21803-.0265-.31697-.0742-.09894-.0477-.18618-.1166-.25554-.2017L.672817 6.15741c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.5931c.06641-.10241.15756-.18643.26503-.2443.10747-.05787.2278-.08772.34985-.08679l8.695.06208c.1236.00146.2448.03333.3531.0928.1083.05946.2002.14469.2677.24815l2.4389 3.70997c.0882.13302.1318.29072.1244.4502-.0075.15947-.0655.31243-.1658.43665L8.63276 14.475c-.06879.0842-.15557.1519-.25396.1981-.0984.0462-.2059.0698-.31461.069v-.001z" fill="#37C4B3"></path>
-                            <path d="M10.9376 5.80361L8.06418 14.743 5.08044 5.76223l-4.578103-.0335c-.012524-.16198.028313-.3236.116275-.46018L3.00522 1.59306c.06943-.10727.16597-.19429.27984-.25225l2.91083 4.4293 3.60848.02562 2.84773-4.38792c.1124.05814.2109.14485.2838.25423L15.3748 5.373c.09.13702.1332.2995.1231.46313l-4.5603-.0335v.00098z" fill="#53E7D3"></path>
-                            <path d="M7.96372 1.29253h.00788l2.966 4.51109-5.87486-.04237 2.90098-4.46872z" fill="#B9F5ED"></path>
-                            <path opacity=".1" d="M2.64359 6.17018s4.98999 8.46842 4.84809 8.29592L.672817 6.15639c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.59307c.06618-.10278.15723-.18719.26472-.24541.10748-.05823.22793-.08837.35016-.08765l1.97077.01379c-.12214-.00082-.24253.02917-.35.08722-.10748.05804-.19858.14226-.26488.24486l-2.3866 3.67647c-.08614.13466-.12731.29319-.11757.45275.00974.15955.06988.3119.17177.43508z" fill="#000" ></path>
-                        </svg>
-                    </span>
-                </div>
+         <script id="cid0020000376387150944" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"goonvr","arch":"js","styles":{"a":"383838","c":"ffffff","d":"cc33cc","f":0,"g":"ffffff","i":0,"j":"ffffff","k":"ffffff","l":"e0e0e0","m":"383838","n":"FFFFFF","p":"10","q":"383838","usricon":0,"cnrs":"0.35","fwtickm":1}}</script>
  
-
-                <p class="content">@(comment.User.Username): @comment.Content</p>
-            </div>
-        } *@
     </div>
 
     <!--Comment Section CSS -->
     <style>
-
+        .likeL:hover{
+            cursor: pointer;
+        }
         .likeL {
             margin-top: 0px;
             height: 35px !important;
@@ -836,7 +764,7 @@
                         console.log("✅💾 Saving Favorite...");
 
                         // Proceed with liking the video
-                        fetch(`/Video/Like/${postId}`, {
+                        @* fetch(`/Video/Like/${postId}`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -852,13 +780,13 @@
                             .catch(error => {
                                 console.error('Error:', error);
                                 // Handle error
-                            });
+                            }); *@
 
                     } else {
                         console.log("❌ Removing Favorite...");
 
                         // Proceed with unliking the video
-                        fetch(`/Video/Unlike/${postId}`, {
+@*                         fetch(`/Video/Unlike/${postId}`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -874,7 +802,7 @@
                             .catch(error => {
                                 console.error('Error:', error);
                                 // Handle error
-                            });
+                            }); *@
                     }
                 }
             });
