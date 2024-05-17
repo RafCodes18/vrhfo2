@@ -37,8 +37,10 @@ namespace VRhfo.UI.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult Login(string? returnUrl)
         {
+            TempData["returnUrl"] = returnUrl;
+
             return View();
         }
 

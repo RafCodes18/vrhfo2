@@ -171,7 +171,7 @@
         .lik-box {
             width: 100%; /* Device width */
             height: 40px !important; /* Desired height */
-            background-color: rgb(15, 16, 16) !important; /* Light grey */
+            background-color: #222 !important; /* Light grey */
             /* Modern styles */
             margin-top: 0px !important;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -181,6 +181,8 @@
             flex-wrap: nowrap;
             padding-left: 70px;
             position: relative;
+            padding-top: 4px;
+            padding-bottom: 4px;
         }
 
         .sub-link-item{
@@ -471,7 +473,7 @@
                                 <a class="nav-link text-light join-now" asp-controller="Home" asp-action="JoinNow">Join Now</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light login" asp-controller="Home" asp-action="Login">Login</a>
+                                <a class="nav-link text-light login" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
                             </li>
                         }
 
