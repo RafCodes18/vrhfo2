@@ -154,7 +154,7 @@
     <div class="card-container">
         @foreach (var item in Model.Videos)
         {
-            <div class="card">
+            <div class="card" data-video-id="@item.Id"
                 <a asp-controller="Video" asp-action="Watch" asp-route-title="@item.Title">
                     <div class="card-img">
 
@@ -164,7 +164,7 @@
                             <p class="card-time"> @item.FormattedDuration  </p>
                         </div>
 
-                        <div class="likeL like-yes"></div>
+                        
                     </div>
 
                     <div class="description">
@@ -181,6 +181,7 @@
                         </div>
                     </div>
                 </a>
+                <div class="likeL like-yes" data-video-id=@item.Id></div>
             </div>
         }
 
@@ -188,7 +189,57 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    
+        const likeButtons = document.querySelectorAll('.likeL');
+        const currentUser = @Html.Raw(Json.Serialize(ViewBag.CurrentUser)); // Access the user from the ViewBag
 
+        console.log(currentUser?.username + " " + currentUser?.id);
+
+        likeButtons.forEach(button => {
+
+              button.addEventListener('click', (event) => {
+                
+                    //   toggle like state
+                    event.target.classList.toggle("like-noL");
+
+                    const videoId = button.getAttribute('data-video-id');
+                   
+                    console.log("❌ Removing Favorite..." + videoId);
+
+                        // Proceed with unliking the video
+                         fetch(`/Video/Unlike/${videoId}`, {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
+                                        },
+                                    body: JSON.stringify({ videoId }) // Pass post ID in the request body
+                          })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("Like count: " + data.likeCount);
+                                // Handle success response
+                                 const card = document.querySelector(`.card[data-video-id="${videoId}"]`);
+                                    if (card) {
+                                        card.remove();
+                                    }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                // Handle error
+                            });
+                        
+
+                });
+        });
+
+         // Function to retrieve the anti-forgery token from the page
+        function getAntiForgeryToken() {
+            const tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
+            return tokenElement ? tokenElement.value : '';
+        }
+</script>
 
 <style>
     .likeL:hover {
@@ -197,11 +248,12 @@
 
     .likeL {
         margin-top: 0px;
-        height: 35px !important;
-        width: 35px !important;
+        height: 45px !important;
+        width: 45px !important;
         position: absolute;
         top: 0;
         right: 0;
+        z-index: 999;
         
     }
 
