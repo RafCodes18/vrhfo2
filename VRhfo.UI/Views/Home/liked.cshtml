@@ -154,7 +154,7 @@
     <div class="card-container">
         @foreach (var item in Model.Videos)
         {
-            <div class="card" data-video-id="@item.Id"
+            <div class="card" data-video-id="@item.Id">
                 <a asp-controller="Video" asp-action="Watch" asp-route-title="@item.Title">
                     <div class="card-img">
 
