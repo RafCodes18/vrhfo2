@@ -40,3 +40,47 @@ body {
 .main-text {
     margin-top: 250px;
 }
+
+
+@media (max-width: 426px) {
+    .right-lnk {
+        display: none;
+    }
+
+    .sub-link-item {
+        font-size: small mportant;
+        margin: 0 !important;
+        margin-right: 9px !important;
+    }
+}
+
+@media (max-width: 376px) {
+    .right-lnk {
+        display: none;
+    }
+    .sub-link-item{
+        font-size: smaller !important;
+        margin: 0 !important;
+        margin-right: 5px !important;
+    }
+}
+
+    @media (max-width: 320px) {
+        .right-lnk {
+            display: none;
+        }
+
+        .sub-link-item {
+            font-size: xx-small !important;
+            padding: 0px !important;
+            margin: 3px !important;
+            border-left: 1px solid grey;
+            padding-left: 3px !important;
+        }
+        .join-now{
+            margin: 0 !important;
+            margin-top: -6px !important;
+            margin-left: 66px !important;
+        }
+    }
+ 
