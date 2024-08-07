@@ -145,9 +145,11 @@ namespace VRhfo.UI.Controllers
             return RedirectToAction("Index", "Video");
         }
 
-        public ActionResult ManageAccount(int userid)
+        public ActionResult ManageAccount(string username)
         {
-            return View();
+            User user = UserManager.LoadByUsername(username);
+
+            return View(user);
         }
 
         /*   [HttpPost]

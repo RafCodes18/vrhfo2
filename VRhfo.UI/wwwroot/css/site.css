@@ -71,7 +71,7 @@ body {
     }
 
     .sub-link-item {
-        font-size: small !important;
+        font-size: smaller !important;
         margin: 0 !important;
         border-left: 1px solid grey;
         padding-left: 2px !important;
@@ -84,6 +84,18 @@ body {
     }
     .home-link{
         display: none;
+    }
+    .welcum{
+        font-size: smaller !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 80px !important;
+        height: 20px !important;
+    }
+    .navbar-nav {
+        padding: 0 !important;
+        width: 80px !important;
+        height: 20px !important;
     }
 }
 

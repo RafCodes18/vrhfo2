@@ -323,7 +323,7 @@
             color: #e058bb !important;
         }
         .welcum{
-            min-width: 180px;
+            width: 180px;
             white-space: nowrap;
 
         }
@@ -412,6 +412,17 @@
         @@media(max-width: 586px){
             .welcum{
                 margin-top: -10px !important;
+
+            }
+
+            .navbar-brand {
+                margin-right: 70px !important;
+            }
+        }
+
+        @@media(max-width: 430px) {
+            .navbar-brand {
+                margin-right: 120px !important;
             }
         }
         @@media(max-width: 320px)
@@ -419,13 +430,18 @@
             .welcum{
                 padding: 0 !important;
                 margin: 0 !important;
-                 margin-top: -10px !important;
+                 margin-top: -8px !important;
+
             }
             .navbar-nav{
                 justify-content: space-between;
             }
             .navbar-brand{
-                margin-right: 30px !important;
+                margin: 0 !important;
+                margin-right: 50px !important;
+            }
+            .dropdown-content{
+                margin-top: 20px;
             }
         }
 </style>
@@ -480,7 +496,7 @@
                                             <div class="dropdown-content">
                                                 <a asp-action="liked" asp-controller="Home">favorites</a>
                                                 <a asp-action="Upload" asp-controller="Video">Upload +</a>
-                                                <a asp-action="ManageAccount" asp-controller="User">Manage Account</a>
+                                                <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username">Manage Account</a>
                                                 <a href="#" class="forgot">Forgot Password</a><!-- this will just be change username and password page, user can select which -->
                                                 <a class="forgot" asp-action="Logout" asp-controller="User">Logout</a>
                                             </div>

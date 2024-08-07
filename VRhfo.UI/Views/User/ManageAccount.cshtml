@@ -7,18 +7,23 @@
 
 <style>
     body {
-        background: rgb(21, 21, 21) background: hsla(221, 45%, 73%, 1);
+        background: rgb(21, 21, 21);
     }
 
     .settings-form {
-        border: 1px solid rgba(100, 100, 100, .6);
+        border: 1px solid rgb(91, 91, 91, .88);
         padding: 20px;
         border-radius: 8px;
         width: 620px;
-        height: 400px;
-        margin-top: 80px;
+        height: 440px;
+        margin-top: 20px;
         min-width: 280px;
+        display: flex;
+        flex-direction: column;
+        color: rgb(205, 205, 205);
+        margin: 18px;
     }
+
 
             .wrapperM{
                 display: flex;
@@ -26,10 +31,39 @@
                 align-items: center;
             }
             @@media(max-width: 350px){
-                .settings-form{
-                    max-width: 150px !important;
-                }
+               .settings-form{
+               }
             }
+
+    .input-box {
+        width: 100%;
+        background: transparent !important;
+        border: none;
+        outline: none !important;
+        border: 2px solid rgba(255, 255, 255, .2) !important;
+        border-radius: 14px !important;
+        font-size: 16px;
+        color: #fff;
+        padding: 10px 45px 10px 20px !important;
+    }
+       .save-button{
+           border-radius: 10px;
+        background: hsla(0, 0%, 36%, 1);
+        background: linear-gradient(180deg, hsla(0, 0%, 36%, 1) 0%, hsla(0, 0%, 23%, 1) 99%);
+        background: -moz-linear-gradient(180deg, hsla(0, 0%, 36%, 1) 0%, hsla(0, 0%, 23%, 1) 99%);
+        background: -webkit-linear-gradient(180deg, hsla(0, 0%, 36%, 1) 0%, hsla(0, 0%, 23%, 1) 99%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#5D5D5D", endColorstr="#3B3B3B", GradientType=1 );
+           padding: 10px 0px;
+           color: white;
+           font-size: x-large;
+           border: none;
+       }     
+       .save-button:hover{
+            background: rgba(59, 59, 59, 0.45);
+        }
+        label{
+            font-size: larger;
+        }
 </style>
 
 <div class="wrapperM">
@@ -37,8 +71,10 @@
 
     <form method="post" asp-controller="User" asp-action="Update" class="settings-form">
         <h2 class="form-title">Account Settings</h2>
-        <label>Username</label><input class="input-box" type="tel" /> </br> 
-        <label>Password</label><input class="input-box" type="tel" /> </br> 
+        <label>Username</label><input class="input-box" type="tel" value="@Model.Username"/> </br> 
+        <label>Email</label><input class="input-box" type="tel" value="@Model.Email"/> </br> 
+        <label>Password</label><input class="input-box" type="tel" value="@Model.Password" /> </br> 
+        <input class="save-button" type="button" value="Save" /> </>
 
     </form>
 </div>
