@@ -7,160 +7,35 @@
 
 <style>
     body {
-        background: rgb(21, 21, 21)
-
-        /* background: hsla(54, 56%, 66%, 1);
-        background: linear-gradient(90deg, hsla(54, 56%, 66%, 1) 0%, hsla(261, 84%, 45%, 1) 100%);
-        background: -moz-linear-gradient(90deg, hsla(54, 56%, 66%, 1) 0%, hsla(261, 84%, 45%, 1) 100%);
-        background: -webkit-linear-gradient(90deg, hsla(54, 56%, 66%, 1) 0%, hsla(261, 84%, 45%, 1) 100%);
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#D9CF79", endColorstr="#5612D6", GradientType=1 ); */
+        background: rgb(21, 21, 21) background: hsla(221, 45%, 73%, 1);
     }
 
-    .login-form {
-        background-color: rgba(100, 100, 100, .1);
+    .settings-form {
+        border: 1px solid rgba(100, 100, 100, .6);
         padding: 20px;
         border-radius: 8px;
         width: 620px;
         height: 400px;
         margin-top: 80px;
+        min-width: 280px;
     }
 
-        .login-form h1, label {
-            margin-bottom: 20px;
-            color: White;
-        }
-
-    .wrapperM {
-        display: flex;
-        justify-content: center;
-        
-    }
-
-        .wrapperM h1 {
-            font-size: 36px;
-        }
-
-        .wrapperM .input-box {
-            position: relative;
-            width: 100%;
-            height: 50px;
-            margin: 30px 0;
-        }
-
-    .input-box input {
-        width: 100%;
-        height: 100%;
-        background: transparent;
-        border: none;
-        outline: none;
-        border: 2px solid rgba(255, 255, 255, .2);
-        border-radius: 40px;
-        font-size: 16px;
-        color: #fff;
-        padding: 20px 45px 20px 20px;
-    }
-
-        .input-box input::placeholder {
-            color: #fff;
-        }
-
-    .input-box i {
-        position: absolute;
-        right: 20px;
-        top: 35%;
-        font-size: 20px;
-    }
-
-    .wrapperM .remember-forgot {
-        display: flex;
-        justify-content: space-between;
-        font-size: 14.5px;
-        margin: -15px 0 15px;
-    }
-
-    .remember-forgot label input {
-        accent-color: #fff;
-        margin-right: 3px;
-    }
-
-    .remember-forgot a {
-        color: #fff;
-        text-decoration: none;
-    }
-
-        .remember-forgot a:hover {
-            text-decoration: underline;
-        }
-
-    .wrapperM .btn-submit {
-        width: 100%;
-        height: 45px;
-        background: #fff;
-        outline: none;
-        border-radius: 40px;
-        box-shadow: 0 0 10px rgba(0, 0,0, .1);
-        font-weight: 600;
-        color: #333;
-    }
-
-    .wrapperM .join-now-cta {
-        font-size: 14.5px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-
-
-    .o-icon-svgD {
-        pointer-events: none;
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-
-    .o-iconD {
-        display: -webkit-inline-box;
-        display: -ms-inline-flexbox;
-        display: inline-flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        position: relative;
-        vertical-align: middle;
-        fill: grey;
-        width: 24px;
-        height: 24px;
-        margin-top: 1px;
-    }
-    .form-title{
-        position: relative;
-        left: 0;
-    }
-
-    .input-box input {
-        width: 50%;
-        height: 100%;
-        background: transparent;
-        border: none;
-        outline: none;
-        border: 2px solid rgba(255, 255, 255, .2);
-        border-radius: 40px;
-        font-size: 16px;
-        color: #fff;
-    }
-
-        .input-box input::placeholder {
-            color: #fff;
-        }
+            .wrapperM{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            @@media(max-width: 350px){
+                .settings-form{
+                    max-width: 150px !important;
+                }
+            }
 </style>
 
 <div class="wrapperM">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <form method="post" asp-controller="User" asp-action="Login" class="login-form">
+    <form method="post" asp-controller="User" asp-action="Update" class="settings-form">
         <h2 class="form-title">Account Settings</h2>
         <label>Username</label><input class="input-box" type="tel" /> </br> 
         <label>Password</label><input class="input-box" type="tel" /> </br> 
