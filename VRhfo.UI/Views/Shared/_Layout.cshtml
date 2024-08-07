@@ -409,6 +409,25 @@
             height: 24px;
             margin-top: 1px;
         }
+        @@media(max-width: 586px){
+            .welcum{
+                margin-top: -10px !important;
+            }
+        }
+        @@media(max-width: 320px)
+        {
+            .welcum{
+                padding: 0 !important;
+                margin: 0 !important;
+                 margin-top: -10px !important;
+            }
+            .navbar-nav{
+                justify-content: space-between;
+            }
+            .navbar-brand{
+                margin-right: 30px !important;
+            }
+        }
 </style>
 </head>
 <body>
@@ -512,9 +531,7 @@
                 <a class="sub-link-item" asp-controller="Video" asp-action="Index" asp-route-category="HFO">HFO</a>
             </div>
 
-            <div class="link-box right">
-                <a class="sub-link-item right-lnk" id="learn" asp-action="LearnHow" asp-controller="Home">HOW TO</a>
-            </div>
+            
         </div>
 
     </header>

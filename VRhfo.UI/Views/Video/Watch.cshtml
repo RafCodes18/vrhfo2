@@ -161,7 +161,7 @@
         }
      }
 
-    @@media (max-width: 785px) {
+    @@media (max-width: 834px) {
         main{
             flex-direction: column !important;
         }
@@ -171,6 +171,14 @@
         }
         .canvas-container{
             margin-top: -10px !important;
+        }
+        .video-playa{
+            margin-top: 20px;
+            width: 780px !important;
+            height: 250px;
+        }
+        .comments-section{
+            width: 70%;
         }
     }
 
@@ -185,8 +193,12 @@
     .pb-3{
         margin-top: 300px !important;
     }
-    
 
+
+    .profile-username {
+        color: deepskyblue !important;
+        width: 100%;
+    }
 </style>
 
  
@@ -237,17 +249,17 @@
                 <div class="vid-details-last">
                     <div class="details-last-first2">
                         <p>Uploaded: @Model.video.FormattedUploadDateDMY</p>
-                     <span class="by-txt">By:</span><a class="username-txt" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
+                     <span class="by-txt">By:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
                     </div>
                 <p class="views-txt">@Model.video.FormattedViews views</p>
                 </div>
             </div>
 
     <!--COMMMENT SECTION-->
-    <div class="comments-section">
-@*         <!--CHATANGO CHAT SOLUTION-->
-        <script id="cid0020000376969179603" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"goonvr","arch":"js","styles":{"a":"e0e0e0","c":"ffffff","d":"ff99ff","f":0,"g":"ffffff","i":0,"j":"ffffff","k":"e0e0e0","l":"e0e0e0","m":"e0e0e0","p":"10","q":"e0e0e0","usricon":0,"fwtickm":1}}</script> *@
-    </div>
+   @*  <div class="comments-section">
+        <!--CHATANGO CHAT SOLUTION-->
+        <script id="cid0020000376969179603" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"goonvr","arch":"js","styles":{"a":"e0e0e0","c":"ffffff","d":"ff99ff","f":0,"g":"ffffff","i":0,"j":"ffffff","k":"e0e0e0","l":"e0e0e0","m":"e0e0e0","p":"10","q":"e0e0e0","usricon":0,"fwtickm":1}}</script>
+    </div> *@
 
     <!--Vid details CSS -->
     <style>
@@ -312,10 +324,13 @@
             color: #0993c1;
             cursor: pointer;
         }       
-        .username-txt{
+        .username-txt2{
             margin-left: 5px;
             color:#0078a0;
             margin-top: -3px !important;
+        }
+        .username-txt:hover{
+            color: rgba(0, 120, 161, 0.67) !important;
         }
         .vid-details-last{
             display: flex;
@@ -592,6 +607,18 @@
 
 
 <style>
+
+    @@media(max-width: 521px){
+        .video-playa{
+            width: 330px !important;
+            height: 290px;
+        }
+        .comments-section{
+            width: 300px !important;
+        }
+    }
+
+
     /*RIGHT SIDE PAGE CSS*/
     .join-premium-container {
         background-image: url('https://front.sexlikereal.com/s/refactor/images/banners/bg-banner-premium-side.jpg');
