@@ -145,7 +145,53 @@
     .titl {
         color: white;
     }
+
+    .likebutton {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+    }
+
+    .modal-main{
+        max-width: 280px;
+        background-color: #333 !important;
+        border-radius: 10px;
+        top: 200px;
+        padding: 20px !important;
+    }
+    .modal-options{
+        display: flex;
+        justify-content: space-around;
+        margin: 1px;
+    }
+    .modal-question{
+        color: rgb(255, 144, 144) !important;
+    }
+    .custom-x:hover{
+        border-radius: 8px !important;
+    }
+    .modal-yes{
+        padding: 10px !important;
+        border-radius: 10px;
+        width: 100%;
+    }
+    .modal-no{
+        padding: 10px !important;
+        border-radius: 10px;
+        width: 100%;
+    }
+    .modal-yes:hover{
+        background-color: #444;
+        color: white;
+    }
+    .modal-no:hover{
+        background-color: #444;
+        color: white;
+    }
 </style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <div class="main-pg">
     <div class="page-title">
@@ -181,7 +227,22 @@
                         </div>
                     </div>
                 </a>
-                <div class="likeL like-yes" data-video-id=@item.Id></div>
+                <button class="likebutton" onclick="document.getElementById('remove-fave-modal').style.display='block'">
+                    <div class="likeL like-yes" data-video-id="@item.Id"></div>
+                </button>
+
+                <div id="remove-fave-modal" class="w3-modal ">
+                    <div class="w3-modal-content modal-main">
+                        <div class="w3-container modal-contain">
+                            <span onclick="document.getElementById('remove-fave-modal').style.display='none'" class="w3-button w3-display-topright custom-x">&times;</span>
+                            <p class="modal-question"> Remove from your favorites?</p>
+                            <div class="modal-options">
+                                <p id="modal-yes" class="modal-yes">Yes</p>
+                                <p id="modal-no" class="modal-no">No</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         }
 
@@ -190,49 +251,56 @@
 </div>
 
 <script type="text/javascript">
-    
-        const likeButtons = document.querySelectorAll('.likeL');
-        const currentUser = @Html.Raw(Json.Serialize(ViewBag.CurrentUser)); // Access the user from the ViewBag
 
-        console.log(currentUser?.username + " " + currentUser?.id);
+    const likeButtons = document.querySelectorAll('.likeL');
+    const currentUser = @Html.Raw(Json.Serialize(ViewBag.CurrentUser)); // Access the user from the ViewBag
+    console.log(currentUser?.username + " " + currentUser?.id);
 
-        likeButtons.forEach(button => {
-
-              button.addEventListener('click', (event) => {
-                
-                    //   toggle like state
-                    event.target.classList.toggle("like-noL");
-
-                    const videoId = button.getAttribute('data-video-id');
-                   
-                    console.log("❌ Removing Favorite..." + videoId);
-
-                        // Proceed with unliking the video
-                         fetch(`/Video/Unlike/${videoId}`, {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
-                                        },
-                                    body: JSON.stringify({ videoId }) // Pass post ID in the request body
-                          })
-                            .then(response => response.json())
-                            .then(data => {
-                                console.log("Like count: " + data.likeCount);
-                                // Handle success response
-                                 const card = document.querySelector(`.card[data-video-id="${videoId}"]`);
-                                    if (card) {
-                                        card.remove();
-                                    }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                // Handle error
-                            });
-                        
-
-                });
+    likeButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const videoId = button.getAttribute('data-video-id');
+            document.getElementById('modal-yes').dataset.videoId = videoId; // Set videoId in "Yes" button dataset
         });
+    });
+
+    document.getElementById('modal-yes').addEventListener('click', () => {
+        const videoId = document.getElementById('modal-yes').dataset.videoId;
+
+        // Proceed with unliking the video
+        fetch(`/Video/Unlike/${videoId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': getAntiForgeryToken() // Include anti-forgery token
+            },
+            body: JSON.stringify({ videoId }) // Pass post ID in the request body
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Like count: " + data.likeCount);
+
+                // REMOVES CARD ELEMENT ON UI AFTER SUCCESSFULLY DELETE IN DB
+                const card = document.querySelector(`.card[data-video-id="${videoId}"]`);
+                if (card) {
+                    card.remove();
+                }
+
+                // Hide modal after successful removal
+                document.getElementById('remove-fave-modal').style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle error
+            });
+    });
+
+    document.getElementById('modal-no').addEventListener('click', () => {
+        document.getElementById('remove-fave-modal').style.display = 'none';
+    });
+
+    document.querySelector('.w3-button.w3-display-topright').addEventListener('click', () => {
+        document.getElementById('remove-fave-modal').style.display = 'none';
+    });
 
          // Function to retrieve the anti-forgery token from the page
         function getAntiForgeryToken() {

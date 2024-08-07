@@ -82,6 +82,9 @@ body {
         margin-top: -6px !important;
         margin-right: -80px !important;
     }
+    .home-link{
+        display: none;
+    }
 }
 
 @media (max-width: 376px) {

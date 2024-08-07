@@ -490,7 +490,7 @@
 
         <div class="lik-box">
             <div class="link-box">
-                <a class="sub-link-item" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="sub-link-item home-link" asp-controller="Home" asp-action="Index">Home</a>
             </div>
             <div class="link-box">
                 <a class="sub-link-item" asp-controller="Video" asp-action="Index" asp-route-category="Latest">Latest</a>
@@ -519,6 +519,7 @@
 
     </header>
     <div class="container">
+
         <main role="main" class="pb-3" >
             @RenderBody()
         </main>
