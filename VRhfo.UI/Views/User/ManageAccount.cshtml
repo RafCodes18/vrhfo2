@@ -68,19 +68,97 @@
 
 <div class="wrapperM">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
     <form method="post" asp-controller="User" asp-action="Update" class="settings-form">
         <h2 class="form-title">Account Settings</h2>
-        <label>Username</label><input class="input-box" type="tel" value="@Model.Username"/> </br> 
-        <label>Email</label><input class="input-box" type="tel" value="@Model.Email"/> </br> 
-        <label>Password</label><input class="input-box" type="tel" value="@Model.Password" /> </br> 
-        <input class="save-button" type="button" value="Save" /> </>
 
+        <div class="input-container">
+            <label>Username</label>
+            <input class="input-box username-input" value="@Model.Username" readonly />
+        </div>
+
+        <div class="input-container">
+            <label>Email</label>
+            <input class="input-box email-input" value="@Model.Email" readonly />
+        </div>
+
+        <div class="input-container">
+            <label>Password</label>
+            <input class="input-box password-input" value="@Model.Password" type="password" readonly />
+        </div>
+
+        <input class="save-button" type="button" value="Save" />
     </form>
 </div>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+<div class="modal w3-modal" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="passwordModalLabel">Enter Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="password" class="modal-password-input" placeholder="Enter your password" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary modal-confirm-button">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const usernameInput = document.querySelector('.username-input');
+        const emailInput = document.querySelector('.email-input');
+        const passwordInput = document.querySelector('.password-input');
+
+        const modal = document.getElementById('passwordModal');
+        const passwordInput2 = document.querySelector('.modal-password-input');
+        const confirmButton = document.querySelector('.modal-confirm-button');
+
+        let currentEditingInput = null;
+        let isPasswordConfirmed = false;
+
+
+        function showModal(input) {
+            if (!isPasswordConfirmed) {
+                currentEditingInput = input;
+                modal.style.display = 'block';
+            }
+        }
+
+        function hideModal() {
+            currentEditingInput = null;
+            modal.style.display = 'none';
+            passwordInput2.value = '';
+        }
+
+        function confirmPasswordAndEdit() {
+            if (passwordInput2.value === '@Model.Password') {
+                usernameInput.removeAttribute('readonly');
+                emailInput.removeAttribute('readonly');
+                passwordInput.removeAttribute('readonly');
+                isPasswordConfirmed = true;
+                hideModal();
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+
+        usernameInput.addEventListener('click', () => showModal(usernameInput));
+        emailInput.addEventListener('click', () => showModal(emailInput));
+        passwordInput.addEventListener('click', () => showModal(passwordInput));
+
+        confirmButton.addEventListener('click', confirmPasswordAndEdit);
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                hideModal();
+            }
+        });
+    });
+</script>

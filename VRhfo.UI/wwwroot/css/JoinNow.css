@@ -522,6 +522,17 @@ footer {
 
 
 /*MEDIA QUERIES*/
+@media(max-width: 1025px) 
+{
+    .top-3-rows{
+        margin-top: 500px;
+    }
+}
+@media(max-width: 876px){
+    .top-3-rows{
+        margin-top: 600px;
+    }
+}
 @media (max-width: 760px) {
     .main-product-cards {
         flex-direction: column;  Change to column layout for smaller screens 
@@ -568,52 +579,4 @@ footer {
         margin: 0 !important;
     }
 }
-
-
-@media (max-width: 1000px) {
-    .top-3-rows {
-        margin-top: 350px !important;
-    }
-}
-
-@media (max-width: 960px) {
-    .top-3-rows {
-        margin-top: 380px !important;
-    }
-}
-
-@media (max-width: 900px) {
-    .top-3-rows {
-        margin-top: 360px !important;
-    }
-}
-
-@media (max-width: 878px) {
-    .top-3-rows {
-        margin-top: 460px !important;
-    }
-}
-
-@media (max-width: 780px) {
-    .top-3-rows {
-        margin-top: 470px !important;
-    }
-}
-
-@media (max-width: 473px) {
-    .top-3-rows {
-        margin-top: 670px !important;
-    }
-}
-
-@media (max-width: 401px) {
-    .top-3-rows {
-        margin-top: 870px !important;
-    }
-}
-
-@media (max-width: 391px) {
-    .top-3-rows {
-        margin-top: 600px !important;
-    }
-}
+ 
