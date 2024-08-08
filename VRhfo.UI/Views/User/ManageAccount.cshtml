@@ -96,20 +96,44 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="passwordModalLabel">Enter Password</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span class="x" aria-hidden="true" onclick="document.getElementById('passwordModal').style.display='none'">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <input type="password" class="modal-password-input" placeholder="Enter your password" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="document.getElementById('passwordModal').style.display='none'">Cancel</button>
                 <button type="button" class="btn btn-primary modal-confirm-button">Confirm</button>
             </div>
         </div>
     </div>
 </div>
+<style>
+    .x{
+        padding: 10px !important;
+    }
+    .modal-content{
+        background-color: rgb(19, 19, 19) !important;
+        border: none !important;
+        max-width: 300px !important;
+     border: 1px solid grey !important;
+    }
+    .modal-password-input{
+        background-color: #222 !important;
+        color: white;
+        width: 100%;
+        border: none !important;
+    }
 
+    .modal-dialog {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        min-height: 100vh; /* Make sure it covers the full height */
+     
+    }
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const usernameInput = document.querySelector('.username-input');
