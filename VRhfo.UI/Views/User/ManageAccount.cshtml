@@ -11,17 +11,18 @@
     }
 
     .settings-form {
-        border: 1px solid rgb(91, 91, 91, .88);
-        padding: 20px;
-        border-radius: 8px;
+        padding: 22px 44px;
+        border-radius:3Spx;
         width: 620px;
-        height: 440px;
+        height: 470px;
         margin-top: 20px;
         min-width: 280px;
         display: flex;
         flex-direction: column;
         color: rgb(205, 205, 205);
         margin: 18px;
+        background-color: rgba(27, 27, 27, 0.59);
+        box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075), 0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
     }
 
 
@@ -41,10 +42,11 @@
         border: none;
         outline: none !important;
         border: 2px solid rgba(255, 255, 255, .2) !important;
-        border-radius: 14px !important;
+        border-radius: 10px !important;
         font-size: 16px;
         color: #fff;
         padding: 10px 45px 10px 20px !important;
+        margin-bottom: 13px;
     }
        .save-button{
            border-radius: 10px;
@@ -64,6 +66,18 @@
         label{
             font-size: larger;
         }
+
+        @@media(min-width: 415px){
+            .settings-form{
+                width: 460px;
+            }
+        }
+        .input-container.userna{
+            margin-top: 14px;
+        }
+        body{
+            background-color: #11;
+        }
 </style>
 
 <div class="wrapperM">
@@ -71,7 +85,7 @@
     <form method="post" asp-controller="User" asp-action="Update" class="settings-form">
         <h2 class="form-title">Account Settings</h2>
 
-        <div class="input-container">
+        <div class="input-container userna">
             <label>Username</label>
             <input class="input-box username-input" value="@Model.Username" readonly />
         </div>
@@ -86,7 +100,7 @@
             <input class="input-box password-input" value="@Model.Password" type="password" readonly />
         </div>
 
-        <input class="save-button" type="button" value="Save" />
+        <input class="save-button" type="button" value="Save Changes" onClick="window.location.reload();" />
     </form>
 </div>
 
@@ -94,13 +108,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="passwordModalLabel">Enter Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span class="x" aria-hidden="true" onclick="document.getElementById('passwordModal').style.display='none'">&times;</span>
-                </button>
+                <h5 class="modal-title" id="passwordModalLabel">Confirm Password</h5>
+             
+                    <span class="x"  onclick="document.getElementById('passwordModal').style.display='none'">
+                        x
+                    </span>
             </div>
             <div class="modal-body">
-                <input type="password" class="modal-password-input" placeholder="Enter your password" />
+                <input type="text" class="modal-password-input" placeholder="Enter your password" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="document.getElementById('passwordModal').style.display='none'">Cancel</button>
@@ -111,19 +126,30 @@
 </div>
 <style>
     .x{
-        padding: 10px !important;
+        background-color: #222;
+        padding: 0px 13px !important;
+        font-size: large;
+        border-radius: 3px;
+    }
+    .x:hover{
+        background-color: #444;
+        cursor: pointer;
     }
     .modal-content{
         background-color: rgb(19, 19, 19) !important;
         border: none !important;
         max-width: 300px !important;
-     border: 1px solid grey !important;
+     border: 1px solid hotpink !important;
     }
     .modal-password-input{
         background-color: #222 !important;
-        color: white;
+        color: white !important;
         width: 100%;
         border: none !important;
+        padding: 9px;
+    }
+    .modal-password-input::placeholder{
+        color: white !important;
     }
 
     .modal-dialog {
@@ -168,6 +194,7 @@
                 passwordInput.removeAttribute('readonly');
                 isPasswordConfirmed = true;
                 hideModal();
+                usernameInput.focus();
             } else {
                 alert('Incorrect password. Please try again.');
             }
