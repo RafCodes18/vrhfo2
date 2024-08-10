@@ -63,6 +63,11 @@ app.MapControllerRoute(
     pattern: "/JoinNow",
     defaults: new { controller = "Home", action = "JoinNow" }
     );
+app.MapControllerRoute(
+    name: "profile",
+    pattern: "/uploads/{userid}",
+    defaults: new { controller = "User", action = "Profile" }
+    );
 // Default route
 app.MapControllerRoute(
     name: "Default",
