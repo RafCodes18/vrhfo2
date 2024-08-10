@@ -40,12 +40,12 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "VideoWatch",
-    pattern: "Video/Watch/{title}",
+    pattern: "/view/{title}",
     defaults: new { controller = "Video", action = "Watch" }
 );
 app.MapControllerRoute(
     name: "liked",
-    pattern: "/Liked",
+    pattern: "/favorites",
     defaults: new { controller = "Home", action = "liked" }
     );
 app.MapControllerRoute(
@@ -55,7 +55,7 @@ app.MapControllerRoute(
     );
 app.MapControllerRoute(
     name: "login",
-    pattern: "/Login",
+    pattern: "/login",
     defaults: new { controller = "Home", action = "Login" }
     );
 app.MapControllerRoute(
