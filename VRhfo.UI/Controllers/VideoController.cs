@@ -77,6 +77,8 @@ namespace VRhfo.UI.Controllers
         // GET: VideoController/Watch/how-to-build-a-tube-site (example URL)
         public ActionResult Watch(string title)
         {
+            // Revert '-' (or '+') back to spaces
+            string cleanTitle = title.Replace("-", " ");
 
             User currentUser = HttpContext.Session.GetObject<User>("user");
             ViewBag.CurrentUser = currentUser;
@@ -85,7 +87,7 @@ namespace VRhfo.UI.Controllers
 
             // Important change: Look up the video by title (slug) now       
 
-            videoViewModel.video = VideoManager.LoadByTitle(title);
+            videoViewModel.video = VideoManager.LoadByTitle(cleanTitle);
             videoViewModel.video.user = UserManager.LoadById(videoViewModel.video.UserId);
             // 
             List<Video> list = VideoManager.GetSuggestedVideos(8, title);

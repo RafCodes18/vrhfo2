@@ -49,7 +49,7 @@ namespace VRhfo.UI.Controllers
             return View();
         }
 
-        public ActionResult liked()
+        public ActionResult Liked()
         {
             User currentUser = HttpContext.Session.GetObject<User>("user");
 

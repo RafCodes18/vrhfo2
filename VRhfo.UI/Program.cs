@@ -31,20 +31,44 @@ app.UseSession();
 app.UseAuthorization();
 
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-     name: "VideoWatch",
-     pattern: "Video/Watch/{title}",
-     defaults: new { controller = "Video", action = "Watch" }
- );
+// Register routes directly on the app object (top-level route registrations)
+app.MapControllerRoute(
+    name: "ManageAccount",
+    pattern: "/ManageAccount/u/{username}",
+    defaults: new { controller = "User", action = "ManageAccount" }
+);
 
-    endpoints.MapControllerRoute(
-        name: "Default",
-        pattern: "{controller=Video}/{action=Index}/{id?}"
+app.MapControllerRoute(
+    name: "VideoWatch",
+    pattern: "Video/Watch/{title}",
+    defaults: new { controller = "Video", action = "Watch" }
+);
+app.MapControllerRoute(
+    name: "liked",
+    pattern: "/Liked",
+    defaults: new { controller = "Home", action = "liked" }
     );
+app.MapControllerRoute(
+    name: "Category",
+    pattern: "/c/{category}",
+    defaults: new { controller = "Video", action = "Index" }
+    );
+app.MapControllerRoute(
+    name: "login",
+    pattern: "/Login",
+    defaults: new { controller = "Home", action = "Login" }
+    );
+app.MapControllerRoute(
+    name: "join",
+    pattern: "/JoinNow",
+    defaults: new { controller = "Home", action = "JoinNow" }
+    );
+// Default route
+app.MapControllerRoute(
+    name: "Default",
+    pattern: "{controller=Video}/{action=Index}/{id?}"
+);
 
-});
 
 
 app.Run();
