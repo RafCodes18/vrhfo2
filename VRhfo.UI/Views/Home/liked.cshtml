@@ -84,6 +84,12 @@
             margin: 0;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         }
+        .titl{
+            margin-top: -40px !important;
+            margin-bottom: 30px !important;
+            margin-left: -60px;
+            font-size: large;
+        }
     }
 
     .page-title {
@@ -143,7 +149,8 @@
     }
 
     .titl {
-        color: white;
+        color: #444;
+        font-weight: 600;
     }
 
     .likebutton {
@@ -204,13 +211,16 @@
             margin-left: 30px !important;
             padding: 14px 0px !important;
         }
+        .page-title{
+            margin: 0 !important;
+        }
     }
 </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <div class="main-pg">
     <div class="page-title">
-        <p class="titl"><span @* class="profile-username" *@> </span>favorites <img src="~/img/Yd60cw01.svg" height="40px" width="40px"/></p>
+        <p class="titl">favorites <img src="~/img/Yd60cw01.svg" height="40px" width="40px"/></p>
     </div>
     <div class="card-container">
         @foreach (var item in Model.Videos)
