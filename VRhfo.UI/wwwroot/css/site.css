@@ -8,9 +8,14 @@ html {
     font-size: 14px;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 770px) {
     html {
         //font-size: 16px;
+    }
+    .sub-link-item{
+        margin: 0 !important;
+        padding: 10px 5px !important;
+        font-size: small !important;
     }
 }
 
@@ -104,7 +109,12 @@ body {
         display: none;
     }
     .sub-link-item {
-       
+       font-size: xx-small !important;
+       padding: 0 !important;
+       margin: 0 !important;
+       padding-top: 9px !important;
+       padding-bottom: 9px !important;
+       padding-right: 10px !important;
     }
     .join-now {
         margin: 0 !important;

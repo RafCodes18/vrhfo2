@@ -169,7 +169,7 @@
 
         .lik-box {
             width: 100%; /* Device width */
-            height: 40px !important; /* Desired height */
+            height: 44px !important; /* Desired height */
             background-color: #111 !important; /* Light grey */
             /* Modern styles */
             margin-top: 0px !important;
@@ -186,7 +186,7 @@
         
 
         .sub-link-item:hover{
-            color: rgba(280, 280, 280, 1) !important;
+            color: rgba(240, 240, 240, .8) !important;
             background-color: #393939;
             cursor: pointer;
         }
@@ -457,16 +457,25 @@
             font-size: large;
             background-color: rgba(60, 60, 60, 0.47);
             border-radius: 3px;
-            padding: 10px;
+            padding: 10px 20px;
             font-family: 'Lucida Console';
             color: white;
             margin-left: 5px !important;
+
         }
         .dropdown-content.cat{
             margin-left: 10px;
             margin-top: 5px;
         }
-        
+        .vr-link{
+            color: deeppink;
+        }
+        .premium-link{
+            color: deepskyblue;
+        }
+        .top-editors{
+            color: rgb(255, 105, 249);
+        }
 </style>
 </head>
 <body>
@@ -558,7 +567,16 @@
             
             <div class="">
                 <a class="sub-link-item" asp-controller="Home" asp-action="Captions">captions</a>
-            </div>            
+            </div>   
+            <div class="">
+                <a class="sub-link-item vr-link" asp-controller="Video" asp-action="Index" asp-route-category="VR">VR</a>
+            </div>
+            <div class="">
+                <a class="sub-link-item top-editors" asp-controller="Video" asp-action="Index" asp-route-category="VR">Top Editors</a>
+            </div>
+            <div class="">
+                <a class="sub-link-item premium-link" asp-controller="Home" asp-action="JoinNow" asp-route-category="VR">Premium</a>
+            </div>
         </div>
 
     </header>
