@@ -7,7 +7,105 @@
 <style>
     body{
          background-color: black;
+                 
     }
+    .image-gallery{
+        width: 100%;
+        max-width: 1050px;
+        margin: 0 auto; 
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-auto-rows: 250px;
+        grid-auto-flow: dense;
+        grid-gap: 5px;
+    }
+    .image-gallery .image-box {
+        position: relative;
+        background-color: #999;
+        overflow: hidden;
+    }
+    .image-gallery .image-box:nth-child(7n + 1){
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    .image-gallery .image-box img{
+        width: 100%; 
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.5s ease;
+    }
+/*     .image-gallery .image-box:hover{
+        transform: scale(1.1);
+        z-index: 999;
+        object-fit: contain !important;
+    } */
+
+    @@media(max-width: 768px){
+        .image-gallery{
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-auto-rows: 220px;
+        }
+        .image-gallery .image-box:nth-child(7n + 1){
+            grid-column: unset;
+            grid-row: unset;
+        }
+    }
+    .tools{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .refresh-images{
+        display: flex;
+    }
+        .refresh-png{
+            margin-left: 6px;
+            margin-top: 3px;
+        }
+        .refresh-png:hover{
+            cursor: pointer;
+        }
 </style>
 
-<h1>Captions</h1>
+<div class="tools">
+    <div class="refresh-images">
+        <p>Refresh</p>
+        <img class="refresh-png" src="~/img/refresh-page-option.png" height="17" width="18" />
+
+    </div>
+    <p>Latest</p>
+</div>
+
+<div class="image-gallery">
+    <div class="image-box">
+        <img src="~/img/ang.jpg" />
+    </div>
+    <div class="image-box">
+        <img src="~/img/azz.jpg">
+    </div>
+    <div class="image-box">
+        <img src="~/img/nicole.jpg" />
+    </div>
+    <div class="image-box">
+        <img src="~/img/lana.jpg" />
+    </div>
+    <div class="image-box">
+        <img src="~/img/squat.jpg" />
+    </div>
+    <div class="image-box">
+        <img src="~/img/reily.jpg" />
+    </div>
+    <div class="image-box">
+        <img src="~/img/puss.jpg" />
+    </div>
+    <div class="image-box">
+        <img src="~/img/pinks.jpg" />
+    </div>
+    <div class="image-box">
+        <img src="~/img/astro.jpg" />
+    </div>
+    <div class="image-box">
+        <img src="~/img/astro.jpg" />
+    </div>
+    
+</div>
