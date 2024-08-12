@@ -16,6 +16,11 @@ namespace VRhfo.UI.Controllers
             _logger = logger;
         }
 
+        public IActionResult Captions()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();

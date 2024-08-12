@@ -182,7 +182,7 @@
     }
     @@media(max-width: 768px){
         .sub-link-item{
-            font-size: small;
+            font-size: medium;
         }
     }
 
@@ -211,7 +211,7 @@
         <!--VIDEOJS  PLAYER THAT WILL WORK VIDEO VR JS -->
         <div class="canvas-container">
             <video id="my-video" class="video-js  video-playa" controls preload="auto" width="820" height="515" data-setup="{}">
-                <source  src="~/video/my-video.mp4" type="video/mp4">
+                <source  src="#" type="video/mp4">
                 <!-- Add more <source> elements for different video formats if needed -->
             </video>
         </div>
@@ -592,7 +592,7 @@
             <div class="video">
                 <div class="sug-vid-img">
                     <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title.Replace(' ', '-')">
-                        <img src="~/img/astro.jpg" height="100px" width="150px" class="sug-img" /> 
+                        <img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" class="sug-img" /> 
                        </a>
                 </div>
                 <div class="sug-vid-content">

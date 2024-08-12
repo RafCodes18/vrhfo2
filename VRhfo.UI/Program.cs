@@ -68,6 +68,11 @@ app.MapControllerRoute(
     pattern: "/uploads/{userid}",
     defaults: new { controller = "User", action = "Profile" }
     );
+app.MapControllerRoute(
+    name:"captions",
+    pattern: "/captions",
+    defaults: new { controller = "Home", action = "Captions"}
+    );
 // Default route
 app.MapControllerRoute(
     name: "Default",

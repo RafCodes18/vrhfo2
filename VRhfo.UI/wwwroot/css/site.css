@@ -104,10 +104,7 @@ body {
         display: none;
     }
     .sub-link-item {
-        font-size: smaller !important;
-        margin: 0 !important;
-        border-left: 1px solid grey;
-        padding-left: 3px !important;
+       
     }
     .join-now {
         margin: 0 !important;
@@ -122,11 +119,7 @@ body {
         }
 
         .sub-link-item {
-            font-size: xx-small !important;
-            padding: 0px !important;
-            margin: 3px !important;
-            border-left: 1px solid grey;
-            padding-left: 3px !important;
+           margin-left: 5px !important;
         }
         .join-now{
             margin: 0 !important;
