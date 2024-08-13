@@ -127,9 +127,9 @@
         width: 100%;
         justify-content: flex-end;
         border-radius: 5px;
-        background-color: rgba(60, 60, 60, 0.4);
+        background-color: rgba(60, 60, 60, 0.6);
         margin: 10px 0;
-        outline: 1px solid rgba(74, 74, 74, 0.31);
+        outline: 1px solid rgba(74, 74, 74, 0.91);
         padding: 20px !important;
     }
 
@@ -252,7 +252,7 @@
                 </div>
                 <div class="vid-details-last">
                     <div class="details-last-first2">
-                        <p>Uploaded: @Model.video.FormattedUploadDateDMY</p>
+                        <p class="uploaded-date">Uploaded: @Model.video.FormattedUploadDateDMY</p>
                      <span class="by-txt">By:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
                     </div>
                 <p class="views-txt">@Model.video.FormattedViews views</p>
@@ -312,9 +312,11 @@
             #tooltip:hover #tooltiptext {
                 visibility: visible !important;
             }
-
+        .uploaded-date{
+            color: #666;
+        }
         .by-txt{
-            color: #555;
+            color: #666;
             margin-left: 10px;
         }
         .top-row-second-box{
@@ -330,10 +332,10 @@
         }       
         .username-txt2{
             margin-left: 5px;
-            color:#0078a0;
-            margin-top: -3px !important;
+            color:rgb(0, 154, 205);
+            margin-top: 0px !important;
         }
-        .username-txt:hover{
+        .username-txt2:hover{
             color: rgba(0, 120, 161, 0.67) !important;
         }
         .vid-details-last{
@@ -355,7 +357,7 @@
 
         }
         .category-txt{
-            color: #777 !important;
+            color: #999 !important;
             font-size: large;
         }
         .category-txt:hover{
