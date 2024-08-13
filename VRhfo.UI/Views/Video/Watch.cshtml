@@ -247,7 +247,7 @@
                     </div>
                 </div>
                 <div class="vid-details-bottom-row">
-                    <p ><a class="category-txt" asp-action="Index" asp-controller="Video" asp-route-category="@Model.video.Category">@Model.video.Category </a></p>
+                    <p ><a class="category-txt" asp-action="Index" asp-controller="Video" asp-route-category="@Model.video.Category">#@Model.video.Category </a></p>
                     
                 </div>
                 <div class="vid-details-last">
@@ -313,10 +313,10 @@
                 visibility: visible !important;
             }
         .uploaded-date{
-            color: #666;
+            color: rgba(131, 131, 131, 0.82);
         }
         .by-txt{
-            color: #666;
+            color: rgba(131, 131, 131, 0.82);
             margin-left: 10px;
         }
         .top-row-second-box{
@@ -599,7 +599,7 @@
                 </div>
                 <div class="sug-vid-content">
                     <a class="title-link" asp-action="watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title"><h5 class="video-title">@Model.suggestedVideos[i].Title</h5></a>
-                    <a asp-action="Index" asp-controller="Video" asp-route-category="@Model.suggestedVideos[i].Category"><p class="vid-category">@Model.suggestedVideos[i].Category</p></a>
+                    <a asp-action="Index" asp-controller="Video" asp-route-category="@Model.suggestedVideos[i].Category"> <p class="vid-category">@Model.suggestedVideos[i].Category</p></a>
                     <div class="sug-vid-content-bottom">
                         <img src="~/img/vision.png" height="22px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
                     </div>
@@ -703,8 +703,12 @@
         }
 
     .vid-category:hover {
-        color: #999;
+        color: #989898;
     }
+    .vid-category{
+        color: #666 ;
+    }
+
 </style>
 
 <!-- Include VideoJS sss s s s-->
