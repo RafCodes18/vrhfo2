@@ -322,6 +322,7 @@
         transform-origin: left;
         transform: scaleX(0);
         transition: width 250ms ease-in-out, transform 250ms ease-in-out;
+        background: #000;s
     }
     .volume-container:hover .volume-slider,
     .volume-slider:focus-within{
@@ -391,7 +392,42 @@
         .timeline-container:hover .timeline {
             height: 100% !important;
         }
+        input[type=range]{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        input[type=range]::-webkit-slider-runnable-track{
+            border-radius: 10px !important;
+            height: 4px;
+            background-color: darkgray;
+            cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-thumb{
+            background: deeppink;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin-top: -4px;
+            margin-right: 5px;
+            -webkit-appearance: none;
+        }
+        input[type=range]::-moz-range-track{
+            border-radius: 10px;
+            height: 3px;
+            background-color: #fff;
+        }
 
+        input[type=range]::-moz-range-thumb{
+            border-radius: 10px;
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin-top: -4px;
+            margin-right: 5px;
+            background-color: #fff;
+        }
 </style>
 
 
