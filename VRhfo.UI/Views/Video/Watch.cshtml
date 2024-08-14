@@ -6,10 +6,11 @@
 
 
 }
+<script type="text/javascript" src="~/js/VideoPlayer.js" defer></script>
 
 <style>
     body{
-        background-color: rgb(1, 1, 1);
+        background-color: #000;
     }
     <!-- DIAMOND AND LIKE BUTTONS -->
     .o-icon-svg {
@@ -98,39 +99,26 @@
         font-size: large;
     }
     .page-left-container{
-        max-width: 70%;
-        margin-left: 110px;
-        margin-right: 20px;
-    }
-    .vid-player{
-        height: 500px; width: 700px;
+        max-width: 100%;
+        margin-left: 20px;
     }
 
 
-    .canvas-container {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 26px;
-        flex-direction: column;
-        
-    }
 
-    #videoCanvas {
-/*         outline: 1px solid white;
- */         max-width: 100%;
-        height: auto;
-    }
 
     .canvas-details{
-        width: 100%;
         justify-content: flex-end;
-        border-radius: 5px;
-        background-color: rgba(60, 60, 60, 0.6);
-        margin: 10px 0;
-        outline: 1px solid rgba(74, 74, 74, 0.91);
+        border-radius: 10px;
+        background-color: rgba(30, 30, 30, 0.7);
+        outline: 1px solid rgba(74, 74, 74, 0.51);
         padding: 20px !important;
+        width: 90%;
+        max-width: 1000px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-inline: auto;
+        margin-top: 20px;
     }
 
      
@@ -160,7 +148,7 @@
         }
      }
 
-    @@media (max-width: 860px) {
+    @@media (max-width: 930px) {
         main{
             flex-direction: column !important;
         }
@@ -178,6 +166,9 @@
         }
         .comments-section{
             width: 70%;
+        }
+        .page-right-container{
+            margin-left: 10px !important;
         }
     }
     @@media(max-width: 768px){
@@ -203,68 +194,146 @@
         color: deepskyblue !important;
         width: 100%;
     }
+
+
+<!-- CUSTOM VIDEO PLAYER CSS-->
+    *, *::before, *::after{
+        box-sizing: border-box;
+    }
+    body{
+        margin: 0;
+    }
+    .video-container{
+        position: relative;
+        width: 90%;
+        max-width: 1000px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-inline: auto;
+        margin-top: 20px;        
+    }
+    video{
+        width: 100%;
+    }
+    .video-controls-container{
+        position: absolute;  
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: white;
+        z-index: 99;
+        opacity: 0;
+        transition: opacity 150ms ease-in-out;
+    }
+    .video-container:hover .video-controls-container,
+    .video-container:focus-within .video-controls-container,
+    .video-container.paused .video-controls-container {
+        opacity: 1;
+    }
+    .video-controls-container .controls{
+        display: flex;
+        gap: .5rem; 
+        padding: .25rem;
+        align-items: center;
+    }
+    .video-controls-container .controls button{
+        background: none; 
+        border: none;
+        color: inherit;
+        padding: 0;
+        height: 30px ;
+        width: 30px;
+        margin: 0;
+        font-size: 1.1rem;
+        cursor: pointer;
+        opacity: .85;
+        transition: opacity 150ms ease-in-out;
+    }
+        .video-controls-container .controls button:hover {
+            opacity: 1;
+        }
+    .video-container.paused .pause-icon{
+        display: none;
+    }
+    .video-container:not(.paused) .play-icon{
+        display: none;
+    }
 </style>
 
- 
 <div class="page-left-container">
+        <!--VIDEOJS  PLAYER  -->
+    <div class="video-container paused ">
+                     <div class="video-controls-container ">
+                         <div class="timeline-container">   </div>
+                         <div class="controls">
+                             <button class="play-pause-btn">
+                                <svg class="play-icon" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+                                </svg>
+                                <svg class="pause-icon" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M14,19H18V5H14M6,19H10V5H6V19Z" />
+                                </svg>
+                             </button>
 
-        <!--VIDEOJS  PLAYER THAT WILL WORK VIDEO VR JS -->
-        <div class="canvas-container">
-            <video id="my-video" class="video-js  video-playa" controls preload="auto" width="820" height="515" data-setup="{}">
-                <source  src="#" type="video/mp4">
-                <!-- Add more <source> elements for different video formats if needed -->
-            </video>
-        </div>
+                         </div>
+                    </div>
+                    <video  preload="auto" >
+                         <source  src="~/video/my-video.mp4" type="video/mp4">
+                    </video>
+                  
+       
+                
+    </div>
+    <!-- VIDEO (canvas) DETAILS -->
+    <div class="canvas-details">
+        <div class="vid-details-top-row">
+            <h2 class="vid-title-txt">@Model.video.Title</h2>
+            @*OLD LIKES*@
+            @* <p>
+            <svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero"></path>
+            </svg>
+            @Model.video.FormattedLikes  |
+            <svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 2h-4v12h4V2zM1 13c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 22l6.58-6.59c.37-.36.59-.86.59-1.41V4c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z" fill-rule="nonzero"></path></svg>    @Model.video.FormattedDislikes
+            </p>  *@
+            <div class="top-row-second-box">
+                <div class="likes-ratio">
 
-<!--Video Details-->
-         <div class="canvas-details">
-                <div class="vid-details-top-row">
-                    <h2 class="vid-title-txt">@Model.video.Title</h2>
-                                   @*  <p>                      
-                                        <svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero"></path>
-                                        </svg>
-                                            @Model.video.FormattedLikes  |
-                                        <svg class="o-icon o-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 2h-4v12h4V2zM1 13c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 22l6.58-6.59c.37-.36.59-.86.59-1.41V4c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z" fill-rule="nonzero"></path></svg>    @Model.video.FormattedDislikes
-                                    </p> *@
-                    <div class="top-row-second-box">
-                        <div class="likes-ratio">
+                    <!-- LIKE BUTTON ON VIDEO-->
 
-            <!-- LIKE BUTTON ON VIDEO-->
-                    
 
-                            <div id="tooltip">
-                                         @* <div id='likeButton_@Model.video.Id' class='buttonH heartH like-btn' data-post-id="@Model.video.Id"></div> *@
+                    <div id="tooltip">
+                        @* <div id='likeButton_@Model.video.Id' class='buttonH heartH like-btn' data-post-id="@Model.video.Id"></div> *@
                         <div class="likeL @Model.likeState" data-video-id=@Model.video.Id></div>
 
-                        <span id="tooltiptext"><a class="tip-link"   asp-action="Login" asp-controller="Home">Login</a> or <a asp-action="JoinNow" asp-controller="Home">Join</a> to like</span>
-                        </div>
-
-
-
-                            @Model.video.AverageRating %
-                        </div>
+                        <span id="tooltiptext"><a class="tip-link" asp-action="Login" asp-controller="Home">Login</a> or <a asp-action="JoinNow" asp-controller="Home">Join</a> to like</span>
                     </div>
-                </div>
-                <div class="vid-details-bottom-row">
-                    <p ><a class="category-txt" asp-action="Index" asp-controller="Video" asp-route-category="@Model.video.Category">#@Model.video.Category </a></p>
-                    
-                </div>
-                <div class="vid-details-last">
-                    <div class="details-last-first2">
-                        <p class="uploaded-date">Uploaded: @Model.video.FormattedUploadDateDMY</p>
-                     <span class="by-txt">By:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
-                    </div>
-                <p class="views-txt">@Model.video.FormattedViews views</p>
+
+
+
+                    @Model.video.AverageRating %
                 </div>
             </div>
+        </div>
+        <div class="vid-details-bottom-row">
+            <p><a class="category-txt" asp-action="Index" asp-controller="Video" asp-route-category="@Model.video.Category">#@Model.video.Category </a></p>
 
-    <!--COMMMENT SECTION-->
+        </div>
+        <div class="vid-details-last">
+            <div class="details-last-first2">
+                <p class="uploaded-date">Uploaded: @Model.video.FormattedUploadDateDMY</p>
+                <span class="by-txt">By:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
+            </div>
+            <p class="views-txt">@Model.video.FormattedViews views</p>
+        </div>
+    </div>
+<!--Video Details-->                                   
+            <!--COMMMENT SECTION-->
    @*  <div class="comments-section">
         <!--CHATANGO CHAT SOLUTION-->
         <script id="cid0020000376969179603" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"goonvr","arch":"js","styles":{"a":"e0e0e0","c":"ffffff","d":"ff99ff","f":0,"g":"ffffff","i":0,"j":"ffffff","k":"e0e0e0","l":"e0e0e0","m":"e0e0e0","p":"10","q":"e0e0e0","usricon":0,"fwtickm":1}}</script>
     </div> *@
-
     <!--Vid details CSS -->
     <style>
         .likeL:hover{
@@ -569,7 +638,6 @@
 #End REGION
      
  </style>    
-
 </div>
 
 <!--RIGHT SIDE OF PAGE (SUGGESTED VIDEOS) -->
@@ -594,7 +662,7 @@
             <div class="video">
                 <div class="sug-vid-img">
                     <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title.Replace(' ', '-')">
-                        <img src="~/img/astro.jpg" height="100px" width="150px" class="sug-img" /> 
+                        <img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" class="sug-img" /> 
                        </a>
                 </div>
                 <div class="sug-vid-content">
@@ -673,6 +741,7 @@
 
     .page-right-container {
         flex-grow: 1;
+        margin-left: -30px;
     }
 
     .sug-vid-content {
