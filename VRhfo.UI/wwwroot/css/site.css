@@ -8,16 +8,6 @@ html {
     font-size: 14px;
 }
 
-@media (max-width: 770px) {
-    html {
-        //font-size: 16px;
-    }
-    .sub-link-item{
-        margin: 0 !important;
-        padding: 10px 5px !important;
-        font-size: small !important;
-    }
-}
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -55,10 +45,7 @@ body {
 }
 
 @media(max-width: 769px){
-    .sub-link-item {
-        border-left: 2px solid #555;
-        padding-left: 6px;
-    }
+    
     .right-lnk {
         display: none;
     }
@@ -68,24 +55,29 @@ body {
     .lik-box{
         padding-left: 0 !important;
     }
+    .sub-link-item {
+        font-size: large !important;
+    }
 }
 
-@media (max-width: 431px) {
+@media(max-width: 650px){
+    .sub-link-item {
+        font-size: small !important;
+    }
+}
+@media (max-width: 506px) {
     .right-lnk {
         display: none;
     }
 
     .sub-link-item {
-        font-size: smaller !important;
-        margin: 0 !important;
-        border-left: 1px solid grey;
-        padding-left: 2px !important;
-        padding-right: 5px;
+        font-size: x-small !important;
+        padding: 17px 4px !important;
     }
     .join-now {
         margin: 0 !important;
         margin-top: -6px !important;
-        margin-right: -80px !important;
+        right: 0;
     }
     .home-link{
         display: none;
@@ -109,12 +101,8 @@ body {
         display: none;
     }
     .sub-link-item {
-       font-size: xx-small !important;
-       padding: 0 !important;
-       margin: 0 !important;
-       padding-top: 9px !important;
-       padding-bottom: 9px !important;
-       padding-right: 10px !important;
+        font-size: xx-small !important;
+        padding: 17px 4px !important;
     }
     .join-now {
         margin: 0 !important;
@@ -123,13 +111,14 @@ body {
     }
 }
 
-    @media (max-width: 320px) {
+    @media (max-width: 330px) {
         .right-lnk {
             display: none;
         }
 
         .sub-link-item {
-           margin-left: 5px !important;
+           font-size: xx-small !important;
+           padding: 17px 3px !important;
         }
         .join-now{
             margin: 0 !important;
