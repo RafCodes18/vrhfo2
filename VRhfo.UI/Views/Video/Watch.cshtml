@@ -109,8 +109,8 @@
     .canvas-details{
         justify-content: flex-end;
         border-radius: 10px;
-        background-color: rgba(30, 30, 30, 0.7);
-        outline: 1px solid rgba(74, 74, 74, 0.51);
+        background-color: rgba(50, 50, 50, 0.70);
+        outline: 1px solid rgba(74, 74, 74, 0.91);
         padding: 20px !important;
         width: 90%;
         max-width: 1000px;
@@ -341,22 +341,63 @@
        display: flex;
        align-items: center;
    }
-   .timeline{
-       background-color: rgba(100,100,100,.5);
-       height: 3px;
-       width: 100%;
-       position: relative;
-   }
-
-        .timeline-container:hover .timeline {
-        height: 100% !important;
+       
+    .timeline {
+        background-color: rgba(100,100,100,.5);
+        height: 3px;
+        width: 100%;
+        position: relative !important;
     }
+    .timeline::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: calc(100% - var(--preview-position) * 100%);
+        background-color: rgba(150,150,150) !important;
+        display: none;
+    }
+        .timeline::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: calc(100% - var(--progress-position) * 100%);
+            background-color: deeppink !important;
+         }
+        .timeline .thumb-indicator{
+           --scale: 1;
+           position: absolute;
+            transform: translateX(-50%) scale(var(--scale));
+            height: 200%;
+           top: -50%;
+           left: calc(var(--progress-position) * 100%);
+           background-color: deeppink;
+           border-radius: 50%;
+           transition: transform 150ms ease-in-out;
+           aspect-ratio: 1 / 1; 
+        }
+        .timeline-container.scrubbing .timeline::before,
+        .timeline-container:hover .timeline::before{
+            display: block;
+        }
+        .timeline-container.scrubbing .thumb-indicator,
+        .timeline-container:hover .thumb-indicator{
+            --scale: 1;
+        }
+        .video-container.scrubbing .timeline,
+        .timeline-container:hover .timeline {
+            height: 100% !important;
+        }
+
 </style>
 
 
 <div class="page-left-container">
         <!--VIDEOJS  PLAYER  -->
-    <div class="video-container  " data-volume-level="high">  
+    <div class="video-container paused " data-volume-level="high">  
                          <div class="video-controls-container ">
                          <div class="timeline-container">   
 

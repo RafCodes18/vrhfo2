@@ -8,6 +8,8 @@ const muteBtn = document.querySelector('.mute-btn');
 const volumeSlider = document.querySelector('.volume-slider');
 const currentTime = document.querySelector('.current-time');
 const totalTime = document.querySelector('.total-time');
+const timelineContainer = document.querySelector('.timeline-container');
+
 
 document.addEventListener("keydown", e => {
     const tagName = document.activeElement.tagName.toLowerCase();
@@ -35,12 +37,54 @@ document.addEventListener("keydown", e => {
     }
 });
 
+
+
+timelineContainer.addEventListener("mousemove", handleTimelineUpdate);
+timelineContainer.addEventListener("mousedown", toggleScrubbing);
+document.addEventListener("mouseup", e => {
+    if (isScrubbing) toggleScrubbing(e);
+})
+document.addEventListener("mousemove", e => {
+    if (isScrubbing) handleTimelineUpdate(e);
+})
+
+let isScrubbing = false;
+let wasPaused
+function toggleScrubbing(e) {
+    const rect = timelineContainer.getBoundingClientRect();
+    const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width
+    isScrubbing = (e.buttons & 1) === 1
+    videoContainer.classList.toggle("scrubbing", isScrubbing)
+    if (isScrubbing) {
+        wasPaused = video.paused;
+        video.pause();
+    } else {
+        video.currentTime = percent * video.duration;
+        if (!wasPaused) video.play();
+        
+    }
+    handleTimelineUpdate(e);
+}
+function handleTimelineUpdate(e) {
+    const rect = timelineContainer.getBoundingClientRect();
+    const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width;
+    timelineContainer.style.setProperty("--preview-position", percent);
+
+    if (isScrubbing) {
+        e.preventDefault();
+        timelineContainer.style.setProperty("--progress-position", percent);
+    }
+}
+
 //duration
 video.addEventListener("loadeddata", () => {
     totalTime.textContent = formatDuration(video.duration);
 });
 video.addEventListener("timeupdate", () => {
+    const percent = video.currentTime / video.duration;
     currentTime.textContent = formatDuration(video.currentTime);
+    timelineContainer.style.setProperty("--progress-position", percent);
+
 })
 
 const leadingZeroFormatter = new Intl.NumberFormat(undefined, {
