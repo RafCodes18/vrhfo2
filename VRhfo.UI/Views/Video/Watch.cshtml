@@ -206,8 +206,23 @@
         flex-direction: column;
         justify-content: center;
         margin-inline: auto;
-        margin-top: 20px;        
+        margin-top: 20px;  
+        background-color: black !important;
     }
+    .video-container.theater,
+        .video-container.full-screen {
+        max-width: initial;
+        width: 90%;
+        z-index: 9999;
+    }
+    .video-container.full-screen{
+        max-height: 100vh;
+    }
+        .video-container.theater{
+            max-height: 106vh;
+            margin-top: -50px;
+            margin-left: -16px;
+        }
     video{
         width: 100%;
     }
@@ -217,9 +232,19 @@
         left: 0;
         right: 0;
         color: white;
-        z-index: 99;
+        z-index: 999;
         opacity: 0;
         transition: opacity 150ms ease-in-out;
+    }
+    .video-controls-container::before{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+        width: 100%;
+        aspect-ratio: 6 / 1;
+        z-index: -1;
+        pointer-events: none;
     }
     .video-container:hover .video-controls-container,
     .video-container:focus-within .video-controls-container,
@@ -231,7 +256,7 @@
         gap: .5rem; 
         padding: .25rem;
         align-items: center;
-    }
+=    }
     .video-controls-container .controls button{
         background: none; 
         border: none;
@@ -254,11 +279,28 @@
     .video-container:not(.paused) .play-icon{
         display: none;
     }
+
+    .video-container.theater .tall {
+        display: none;
+    }
+
+    .video-container:not(.theater) .wide {
+        display: none;
+    }
+
+    .video-container.full-screen .open {
+        display: none;
+    }
+
+    .video-container:not(.full-screen) .close {
+        display: none;
+    }
+   
 </style>
 
 <div class="page-left-container">
         <!--VIDEOJS  PLAYER  -->
-    <div class="video-container paused ">
+    <div class="video-container  ">
                      <div class="video-controls-container ">
                          <div class="timeline-container">   </div>
                          <div class="controls">
@@ -270,10 +312,25 @@
                                     <path fill="currentColor" d="M14,19H18V5H14M6,19H10V5H6V19Z" />
                                 </svg>
                              </button>
-
+                            <button class="theater-btn">
+                                <svg class="tall" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M19 6H5c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H5V8h14v8z" />
+                                </svg>
+                                <svg class="wide" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M19 7H5c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm0 8H5V9h14v6z" />
+                                </svg>
+                            </button>
+                            <button class="full-screen-btn">
+                                <svg class="open" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+                                </svg>
+                                <svg class="close" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z" />
+                                </svg>
+                            </button>
                          </div>
                     </div>
-                    <video  preload="auto" >
+                    <video  preload="auto" autoplay >
                          <source  src="~/video/my-video.mp4" type="video/mp4">
                     </video>
                   
@@ -763,24 +820,7 @@
 
 </style>
 
-<!-- Include VideoJS sss s s s-->
-<script src="~/node_modules/video.js/dist/video.js"></script>
-<script src="~/node_modules/videojs-vr/dist/videojs-vr.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@@mojs/core"></script>
-
-<link href="~/node_modules/video.js/dist/video-js.css" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-
-<!-- Include VideoJS-VR JavaScript -->
-<script src="~/node_modules/videojs-vr/dist/videojs-vr.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var player = videojs('my-video');
-        player.vr({ projection: '180_LR' });
-    });
-</script>
+ <!-- HIDES PAGE_RIGHT_COTNAINER in THEATER MODE-->
 
 
 <!--NEWWw LIKE BUTTON FUNCTIONALITY-->
@@ -885,9 +925,9 @@
     });
 </script>
 
-
 <!-- OLD - LIKEBUTTON BURST ANIMATION   AND  COMMENT JS-->
  <script type="text/javascript">
+
 
      //LIKE BUTTON 
     $(document).ready(function () {
