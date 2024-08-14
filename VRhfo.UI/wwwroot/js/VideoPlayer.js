@@ -9,6 +9,51 @@ const volumeSlider = document.querySelector('.volume-slider');
 const currentTime = document.querySelector('.current-time');
 const totalTime = document.querySelector('.total-time');
 const timelineContainer = document.querySelector('.timeline-container');
+const controlsContainer = document.querySelector(".video-controls-container");
+
+let hideControlsTimeout;
+
+function hideControls() {
+    hideControlsTimeout = setTimeout(() => {
+        controlsContainer.style.opacity = '0';
+    }, 1000); // Hide controls 3 seconds after mouse leaves
+}
+
+function showControls() {
+    clearTimeout(hideControlsTimeout);
+    controlsContainer.style.opacity = '1';
+}
+
+// Show controls when moving the mouse in full-screen mode
+videoContainer.addEventListener('mousemove', () => {
+    if (isFullScreen()) {
+        showControls();
+        hideControls(); // Restart the hide countdown when mouse moves
+    }
+});
+
+// Start hiding controls 3 seconds after mouse leaves the video container in full-screen mode
+videoContainer.addEventListener('mouseleave', () => {
+    if (isFullScreen()) {
+        hideControls();
+    }
+});
+
+// Function to check if the video is in full-screen mode
+function isFullScreen() {
+    return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+}
+
+// Full-screen change event to show controls when entering full-screen mode
+document.addEventListener('fullscreenchange', () => {
+    if (isFullScreen()) {
+        showControls();
+        hideControls(); // Start the hide countdown when entering full-screen mode
+    } else {
+        clearTimeout(hideControlsTimeout); // Stop the countdown when exiting full-screen mode
+        controlsContainer.style.opacity = '1'; // Ensure controls are visible
+    }
+});
 
 
 document.addEventListener("keydown", e => {
@@ -114,8 +159,14 @@ volumeSlider.addEventListener("input", e => {
 function toggleMute() {
     video.muted = !video.muted
 }
+volumeSlider.addEventListener('input', function () {
+    const value = this.value * 100; // Get value as percentage
+    this.style.background = `linear-gradient(to right, deeppink ${value}%, darkgray ${value}%)`;
+});
+
 
 video.addEventListener("volumechange", () => {
+
     volumeSlider.value = video.volume
     let volumeLevel
     if (video.muted || video.volume === 0) {
