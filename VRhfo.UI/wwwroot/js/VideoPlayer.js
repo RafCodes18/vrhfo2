@@ -4,6 +4,10 @@ const videoContainer = document.querySelector(".video-container");
 const theaterBtn = document.querySelector(".theater-btn");
 const fullscreenBtn = document.querySelector('.full-screen-btn');
 const mainElement = document.querySelector('main');
+const muteBtn = document.querySelector('.mute-btn');
+const volumeSlider = document.querySelector('.volume-slider');
+const currentTime = document.querySelector('.current-time');
+const totalTime = document.querySelector('.total-time');
 
 document.addEventListener("keydown", e => {
     const tagName = document.activeElement.tagName.toLowerCase();
@@ -26,8 +30,63 @@ document.addEventListener("keydown", e => {
         case "t":
             toggleTheaterMode();
             break;
+        case "m":
+            toggleMute();
     }
 });
+
+//duration
+video.addEventListener("loadeddata", () => {
+    totalTime.textContent = formatDuration(video.duration);
+});
+video.addEventListener("timeupdate", () => {
+    currentTime.textContent = formatDuration(video.currentTime);
+})
+
+const leadingZeroFormatter = new Intl.NumberFormat(undefined, {
+    minimumIntegerDigits: 2,
+})
+function formatDuration(time) {
+    const seconds = Math.floor(time % 60)
+    const minutes = Math.floor(time / 60) % 60
+    const hours = Math.floor(time / 3600)
+
+    if (hours === 0) {
+        return `${minutes}:${leadingZeroFormatter.format(seconds)}`
+    } else {
+        return `${hours}:${leadingZeroFormatter.format(
+            minutes
+        )}:${leadingZeroFormatter.format(seconds)}`
+    }
+}
+
+
+//volume
+muteBtn.addEventListener("click", toggleMute);
+volumeSlider.addEventListener("input", e => {
+    video.volume = e.target.value;
+    video.muted = e.target.value === 0;
+})
+function toggleMute() {
+    video.muted = !video.muted
+}
+
+video.addEventListener("volumechange", () => {
+    volumeSlider.value = video.volume
+    let volumeLevel
+    if (video.muted || video.volume === 0) {
+        volumeSlider.value = 0
+        volumeLevel = "muted"
+    } else if (video.volume >= 0.5) {
+        volumeLevel = "high"
+    } else {
+        volumeLevel = "low"
+    }
+
+    videoContainer.dataset.volumeLevel = volumeLevel
+
+
+})
 
 //VIEW MODES
 theaterBtn.addEventListener('click', toggleTheaterMode);
@@ -83,6 +142,8 @@ function updateFlexDirection() {
     if (videoContainer.classList.contains('theater')) {
         mainElement.style.flexDirection = 'column';
         mainElement.style.classList.add('full-vid');
+        
+
     } else {
         mainElement.style.flexDirection = ''; // Revert to default
     }
