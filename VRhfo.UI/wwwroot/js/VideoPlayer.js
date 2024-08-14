@@ -6,15 +6,25 @@ const fullscreenBtn = document.querySelector('.full-screen-btn');
 const mainElement = document.querySelector('main');
 
 document.addEventListener("keydown", e => {
+    const tagName = document.activeElement.tagName.toLowerCase();
+    if (tagName == "input") return;
+
         //STOP SCROLL ON SPACEBAR
         if (e.keyCode == 32 && e.target == document.body) {
             e.preventDefault();
         }
    
     switch (e.key.toLowerCase()) {
-        case "k":
         case " ":
+            if(tagName === "button") return
+        case "k":
             togglePlay()
+            break;
+        case "f":
+            toggleFullscreenMode();
+            break;
+        case "t":
+            toggleTheaterMode();
             break;
     }
 });
@@ -35,6 +45,10 @@ function toggleFullscreenMode() {
         document.exitFullscreen();
     }
 }
+
+document.addEventListener('fullscreenchange', () => {
+    videoContainer.classList.toggle("full-screen", document.fullscreenElement);
+})
 
 playPauseBtn.addEventListener('click', () => {
     togglePlay();
