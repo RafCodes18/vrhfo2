@@ -158,11 +158,18 @@ volumeSlider.addEventListener("input", e => {
 })
 function toggleMute() {
     video.muted = !video.muted
+    if (video.muted) {
+        volumeSlider.style.background = 'darkgrey';
+    }
+    else {
+        volumeSlider.style.background = `linear-gradient(to right, deeppink ${value}%, darkgray ${value}%)`;
+    }
 }
 volumeSlider.addEventListener('input', function () {
     const value = this.value * 100; // Get value as percentage
     this.style.background = `linear-gradient(to right, deeppink ${value}%, darkgray ${value}%)`;
 });
+
 
 
 video.addEventListener("volumechange", () => {
