@@ -32,7 +32,7 @@
             color: #0098cb;
         }
         .custom-navbar {
-            background-color: #191919;
+            background-color: var(--secondary-color);
         }
 
 
@@ -58,12 +58,12 @@
 
         /* change button color to pink and search box width */
         .btn-outline-primary {
-            color: hotpink;            
-            border-color: hotpink;            
+            color: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
             .btn-outline-primary:hover {
-                background-color:  rgb(184, 76, 130);
+                background-color: var(--primary-color);
                 color: white;
                 border: hidden;
             }
@@ -85,7 +85,7 @@
             position: relative;
             width: 100%;
             background-color: black;
-            border: 1px solid hotpink;
+            border: 1px solid var(--primary-color);
             padding: 8px 20px;
         }
 
@@ -99,7 +99,8 @@
             text-align: center;
             font-size: medium;
             height: 37px;
-            background-color: rgb(221, 6, 109);
+            background-color: var(--primary-color);
+            /* background-color: rgb(0, 153, 205); */
         }
 
             .join-now:hover {
@@ -187,8 +188,8 @@
         
 
         .sub-link-item:hover{
-            color: rgba(240, 240, 240, .8) !important;
-            background-color: #393939;
+            color: #fff;
+           background-color: #393939;
             cursor: pointer;
         }
 
@@ -455,7 +456,7 @@
             overflow: hidden; /* Hide text if it exceeds the container */
             text-overflow: ellipsis;
             font-size: large;
-            background-color: rgba(60, 60, 60, 0.47);
+            background-color: var(--secondary-color);
             border-radius: 3px;
             padding: 10px 20px;
             font-family: 'Lucida Console';
@@ -468,15 +469,23 @@
             margin-top: 5px;
         }
         .vr-link{
-            color: deeppink;
+            color: var(--primary-color);
+        }.vr-link:hover{
+            color: var(--primary-color);
         }
         .premium-link{
             color: deepskyblue;
         }
-        .top-editors{
-            color: rgb(255, 105, 249);
-        }
 
+        .premium-link:hover {
+            color: #0099cd;
+        }
+        .top-editors{
+            color: var(--accent-color);
+        }
+        .top-editors:hover{
+                color: #c9cdfa !important;
+        }
         .sub-link-item {
             border-left: 2px solid #555;
             padding-left: 6px;

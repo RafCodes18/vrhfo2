@@ -5,7 +5,7 @@
 
 <style>
     body {
-        background-color: rgb(21, 21, 21);
+        background-color: var(--background-color) !important;
     }
 
     .card-container {
@@ -45,8 +45,7 @@
     }
 
     .card:hover {
-        -webkit-box-shadow: 10px 10px hotpink;
-        box-shadow: 0 0 10px rgb(255, 0, 255);
+        box-shadow: 5px 5px 40px 8px rgba(255, 133, 255, 0.22);
         cursor: pointer;
         background-color: #333
     }
@@ -132,7 +131,7 @@
         max-width: 170px;
     }
     .profile-username{
-        color: deepskyblue;
+        color: var(--accent-color);
         width: 100%;
         cursor: default;
     }

@@ -109,7 +109,7 @@
     .canvas-details{
         justify-content: flex-end;
         border-radius: 5px;
-        background-color: rgba(50, 50, 50, 0.70);
+        background-color: var(--secondary-color);
         outline: 1px solid rgba(74, 74, 74, 0.91);
         padding: 20px !important;
         width: 90%;
@@ -183,13 +183,6 @@
     .pb-3{
         margin-top: 300px !important;
     }
-
-
-    .profile-username {
-        color: deepskyblue !important;
-        width: 100%;
-    }
-
 
 <!-- CUSTOM VIDEO PLAYER CSS-->
     *, *::before, *::after{
@@ -323,7 +316,7 @@
         transform-origin: left;
         transform: scaleX(0);
         transition: width 250ms ease-in-out, transform 250ms ease-in-out;
-        background: deeppink; 
+        background: var(--primary-color);
     }
     .volume-container:hover .volume-slider,
     .volume-slider:focus-within{
@@ -367,7 +360,7 @@
             top: 0;
             bottom: 0;
             right: calc(100% - var(--progress-position) * 100%);
-            background-color: deeppink !important;
+            background-color: var(--primary-color) !important;
          }
         .timeline .thumb-indicator{
            --scale: 1;
@@ -376,7 +369,8 @@
             height: 200%;
            top: -50%;
            left: calc(var(--progress-position) * 100%);
-           background-color: deeppink;
+            background-color: var(--primary-color);
+            
            border-radius: 50%;
            transition: transform 150ms ease-in-out;
            aspect-ratio: 1 / 1; 
@@ -404,7 +398,7 @@
             cursor: pointer;
         }
         input[type=range]::-webkit-slider-thumb{
-            background: deeppink;
+            background: var(--primary-color);
             border-radius: 10px;
             cursor: pointer;
             height: 12px;
@@ -608,17 +602,13 @@
             display: flex;
         }
 
-        .username-txt:hover {
-            color: #0993c1;
-            cursor: pointer;
-        }       
         .username-txt2{
             margin-left: 5px;
-            color:rgb(0, 154, 205);
+            color: var(--accent-color) !important;
             margin-top: 0px !important;
         }
         .username-txt2:hover{
-            color: rgba(0, 120, 161, 0.67) !important;
+            color: rgb(217, 220, 255) !important;
         }
         .vid-details-last{
             display: flex;
@@ -627,7 +617,7 @@
         }
         .views-txt{
             font-size: large;
-            color: #778;
+            color: #999;
         }
         .vid-details-bottom-row{
             display: flex;
@@ -649,7 +639,7 @@
         .likes-ratio{
             font-size: x-large;
             font-weight: 400;
-            color: rgb(255, 74, 165);
+            color: var(--primary-color);
             margin-top: 10px;
             margin-right: 5px;
             padding: 0 !important;
