@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/VRhfo.UI.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,600;0,800;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Recursive:wght@300..1000&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/8b1653d39b.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -44,6 +45,8 @@
             width: 100%;
             justify-content: space-between;
             margin-bottom: 0;
+            padding: 0 !important;
+            height: 50px;
         }
 
             .navbar-nav .search {
@@ -237,7 +240,7 @@
             }
 
             .custom-navbar{
-                height: 38px;
+                height: 38px !important;
             }
             .navbar-brand{
                 margin-left: 10px !important;
@@ -490,6 +493,17 @@
             border-left: 2px solid #555;
             padding-left: 6px;
         }
+        .site-name-logo{
+            color: var(--primary-color);
+            font-family: "Barlow", sans-serif;
+            font-weight: 800;
+            font-style: normal;
+            font-size: 2.5rem;
+            letter-spacing: -3px;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        
 </style>
 </head>
 <body>
@@ -502,13 +516,12 @@
                             <li class="nav-item">
                                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
 @*                                     <img class="goggles" src="~/img/goggles-logo-rm.png" height="30" width="50" /> *@
+                                     <p class="site-name-logo">brainbreaker.tv</p>
                                    
-                                <img class="site-logo" src="/img/breen-removebg-preview.png"  />
+                                @* <img class="site-logo" src="/img/breen-removebg-preview.png"  /> *@
                                 </a>
                             </li>
-                            <li class="nav-item no-hands">
-                                <p></p>
-                            </li>
+                            
                             <li class="nav-item search">
                                 <form class="form-inline my-2 my-lg-0 search-form">
                                     <div class="input-group searchbar">

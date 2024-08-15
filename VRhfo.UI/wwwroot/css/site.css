@@ -1,9 +1,15 @@
 :root {
-    --text-color: #fff;
+     --text-color: #fff;
     --background-color: #000;
     --primary-color: rgb(221, 6, 109);
     --secondary-color: #222;
     --accent-color: #b6bae8;
+
+    /*--text-color: #fff;
+    --background-color: #000;
+    --primary-color:red;
+    --secondary-color: #222;
+    --accent-color: deepskyblue;*/
 }
 
 * {
