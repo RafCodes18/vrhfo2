@@ -331,10 +331,10 @@
         .site-name-logo{
             color: var(--primary-color);
             font-family: "Barlow", sans-serif;
-            font-weight: 600;
+            font-weight: 700;
             font-style: normal;
             font-size: 2.5rem;
-            letter-spacing: -3px;
+            letter-spacing: -2px;
             padding: 0 !important;
             margin: 0 !important;
         }             
@@ -396,7 +396,15 @@
             opacity: 0.8;
             z-index: 999;
         }
-       
+        .white{
+            color: #fff;
+        }
+       .rotate{
+            display: inline-block; /* Ensures the span takes up only as much space as the letter */
+            transform: rotate(30deg); /* Rotate the element by 45 degrees */
+            margin-left: 3px;
+            margin-right: -2px;
+       }
     </style>
 </head>
 <body>
@@ -409,7 +417,7 @@
                             <li class="nav-item">
                                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
 @*                                     <img class="goggles" src="~/img/goggles-logo-rm.png" height="30" width="50" /> *@
-                                     <p class="site-name-logo">brainbreaker.tv</p>
+                                <p class="site-name-logo"><span class="white">brain</span>br<span class="rotate">e</span>aker.tv</p>
                                    
                                 @* <img class="site-logo" src="/img/breen-removebg-preview.png"  /> *@
                                 </a>
