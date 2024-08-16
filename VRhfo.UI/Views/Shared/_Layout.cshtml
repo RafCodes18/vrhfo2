@@ -95,7 +95,7 @@
         .join-now {
             position: relative;
             top: 3px;
-            color: black !important;
+            color: #fff !important;
             font-weight: bold;
             border-radius: 4px;
             width: 110px;
@@ -112,19 +112,21 @@
 
         .login {
             border-radius: 4px;
-            border: 1px solid grey;
-            
+            /* border: 1px solid grey; */            
             margin-right: 10px;
             color: #EB7FCB;
             width: 85px;
             text-align: center;
             height: 40px;
             margin-top: 3px;
+            font-weight: 700;
+            font-size: medium;
         }
 
             .login:hover {
                 color: #fff;
                 background-color: rgba(87, 87, 87, 0.60);
+                cursor: pointer;
             }
 
         .center {
@@ -204,106 +206,14 @@
             min-width: 120px;
         }
 
-        <!-- TOGGLE BUTTON-->
-        @@media (max-width: 767px) {
-
-
-            .lik-box{
-                margin: 0 !important;
-                padding: 0 !important;
-            }
-
-            .page-title{
-                display: none;
-            }
-            
-        }
-
-        @@media (max-width: 615px) {
-            .sub-link-item {
-                font-size: 10px; /* Further reduce font size for smaller screens */
-                margin-left: 10px; /* Further reduce spacing between links */
-            }
-
-           
-
-            .page-title {
-                display: none;
-            }
-            .link-box{
-                padding: 0;
-                margin: 0;
-            }
-
-            .container {
-                margin-top: 10px;
-            }
-
-            .custom-navbar{
-                height: 38px !important;
-            }
-            .navbar-brand{
-                margin-left: 10px !important;
-            }
-
-            .navbar-collapse {
-                display: flex !important;
-                flex-basis: auto;
-            }
-
-            .navbar-nav {
-                flex-direction: row;
-            }
-
-            .navbar-brand {
-                margin-right: auto;
-            }
-            .search{
-                display: none;
-            }
-            .site-logo{
-                width: 100px; 
-                height: 40px !important;
-                margin-top: 0;
-                margin-left: -20px;
-                padding: 100px;
-            }
-
-            .join-now{
-                width: 100px;
-                height: 30px;
-                padding: 5px 0px !important;
-                margin-top: -10px;
-            }
-            .login{
-                display: none;
-            }
-
-            .nav-link{
-                padding: 0;
-            }
-            .goggles{
-                display: none;
-            }
-        }
+               
             .goggles{
                 margin-top: 10px;
             }
             .searchbar{
                 width: 100%;
             }
-            @@media (max-width: 1001px){
-                .navbar-nav{
-                    height: 40px !important;
-                }
-                .searchbar{
-                    margin: 0;
-                    padding: 0;
-                    margin-top: -10px;
-                    margin-bottom: 5px !important;
-                    min-width: 100px;
-                }
-            }
+           
             .right{
                     margin-left: 110px;
             }
@@ -323,9 +233,6 @@
         }
 
         
-
-
-
         .dropdown  {
             position: relative;
             display: inline-block;
@@ -345,9 +252,7 @@
             -moz-box-shadow: 0 0 3px #ccc;
             -webkit-box-shadow: 0 0 3px #ccc;
             box-shadow: 0 0 3px #ccc;
-
         }
-
             .dropdown-content a {
                 color: white;
                 padding: 15px 5px 10px 12px;
@@ -356,16 +261,13 @@
                 transition: background-color 0.4s ease;
                 border-bottom: 1px solid #444;
                 z-index: 999 !important;
-
             }
-
                 .dropdown-content a:hover {
                     background-color: #222;
                     color: white !important;
                     transform: scale(1);
                     z-index: 999 !important;
                 }
-
         .dropdown:hover .dropdown-content {
             display: block;
             z-index: 999;
@@ -376,73 +278,7 @@
         }
         .forgot{
             font-size: small;
-        }
-
-        <!-- DIAMOND AND LIKE BUTTONS -->
-        .o-icon-svgD {
-            pointer-events: none;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        .o-iconD {
-            display: -webkit-inline-box;
-            display: -ms-inline-flexbox;
-            display: inline-flex;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            justify-content: center;
-            position: relative;
-            vertical-align: middle;
-            fill: grey;
-            width: 24px;
-            height: 24px;
-            margin-top: 1px;
-        }
-        @@media(max-width: 586px){
-            .welcum{
-                margin-top: -10px !important;
-
-            }
-
-            .navbar-brand {
-                margin-right: 70px !important;
-            }
-
-            .dropdown-content {
-                margin-top: 14px;
-            }
-        }
-
-        @@media(max-width: 430px) {
-            .navbar-brand {
-                margin-right: 120px !important;
-            }
-        }
-        @@media(max-width: 392px){
-            .sub-link-item{
-                margin: 0 !important;
-                padding: 15px 0 !important;
-            }
-        }
-
-        @@media(max-width: 357px)
-        { 
-            
-            .sub-link-item {
-                margin: 0 !important;
-                padding: 14px 5px !important;
-                 
-            }
-            .lik-box F{
-                display: none;
-            }
-           
-        }
+        }      
 
         .categories-content{
             margin-left: 40px;
@@ -465,7 +301,6 @@
             font-family: 'Lucida Console';
             color: white;
             margin-left: 5px !important;
-
         }
         .dropdown-content.cat{
             margin-left: 10px;
@@ -502,9 +337,67 @@
             letter-spacing: -3px;
             padding: 0 !important;
             margin: 0 !important;
-        }
+        }             
+
+
+
+
+
+
+
+
+
         
-</style>
+        .login-modal-main {
+            height: 400px;
+            max-width: 390px;
+            background-color: #131313;
+            color: var(--text-color);
+            border-radius: 10px;
+            padding: 20px !important;
+            position: absolute;
+            z-index: 9999;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .login-modal-options {
+            display: flex;
+            justify-content: space-around;
+            margin: 1px;
+        }  
+        .login-custom-x {
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-right: 12px;
+            margin-top: 3px;
+            font-size: x-large;
+            color: #888;
+        }
+        .login-custom-x:hover {
+            border-radius: 8px !important;
+            cursor: pointer;
+            color: #fff;
+        }
+        .hidden{
+            display: none !important;
+        }        
+        .overlay {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #000;
+            opacity: 0.8;
+            z-index: 999;
+        }
+       
+    </style>
 </head>
 <body>
     <header>
@@ -570,9 +463,9 @@
                         }
                         else
                         {
-                            
+
                             <li class="nav-item">
-                                <a class="nav-link text-light login" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                                <a id="login-button" class="nav-link text-light login">Login</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light join-now" asp-controller="Home" asp-action="JoinNow">Join Now</a>
@@ -620,8 +513,16 @@
 
     </header>
     <div class="container">
-
         <main role="main" class="pb-3" >
+            <div class="overlay hidden"></div>
+
+            <div id="login-modal" class="login-modal-main hidden">
+                <div class="login-modal-contain">
+                    <span id="close-login-modal" class="login-custom-x">&times;</span>
+                    <h1>Login</h1>
+                    <!-- Add your login form here -->
+                </div>
+            </div>
             @RenderBody()
         </main>
     </div>
@@ -639,3 +540,20 @@
 </body>
 </html>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const loginButton = document.getElementById('login-button');
+        const loginModal = document.getElementById('login-modal');
+        const closeBtn = document.getElementById('close-login-modal');
+        const overlay = document.querySelector('.overlay');
+
+        function toggleModal() {
+            loginModal.classList.toggle('hidden');
+            overlay.classList.toggle('hidden');
+        }
+
+        loginButton.addEventListener('click', toggleModal);
+        closeBtn.addEventListener('click', toggleModal);
+        overlay.addEventListener('click', toggleModal);
+    });
+</script>
