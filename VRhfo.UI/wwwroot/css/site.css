@@ -36,7 +36,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: var(--background-color) !important;
+    background-color: #010101 !important;
     color: white;
 }
 
@@ -89,7 +89,7 @@ body {
 
 @media(max-width: 735px){
     .lik-box a{
-        font-size: smaller !important;
+        font-size: medium !important;
     }
 }
 @media(max-width: 616px){
@@ -210,7 +210,6 @@ body {
 
 @media (max-width: 1001px) {
     .navbar-nav {
-        height: 40px !important;
     }
 
     .searchbar {
@@ -227,8 +226,6 @@ body {
         font-size: 10px; /* Further reduce font size for smaller screens */
         margin-left: 10px; /* Further reduce spacing between links */
     }
-
-
 
     .page-title {
         display: none;

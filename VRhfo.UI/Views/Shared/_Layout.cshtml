@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> PornWorship.com</title>
+    <title> brainbreaker.tv</title>
     <link rel="icon" href="/img/logop.png" type="image/icon type">
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -22,8 +22,8 @@
         }
         .username-txt{
             color: deepskyblue;
-            font-weight: 600;
-            font-size: larger;
+            font-weight: 700;
+            font-size: 20px;
             margin-bottom: 20px;
 
 
@@ -33,7 +33,7 @@
             color: #0098cb;
         }
         .custom-navbar {
-            background-color: var(--secondary-color);
+            background-color: #010101;
         }
 
 
@@ -177,7 +177,7 @@
 
         .lik-box {
             width: 100%; /* Device width */
-            height: 47px !important; /* Desired height */
+            height: 48px !important; /* Desired height */
             background-color: #111 !important; /* Light grey */
             /* Modern styles */
             margin-top: 0px !important;
@@ -399,11 +399,16 @@
         .white{
             color: #fff;
         }
-       .rotate{
+       .rotate-right{
             display: inline-block; /* Ensures the span takes up only as much space as the letter */
             transform: rotate(30deg); /* Rotate the element by 45 degrees */
             margin-left: 3px;
             margin-right: -2px;
+       }
+       .rotate-left{
+            display: inline-block; /* Ensures the span takes up only as much space as the letter */
+            transform: rotate(340deg); /* Rotate the element by 45 degrees */
+            margin-right: -1px;
        }
     </style>
 </head>
@@ -417,7 +422,7 @@
                             <li class="nav-item">
                                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
 @*                                     <img class="goggles" src="~/img/goggles-logo-rm.png" height="30" width="50" /> *@
-                                <p class="site-name-logo"><span class="white">brain</span>br<span class="rotate">e</span>aker.tv</p>
+                                <p class="site-name-logo"><span class="white">brain</span>b<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="white">.tv</span></p>
                                    
                                 @* <img class="site-logo" src="/img/breen-removebg-preview.png"  /> *@
                                 </a>
@@ -536,7 +541,7 @@
     </div>
     <footer class="  footer text-muted">
         <div class="container center">
-            <p class="center"> &copy; 2024 - PornWorship.com - <a asp-area="" asp-controller="Video" asp-action="Index">/Video</a></p>
+            <p class="center"> &copy; 2024 - brainbreaker.tv 
 
         </div>
     </footer>

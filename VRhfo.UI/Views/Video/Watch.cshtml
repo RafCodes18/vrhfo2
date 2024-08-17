@@ -9,9 +9,7 @@
 <script type="text/javascript" src="~/js/VideoPlayer.js" defer></script>
 
 <style>
-    body{
-        background-color: #000;
-    }
+
     <!-- DIAMOND AND LIKE BUTTONS -->
     .o-icon-svg {
         pointer-events: none;
@@ -43,6 +41,10 @@
     }
 
     <!--VIDEO DETAILS CONTAINER -->
+    .canvas-details{
+        margin-top: 13px !important;
+
+    }
     .vid-details{
         margin-left: 110px;
         margin-top: 15px;
@@ -99,8 +101,7 @@
         font-size: large;
     }
     .page-left-container{
-        max-width: 100%;
-        margin-left: 20px;
+        padding-left: 50px;
     }
 
 
@@ -109,17 +110,17 @@
     .canvas-details{
         justify-content: flex-end;
         border-radius: 5px;
-        background-color: var(--secondary-color);
-        outline: 1px solid rgba(74, 74, 74, 0.91);
-        padding: 20px !important;
-        width: 90%;
+        background-color:black;
+        padding: 10px 10px !important;
         max-width: 1000px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin-inline: auto;
-        margin-top: 12px;
-    }
+        margin-top: 9px;
+        width: 100%;
+        
+   }
 
      
      @@media (max-width: 1109px) {
@@ -155,10 +156,15 @@
         .page-left-container{
             margin: 0;
             margin-top: 0;
+            padding: 0 !important;
+            
         }
+         
         
          .video-container{
-             margin-left: 20px !important;
+            margin: 0;
+            margin-top: 0;
+            padding: 0 !important;
          }
          .canvas-details{
              margin-left: 20px !important;
@@ -167,7 +173,7 @@
             width: 70%;
         }
         .page-right-container{
-            margin-left: 10px !important;
+            width: 100%;
         }
     }
   
@@ -193,7 +199,7 @@
     }
     .video-container{
         position: relative;
-        width: 90%;
+        width: 100%;
         max-width: 1000px;
         display: flex;
         flex-direction: column;
@@ -201,23 +207,41 @@
         margin-inline: auto;
         margin-top: 20px;  
         background-color: black !important;
+        margin-left: 0;
+        margin-right: 5px;
     }
     .video-container.theater,
         .video-container.full-screen {
         max-width: initial;
-        width: 90%;
+        width: 100%;
         z-index: 9999;
     }
     .video-container.full-screen{
         max-height: 100vh;
     }
         .video-container.theater{
-            margin-top: -101px;
-            margin-left: -16px;
-            width: 90vw;            
+            top: 0;
+            
+            position: relative;
+            width: 100%;  
+            max-height: 90vh;
+            padding: 0;
+            margin: 0; 
+            margin-left: 0 !important;
+            bottom: 20px;
         }
+        .video-container.theater video{
+            margin-top: 0;
+            padding: 0;
+            width: 100%;  
+            margin-left: 0 !important;
+            max-height: 80vh !important;
+        }        
     video{
-        width: 100%;
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding-left: 0;
+        max-height: 500px !important;
     }
     .video-controls-container{
         position: absolute;  
@@ -228,6 +252,7 @@
         z-index: 999;
         opacity: 0;
         transition: opacity 150ms ease-in-out;
+        padding-bottom: 10px;
     }
     .video-controls-container::before{
         content: "";
@@ -256,14 +281,15 @@
         border: none;
         color: inherit;
         padding: 0;
-        height: 30px ;
-        width: 30px;
+        height: 35px ;
+        width: 35px;
         margin: 0;
         font-size: 1.1rem;
         cursor: pointer;
         opacity: .85;
         transition: opacity 150ms ease-in-out;
-    }
+            padding-top: 5px;
+        }
         .video-controls-container .controls button:hover {
             opacity: 1;
         }
@@ -327,6 +353,7 @@
        align-items: center;
        gap: .25rem;
        flex-grow: 1;
+       padding-top: 5px;
    }
    .timeline-container{
        height: 7px;
@@ -421,13 +448,16 @@
             margin-right: 5px;
             background-color: #fff;
         }
+      /*   .vid{
+            width: 100%;
+        } */
 </style>
 
-
+<div class="page-left-container4 "></div>
 <div class="page-left-container">
         <!--VIDEOJS  PLAYER  -->
     <div class="video-container paused " data-volume-level="high">  
-                         <div class="video-controls-container ">
+                    <div class="video-controls-container ">
                          <div class="timeline-container">   
 
                              <div class="timeline">
@@ -483,8 +513,11 @@
                             </button>
 
                          </div>
-                    </div>
-                    <video  preload="auto" autoplay >
+
+                   </div>
+                    
+                    
+                    <video class="vid"  preload="auto" autoplay >
                          <source  src="~/video/spank.mp4" type="video/mp4">
                     </video>
                   
@@ -892,7 +925,6 @@
         display: flex;
         flex-direction: column;
         height: 130px;
-        width: 90%;
         justify-content: center;
         align-content: center;
         position: relative;
@@ -900,11 +932,11 @@
         background-color: #222;
         margin-top: 30px;
         border-radius: 6px;
-        padding: 50px;
         text-align: center;
         border: 1px solid var(--accent-color);
         font-weight: bold;
         color: var(--accent-color);
+        max-width: 460px;
     }
     .join-premium-container a{
             color: var(--primary-color);
@@ -934,8 +966,10 @@
     }
 
     .page-right-container {
-        flex-grow: 1;
-        margin-left: -30px;
+        flex-grow: 0;
+        max-width: 460px;
+        position: relative;
+        padding-right: 12px;
     }
 
     .sug-vid-content {

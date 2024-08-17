@@ -6,19 +6,23 @@
 
 <style>
     body {
-        background: hsla(21, 50%, 73%, 1);
-        background: linear-gradient(90deg, hsla(21, 50%, 73%, 1) 0%, hsla(313, 100%, 88%, 1) 100%);
+        background: hsla(21, 50%, 73%,.2);
+        background: linear-gradient(90deg, hsla(21, 50%, 73%, .2) 0%, hsla(313, 100%, 88%, .2) 100%);
         background: -moz-linear-gradient(90deg, hsla(21, 50%, 73%, 1) 0%, hsla(313, 100%, 88%, 1) 100%);
-        background: -webkit-linear-gradient(90deg, hsla(21, 50%, 73%, 1) 0%, hsla(313, 100%, 88%, 1) 100%);
+        background: -webkit-linear-gradient(90deg, hsla(21, 50%, 73%, .3) 0%, hsla(313, 100%, 88%, 1) 100%);
         filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#DCAE96", endColorstr="#FFC1F2", GradientType=1 );
+        margin: 0;
+        padding: 0;
+        overflow-y: scroll;
     }
+
 
     .card-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         gap: 8px;
         justify-content: center;
-        margin-top: 40px;
+        margin-top: 0px;
         padding: 0 0px; /* Added padding to the side   sfsfs */
         gap: 10px;
         margin-right: 90px;
@@ -50,10 +54,11 @@
     }
 
     .card:hover {
-        -webkit-box-shadow: 10px 10px hotpink;
-        box-shadow: 0 0 10px rgb(255, 0, 255);
+      /*   -webkit-box-shadow: 10px 10px hotpink;
+        box-shadow: 0 0 10px rgb(255, 0, 255); */
         cursor: pointer;
-        background-color: #333
+        background-color: #333;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     }
 
     .description {
@@ -73,6 +78,10 @@
         padding: 0;
     }
 
+    .titl{
+        color: black !important;
+        margin-left: 10px;
+    }
     @@media (max-width: 1170px) {
         .card-container {
             grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
@@ -93,12 +102,10 @@
     }
 
     .page-title {
-        position: relative;
-        font-size: x-large;
-        left: 80px;
-        top: 30px;
+        font-size: x-large;       
         width: 500px;
         display: flex;
+        color: var(--secondary-color) !important; 
     }
 
     .card-time {
@@ -215,12 +222,16 @@
             margin: 0 !important;
         }
     }
+
+    footer{
+       display: none !important;
+    }
 </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <div class="main-pg">
     <div class="page-title">
-        <p class="titl">favorites <img src="~/img/Yd60cw01.svg" height="40px" width="40px"/></p>
+        <p class="titl">favorites <img src="~/img/Yd60cw01.svg" height="50px" width="40px"/></p>
     </div>
     <div class="card-container">
         @foreach (var item in Model.Videos)
