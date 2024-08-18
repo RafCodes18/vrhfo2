@@ -349,19 +349,18 @@
 
         
         .login-modal-main {
-            height: 400px;
-            max-width: 390px;
+r            height: 320px;
+            max-width: 400px;
             background-color: #131313;
             color: var(--text-color);
             border-radius: 10px;
-            padding: 20px !important;
+            padding: 23px !important;
             position: absolute;
             z-index: 9999;
             margin-left: auto;
             margin-right: auto;
             left: 0;
             right: 0;
-            text-align: center;
             margin-top: 50px;
         }
         .login-modal-options {
@@ -532,8 +531,19 @@
             <div id="login-modal" class="login-modal-main hidden">
                 <div class="login-modal-contain">
                     <span id="close-login-modal" class="login-custom-x">&times;</span>
-                    <h1>Login</h1>
-                    <!-- Add your login form here -->
+                    <h3>Member Login</h3>
+                    <p>Not a member? Click to<a asp-controller="Home" asp-action="JoinNow" class="join-now-btn-small">Join Now</a></p>
+                    <form id="login-form">
+                        <div class="top-rw">
+                            <input type="email" id="email" name="email" class="txt-box email ro" placeholder="Your Email" required>
+                        </div>
+                        <div class="">
+                            <input type="password" id="password" name="password" class="txt-box pass ro" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="login-btn ro ">Login</button>
+                        <p class="forgot-txt">Forgot password? Click <a href="#" class="here-txt">Here</a> to recover.</p>
+                    </form>
+                    <div id="login-message"></div>
                 </div>
             </div>
             @RenderBody()
@@ -553,6 +563,52 @@
 </body>
 </html>
 
+<style> 
+    .forgot-txt{
+        color: #888;
+    }
+    .here-txt{
+
+        color: white !important;
+        text-decoration: underline;
+    }
+    .top-rw{
+        margin-top: 12px;
+    }
+    .ro{
+        margin-bottom: 10px !important;
+    }
+    .login-btn{
+         width: 100%; 
+         padding: 10px;
+         background-color: darkgray;         
+    }
+.join-now-btn-small{
+        color: white !important;
+        padding: 4px;
+        font-weight: 700;
+        background-color: transparent;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 4px;
+        text-decoration: underline;
+    }
+
+    .join-now-btn-small:hover {
+       background-color: var(--primary-color-hover); 
+       text-decoration: none;
+    }
+    .txt-box{
+        position: relative;
+        background-color: transparent;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 3px;
+        color: white;
+    }
+
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const loginButton = document.getElementById('login-button');
@@ -569,4 +625,5 @@
         closeBtn.addEventListener('click', toggleModal);
         overlay.addEventListener('click', toggleModal);
     });
+
 </script>
