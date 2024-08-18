@@ -40,7 +40,7 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "VideoWatch",
-    pattern: "/view/{title}",
+    pattern: "/watch/{title}",
     defaults: new { controller = "Video", action = "Watch" }
 );
 app.MapControllerRoute(
