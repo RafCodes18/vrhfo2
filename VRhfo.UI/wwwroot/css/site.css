@@ -7,7 +7,7 @@
     --accent-color: #97a7b3;*/
 
       --text-color: #fff;
-    --background-color: #000;
+    --background-color: #fff !important;
     --primary-color: rgb(221, 6, 109);
     --primary-color-hover: rgba(221, 6, 109, .7);
     --secondary-color: #222;
@@ -150,12 +150,7 @@ body {
         padding: 0; 
         margin: 0;
     }
-    .suggested-videos{
-        max-width: 300px;
-    }
-    .video{
-        max-width: 300px;
-    }
+    
         
 }
 
