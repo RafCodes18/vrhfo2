@@ -67,11 +67,7 @@ body {
     }
     
 }
-@media(min-width: 1000px){
-    .lik-box {
-        padding-left: 30px !important;
-    }
-}
+
 @media(max-width: 800px){
     .lik-box{
         padding: 10px 5px !important;
@@ -121,9 +117,11 @@ body {
     .lik-box a {
         font-size: xx-small !important;
         padding-right: 0 !important;
-        margin-right: 0 !important;
+        margin-right: 3px !important;
         padding-top: 15px;
+        
     }
+
 }
 @media (max-width: 506px) {
    
@@ -158,6 +156,15 @@ body {
     .join-now {
         display: none;
     }
+    .username-txt, .welcum{
+        font-size: small !important;
+        padding: 0 ;
+        margin: 0;
+    }
+    .welcum{
+        max-width: 100px !important;
+        margin-left: -110px !important;
+    }
 }
 @media (max-width: 376px) {
     .right-lnk {
@@ -184,7 +191,7 @@ body {
         display: none;
     }
 }
-    @media (max-width: 330px) {
+@media (max-width: 330px) {
         .right-lnk {
             display: none;
         }
@@ -195,7 +202,7 @@ body {
 
         }
 
-    }
+ }
 
      
 
@@ -224,18 +231,6 @@ body {
     }
 }
 
-@media (max-width: 1001px) {
-    .navbar-nav {
-    }
-
-    .searchbar {
-        margin: 0;
-        padding: 0;
-        margin-top: -10px;
-        margin-bottom: 5px !important;
-        min-width: 100px;
-    }
-}
 @media (max-width: 767px) {
     .lik-box
 

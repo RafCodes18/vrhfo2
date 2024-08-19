@@ -232,7 +232,13 @@
 
         }
 
-        
+        @@media(min-width: 930px) {            
+            .lik-box {
+                padding-left: 30px !important;
+            }
+        }
+
+
         .dropdown  {
             position: relative;
             display: inline-block;
@@ -301,6 +307,8 @@
             font-family: 'Lucida Console';
             color: white;
             margin-left: 5px !important;
+            margin: 0 !important;
+            margin-right: 4px !important;
         }
         .dropdown-content.cat{
             margin-left: 10px;
@@ -325,8 +333,10 @@
                 color: #c9cdfa !important;
         }
         .sub-link-item {
+            position: relative;
             border-left: 2px solid #555;
             padding-left: 6px;
+            height: 100%;
         }
         .site-name-logo{
             color: var(--primary-color);
@@ -361,7 +371,7 @@ r            height: 320px;
             margin-right: auto;
             left: 0;
             right: 0;
-            margin-top: 50px;
+            top: 240px;
         }
         .login-modal-options {
             display: flex;
@@ -502,13 +512,13 @@ r            height: 320px;
             </div>
             
             <div class="">
-                <a class="sub-link-item" asp-controller="Home" asp-action="Captions">captions</a>
+                <a class="sub-link-item" asp-controller="Home" asp-action="Captions">Captions</a>
             </div>   
             <div class="">
                 <a class="sub-link-item vr-link" asp-controller="Video" asp-action="Index" asp-route-category="VR">VR <img src="~/img//vr-goggles.png" /></a>
             </div>
             <div class="">
-                <a class="sub-link-item top-editors" asp-controller="Video" asp-action="Index" asp-route-category="VR">Top Editors <img src="~/img/fire.svg" height="26" width="25" /></a>
+                <a class="sub-link-item top-editors" asp-controller="Video" asp-action="Index" asp-route-category="VR"><img src="~/img/fire.svg" height="26" width="25" />Top Editors </a>
             </div>
             <div class="">
                 <a class="sub-link-item premium-link" asp-controller="Home" asp-action="JoinNow" asp-route-category="VR">
