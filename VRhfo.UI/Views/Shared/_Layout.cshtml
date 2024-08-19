@@ -409,15 +409,17 @@ r            height: 320px;
             transform: rotate(340deg); /* Rotate the element by 45 degrees */
             margin-right: -1px;
        }
+
+
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar custom-navbar navbar-expand-sm navbar-toggleable-sm box-shadow ">
+        <nav class="navbar custom-navbar navbar-expand navbar-toggleable-sm box-shadow ">
           
             <div class="container-fluid">
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-lg-row">
+                    <ul class="navbar-nav flex-lg-row nav-top">
                             <li class="nav-item">
                                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
 @*                                     <img class="goggles" src="~/img/goggles-logo-rm.png" height="30" width="50" /> *@
@@ -531,8 +533,8 @@ r            height: 320px;
             <div id="login-modal" class="login-modal-main hidden">
                 <div class="login-modal-contain">
                     <span id="close-login-modal" class="login-custom-x">&times;</span>
-                    <h3>Member Login</h3>
-                    <p>Not a member? Click to<a asp-controller="Home" asp-action="JoinNow" class="join-now-btn-small">Join Now</a></p>
+                    <h3 class="login-modal-title">Member Login</h3>
+                    <p class="not-mem-txt">Not a member? Click to<a asp-controller="Home" asp-action="JoinNow" class="join-now-btn-small">Join Now</a></p>
                     <form id="login-form">
                         <div class="top-rw">
                             <input type="email" id="email" name="email" class="txt-box email ro" placeholder="Your Email" required>
@@ -564,6 +566,12 @@ r            height: 320px;
 </html>
 
 <style> 
+    .not-mem-txt{
+        color: white !important;
+    }
+    .login-modal-title{
+        color: white !important;
+    }
     .forgot-txt{
         color: #888;
     }

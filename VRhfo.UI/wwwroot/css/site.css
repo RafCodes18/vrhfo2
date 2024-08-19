@@ -1,17 +1,24 @@
 :root {
-    /*    --text-color: #000;
+      /*  --text-color: #000;
     --background-color: #000;
     --primary-color: #d4ff00;
     --primary-color-hover: #afd200;
     --secondary-color: #262727;
     --accent-color: #97a7b3;*/
 
-    --text-color: #fff;
+      --text-color: #fff;
     --background-color: #000;
     --primary-color: rgb(221, 6, 109);
     --primary-color-hover: rgba(221, 6, 109, .7);
     --secondary-color: #222;
     --accent-color: #b6bae8;
+
+/*    --text-color: #fff;
+    --background-color: #120606;
+    --primary-color: #e00000;
+    --primary-color-hover: rgba(221, 6, 109, .7);
+    --secondary-color: #991515;
+    --accent-color: #f23b3b;*/
 }
 
 * {
@@ -119,36 +126,44 @@ body {
     }
 }
 @media (max-width: 506px) {
-    .right-lnk {
-        display: none;
-    }
+   
 
     .sub-link-item {
         font-size: x-small !important;
         padding: 17px 4px !important;
     }
-    .join-now {
-        margin: 0 !important;
-        margin-top: -6px !important;
-        right: 0;
-    }
-    .home-link{
-        display: none;
-    }
-    .welcum{
-        font-size: smaller !important;
+    .site-name-logo{
+        font-size: 32px !important;
         padding: 0 !important;
         margin: 0 !important;
-        width: 80px !important;
-        height: 20px !important;
     }
-    .navbar-nav {
+    .login-button{
         padding: 0 !important;
-        width: 80px !important;
-        height: 20px !important;
+        margin: 0 !important;
     }
+    .nav-top{
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100%;
+    }
+    .container-fluid{
+        padding: 0; 
+        margin: 0;
+    }
+    .suggested-videos{
+        max-width: 300px;
+    }
+    .video{
+        max-width: 300px;
+    }
+        
 }
 
+@media(max-width: 430px){
+    .join-now {
+        display: none;
+    }
+}
 @media (max-width: 376px) {
     .right-lnk {
         display: none;
@@ -184,27 +199,10 @@ body {
            padding: 10px 1px !important;
 
         }
-        .join-now{
-            margin: 0 !important;
-            margin-top: -6px !important;
-        }
 
     }
 
-
-@media(max-width: 586px) {
-    .welcum {
-        margin-top: -10px !important;
-    }
-
-    .navbar-brand {
-        margin-right: 70px !important;
-    }
-
-    .dropdown-content {
-        margin-top: 14px;
-    }
-}
+     
 
 @media(max-width: 430px) {
     .navbar-brand {
