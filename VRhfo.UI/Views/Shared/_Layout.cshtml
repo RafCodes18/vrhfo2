@@ -358,6 +358,8 @@ r            height: 320px;
             left: 0;
             right: 0;
             top: 240px;
+            outline: 1px solid var(--accent-color);
+/           
         }
         .login-modal-options {
             display: flex;
@@ -415,7 +417,7 @@ r            height: 320px;
             height: 100vh;
             max-width: 300px;
             width: 100%;
-            background-color: #444;
+            background-color: #111;
             transition: transform 0.3s ease-in-out;
             z-index: 9999;
             margin-top: 10px !important;
@@ -446,7 +448,6 @@ r            height: 320px;
         font-size: 24px;
     }
 }
-
     </style>
 </head>
 <body>
@@ -527,9 +528,7 @@ r            height: 320px;
         </nav>        
         
 
-    </header>
-    
-    
+    </header>       
         
         <main role="main" class="pb-3 page " >
             <nav id="sidebar">
@@ -547,7 +546,7 @@ r            height: 320px;
                             <input type="email" id="email" name="email" class="txt-box email ro" placeholder="Your Email" required>
                         </div>
                         <div class="">
-                            <input type="password" id="password" name="password" class="txt-box pass ro" placeholder="Password" required>
+                            <input type="password" id="password" name="password" class="txt-box pass ro" placeholder="Password" required minlength="10">
                         </div>
                         <button type="submit" class="login-btn ro ">Login</button>
                         <p class="forgot-txt">Forgot password? Click <a href="#" class="here-txt">Here</a> to recover.</p>
@@ -575,6 +574,7 @@ r            height: 320px;
 </html>
 
 <style> 
+
     .not-mem-txt{
         color: white !important;
     }
@@ -617,14 +617,23 @@ r            height: 320px;
     }
     .txt-box{
         position: relative;
-        background-color: transparent;
+        background-color: black;
         width: 100%;
         padding: 10px;
         border-radius: 5px;
         margin: 3px;
         color: white;
+        border: none ;
+        outline: 2px solid hsl(203,30%,26%);
     }
 
+    input:user-valid {
+        outline-color: var(--primary-color) !important;
+    }
+
+    input:user-invalid {
+        outline-color: darkred !important;
+    }
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

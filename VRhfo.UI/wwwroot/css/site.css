@@ -121,6 +121,9 @@ body {
         padding-top: 15px;
         
     }
+    .login-modal-main{
+        max-width: 90% !important;
+    }
 
 }
 @media (max-width: 506px) {
