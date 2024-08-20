@@ -64,7 +64,7 @@ namespace VRhfo.UI.Controllers
             }
 
             // 2. Set up paging parameters
-            int pageSize = 10; // Videos per page
+            int pageSize = 8; // Videos per page
             int pageNumber = (page ?? 1); // Default to page 1
 
             ViewData["PageTitle"] = category; // Set the category as the page title
