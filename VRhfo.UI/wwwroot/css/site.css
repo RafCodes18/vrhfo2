@@ -121,9 +121,7 @@ body {
         padding-top: 15px;
         
     }
-    .login-modal-main{
-        max-width: 90% !important;
-    }
+  
 
 }
 @media (max-width: 506px) {
@@ -167,6 +165,10 @@ body {
     .welcum{
         max-width: 100px !important;
         margin-left: -110px !important;
+    }
+    .login-modal-main {
+        max-width: 78% !important;
+        height: 320px !important;
     }
 }
 @media (max-width: 376px) {
