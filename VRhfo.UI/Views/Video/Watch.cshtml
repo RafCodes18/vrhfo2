@@ -101,7 +101,7 @@
         font-size: large;
     }
     .page-left-container{
-        padding-left: 50px;
+
     }
 
 
@@ -502,6 +502,7 @@
                 text-wrap: nowrap;
             }
         }
+
 </style>
 
 <div class="page-left-container">
@@ -568,7 +569,7 @@
                     
                     
                     <video class="vid"  preload="auto" autoplay >
-                         <source  src="~/video/spank.mp4" type="video/mp4">
+                         <source  src="/video/my-video.mp4" type="video/mp4">
                     </video>
                   
        
@@ -947,7 +948,7 @@
             <div class="video">
                 <div class="sug-vid-img">
                     <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title.Replace(' ', '-')">
-                        <img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" class="sug-img" /> 
+                        <img src="~/img/astro.jpg" height="100px" width="150px" class="sug-img" /> 
                        </a>
                 </div>
                 <div class="sug-vid-content">

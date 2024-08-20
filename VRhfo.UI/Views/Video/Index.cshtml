@@ -191,20 +191,28 @@
     .profile-username {
         color: deepskyblue;
     }
+
+    main{
+        display: flex;
+        flex-direction:row;
+    }    
+    .video-index-container{
+        width: 100vw;
+    }
 </style>
 
-
-<div class="page-title">
-    @pageTitle
-</div>
-<div class="card-container">
+<div class="video-index-container">
+    <div class="page-title">
+        @pageTitle
+    </div>
+    <div class="card-container">
     @foreach (var item in Model)
     {
         <div class="card">
                 <a asp-controller="Video" asp-action="Watch" asp-route-title="@item.Title.Replace(' ', '-')">
                     <div class="card-img">
                   
-                            <img class="vid-img" src="~/img/@item.ThumbnailUrl" alt="@item.Title" style="width: 100%;">
+                            <img class="vid-img" src="~/img/astro.jpg" alt="@item.Title" style="width: 100%;">
                             <div class="time-container">
                                 <img src="~/img/clock2.png" height="13" width="13" class="clock-img">
                                 <p class="card-time">@item.FormattedDuration </p>
@@ -231,11 +239,11 @@
 
 </div>
 
-<div class="pagination-container">
-    <div class="pagination">
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+    <div class="pagination-container">
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
     </div>
 </div>
- 
  
 
