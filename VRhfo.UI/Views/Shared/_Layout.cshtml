@@ -410,15 +410,15 @@ r            height: 320px;
 
 
         #sidebar {
-            position: fixed;
-            top: 0;
+            position: absolute;
             left: 0;
             height: 100vh;
-            width: 250px;
-            background-color: #f1f1f1;
+            max-width: 300px;
+            width: 100%;
+            background-color: #444;
             transition: transform 0.3s ease-in-out;
             z-index: 9999;
-            
+            margin-top: 10px !important;
         }
         #sidebar.open {
             transform: translateX(0);
@@ -443,7 +443,6 @@ r            height: 320px;
         border: none;
         color: white;
         outline: none;
-    
     }
 }
 
@@ -660,7 +659,7 @@ r            height: 320px;
             sidebar.classList.toggle('open');
         }
 
-        if()
+        
     });
 
     
