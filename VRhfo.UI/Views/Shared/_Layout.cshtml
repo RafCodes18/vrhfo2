@@ -407,6 +407,46 @@ r            height: 320px;
        }
 
 
+
+
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            background-color: #f1f1f1;
+            transition: transform 0.3s ease-in-out;
+            z-index: 9999;
+            
+        }
+        #sidebar.open {
+            transform: translateX(0);
+        }
+
+@@media (min-width: 1000px) {
+      #sidebar {
+        position: static;
+        transform: none;
+      }  
+  
+      #sidebar.closed {
+        display: none;
+      }
+  
+      main.sidebar-closed {
+        margin-left: 0;
+      }
+    }
+    #toggleSidebar{
+        background-color: transparent;
+        border: none;
+        color: white;
+        outline: none;
+    
+    }
+}
+
     </style>
 </head>
 <body>
@@ -416,8 +456,10 @@ r            height: 320px;
             <div class="container-fluid">
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-lg-row nav-top">
+                        <button id="toggleSidebar">☰</button>
                             <li class="nav-item">
-                                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                                
+                                <a class="navbar-brand" asp-area="" asp-controller="Video" asp-action="Index" asp-route-category="Latest">
 @*                                     <img class="goggles" src="~/img/goggles-logo-rm.png" height="30" width="50" /> *@
                                 <p class="site-name-logo"><span class="white">brain</span>b<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="white">.tv</span></p>
                                    
@@ -486,10 +528,15 @@ r            height: 320px;
         
 
     </header>
-    <div class="container">
-        <main role="main" class="pb-3" >
+    
+    
+        
+        <main role="main" class="pb-3 page " >
+            <nav id="sidebar">
+                <p>link</p>
+            </nav>
             <div class="overlay hidden"></div>
-
+                      
             <div id="login-modal" class="login-modal-main hidden">
                 <div class="login-modal-contain">
                     <span id="close-login-modal" class="login-custom-x">&times;</span>
@@ -508,9 +555,11 @@ r            height: 320px;
                     <div id="login-message"></div>
                 </div>
             </div>
+
+
             @RenderBody()
         </main>
-    </div>
+    
     <footer class="  footer text-muted">
         <div class="container center">
             <p class="center"> &copy; 2024 - brainbreaker.tv 
@@ -594,4 +643,35 @@ r            height: 320px;
         overlay.addEventListener('click', toggleModal);
     });
 
+
+
+
+
+    //sidebar
+    const sidebar = document.getElementById('sidebar');
+    const toggleButton = document.getElementById('toggleSidebar');
+    const main = document.querySelector('main');
+
+    toggleButton.addEventListener('click', () => {
+        if (window.innerWidth >= 1000) {
+            sidebar.classList.toggle('closed');
+            main.classList.toggle('sidebar-closed');
+        } else {
+            sidebar.classList.toggle('open');
+        }
+
+        if()
+    });
+
+    
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1000) {
+            sidebar.classList.remove('open');
+            sidebar.classList.remove('closed');
+            main.classList.remove('sidebar-closed');
+        } else {
+            sidebar.classList.remove('open');
+        }
+    });
 </script>
