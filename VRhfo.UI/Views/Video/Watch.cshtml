@@ -1061,10 +1061,19 @@
 
 <!--NEWWw LIKE BUTTON FUNCTIONALITY-->
 <script>
-     
+    
+
+  
+
        
 
     document.addEventListener('DOMContentLoaded', function () {
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleSidebar');
+        const main = document.querySelector('main');
+
+        main.classList.add('sidebar-closed');
+        sidebar.classList.add('closed');
 
         const likeButtons = document.querySelectorAll('.likeL');
         const currentUser = @Html.Raw(Json.Serialize(ViewBag.CurrentUser)); // Access the user from the ViewBag
