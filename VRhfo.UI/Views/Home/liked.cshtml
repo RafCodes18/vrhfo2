@@ -226,10 +226,12 @@
     footer{
        display: none !important;
     }
+
+   
 </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<div class="main-pg">
+ <div class="main-pg">
     <div class="page-title">
         <p class="titl">favorites <img src="~/img/Yd60cw01.svg" height="50px" width="40px"/></p>
     </div>
@@ -286,7 +288,14 @@
     </div>
 </div>
 
+
 <script type="text/javascript">
+    const sidebar = document.getElementById('sidebar');
+    const toggleButton = document.getElementById('toggleSidebar');
+    const main = document.querySelector('main');
+
+    main.classList.add('sidebar-closed');
+    sidebar.classList.add('closed');
 
     const likeButtons = document.querySelectorAll('.likeL');
     const currentUser = @Html.Raw(Json.Serialize(ViewBag.CurrentUser)); // Access the user from the ViewBag

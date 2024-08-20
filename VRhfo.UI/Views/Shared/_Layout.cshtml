@@ -415,39 +415,87 @@ r            height: 320px;
             position: absolute;
             left: 0;
             height: 130vh;
-            max-width: 250px;
+            max-width: 230px;
             width: 100%;
             background-color: transparent;
             transition: transform 0.3s ease-in-out;
             z-index: 9999;
             margin-top: 0px !important;
+            margin-right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
         }
         #sidebar.open {
             transform: translateX(0);
         }
 
-@@media (min-width: 1000px) {
-      #sidebar {
-        position: static;
-        transform: none;
-      }  
+        #toggleSidebar {
+            background-color: transparent;
+            border: none;
+            color: white;
+            outline: none;
+            font-size: 24px;
+            padding-left: 5px;
+        }
+        @@media (min-width: 1000px) {
+              #sidebar {
+                position: static;
+                transform: none;
+              }  
   
-      #sidebar.closed {
-        display: none;
-      }
+              #sidebar.closed {
+                display: none;
+              }
   
-      main.sidebar-closed {
-        margin-left: 0;
-      }
+              main.sidebar-closed {
+                margin-left: 0;
+              }                         
+        }        
+
+    .categories-ul-container{
+        list-style-type: none !important;        
+    }   
+        
+    .sb-link{
+            color: #ccc;
+            position: relative;
+            width: 90%;
+            max-width: 100%;
+            padding: 5px 9px;
+            margin-bottom: 3px;
+            font-size: 20px;
+            border-radius: 6px;
+            margin-left: 3px;
+            margin-top: 3px;
     }
-    #toggleSidebar{
-        background-color: transparent;
-        border: none;
-        color: white;
-        outline: none;
-        font-size: 24px;
-    }
-}
+        .sb-link:hover {
+            background-color: #202020;
+            cursor: pointer;
+            color: white;
+        }
+        .sidebar-title{
+            color: var(--accent-color);
+            font-size: x-large;
+            padding-bottom: -10px;
+            margin-top: 6px;
+            margin-right: auto;   
+            font-weight: 600;
+        }
+        .breaker{
+            width: 90%;
+            border-bottom: 1px solid #444;
+            margin: 10px 0;
+        }
+
+        main {
+            display: flex;
+            flex-direction: row;
+        }
+        .main-pg{
+            width: 100vw;
+        }
     </style>
 </head>
 <body>
@@ -524,7 +572,9 @@ r            height: 320px;
                                 <a class="nav-link text-light join-now" asp-controller="Home" asp-action="JoinNow">Join Now</a>
                             </li>
                         }
-            </div>              
+                    </ul>
+            </div>    
+            </div>
         </nav>        
         
 
@@ -532,24 +582,20 @@ r            height: 320px;
         
         <main role="main" class="pb-3 page " >
             <nav id="sidebar">
-            <p>Categories</p>
+                <p class="sidebar-title">Categories</p>
+                <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="">Trending</a>
+                <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Brainwashing">Brainwashing</a>
+                <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Gooning">Gooning</a>                                             
+                <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="HFO">HFO</a>
+                <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Hypnosis">Hypnosis</a>  
+                <div class="breaker"></div>
+                <a class="sb-link" asp-action="Captions" asp-controller="Home">Porn Captions</a>
+                <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Top">Top Creators</a>
 
-                <ul class="categories-ul-container">
-                    <li class="nav-item">
-                        <a asp-action="Index" asp-controller="Video" asp-route-category="Brainwashing">Brainwashing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-action="Index" asp-controller="Video" asp-route-category="Gooning">Gooning</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-action="Index" asp-controller="Video" asp-route-category="HFO">HFO</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-action="Index" asp-controller="Video" asp-route-category="Hypnosis">Hypnosis</a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="overlay hidden"></div>
+        </nav>
+            <div class="overlay hidden">
+                  
+            </div>
                       
             <div id="login-modal" class="login-modal-main hidden">
                 <div class="login-modal-contain">
@@ -612,8 +658,16 @@ r            height: 320px;
     }
     .login-btn{
          width: 100%; 
-         padding: 10px;
-         background-color: darkgray;         
+         padding: 6px;
+         background-color: var(--primary-color); 
+         border-radius: 6px;
+         color: #333 !important;
+         font-weight: 700 !important;
+         font-size: large;
+
+    }
+    .login-btn:hover{
+        background-color: var(--primary-color-hover);
     }
 .join-now-btn-small{
         color: white !important;
@@ -649,6 +703,9 @@ r            height: 320px;
     input:user-invalid {
         outline-color: darkred !important;
     }
+    input:focus{
+        outline-color: darkgrey;
+    }
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -682,12 +739,11 @@ r            height: 320px;
             main.classList.toggle('sidebar-closed');
         } else {
             sidebar.classList.toggle('open');
+
         }
 
         
-    });
-
-    
+    });    
 
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 1000) {
@@ -697,5 +753,6 @@ r            height: 320px;
         } else {
             sidebar.classList.remove('open');
         }
-    });
+    });    
+    
 </script>

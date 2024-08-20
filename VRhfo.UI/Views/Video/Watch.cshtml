@@ -154,9 +154,8 @@
         }
      }
 
-     main{
-         margin-top: 0px;
-     }
+   
+
 
     @@media (max-width: 930px) {
         main{
@@ -948,7 +947,7 @@
             <div class="video">
                 <div class="sug-vid-img">
                     <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title.Replace(' ', '-')">
-                        <img src="~/img/astro.jpg" height="100px" width="150px" class="sug-img" /> 
+                        <img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" class="sug-img" /> 
                        </a>
                 </div>
                 <div class="sug-vid-content">
@@ -963,8 +962,6 @@
 
      }
 </div>
-
-
 
 <style>   
     /*RIGHT SIDE PAGE CSS*/
