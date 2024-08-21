@@ -102,7 +102,7 @@ body {
         font-size: small !important;
     }
 }
-@media(max-width: 637px){
+@media(max-width: 647px){
     .lik-box a {
         font-size: x-small !important;
     }
@@ -184,6 +184,17 @@ body {
         margin: 0 !important;
         margin-top: -6px !important;
         margin-right: -80px !important;
+    }
+    .login{
+          font-size: smaller;
+    }
+    .site-name-logo {
+         margin-right: -10px;
+    }
+    .pagination a{
+        padding: 10px !important;
+        margin: 0 !important;
+        max-width: 80vw;
     }
 }
 

@@ -216,14 +216,7 @@
             width: 180px;
             white-space: nowrap;
 
-        }
-
-        @@media(min-width: 930px) {            
-            .lik-box {
-                padding-left: 30px !important;
-            }
-        }
-
+        }       
 
         .dropdown  {
             position: relative;
@@ -456,8 +449,20 @@ r            height: 320px;
   
               main.sidebar-closed {
                 margin-left: 0;
-              }                         
-        }        
+              }    
+              
+        }    
+        @@media(max-width: 999px){
+            #sidebar{
+                position: absolute;
+                display: none;
+            }
+            .card-container{
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 90vw;
+            }
+        }
 
     .categories-ul-container{
         list-style-type: none !important;        
@@ -756,25 +761,15 @@ r            height: 320px;
     const main = document.querySelector('main');
 
     toggleButton.addEventListener('click', () => {
+       
+        //if hamburger clicked in desktop mode, close sidebar.
         if (window.innerWidth >= 1000) {
             sidebar.classList.toggle('closed');
             main.classList.toggle('sidebar-closed');
         } else {
+            //otherwise open it
             sidebar.classList.toggle('open');
-
-        }
-
-        
+        }        
     });    
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 1000) {
-            sidebar.classList.remove('open');
-            sidebar.classList.remove('closed');
-            main.classList.remove('sidebar-closed');
-        } else {
-            sidebar.classList.remove('open');
-        }
-    });    
-    
+     
 </script>
