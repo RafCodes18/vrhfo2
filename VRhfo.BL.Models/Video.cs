@@ -144,11 +144,11 @@
                 }
                 else if (dateDifference.TotalDays < 365)
                 {
-                    return $"{(int)(dateDifference.TotalDays / 30)} months ago";
+                    return $"{(int)(dateDifference.TotalDays / 30)} mths ago";
                 }
                 else
                 {
-                    return $"{(int)(dateDifference.TotalDays / 365)} years ago";
+                    return $"{(int)(dateDifference.TotalDays / 365)} yrs ago";
                 }
             }
         }

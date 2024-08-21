@@ -414,7 +414,7 @@ r            height: 320px;
         #sidebar {
             position: absolute;
             left: 0;
-            height: 130vh;
+            height: 100vh;
             max-width: 230px;
             width: 100%;
             background-color: transparent;
@@ -437,10 +437,12 @@ r            height: 320px;
             color: white;
             font-size: 27px;
             margin-left: 5px;
-            border-radius: 2px !important;
+           
         }
         #toggleSidebar:hover{
-            background-color: #111;
+            color: #bbb;
+            border-radius: 50%;
+
         }
         @@media (min-width: 1000px) {
               #sidebar {
@@ -509,7 +511,7 @@ r            height: 320px;
             margin-bottom: 5px;
             height: 22px !important;
             width: 22px !important;
-        }
+        }        
     </style>
 </head>
 <body>
@@ -519,7 +521,7 @@ r            height: 320px;
             <div class="container-fluid">
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-lg-row nav-top">
-                        <button id="toggleSidebar">☰</button>
+                        <button class="hamburger" id="toggleSidebar">☰</button>
                             <li class="nav-item">
                                 
                                 <a class="navbar-brand" asp-area="" asp-controller="Video" asp-action="Index" asp-route-category="Latest">

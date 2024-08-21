@@ -44,6 +44,7 @@
     .canvas-details{
         margin-top: 13px !important;
 
+
     }
     .vid-details{
         margin-left: 110px;
@@ -110,7 +111,7 @@
     .canvas-details{
         justify-content: flex-end;
         border-radius: 5px;
-        background-color:black;
+        background-color:#111;
         padding: 10px 10px !important;
         max-width: 1000px;
         display: flex;
@@ -119,12 +120,7 @@
         margin-inline: auto;
         margin-top: 19px;
         width: 100%;
-        box-shadow: #3f32325d 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-        background: hsla(0, 0%, 0%, 1);
-        background: linear-gradient(90deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 0%, 1) 24%, hsla(0, 0%, 13%, 1) 94%, hsla(0, 0%, 8%, 1) 100%);
-        background: -moz-linear-gradient(90deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 0%, 1) 24%, hsla(0, 0%, 13%, 1) 94%, hsla(0, 0%, 8%, 1) 100%);
-        background: -webkit-linear-gradient(90deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 0%, 1) 24%, hsla(0, 0%, 13%, 1) 94%, hsla(0, 0%, 8%, 1) 100%);
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#000000", endColorstr="#000000", GradientType=1 );
+        
    }
 
      
@@ -570,8 +566,8 @@
                     <video class="vid"  preload="auto" autoplay >
                          <source  src="/video/spank.mp4" type="video/mp4">
                     </video>
-                  
-       
+                  <img class="video-watermark" src="~/img/bbtv-invisible.png" />
+                    
                 
     </div>
     <!-- VIDEO (canvas) DETAILS -->
@@ -625,6 +621,14 @@
     </div> *@
     <!--Vid details CSS -->
     <style>
+        .video-watermark{
+            height: 30px; 
+            width: 140px; 
+            background: transparent;
+            position: absolute; 
+            right: 0;
+            bottom: 0;
+        }
         .likeL:hover{
             cursor: pointer;
         }
