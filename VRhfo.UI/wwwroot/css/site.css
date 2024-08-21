@@ -227,6 +227,10 @@ body {
     .navbar-brand {
         margin-right: 120px !important;
     }
+    .nav-item{
+        padding: 0 !important;
+        margin: 0 !important;
+    }
 }
 
 @media(max-width: 392px) {
