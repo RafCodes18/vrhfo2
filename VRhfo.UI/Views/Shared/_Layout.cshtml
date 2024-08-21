@@ -457,13 +457,22 @@ r            height: 320px;
         }    
         @@media(max-width: 999px){
             #sidebar{
-                position: absolute;
+                position: fixed;
                 display: none;
             }
             .card-container{
                 margin: 0 !important;
                 padding: 0 !important;
                 max-width: 90vw;
+            }
+            .navbar{
+                position: fixed;
+                z-index: 999;
+                width: 100vw;
+                top: 0px;
+            }
+            .video-index-container{
+                margin-top: 80px;
             }
 
         }
