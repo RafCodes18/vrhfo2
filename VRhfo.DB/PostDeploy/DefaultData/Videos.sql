@@ -2,7 +2,7 @@
     INSERT INTO dbo.tblVideo (Title, Category, ThumbnailUrl, VideoUrl, Description, Genre, UploadDate, Duration, Views, RatingCount, IsPreview, IsPublic, ContentWarning, Likes, Dislikes, UserId)
     VALUES
         ('Porn Addict Brainwash Program 1.0', 'Brainwashing', 'ang.jpg', 'spiralshort.mp4', 'desc', 'genre', '2023-09-05', '01:30:45', 5500, 2300, 0, 1, 'No content warning', 1255, 342, 2),
-        ('Hypnotic Ass', 'Hypnosis', 'vrpic.jpg', 'VideoUrl2', 'desc2', 'genre2', '2024-03-06', '02:15:30', 6500, 3100, 0, 1, 'No content warning', 2744, 407, 3),
+        ('BrainBreak 1', 'Brainwashing', 'https://d1am11zh09ueot.cloudfront.net/brainbreak-1.png', 'https://d1am11zh09ueot.cloudfront.net/brainbreak-video-1.mp4', 'desc2', 'genre2', '2024-03-06', '02:15:30', 6500, 3100, 0, 1, 'No content warning', 2744, 407, 3),
         ('Gooner Mind Wipe 3.0', 'Gooning', 'azz.jpg', '#', 'desc3', 'genre3', '2024-01-02', '01:45:15', 7000, 3200, 0, 1, 'No content warning', 1871, 1322, 1),
         ('Reily Reed HFO', 'HFO', 'reily.jpg', '#', 'desc4', 'genre4', '2019-05-22', '01:20:00', 4800, 1900, 0, 1, 'No content warning', 1445, 350, 1),
         ('Angela White HFO Binaural Beats', 'Binaural Beats', 'ang.jpg', '#', 'desc5', 'genre5', '2023-09-01', '02:05:30', 7200, 3400, 0, 1, 'No content warning', 3212, 1200, 2),
