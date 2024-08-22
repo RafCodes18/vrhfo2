@@ -64,10 +64,10 @@ namespace VRhfo.UI.Controllers
                 Password = password
             };
             bool loginWorked = UserManager.Login(user);
-
-            if(loginWorked)
+            User user1 = UserManager.LoadByUsername(user.Username);
+            if (loginWorked)
             {
-                SetUser(user);
+                SetUser(user1);
                 return Json(new { success = true, message = "Login successful" });
             }
             else

@@ -117,25 +117,25 @@ namespace VRhfo.BL
                                 }
                                 else
                                 {
-                                    throw new LoginFailureException();
+                                     
                                     return false;
                                 }
                             }
                             else
                             {
-                                throw new LoginFailureException("Username was not found.");
+                                return false;
                             }
                         }
                     }
                     else
                     {
-                        throw new LoginFailureException("Password was not set. ");
+                        return false;
                     }
 
                 }
                 else
                 {
-                    throw new LoginFailureException("Username was not set. ");
+                    return false;
                 }
 
             }
