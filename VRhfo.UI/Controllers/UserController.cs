@@ -46,6 +46,36 @@ namespace VRhfo.UI.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult LoginModal([FromBody] dynamic loginData)
+        {
+            // Validate credentials and perform login logic
+            // Return appropriate JSON response
+            // Parse the JSON data
+            var json = Newtonsoft.Json.Linq.JObject.Parse(loginData.ToString());
+
+            // Extract username and password
+            string username = json["username"]?.ToString();
+            string password = json["password"]?.ToString();
+
+            User user = new User()
+            {
+                Username = username,
+                Password = password
+            };
+            bool loginWorked = UserManager.Login(user);
+
+            if(loginWorked)
+            {
+                SetUser(user);
+                return Json(new { success = true, message = "Login successful" });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Invalid credentials" });
+            }
+        }
+
         // GET: User/Profile
         public ActionResult Profile(int userId)
         {
