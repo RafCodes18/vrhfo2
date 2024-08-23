@@ -12,6 +12,7 @@ public partial class tblVideo
     public string Category { get; set; } = null!;
 
     public string ThumbnailUrl { get; set; } = null!;
+    public string PreviewVideoURL { get; set; } = null!;
 
     public string VideoUrl { get; set; } = null!;
 
