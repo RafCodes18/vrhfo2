@@ -8,9 +8,39 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="~/css/JoinNow.css" />
 
  <style>
+    /*ScrollBar*/
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: black;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #222;
+        border-radius: 20px;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333;
+        }
+
+    :root { 
+        --text-color: #000;
+        --background-color: #000;
+        --primary-color: #d4ff00;
+        --primary-color-hover: #afd200;
+        --secondary-color: #262727;
+        --accent-color: #97a7b3;
+    }
+ 
     a{
         color: white;
         text-decoration: none;
@@ -19,13 +49,107 @@
         margin: 0 !important; 
         padding: 0 !important;
     }
-   
- </style>
-<div class="main-page step">
+
+    .white {
+        color: #fff;
+    }
+
+    .rotate-right {
+        display: inline-block; /* Ensures the span takes up only as much space as the letter */
+        transform: rotate(30deg); /* Rotate the element by 45 degrees */
+        margin-left: 3px;
+        margin-right: -2px;
+    }
+
+    .rotate-left {
+        display: inline-block; /* Ensures the span takes up only as much space as the letter */
+        transform: rotate(340deg); /* Rotate the element by 45 degrees */
+        margin-right: -1px;
+    }
+
+    .site-name-logo {
+        color: var(--primary-color) !important;
+        font-family: "Barlow", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 3.5rem;
+        letter-spacing: -2px;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    body{
+        background-image: url('~../../img/greytexture.jpg') !important;
+        /* Full height */
+        height: 100%;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .main-features {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0 40px;
+        position: relative;
+    }
+
+    .main_feature {
+        text-align: center;
+        background: #333 !important;
+        border-radius: 10px;
+        padding: 5px 10px;
+        margin: 0 5px;
+    }
+
+        .main_feature .feature-top-text {
+            font-weight: 800 !important;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+    .choose-plan {
+        margin-top: 10px;
+        font-family: "Raleway", sans-serif !important;
+        font-size: 32px;
+        font-weight: 700 !important;
+        margin-bottom: 5px;
+        /* background-image: linear-gradient(to right,#B347FF, #FF2969);*/
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, #666, #97a7b3);
+    }
+
+    .main-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .top-3-rows {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    body {
+        text-align: center;
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: 14px;
+    }
+
+
+</style>
+<div class="main-page ">
 
     <!--TOP 3 ITEMS-->
     <div class="top-3-rows">
-        <a asp-action="Index" asp-controller="Video"><img src="~/img/breen-removebg-preview.png" height="55" width="250" class="sit-logo" /> </a>
+        <a asp-area="" asp-controller="Video" asp-action="Index" asp-route-category="Latest">
+            <p class="site-name-logo"><span class="white">brain</span>b<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="white">.tv</span></p>
+        </a>
         <p class="choose-plan">Choose Your Plan</p>
         <div class="main-features">
             <div class="main_feature">
@@ -57,273 +181,130 @@
         </div>
     </div>
 
-    <div class="step-2 mh">
-        <!--this container is flex column-->
-        <div class="page-container">
-                    <div class="top-items">
-                        <h2 class="top-text"><img class="secure-logo" src="~/img/shield.png" height="25px" width="25px;"/>Secure and Discrete Payment</h2>
-                        <!--this container is flex row-->
-                        <div class="payment-options">
-                            <h2>Credit Card</h2>
-                            <h2>Crypto</h2>
-                            <h2>Paypal</h2>
-                        </div>
-                    </div>
-                    <!-- this container is flex row-->
-                    <div class="container-2"> 
-                            <!-- CARD  SELECTED  PAGE 2-->
-                            <div class="card second-card" id="card-selected">
-                                <div class="img-container">
-                                    <img src="~/img/one-month.png" class="second-card-image" />
-                                    <div class="hover-overlay"></div> <!-- Add this line for overlay -->
-                                    @*                 <span class="hover-text">The Best Gooning Experience</span>
-                                    *@
-                                </div>
-                                <div class="subscription-content">
-                                    <div class="discount">
-                                        37% off
-                                    </div>
-                                    <h2 class="second-card-plan-type">Monthly</h2>
-                                    <ul class="subscription-features">
-                                        <li><span>Unlimited streaming and downloads</span></li>
-                                        <li><span>+250 interactive syncs videos</span></li>
-                                        <li><span>Foreplay videos</span></li>
-                                    </ul>
-                                    <div class="price">
-                                        <div class="old-price">
-                                            $29.95
-                                        </div>
-                                        <div class="offer-price">
-                                            <h2 class="offer-num">$19.95</h2><span class="sub-price">/month</span>
-                                        </div>
-                                    </div>
-                                </div>                                                
-                            </div>
-                            <!-- END OF CARD-->
 
-                            <!-- this container is flex column-->
-                            <form asp-action="Create" asp-controller="User" method="Post">
-                                <div class="join-now-form">
-                                    <h2>Lets create an account</h2>
-                                    <input for="Email" class="join-now-form-txt" type="email" placeholder="Enter your email" asp-for="Email" required/>
-                                    
-                                    <input for="Username" class="join-now-form-txt" type="text" placeholder="Create a username" asp-for="Username" required/>                                                                
-                                    <input for="Password" class="join-now-form-txt" type="text" placeholder="Create a password" asp-for="Password" required /> 
- 
-                                
-                                    <div class="newsletter"><input type="checkbox" />
-                                        <p>Join the weekly newsletter!  </p>
-                                    </div>
-
-                                    <div>
-                                       
-                                            <input class="join-now-button" type="submit" value="Join Now"/>
-                                      
-                                    </div>
-                                    <div class="terms-info">
-                                            By submitting this form, you certify that you are 18 years of age or older, and agree to the <a href="#" class="terms-link">Terms-of-Service Agreement</a>
-                                    </div>
-                                </div>
-                            </form>
-                    </div>
-    
-              <div class="back" id="back-button">
-                  <img src="~/img/arrow-118-24.ico" class="back-arrow" /><p>Change plan</p>
-              </div>
-
-              <div class="payment-logo">
-                 @*  <img src="#" />
-                  <img src="#" />
-                  <img src="#" />
-                  <img src="#" /> *@
-              </div>
-              <div class="payment-processor-info">
-                  <p>You will be redirected to our trusted payment processor. </p>
-              </div>
+    <!--PRODUCT CARDDS-->
+<div class="cards">
+    <div class="card monthly">
+        <div class="card-content">
+            <h1>Monthly</h1>
+            <h3>Unlimited access</h3>
+            <h3>Cancel anytime</h3>            
+         </div>
+         <div class="pricing blur">
+                <p>20.00</p>
+          </div>
+    </div>
+    <div class="card yearly">
+        <div class="card-content">
+            <h1>Yearly</h1>
+                <h3>Unlimited access</h3>
+                <h3>Cancel anytime</h3>
         </div>
+        <div class="pricing blur">
+                <p>20.00</p>
+          </div>
     </div>
 
-
-    <!--SUBSCRIPTION CARDS CONTAINER-->
-    <div class="main-product-cards">
-       
-        <!-- CARD 1 -->
-        <div class="card" id="card-1" onclick="cardClicked(this)">
-            <div class="img-container">
-                <img src="~/img/one-month.png" />
-                <div class="hover-overlay"></div> <!-- Add this line for overlay -->
-
-@*                 <span class="hover-text">The Best Gooning Experience</span>
- *@            </div>
-            <div class="subscription-content">
-                <div class="discount">
-                    37% off
-                </div>
-                <h2>Monthly</h2>
-                <ul class="subscription-features">
-                    <li><span>Unlimited Streaming </span></li>
-                    <li><span>Save favorite videos</span></li>
-                    <li><span>Access the Worlds Largest Gooning Community</span></li>
-                </ul>
-                <div class="price">
-                    <div class="old-price">
-                        $29.95
-                    </div>
-                    <div class="offer-price">
-                        <h2 class="offer-num">$19.95</h2><span class="sub-price">/month</span>
-                    </div>
-                </div>
-            </div>
-            <div class="button-continue">
-                <button class="continue-button">Continue <img src="~/img/icons8-arrow-60.png" class="cont-arrow" /></button>
-            </div>
+     <div class="card yearly">
+        <div class="card-content">
+            <h1>Lifetime</h1>
+                <h3>Unlimited access</h3>
+                <h3>Cancel anytime</h3>
         </div>
-
-        <!-- CARD 2 -->
-        <div class="card" id="card-2" onclick="cardClicked(this)">
-            <div class="img-container">
-                <img src="~/img/3mon.jpg" />
-                <div class="hover-overlay"></div> <!-- Add this line for overlay -->
-
-@*                 <span class="hover-text">The Best Gooning Experience</span>
- *@            </div>
-            <div class="subscription-content">
-                <div class="discount">
-                    37% off
-                </div>
-                <h2>3 Months</h2>
-                <ul class="subscription-features">
-                    <li><span>Unlimited Streaming </span></li>
-                    <li><span>Save favorite videos</span></li>
-                    <li><span>Access the Worlds Largest Gooning Community</span></li>
-                </ul>
-
-                <div class="price">
-                    <div class="old-price">
-                        $54.95
-                    </div>
-                    <div class="offer-price">
-                        <h2 class="offer-num">$11.45</h2><span class="sub-price">/month</span>
-                    </div>
-                </div>
-            </div>
-            <div class="button-continue">
-                <button class="continue-button">Continue <img src="~/img/icons8-arrow-60.png" class="cont-arrow" /></button>
-            </div>
-        </div>
-
-        <!-- CARD 3 -->
-        <div class="card" id="card-3" onclick="cardClicked(this)">
-            <div class="img-container">
-                <img src="~/img/jasmine-rain-1.jpg" />
-                <div class="hover-overlay"></div> <!-- Add this line for overlay -->
-@*                 <span class="hover-text">The Best Gooning Experience</span>
- *@
-            </div>
-            <div class="subscription-content">
-                <div class="discount">
-                    35% off
-                </div>
-                <h2>Yearly</h2>
-                <ul class="subscription-features">
-                    <li><span>Unlimited Streaming </span></li>
-                    <li><span>Save favorite videos</span></li>
-                    <li><span>Access the Worlds Largest Gooning Community</span></li>
-                </ul>
-                <div class="price">
-                    <div class="old-price">
-                        $129.95
-                    </div>
-                    <div class="offer-price">
-                        <h2 class="offer-num">$6.95</h2><span class="sub-price">/month</span>
-                    </div>
-                </div>
-            </div>
-            <div class="button-continue">
-                <button class="continue-button">Continue <img src="~/img/icons8-arrow-60.png" class="cont-arrow" /></button>
-            </div>
-        </div>
-
-        <!-- CARD 4 -->
-        <div class="card" id="card-4" onclick="cardClicked(this)">
-            <div class="img-container">
-                <img src="~/img/yearly-img.jpg" />
-                <div class="hover-overlay"></div> <!-- Add this line for overlay -->
-@*                 <span class="hover-text">The Best Gooning Experience</span>
- *@
-            </div>
-            <div class="subscription-content">
-                <div class="discount">
-                    40% off
-                </div>
-                <h2>Lifetime</h2>
-                <ul class="subscription-features">
-                    <li><span>Unlimited Streaming </span></li>
-                    <li><span>Save favorite videos</span></li>
-                    <li><span>Access the Worlds Largest Gooning Community</span></li>
-                </ul>
-                <div class="price">
-                    <div class="old-price">
-                        $499
-                    </div>
-                    <div class="offer-price">
-                        <h2 class="offer-num">$299</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="button-continue">
-                <button class="continue-button">Continue <img src="~/img/icons8-arrow-60.png" class="cont-arrow" /></button>
-
-            </div>
-        </div>        
+        <div class="pricing blur">
+                <p>20.00</p>
+          </div>
     </div>
-
-    <div class="bottom-info-container">
-        <div class="bottom-container">
-            <h2>ALL PLANS INCLUDE</h2>
-            <div class="features-bottom-container">
-                <div class="feature-bottom">
-                    <img src="~/img/star.png" class="sec-png" />
-                    <h3> Leading Content Producers</h3>
-                </div>
-                <div class="feature-bottom">
-                    <img src="~/img/vr.png" class="sec-png" />
-                    <h3>Works with any VR device</h3>
-                </div>
-                <div class="feature-bottom">
-                    <img class="sec-png" src="~/img/security.png" />
-                    <h3>Safe, secure and discrete billing</h3>
-                </div>
-                <div class="feature-bottom">
-                    <img src="~/img/cancel.png" class="sec-png" />
-                    <h3>Cancel anytime</h3>
-                </div>
-            </div>
-        </div>
-        <footer>
-            <div class="payment-logos">
-            <img src="~/img/mc_symbol_opt_53_1x.png" class="mast-logo"/>
-                <img src="~/img/paypal.png" class="pay-logo"/>
-                <img src="~/img/discover-logo-png-pic-5667.png" class="pay-logo" />
-                <img src="~/img/Visa_Brandmark_Blue_RGB_2021.png" class="pay-logo" />
-            </div>
-            <small class="footer-txt">&copy; Copyright GoonVR 2024, Bit Crave LLC</small>
-
-        </footer>
-    </div>
-    <div id="fixed-button">f
-        <div class="button-like">Next step -> </div>
-    </div>
+</div> 
+<div class="spacer"></div>
 </div>
 
  
 <style>
-    .hidden-2{
-        display: none !important; 
+    .card-content{
+        padding: 10px;
     }
-    .footer-txt{
-        color: #232323 !important;
+    .pricing{
+       background: rgba( 155, 155, 155, 0.15 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 31, 31, 0.37 );
+        backdrop-filter: blur( 17px );
+        -webkit-backdrop-filter: blur( 17px );
+        border-radius: 0 0 10px 10px; 
+        
+
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 0 !important;
+        height: 60px ;
     }
+    .main-page{
+        height: 100vh;
+    }
+    body{
+        margin: 0 !important;
+        overflow-x: hidden;
+        padding: 0 !important;
+    }
+    .cards{
+        display: flex;
+        width: 90vw;
+        justify-content: center;
+        height: 40vh;
+    }
+   .card{
+       text-align: left;
+       color: white !important;
+       outline: 1px solid grey;
+       position: relative;
+       margin: 10px;
+       width: 90%;
+       max-width: 300px;
+       height: auto;
+          background: rgba( 255, 255, 255, 0.05 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 31, 31, 0.37 );
+        backdrop-filter: blur( 2px );
+        -webkit-backdrop-filter: blur( 2px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+   }
+   .card:hover{
+       cursor: pointer;
+       outline-color: white;
+   }
+
+   @@media(max-width: 670px){
+       .cards{
+           flex-direction: column;
+           align-items: center;
+           width: 100vw !important;
+       }
+       .card{
+           max-width: 100% !important;
+           height: auto;
+           margin: 6px !important;
+           margin-top: 20px;
+           font-size: x-small !important;
+           padding: 3px !important;
+       }
+       .main_feature{
+           font-size: small !important;
+       }
+       .feature-top-text{
+           font-size: medium !important;
+       }
+       .top-3-rows{
+            margin-top: -40px;
+       }
+       .main-features{
+           margin: 0 !important;
+           margin-bottom: 80px !important;
+       }
+       .site-name-logo{
+           font-size: 2.4rem !important;
+       }
+   }
+
 </style>
  
 
