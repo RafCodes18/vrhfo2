@@ -73,7 +73,7 @@
         font-weight: 700;
         font-style: normal;
         font-size: 3.5rem;
-        letter-spacing: -2px;
+        letter-spacing: -7px;
         padding: 0 !important;
         margin: 0 !important;
     }
@@ -133,6 +133,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+                margin-top: -40px !important;
+
     }
 
     body {
@@ -188,22 +190,34 @@
         <img class="model-img" src="~../../img/angelabb.png"></img>
         <div class="card-content">
             <h1>Monthly</h1>
+                <h3 style="color:var(--accent-color)">The Gooner</h3>
               <p>Unlimited access</p>
                 <p>Cancel anytime</p>           
          </div>
          <div class="pricing blur">
-                <p>20.00</p>
+               <p class="strikedTxt">$2.00</p>
+                <div class="bottom-price">
+                    <p class="cents">$0.27 / day</p>
+                </div>
+                                        <a asp-controller="Home" asp-action="JoinNow" class="join-now-btn-small">Join Now</a>           
+
           </div>
     </div>
     <div class="card yearly">
                 <img class="model-img" src="~../../img/alexisbg.png"></img>
         <div class="card-content">
             <h1>Yearly</h1>
+            <h3 style="color:var(--accent-color)">The Porn Addict</h3>
                   <p>Unlimited access</p>
                 <p>Cancel anytime</p>
         </div>
         <div class="pricing blur">
-                <p>20.00</p>
+               <p class="strikedTxt">$2.00</p>
+                <div class="bottom-price">
+                    <p class="cents">$0.67 / day</p>
+                </div>
+                        <a asp-controller="Home" asp-action="JoinNow" class="join-now-btn-small">Join Now</a>           
+
           </div>
     </div>
 
@@ -211,20 +225,53 @@
                          <img class="model-img lana" src="~../../img/lana12.png"></img>
         <div class="card-content">
             <h1>Lifetime</h1>
+                <h3 style="color:var(--accent-color)">The Pornosexual</h3>
                 <p>Unlimited access</p>
-                <p>Cancel anytime</p>
+                <p>100 years access</p>
         </div>
         <div class="pricing blur">
-                <p>20.00</p>
-          </div>
-    </div>
+                <p class="strikedTxt">$1000</p>
+                <div class="bottom-price">
+                    <p class="cents">$400</p>
+                </div>
+                <a asp-controller="Home" asp-action="JoinNow" class="join-now-btn-small">Join Now</a>          </div>
+        </div>
 </div> 
 <div class="spacer"></div>
 </div>
 
  
 <style>
-   
+    .cents{
+        font-size: large;
+        font-weight: 700;
+    }
+    .bottom-price{
+        position: absolute;
+        bottom: -12px;
+        left: 10;
+    }
+    .strikedTxt{
+        text-decoration:line-through;
+    }
+   .join-now-btn-small{
+        color: #111 !important;
+        font-weight: 700;
+        background-color: transparent;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: var(--primary-color); 
+       text-decoration: none;
+        margin-left: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding: 9px;
+        margin-right: 10px;
+    }  .join-now-btn-small:hover{
+        background-color: #b3d705;
+        color: black !important;
+        transition-duration: 500ms;
+    }
     .model-img{
         position: absolute;
         right: 0;
@@ -239,7 +286,7 @@
         padding: 10px;
     }
     .pricing{
-       background: rgba( 155, 155, 155, 0.15 );
+       background: rgba( 55, 55, 55, 0.15 );
         box-shadow: 0 8px 32px 0 rgba( 31, 31, 31, 0.37 );
         backdrop-filter: blur( 17px );
         -webkit-backdrop-filter: blur( 17px );
@@ -251,6 +298,7 @@
         width: 100%;
         padding: 0 !important;
         height: 60px ;
+        display: flex;
     }
     .main-page{
         height: 100vh;
@@ -283,13 +331,13 @@
         border: 1px solid rgba( 255, 255, 255, 0.18 );
    }
    .card:hover{
-       cursor: pointer;
        outline-color: white;
        background: radial-gradient(rgba(212, 230, 100, 0.53), rgba(145, 152, 229, 0.00));
    }
 
    @@media(max-width: 670px){
        .cards{
+           margin-top: 10px;
            flex-direction: column;
            align-items: center;
            width: 100vw !important;
@@ -298,18 +346,17 @@
            max-width: 100% !important;
            height: auto;
            margin: 6px !important;
-           margin-top: 20px;
+           margin-top: 0px;
            font-size: x-small !important;
-           padding: 3px !important;
        }
        .main_feature{
            font-size: small !important;
        }
        .feature-top-text{
            font-size: medium !important;
-       }
+       }       
        .top-3-rows{
-            margin-top: -40px;
+            margin-top: -80px !important;
        }
        .main-features{
            margin: 0 !important;
@@ -317,7 +364,22 @@
        }
        .site-name-logo{
            font-size: 2.4rem !important;
+           letter-spacing: -2px !important;
        }
+        
+       .strikedTxt{
+           position: absolute;
+           left: auto;
+           right: 0 ;
+           margin-right: 100px;
+       }
+       .bottom-price{
+           position: absolute;
+           left: auto;
+           right: 0 ;
+           margin-right: 100px;
+       }
+      
    }
 
 </style>
