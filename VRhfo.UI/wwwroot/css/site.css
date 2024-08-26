@@ -134,27 +134,27 @@ body {
     }
     .site-name-logo{
         font-size: 32px !important;
-        padding: 0 !important;
+        
+    }
+    .join-now{
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        margin-right: 10px;
+    }
+    #login-button{
         margin: 0 !important;
+        padding-left: 0 !important;
+        margin-left: -10px;
     }
-    .login-button{
-        padding: 0 !important;
-        margin: 0 !important;
+    li .nav-item{
+        margin:0 ;
     }
-    .nav-top{
-        padding: 0 !important;
-        margin: 0 !important;
-        max-width: 100%;
-    }
-    .container-fluid{
-        padding: 0; 
-        margin: 0;
-    }
+   
     
         
 }
 
-@media(max-width: 430px){
+@media(max-width: 450px){
     .join-now {
         display: none;
     }
