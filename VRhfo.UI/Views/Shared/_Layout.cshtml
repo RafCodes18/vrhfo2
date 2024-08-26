@@ -436,6 +436,7 @@ r            height: 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding-left: 13px;
 
         }
         #sidebar.open {
@@ -491,6 +492,9 @@ r            height: 320px;
             }
             .vid{
                 margin-top: 60px;
+            }
+            .home-link{
+                margin-top: 25px !important;
             }
 
         }
@@ -551,9 +555,10 @@ r            height: 320px;
         
         .mobile-sidebar{
             display: flex !important;
-            background-color: var(--secondary-color) !important;
-            top: 50px !important;
-            height: 70vh !important;
+            background-color: #111 !important;
+            top: 54px !important;
+            height: 90vh !important;
+            border-right: 1px solid #222;
         }
     </style>
 </head>
@@ -646,7 +651,7 @@ r            height: 320px;
 
 
 
-                <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category=""><svg class=" home-svg" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.7 17.957h-5.829a.764.764 0 0 1-.762-.762v-3.62c0-.914-.724-1.638-1.638-1.638-.915 0-1.639.724-1.639 1.638v3.62c0 .42-.343.762-.762.762H1.317a.764.764 0 0 1-.762-.762V7.441c0-.686.343-1.334.876-1.715L9.09.201c.266-.19.61-.19.876 0l7.658 5.525c.534.381.877 1.029.877 1.715v9.792a.822.822 0 0 1-.8.724Zm-5.067-1.486h4.344v-9.03a.651.651 0 0 0-.267-.495l-7.201-5.22-7.202 5.181a.651.651 0 0 0-.266.496v9.03h4.343v-2.858a3.139 3.139 0 0 1 3.125-3.124 3.139 3.139 0 0 1 3.124 3.124v2.896Z" fill="#fff"></path></svg> Home</a>
+                <a class="sb-link home-link" asp-action="Index" asp-controller="Video" asp-route-category=""><svg class=" home-svg" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.7 17.957h-5.829a.764.764 0 0 1-.762-.762v-3.62c0-.914-.724-1.638-1.638-1.638-.915 0-1.639.724-1.639 1.638v3.62c0 .42-.343.762-.762.762H1.317a.764.764 0 0 1-.762-.762V7.441c0-.686.343-1.334.876-1.715L9.09.201c.266-.19.61-.19.876 0l7.658 5.525c.534.381.877 1.029.877 1.715v9.792a.822.822 0 0 1-.8.724Zm-5.067-1.486h4.344v-9.03a.651.651 0 0 0-.267-.495l-7.201-5.22-7.202 5.181a.651.651 0 0 0-.266.496v9.03h4.343v-2.858a3.139 3.139 0 0 1 3.125-3.124 3.139 3.139 0 0 1 3.124 3.124v2.896Z" fill="#fff"></path></svg> Home</a>
                 <div class="breaker"></div>
 
                 <p class="sidebar-title">Categories</p>                
