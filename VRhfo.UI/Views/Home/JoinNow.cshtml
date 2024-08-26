@@ -185,20 +185,22 @@
     <!--PRODUCT CARDDS-->
 <div class="cards">
     <div class="card monthly">
+        <img class="model-img" src="~../../img/angelabb.png"></img>
         <div class="card-content">
             <h1>Monthly</h1>
-            <h3>Unlimited access</h3>
-            <h3>Cancel anytime</h3>            
+              <p>Unlimited access</p>
+                <p>Cancel anytime</p>           
          </div>
          <div class="pricing blur">
                 <p>20.00</p>
           </div>
     </div>
     <div class="card yearly">
+                <img class="model-img" src="~../../img/alexisbg.png"></img>
         <div class="card-content">
             <h1>Yearly</h1>
-                <h3>Unlimited access</h3>
-                <h3>Cancel anytime</h3>
+                  <p>Unlimited access</p>
+                <p>Cancel anytime</p>
         </div>
         <div class="pricing blur">
                 <p>20.00</p>
@@ -206,10 +208,11 @@
     </div>
 
      <div class="card yearly">
+                         <img class="model-img lana" src="~../../img/lana12.png"></img>
         <div class="card-content">
             <h1>Lifetime</h1>
-                <h3>Unlimited access</h3>
-                <h3>Cancel anytime</h3>
+                <p>Unlimited access</p>
+                <p>Cancel anytime</p>
         </div>
         <div class="pricing blur">
                 <p>20.00</p>
@@ -221,6 +224,17 @@
 
  
 <style>
+   
+    .model-img{
+        position: absolute;
+        right: 0;
+        height: 100%;
+        z-index: -1;
+    }
+     .lana{
+        height: 96% !important;
+        bottom: 0;
+    }
     .card-content{
         padding: 10px;
     }
@@ -255,7 +269,7 @@
    .card{
        text-align: left;
        color: white !important;
-       outline: 1px solid grey;
+       outline: 1px solid #111;
        position: relative;
        margin: 10px;
        width: 90%;
@@ -271,6 +285,7 @@
    .card:hover{
        cursor: pointer;
        outline-color: white;
+       background: radial-gradient(rgba(212, 230, 100, 0.53), rgba(145, 152, 229, 0.00));
    }
 
    @@media(max-width: 670px){
