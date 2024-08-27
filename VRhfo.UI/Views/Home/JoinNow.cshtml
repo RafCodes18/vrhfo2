@@ -143,7 +143,9 @@
         font-size: 14px;
     }
 
-
+    .hidden{
+        display: none !important;
+    }
 </style>
 <div class="main-page ">
 
@@ -185,8 +187,8 @@
 
 
     <!--PRODUCT CARDDS-->
-<div class="cards">
-    <div class="card monthly">
+<div class="cards" >
+    <div class="card monthly" id="card-1"  onclick="cardClicked(this)">
         <img class="model-img" src="~../../img/angelabb.png"></img>
         <div class="card-content">
             <h1>Monthly</h1>
@@ -199,11 +201,11 @@
                 <div class="bottom-price">
                     <p class="cents">$0.27 / day</p>
                 </div>
-                                        <a asp-controller="Home" asp-action="JoinNow" class="join-now-btn-small">Join Now</a>           
+            <a href="#"  class="join-now-btn-small">Join Now</a>           
 
           </div>
     </div>
-    <div class="card yearly">
+    <div class="card yearly" id="card-2"  onclick="cardClicked(this)">
                 <img class="model-img" src="~../../img/alexisbg.png"></img>
         <div class="card-content">
             <h1>Yearly</h1>
@@ -216,13 +218,13 @@
                 <div class="bottom-price">
                     <p class="cents">$0.67 / day</p>
                 </div>
-                        <a asp-controller="Home" asp-action="JoinNow" class="join-now-btn-small">Join Now</a>           
+                        <a href="#"  class="join-now-btn-small">Join Now</a>           
 
           </div>
     </div>
 
-     <div class="card yearly">
-                         <img class="model-img lana" src="~../../img/lana12.png"></img>
+     <div class="card yearly" id="card-3"  onclick="cardClicked(this)">
+        <img class="model-img lana" src="~../../img/lana12.png"></img>
         <div class="card-content">
             <h1>Lifetime</h1>
                 <h3 style="color:var(--accent-color)">The Pornosexual</h3>
@@ -234,14 +236,66 @@
                 <div class="bottom-price">
                     <p class="cents">$400</p>
                 </div>
-                <a asp-controller="Home" asp-action="JoinNow" class="join-now-btn-small">Join Now</a>          </div>
+                <a href="#" class="join-now-btn-small">Join Now</a>          </div>
         </div>
 </div> 
-<div class="spacer"></div>
+
+    <!--step 2-->
+    <div class="step-2-container">
+        <div class="second-card">
+            <div class="discount">ss</div>
+            <div class="second-card-plan-type">ss</div>
+            <div class="offer-num">ss</div>
+            <img class="model-img second-card-image" src="~../../img/lana12.png"></img>
+
+        </div>
+
+        <div class="create-account">
+            <h1>Lets create an account</h1>
+        </div>
+    </div>
+
+
+
+
+
 </div>
 
  
 <style>
+    .second-card-image{
+
+    }
+    .create-account{
+        width: 600px;
+        height: 400px;
+    }
+    .create-account h1{
+        color: white;
+    }
+    .step-2-container{
+        display: none; 
+        max-width: 800px;         
+    }
+    .second-card{
+        z-index: 99999;
+        text-align: left;
+       color: white !important;
+       outline: 1px solid #111;
+       position: relative;
+       margin: 10px;
+       width: 90%;
+       max-width: 300px;
+       height: auto;
+          background: rgba( 255, 255, 255, 0.05 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 31, 31, 0.37 );
+        backdrop-filter: blur( 2px );
+        -webkit-backdrop-filter: blur( 2px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        padding: 10px;
+    }
+    
     .cents{
         font-size: large;
         font-weight: 700;
@@ -255,22 +309,21 @@
         text-decoration:line-through;
     }
    .join-now-btn-small{
-        color: #111 !important;
+        color: black !important;
         font-weight: 700;
         background-color: transparent;
         border-radius: 4px;
         cursor: pointer;
         background-color: var(--primary-color); 
-       text-decoration: none;
+        text-decoration: none;
         margin-left: auto;
         margin-top: auto;
         margin-bottom: auto;
-        padding: 9px;
+        padding: 8px 11px;
         margin-right: 10px;
     }  .join-now-btn-small:hover{
-        background-color: #b3d705;
-        color: black !important;
-        transition-duration: 500ms;
+        background-color: rgb(176, 212, 0);
+        transition-duration: 200ms;
     }
     .model-img{
         position: absolute;
