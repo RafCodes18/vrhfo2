@@ -13,6 +13,18 @@ const controlsContainer = document.querySelector(".video-controls-container");
 
 let hideControlsTimeout;
 
+function SkipForward() {
+    if (video) {
+        video.currentTime = Math.min(video.currentTime + 10, video.duration); // Ensure it doesn't exceed duration
+    }
+}
+
+function SkipBackward() {
+    if (video) {
+        video.currentTime = Math.max(video.currentTime - 10, 0); // Ensure it doesn't go below 0
+    }
+}
+
 function hideControls() {
     hideControlsTimeout = setTimeout(() => {
         controlsContainer.style.opacity = '0';
@@ -79,6 +91,12 @@ document.addEventListener("keydown", e => {
             break;
         case "m":
             toggleMute();
+        case "arrowright":
+            SkipForward();
+            break;
+        case "arrowleft":
+            SkipBackward();
+            break;
     }
 });
 
