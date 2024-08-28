@@ -260,12 +260,18 @@
                     </div>
                     <div class="back-btn">
                         
-                        <h3>< Back</h3>
+                        <h3 id="back-button">< Back</h3>
                     </div>
 
             </div>
             <div class="create-account">
-                <h1>Lets create an account</h1>
+                <h2>Lets create an account</h2>
+                <div class="form">
+                    <input type="email" required placeholder="Email" />
+                    <input type="password" required placeholder="Password" />
+
+
+                </div>                
             </div>
 
     </div>
@@ -274,8 +280,11 @@
 
  
 <style>
-    .backk{
-        
+    .form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 400px;
     }
     .back-btn{
         position: absolute;
@@ -284,8 +293,8 @@
         display: flex;
 
     } .back-btn:hover{
-        text-decoration: underline;
         cursor: pointer;
+        transform: scale(1.2);
     }
     .second-card-image{
         position: absolute;
@@ -296,10 +305,13 @@
     .create-account{
         height: 100%;
         width: 100%;
-        max-width: 600px;
+        max-width: 500px;
         max-height: 400px;
+        display: flex;
+        flex-direction: column;
+         align-items: center;
     }
-    .create-account h1{
+    .create-account h2{
         color: white;
     }
     .step-2-container{

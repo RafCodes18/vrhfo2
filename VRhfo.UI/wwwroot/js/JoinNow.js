@@ -60,10 +60,11 @@ function cardClicked(card) {
 const backButton = document.getElementById('back-button');
 backButton.addEventListener('click', function () {
     // Hide the page-2 card
-    document.querySelector('.step-2').style.display = "none";
+    document.querySelector('.step-2-container').style.display = "none";
 
     // Show the subscriptions (replace '.subscriptions' with the correct class)
-    document.querySelector('.main-product-cards').classList.remove('hidden');
+    document.querySelector('.cards').classList.remove('hidden');
+    document.querySelector('.choose-plan').classList.remove('hidden');
 
     var features = document.querySelectorAll('.main-features');
     features.forEach(function (feature) {
