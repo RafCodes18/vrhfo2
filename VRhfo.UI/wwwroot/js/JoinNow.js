@@ -14,7 +14,11 @@ function cardClicked(card) {
     //Just hides the product cards
     var cards = document.querySelectorAll('.cards');
     //features are the 3 boxes below logo top of page
-    var features = document.querySelectorAll('.top-3-rows');
+    var features = document.querySelectorAll('.main-features');
+
+    var choose = document.querySelector('.choose-plan');
+
+    choose.classList.add('hidden');
     cards.forEach(function (card) {
         card.classList.add('hidden');
     });

@@ -223,59 +223,89 @@
           </div>
     </div>
 
+    <!--CARD 3-->
      <div class="card yearly" id="card-3"  onclick="cardClicked(this)">
-        <img class="model-img lana" src="~../../img/lana12.png"></img>
-        <div class="card-content">
-            <h1>Lifetime</h1>
-                <h3 style="color:var(--accent-color)">The Pornosexual</h3>
-                <p>Unlimited access</p>
-                <p>100 years access</p>
-        </div>
-        <div class="pricing blur">
-                <p class="strikedTxt">$1000</p>
-                <div class="bottom-price">
-                    <p class="cents">$400</p>
-                </div>
-                <a href="#" class="join-now-btn-small">Join Now</a>          </div>
-        </div>
-</div> 
+             <img class="model-img lana" src="~../../img/lana12.png"></img>
+            <div class="card-content">
+                <h1>Lifetime</h1>
+                    <h3 style="color:var(--accent-color)">The Pornosexual</h3>
+                    <p>Unlimited access</p>
+                    <p>100 years access</p>
+            </div>
+            <div class="pricing blur">
+                    <p class="strikedTxt">$1000</p>
+                    <div class="bottom-price">
+                        <p class="cents">$400</p>
+                    </div>
+                    <a href="#" class="join-now-btn-small">Join Now</a>          
+             </div>
+       </div>
+ </div> 
+
+
+
 
     <!--step 2-->
     <div class="step-2-container">
-        <div class="second-card">
-            <div class="discount">ss</div>
-            <div class="second-card-plan-type">ss</div>
-            <div class="offer-num">ss</div>
-            <img class="model-img second-card-image" src="~../../img/lana12.png"></img>
+           <div class="second-card">
+                    <img class="model-img second-card-image" src="~../../img/lana12.png"></img>
 
-        </div>
+                    <div class="card-content">
+                        <div class="second-card-plan-type">ss</div>
+                        <div class="discount strikedTxt">ss</div>
+                        <div class="offer-num cents">ss</div>
+                    </div>
+                    <div class="back-btn">
+                        
+                        <h3>< Back</h3>
+                    </div>
 
-        <div class="create-account">
-            <h1>Lets create an account</h1>
-        </div>
+            </div>
+            <div class="create-account">
+                <h1>Lets create an account</h1>
+            </div>
+
     </div>
-
-
-
-
 
 </div>
 
  
 <style>
-    .second-card-image{
+    .backk{
+        
+    }
+    .back-btn{
+        position: absolute;
+        bottom: 0;
+        margin-bottom: -50px !important;
+        display: flex;
 
+    } .back-btn:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .second-card-image{
+        position: absolute;
+        right: 0;
+        height: 100%;
+        z-index: -1;
     }
     .create-account{
-        width: 600px;
-        height: 400px;
+        height: 100%;
+        width: 100%;
+        max-width: 600px;
+        max-height: 400px;
     }
     .create-account h1{
         color: white;
     }
     .step-2-container{
         display: none; 
-        max-width: 800px;         
+        position: relative;
+        margin: 0px 10px;
+        width: 100vw;
+        height: 50vh;
+        justify-content: center;
     }
     .second-card{
         z-index: 99999;
@@ -285,15 +315,14 @@
        position: relative;
        margin: 10px;
        width: 90%;
-       max-width: 300px;
+       max-width: 400px;
        height: auto;
           background: rgba( 255, 255, 255, 0.05 );
         box-shadow: 0 8px 32px 0 rgba( 31, 31, 31, 0.37 );
         backdrop-filter: blur( 2px );
         -webkit-backdrop-filter: blur( 2px );
         border-radius: 10px;
-        border: 1px solid rgba( 255, 255, 255, 0.18 );
-        padding: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );   
     }
     
     .cents{
@@ -433,6 +462,15 @@
            margin-right: 100px;
        }
       
+       .step-2-container{
+           flex-direction: column !important;
+           align-items: center;
+           margin-bottom: 100px;
+       }
+       .second-card{
+           height: 140px !important;
+       }
+       
    }
 
 </style>
