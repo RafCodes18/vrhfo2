@@ -15,8 +15,7 @@
         border-radius:3Spx;
         width: 620px;
         height: 470px;
-        margin-top: 20px;
-        min-width: 280px;
+         min-width: 280px;
         display: flex;
         flex-direction: column;
         color: rgb(205, 205, 205);
@@ -29,8 +28,8 @@
             .wrapperM{
                 display: flex;
                 justify-content: center;
-                align-items: center;
-            }
+                margin-top: 40px
+             }
             @@media(max-width: 350px){
                .settings-form{
                }
@@ -134,15 +133,13 @@
         margin-right: 14px;
     }
     .x{
-        background-color: #333;
-        padding: 0px 13px !important;
+         padding: 0px 10px !important;
         font-size: large;
         border-radius: 3px;
-        padding-bottom: 5px !important;
-        padding-top: 3px !important;
+        margin-top: -23px;
     }
     .x:hover{
-        background-color: #444;
+        background-color: #222;
         cursor: pointer;
     }
     .modal-content{
@@ -152,14 +149,14 @@
 /*      border: 1px solid rgba(242, 49, 146, 0.53) !important;
  */     
         padding-top: 4px;
-        border: 1px solid rgba(200,200,200, .9) !important;
+        border: 1px solid var(--accent-color) !important;
         border-radius: 10px;
     }
     .modal-password-input{
-        background-color: #292929 !important;
-        color: white !important;
+        background-color: #fff!important;
+        color: #000 !important;
         width: 100%;
-        border: none !important;
+        border: 1px solid var(--accent-color) !important;
         padding: 12px;
         border-radius: 9px;
         margin-bottom: 10px;
