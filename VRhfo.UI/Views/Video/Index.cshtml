@@ -152,43 +152,45 @@
         background-clip: text;
         font-weight: 700;
         -webkit-text-fill-color: transparent;
+    }   
+    .card-img{
+        position: relative;
     }
 
-    .card-time{
+    .time-container{
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        background-color: rgb(1,1,1,.45);
+        border-radius: 5px;
+    }
+
+    .card-time {
         color: white !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         padding: 4px;
         font-size: 1rem;
         margin-bottom: 3px;
         margin-right: 7px;
         letter-spacing: -1px;
     }
-    .card-img{
-        position: relative;
-    }
-    .time-container{
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        display: flex;
-    }
-    .clock-img{
-        position: absolute;
-        top: 7px;
-        left: -15px;
-    } 
-
+     
     .d-top-row{
         display:flex;
-        justify-content:space-between;
-    }
+        justify-content:center;
+        flex-direction: column;
+        margin-bottom:5px;
+     }
     .d-bottom-row{
         text-align: center;
         display: flex;
         justify-content: space-between;
-    }
+        color: #777;
+     }
     .vid-title{
-        max-width: 170px;
+width: 100%;
+font-size: x-large;
     }
 
     .profile-username {
@@ -198,6 +200,10 @@
      
     .video-index-container{
         width: 100vw;
+    }
+    .likes{
+        font-size: 15px;
+        text-align: right;
     }
 </style>
 
@@ -214,8 +220,7 @@
                   
                             <img class="vid-img" src="@item.ThumbnailUrl" alt="@item.Title" style="width: 100%;">
                             <div class="time-container">
-                                <img src="~/img/clock2.png" height="13" width="13" class="clock-img">
-                                <p class="card-time">@item.FormattedDuration </p>
+                                 <p class="card-time">@item.FormattedDuration </p>
                             </div>
                    
                     </div>
@@ -223,7 +228,7 @@
                     <div class="description">
                         <div class="d-top-row">
                             <h5 class="vid-title">@item.Title</h5>
-                            <p><img src="~/img/heart.svg" alt="Heart Icon" height="13" width="13">
+                            <p class="likes"><img src="~/img/heart.svg" alt="Heart Icon" height="19" width="19">
                                 @item.FormattedLikes
                             </p>
                         </div>
