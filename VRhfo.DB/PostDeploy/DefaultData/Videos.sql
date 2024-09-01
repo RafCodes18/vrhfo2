@@ -1,4 +1,4 @@
-﻿BEGIN
+﻿sBEGIN
     INSERT INTO dbo.tblVideo (Title, Category, ThumbnailUrl, PreviewVideoURL, VideoUrl, Description, Genre, UploadDate, Duration, Views, RatingCount, IsPreview, IsPublic, ContentWarning, Likes, Dislikes, UserId)
     VALUES
         ('Hypnosis porn trance', 'Brainwashing', 'https://d1am11zh09ueot.cloudfront.net/brainbreak-2-thumb.png','https://d1am11zh09ueot.cloudfront.net/wwwwpreview.mp4' , 'https://d1am11zh09ueot.cloudfront.net/brainbreak-video-2.mp4' ,'desc', 'genre', '2024-08-12', '01:30:45', 5500, 2300, 0, 1, 'No content warning', 1255, 342, 2),
