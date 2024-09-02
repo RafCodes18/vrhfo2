@@ -210,6 +210,29 @@ font-size: x-large;
 <div class="video-index-container">
     <div class="page-title">
         @pageTitle
+
+        @{
+            switch (pageTitle)
+            {
+                case "Latest":
+                    <img class="cat-icon" src="~/img/new (1).png" />
+                    break;
+                case "Brainwashing":
+                    <img class="cat-icon" src="~/img/cogwheel.png" />
+                    break;
+                case "Gooning":
+                    <img class="cat-icon" src="~/img/hypnosis.png" />
+                    break;
+                case "HFO":
+                    <img class="cat-icon" src="~/img/prohibition.png" />
+
+                    <h6>(Hands Free Orgasm)</h6>
+                    break;
+                case "Hypnosis":
+                <img class="cat-icon" src="~/img/hypnosis (2).png">
+                    break;
+            }
+        }
     </div>
     <div class="card-container">
     @foreach (var item in Model)
