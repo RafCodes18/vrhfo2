@@ -14,15 +14,16 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        width: 100vw;
+        width: 70vw;
         height: 80vh;
     }
     .carousel{
         position: relative; 
+        left: 100px;
     }
     .caption-img{
         position: absolute;
-        width: 100%;
+        width: 80%;
         height: 100%;
         object-fit: contain;
     }
@@ -47,17 +48,19 @@
         background-color: rgba(0,0,0,.3);
     }
     .carousel-button.prev{
-        left: 5rem;
-    }
+        left: 0;
+     }
     .carousel-button.next{
-        right: 5rem;
-    } 
+        right:0 ;
+     } 
     .caption-img{
         position: absolute;
         inset: 0;
         opacity: 0;
         transition: 200ms opacity ease-in-out;
         transition-delay: 200ms;
+        right: auto;
+        left: auto;
     }
     .caption-img[data-active]{
         opacity: 1;
@@ -77,6 +80,29 @@
             right: 0 !important;
         }
     }
+    @@media(max-width: 1000px){
+        .images{
+            width: 100vw !important;
+        }
+        .carousel{
+            left: 0 !important;
+        }
+        .caption-img{
+            margin-top: 80px;
+            width: 90%;
+        }     
+    }
+    @@media(max-width: 400px){
+        .caption-img{
+            margin-top: 0 !important;
+        }
+    }
+
+    .slide-tools{
+        display: flex;
+        justify-content: space-around;        
+        align-items: center;
+     }
 </style>
 
 <div class="carousel" data-carousel>
@@ -93,7 +119,14 @@
         <img class="caption-img" src="~/img/puss.jpg" />
         <img class="caption-img" src="~/img/lana.jpg" />
     </div>
+    <div class="slide-tools">
+        <div class="">Refresh</div>
+        <div class="">Latest uploads</div>
+
+    </div>
 </div>
+
+
 
  <script>
      const buttons = document.querySelectorAll("[data-carousel-button]")
