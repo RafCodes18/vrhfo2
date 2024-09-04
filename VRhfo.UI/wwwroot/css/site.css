@@ -144,7 +144,9 @@ body {
     #login-button{
         margin: 0 !important;
         padding-left: 0 !important;
-        margin-left: -10px;
+        margin-top: 3px !important;
+        margin-right: -20px !important;
+        font-size: large;
     }
     li .nav-item{
         margin:0 ;
@@ -261,7 +263,7 @@ body {
 }
 
 .page-title {
-    display: none;
+    font-size: 22px !important;
 }
 
 }

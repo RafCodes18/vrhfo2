@@ -37,7 +37,7 @@
         padding: 0px; /* Moved padding from .card-container to here */
         width: 100%;
         overflow:hidden;
-        margin: 0px 20px !important;.
+        margin: 0px 20px !important;
     }
 
     .vid-img {
@@ -251,7 +251,7 @@ font-size: x-large;
                     <div class="description">
                         <div class="d-top-row">
                             <h5 class="vid-title">@item.Title</h5>
-                            <p class="likes"><img src="~/img/heart.svg" alt="Heart Icon" height="19" width="19">
+                            <p class="likes"><img class="like-icon" src="~/img/heart.svg" alt="Heart Icon" height="19" width="19">
                                 @item.FormattedLikes
                             </p>
                         </div>
@@ -267,11 +267,87 @@ font-size: x-large;
 
 </div>
 
+
     <div class="pagination-container">
         <div class="pagination">
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>
 </div>
- 
 
+ <style>
+     @@media(max-width: 600px){
+           
+        .card-img{
+            height: 150px;
+        }
+        .vid-img{
+            height: 150px;
+        }
+     }
+      
+     @@media(max-width: 548px){
+        .card-container {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+
+        .card-img {
+            height: 100px;
+        }
+
+        .vid-img {
+            height: 120px;
+        }
+
+        .vid-title {
+            font-size: medium !important;
+            margin-top: 15px;
+            margin-bottom: -2px;
+        }
+
+        .likes {
+            font-size: x-small !important;
+            margin-bottom: -4px;
+        }
+
+        .like-icon {
+            height: 12px !important;
+            width: 12px !important;
+        }
+
+        .d-bottom-row {
+            font-size: xx-small;
+        }
+     }
+    @@media(max-width: 400px) {
+        .card-container {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+
+        .card-img {
+            height: 100px;
+        }
+        .vid-img{
+            height: 120px;
+        }
+        .description{
+            height: 100px !important;
+        }
+        .vid-title{
+            font-size: medium !important;  
+            margin-top: 15px;
+            margin-bottom: -2px;
+        }
+        .likes{
+            font-size: x-small !important;
+            margin-bottom: -4px;
+        }   .like-icon{
+            height: 12px !important;
+            width: 12px !important;
+
+        }
+        .d-bottom-row {
+            font-size: xx-small;
+        }
+    }
+ </style>
