@@ -155,8 +155,12 @@ body {
     
         
 }
-
 @media(max-width: 450px){
+    .dropdown-content{
+        margin-left: -80px !important;
+    }
+}
+@media(max-width: 430px){
     .join-now {
         display: none;
     }
@@ -172,6 +176,18 @@ body {
     .login-modal-main {
         max-width: 78% !important;
         height: 320px !important;
+    }
+    .diamond{
+        display: none;
+    }
+    .username-txt{
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .dropdown-content{
+        transform: scale(.9);
+        margin-top: 0 !important;
+        margin-left: -60px !important; 
     }
 }
 @media (max-width: 376px) {
@@ -208,6 +224,18 @@ body {
     }
     .top-editors{
         display: none;
+    }
+    .username-txt{
+        font-size: 10px !important;
+        margin-left: -10px !important;
+    }
+}
+@media(max-width: 347px)
+{
+    .dropdown-content{
+        transform: scale(.7) !important;
+        margin-top: -30px !important;
+        margin-left: -50px !important;
     }
 }
 @media (max-width: 330px) {
