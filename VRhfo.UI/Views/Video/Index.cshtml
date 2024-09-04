@@ -205,9 +205,109 @@ font-size: x-large;
         font-size: 15px;
         text-align: right;
     }
+    .selling-points-container{
+        display:flex;
+        justify-content: center;
+        align-content: center;
+        width: 80vw;
+
+    }
+    .box{
+        height: auto;
+        width: 100%;
+        border: 2px dotted #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+        white-space: pre-line;
+    }
+    .left{
+        
+    }
+    .right{
+        background-image: url('https://front.sexlikereal.com/s/refactor/images/banners/bg-banner-premium-side.jpg');
+        background-size: cover; /* This ensures the image covers the entire container */
+        background-position: center; /* This centers the image within the container */
+     } .right:hover{
+         border: 1px solid white;
+     }
+    .right a{
+            color: var(--primary-color) !important;
+    }.right a:hover{
+            color: var(--primary-color-hover) !important;
+    }
+    .daily-task-cont{
+        display: flex;
+        flex-direction: column;
+         white-space: pre-line;
+         margin-top:-20px;        
+    }
+    .task-content{
+        font-size: 15px;
+        color: #999;
+        word-wrap: break-word;
+        white-space: pre-line;
+        vertical-align: top !important; 
+        margin-top: -19px;
+    }
+    .daily-task{
+        font-weight: 700;
+        font-size: 20px;
+    }
+    .next-task{
+        color: #888;
+        font-size: 12px;
+        margin-left: 10px;
+    } .pray-icon{
+        margin-right: 7px;
+    }
+    @@media(max-width: 999px){        
+        .task-content {
+            font-size: 12px;
+            margin-top: -19px;
+        }
+        .daily-task {
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .next-task {
+            font-size: 9px;
+        }
+        .pray-icon {
+           height: 22px !important;
+            width: 22px !important;
+        }
+    }
+
+    @@media(max-width: 700px) {
+        .selling-points-container{
+            flex-direction: column;
+            width: 95vw;            
+        }
+    }
 </style>
 
 <div class="video-index-container">
+
+    <div class="selling-points-container">
+        <div class="box left">
+            <img class="pray-icon" src="~/img/prayer.png" height="30" width="30" />
+
+            <div class="daily-task-cont">
+                <div class="daily-task">
+                   Daily Task  <span class="next-task">Next: 2h</span>
+                </div>
+                <div class="task-content">
+                    Pray for 30 minutes to porn, thanking it, worshipping it, surrendering to it.
+                </div>
+
+            </div>
+        </div>
+        <div class="box right "><a asp-action="JoinNow" asp-controller="Home">JOIN NOW</a></div>
+    </div>
     <div class="page-title">
         @pageTitle
 
