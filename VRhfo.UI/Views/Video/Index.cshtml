@@ -252,6 +252,7 @@ font-size: x-large;
         white-space: pre-line;
         vertical-align: top !important; 
         margin-top: -19px;
+        display: flex;
     }
     .daily-task{
         font-weight: 700;
@@ -280,6 +281,9 @@ font-size: x-large;
            height: 22px !important;
             width: 22px !important;
         }
+        .right{
+            display: none;
+        }
     }
 
     @@media(max-width: 700px) {
@@ -287,6 +291,59 @@ font-size: x-large;
             flex-direction: column;
             width: 95vw;            
         }
+    }
+
+    input[type="checkbox"] {
+        /* Add if not using autoprefixer */
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #000 !important;
+        margin: 0;
+      
+    }
+
+    input[type="checkbox"] {
+        /* ...existing styles */
+        display: grid;
+        place-content: center;
+    }
+
+        input[type="checkbox"]::before {
+            content: "";
+            width: 1.35em;
+            height: 1.57em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em var(--primary-color);
+        }
+
+        input[type="checkbox"]:checked::before {
+            transform: scale(1);
+        }
+
+        input[type="checkbox"]:checked .left{
+            background: darkgreen !important;
+        }
+        input[type="checkbox"]::before {
+            /* ...existing styles */
+
+            transform-origin: bottom left;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+    input[type="checkbox"] {
+        appearance: none;
+        background-color: #fff;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 1.75em;
+        height: 1.75em;
+        border: 0.15em solid currentColor;
+        border-radius: 0.15em;
+        transform: translateY(-0.075em);
+        margin-top: 14px;
+        margin-left: 10px;
     }
 </style>
 
@@ -301,7 +358,10 @@ font-size: x-large;
                    Daily Task  <span class="next-task">Next: 2h</span>
                 </div>
                 <div class="task-content">
-                    Pray for 30 minutes to porn, thanking it, worshipping it, surrendering to it.
+                    Pray for 30 minutes to porn, thanking it, worshipping it, surrendering to it  
+
+                        <input type="checkbox" name="checkbox-checked" checked />
+
                 </div>
 
             </div>
@@ -451,3 +511,15 @@ font-size: x-large;
         }
     }
  </style>
+ <script>
+    const checkbox = document.querySelector('input[type="checkbox"]');
+    const leftElement = document.querySelector('.left');
+
+    checkbox.addEventListener('change', function () {
+        if (this.checked) {
+            leftElement.style.background = '#002700';
+        } else {
+            leftElement.style.background = ''; // Reset to default
+        }
+    });
+ </script>
