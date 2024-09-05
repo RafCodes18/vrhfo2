@@ -62,5 +62,10 @@ namespace VRhfo.UI.Controllers
             pvm.Videos = VideoManager.GetUsersLikedVideos(currentUser.Id);
             return View(pvm);
         }
+
+        public ActionResult Live()
+        {
+            return View();
+        }
     }
 }

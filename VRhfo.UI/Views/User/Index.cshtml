@@ -4,5 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="profile-container">
+    <h1>@Model.Username</h1>
+</div>
 
+<style>
+    .profile-container{
+        display: flex;
+        justify-content: center;
+     }
+</style>

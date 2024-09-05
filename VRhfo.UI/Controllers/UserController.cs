@@ -162,9 +162,10 @@ namespace VRhfo.UI.Controllers
             }
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string username)
         {
-            return View();
+            User user = UserManager.LoadByUsername(username);
+            return View(user);
         }
 
         public IActionResult Logout()
