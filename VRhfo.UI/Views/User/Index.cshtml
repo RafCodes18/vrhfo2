@@ -25,8 +25,27 @@
         <div class="boxx rightt">
             <div class="meter-title">
                 <h2>GoonMeter &#8482;</h2>
-                <div class="meter">
-                    IM A METER
+                <div class="meter-container">
+                    <div class="choose-level center">
+                        <input type="radio" id="0" name="level" value="0" />
+                        <label for="0">0</label>
+                        <input type="radio" id="1" name="level" value="1" />
+                        <label for="1">1</label>
+                        <input type="radio" id="2" name="level" value="2" />
+                        <label for="2">2</label>
+                        <input type="radio" id="3" name="level" value="3" />
+                        <label for="3">3</label>                         
+                    </div>
+                    <div class="meter">
+                        <div class="outer-circle center">
+                            <div class="inner-circle">
+                                <div class="needle center"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="label">
+                        <span>Level 0</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,6 +64,98 @@
     </div>
 </div>
 <style>
+    .meter-container{
+        position: relative;
+         
+    }
+    .choose-level{
+        width: 100%;
+    }
+    .choose-level label{
+        padding: 5px 10px;
+        margin: 0 5px;
+        cursor: pointer;
+        box-shadow: -1px 2px 1px #d3d3d3;
+        border-radius: 10px;
+    }
+    .choose-level input[type="radio"]{
+        display: none;        
+    }
+    .choose-level input[type="radio"]:checked + label{
+        background-color: #555;
+        color: black;
+        font-weight: bold;
+        box-shadow: none;        
+    }
+    .meter{
+        position: relative;
+        height: 100px;
+        width: 100%;
+        overflow: hidden;        
+    }
+    .outer-circle{
+        position: relative;
+        height: 180px;
+        width: 100%;
+        border-radius: 50% 50% 0 0 ;
+        background-image: linear-gradient(to right,
+                            rgba(100,100,100),
+                            rgba(150,150,150),
+                            rgba(200,200,200)                            
+        );
+        margin-top: 10px;        
+    }
+    .center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .inner-circle{
+        height: 55%;
+        width: 55%;
+        border-radius: 50% 50% 0 0;
+        background: #000;
+        align-items: center;
+    }
+    .needle{
+        position: relative;
+        top: calc(50% - 15px);
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 20px;
+        width: 20px;
+        background-color: white;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+        transform: translate(-50%, -50%) rotate(-100deg);
+    }
+    .needle::before{
+        content: "";
+        position: relative;
+        top: -130%;
+        width: 15px;
+        height: 55px;
+        background-color: #fff;
+            clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+            border-radius: 0 0 20px 20px;
+    }
+    .needle::after{
+        content:"";
+        position: absolute;
+        height: 10px;
+        width: 10px;
+        background-color: #333;
+        border-radius: 50%;
+        border: 2px solid #f1f1f1;
+    }
+    .label{
+        height: 50px;
+        width: 100%:
+        user-select: none;
+    }
+
+
+
     .black-nav {
         background: #000 !important;
     }
@@ -155,7 +266,7 @@
             height: 90% !important;
         }
         .bottom-boxes{
-            margin-top: 80px !important;
+            margin-top: 180px !important;
         }
         .date-join-txt{
             font-size: 10px;
@@ -175,3 +286,46 @@
         outline: 1px solid grey;        
     }
 </style>
+
+<script defer>
+    const outerCircle = document.querySelector(".outer-circle");
+    const needle = document.querySelector(".needle");
+    const label = document.querySelector(".label span");
+    const radioB = document.querySelectorAll("input[name='level']");
+
+    function beginner() { 
+        console.log("BEGIN");
+        outerCircle.style.backgroundImage = "linear-gradient(to right, rgb(234,62,62) 10%, rgb(150,150,150) 25%, rgb(200,200,200) 100%)";
+        needle.style.transform = "translate(-50%, -50%) rotate(-100deg)";
+        label.textContent = "Porn Addict";
+    }
+    function intermediate() {
+        console.log("inter");
+        outerCircle.style.backgroundImage = "linear-gradient(to right, rgb(234,62,62) 10%, yellow 55%, rgb(200,200,200) 100%)";
+        needle.style.transform = "translate(-50%, -50%) rotate(-80deg)";
+        label.textContent = "Gooner";
+    }
+    function expert() {
+        console.log("expert");
+        outerCircle.style.backgroundImage = "linear-gradient(to right, rgb(234,62,62) 10%, yellow 55%, rgb(13,255,0) 100%)";
+        needle.style.transform = "translate(-50%, -50%) rotate(0deg)";
+        label.textContent = "Pornosexual";
+    }
+
+    radioB.forEach(radioBtn => {
+        radioBtn.addEventListener("change", () => {
+            changeLevel(radioBtn.value);
+        });
+    });
+
+    function changeLevel(value) {
+        if (value == 1) {
+            beginner();
+            console.log("1");
+        } else if (value == 2) {
+            intermediate();
+        } else if (value == 3) {
+            expert();
+        }        
+    }
+</script>            
