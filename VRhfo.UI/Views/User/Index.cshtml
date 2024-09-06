@@ -2,33 +2,99 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <div class="profile-container">
     <div class="top-boxes">
         <div class="boxx leftt">
-            <div class="username-title">@@@Model.Username <button type="button">Edit</button> </div>
+
+            <div class="username-title">@@@Model.Username <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@Model.Username" class="edit-btn" type="button">Edit↗</a> </div>
             <div class="tier-text">Subscription Tier: Pornosexual</div>
 
             <div class="user-stats">
                 <div class="wt-title">
-                    Watch Time: 
+                    Watch Time 
                 </div>
-                <div class="wt-today">Today: </div>
-                <div class="wt-week">This week: </div>
-                <div class="wt-month">This month: </div>
+                <div class="wt-today wt">Today: 22m </div>
+                <div class="wt-week wt">This week: 2h 12m</div>
+                <div class="wt-month wt">This month: 5h 47m </div>
             </div>
             <div class="date-join-txt">Date Joined: March 14th, 2024</div>
         </div>
-        <div class="boxx rightt"></div>
+        <div class="boxx rightt">
+            <div class="meter-title">
+                <h2>GoonMeter &#8482;</h2>
+                <div class="meter">
+                    IM A METER
+                </div>
+            </div>
+        </div>
     </div>
     <div class="bottom-boxes">
-        <div class="boxx top"></div>
-        <div class="boxx bottom"></div>
+        <div class="boxx top">
+            <div class="tasks-title">
+                <h3>Completed Tasks</h3>
+            </div>
+        </div>
+        <div class="boxx bottom">
+            <div class="history-title">
+                <h3>Watch History</h3>
+            </div>
+        </div>
     </div>
 </div>
-<style>    
+<style> 
+    .profile-container{
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600;
+    }
+    .tier-text{
+        font-size: large;
+        color: #555;
+        letter-spacing: .1rem;
+        margin-top: 8px;
+    }
+    .wt-title{
+        color: #999;
+        font-size: 16px;
+    }
+    .wt{
+        font-size: 13px;
+    }
+    .boxx.rightt{
+        display: flex;
+        justify-content: center;
+    }
+    .edit-btn{
+        background: none;
+        color: #999;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        text-decoration: underline;
+    }
+    .date-join-txt{
+        text-align: end;
+        color: #555;
+    }
+    .user-stats{
+        margin-left: 7px;
+        margin-top: 3px;
+    }
+    .wt-title{
+        font-weight: 700;
+    }
+    .boxx.leftt {
+        padding: 15px !important;
+    }
     .username-title{
         font-size: x-large;
-        color: skyblue;
+        color: deepskyblue;
+        display: flex;
+        justify-content: space-between;
     }
     .profile-container {
         width: 100%;
@@ -49,7 +115,7 @@
 
     .bottom-boxes {
         flex-direction: column;
-        margin-top: 12px;
+        margin-top: 15px;
     }
 
     .boxx {
@@ -58,6 +124,7 @@
         padding: 5px;
         margin: 5px;
         border-radius: 8px;
+        color: #888;
     }
 
     .top-boxes .boxx {
@@ -66,21 +133,37 @@
 
     .bottom-boxes .boxx {
         height: 300px;
+        margin-bottom: 10px;
+        max-width: 99% !important;
     }
 
     @@media (max-width: 1000px) {
         .top-boxes {
             flex-direction: column;            
-            margin-top: 90px !important;
+            margin-top: 70px !important;
             height: 240px;
         }           
         .profile-container{
-            margin-left: 20px;
+            margin-left: 14px;
             max-width: 90vw !important;
         }
 
         .top-boxes .boxx {
             height: 90% !important;
+        }
+        .bottom-boxes{
+            margin-top: 80px !important;
+        }
+        .date-join-txt{
+            font-size: 10px;
+            margin-top: 4px;
+        }
+        .wt{
+            font-size: 12px !important;
+        }
+        .tier-text{
+            font-size: 15px;
+            letter-spacing: 0;
         }
     }
 
