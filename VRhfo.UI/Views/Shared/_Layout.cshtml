@@ -48,6 +48,7 @@
         }
         .custom-navbar {
             background-color: #010101;
+            z-index: 99999;
         }
 
 
@@ -602,6 +603,39 @@ r            height: 320px;
     box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
   }
 }
+
+    .links-container{
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        position: sticky;
+    }
+    .link-item{
+        padding-right: 20px;
+        color: #999;
+    } .link-item:hover{
+        color: #ddd;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .network-txt{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        .network-txt{
+            color: #aaas;
+        }
+        @@media(max-width: 1000px){
+            .black-nav{
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -612,7 +646,16 @@ r            height: 320px;
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
     <header>
-        <nav class="navbar custom-navbar navbar-expand navbar-toggleable-sm box-shadow ">
+    <div class="black-nav">
+         <div class="links-container">
+            <div class="network-txt">Network:</div>
+            <div class="link-item">Announcements</div>
+            <div class="link-item">BrainBreaker.tv Discord</div>
+            <div class="link-item">Support the site</div>
+            <div class="link-item">PornAddict store</div>
+         </div>
+    </div>
+        <nav class="navbar custom-navbar navbar-expand navbar-toggleable-sm box-shadow " id="navbarr">
           
             <div class="container-fluid">
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -829,6 +872,20 @@ r            height: 320px;
     }
 </style>
 <script>
+
+    window.onscroll = function () { myFunction() };
+
+    var navbar = document.getElementById("navbarr");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.scrollY >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+
     document.getElementById('login-form').addEventListener('submit', function (e) {
         e.preventDefault();
 
