@@ -1,16 +1,91 @@
-﻿
-@model VRhfo.BL.Models.User 
+﻿@model VRhfo.BL.Models.User 
 @{
     ViewData["Title"] = "Index";
 }
-
 <div class="profile-container">
-    <h1>@Model.Username</h1>
-</div>
+    <div class="top-boxes">
+        <div class="boxx leftt">
+            <div class="username-title">@@@Model.Username <button type="button">Edit</button> </div>
+            <div class="tier-text">Subscription Tier: Pornosexual</div>
 
-<style>
-    .profile-container{
+            <div class="user-stats">
+                <div class="wt-title">
+                    Watch Time: 
+                </div>
+                <div class="wt-today">Today: </div>
+                <div class="wt-week">This week: </div>
+                <div class="wt-month">This month: </div>
+            </div>
+            <div class="date-join-txt">Date Joined: March 14th, 2024</div>
+        </div>
+        <div class="boxx rightt"></div>
+    </div>
+    <div class="bottom-boxes">
+        <div class="boxx top"></div>
+        <div class="boxx bottom"></div>
+    </div>
+</div>
+<style>    
+    .username-title{
+        font-size: x-large;
+        color: skyblue;
+    }
+    .profile-container {
+        width: 100%;
+        max-width: 70vw !important;
         display: flex;
-        justify-content: center;
-     }
+        flex-direction: column;
+    }
+
+    .top-boxes, .bottom-boxes {
+        display: flex;
+        width: 100%;
+    }
+
+    .top-boxes {
+        height: 200px;
+        margin-top: 30px;
+    }
+
+    .bottom-boxes {
+        flex-direction: column;
+        margin-top: 12px;
+    }
+
+    .boxx {
+        width: 100%;
+        max-width: 100vw;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 8px;
+    }
+
+    .top-boxes .boxx {
+        height: 200px;
+    }
+
+    .bottom-boxes .boxx {
+        height: 300px;
+    }
+
+    @@media (max-width: 1000px) {
+        .top-boxes {
+            flex-direction: column;            
+            margin-top: 90px !important;
+            height: 240px;
+        }           
+        .profile-container{
+            margin-left: 20px;
+            max-width: 90vw !important;
+        }
+
+        .top-boxes .boxx {
+            height: 90% !important;
+        }
+    }
+
+    /* Optional: for visualization purposes */
+    .boxx{
+        outline: 1px solid grey;        
+    }
 </style>
