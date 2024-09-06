@@ -133,7 +133,7 @@ body {
         padding: 17px 4px !important;
     }
     .site-name-logo{
-        font-size: 32px !important;
+        font-size: 30px !important;
         
     }
     .join-now{
@@ -219,7 +219,7 @@ body {
         max-width: 80vw;
     }
     .site-name-logo {
-        font-size: 33px !important;
+        font-size: 28px !important;
         margin-top: 5px !important;
     }    
 }
@@ -227,8 +227,7 @@ body {
 @media(max-width: 357px){
     .lik-box a {
         font-size: x-small !important;
-         
-        
+                
     }
     .top-editors{
         display: none;
