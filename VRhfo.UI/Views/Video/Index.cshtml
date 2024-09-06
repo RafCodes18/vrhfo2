@@ -213,9 +213,9 @@ font-size: x-large;
  
     }
     .box{
-        height: 150px;
+        height: auto;
         width: 100%;
-        border: 2px dotted #333;
+        border: 1px dotted #333;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -242,22 +242,16 @@ font-size: x-large;
     .daily-task-cont{
         display: flex;
         flex-direction: column;
-         white-space: pre-line;
-         margin-top:-20px;        
-    }
+     }
     .task-content{
         font-size: 15px;
         color: #999;
-        word-wrap: break-word;
-        white-space: pre-line;
-        vertical-align: top !important; 
-        margin-top: -19px;
         display: flex;
-        display: block;
     }
     .daily-task{
         font-weight: 700;
         font-size: 20px;
+        margin-top: -18px;
     }
     .next-task{
         color: #888;
@@ -269,7 +263,6 @@ font-size: x-large;
     @@media(max-width: 999px){        
         .task-content {
             font-size: 12px;
-            margin-top: -19px;
         }
         .daily-task {
             font-weight: 700;
@@ -362,7 +355,8 @@ font-size: x-large;
                    Daily Task  <span class="next-task">Next: 2h</span>
                 </div>
                 <div class="task-content">
-                    Join <span class="vipp">VIP</span> for Daily Tasks Carefully Curated to Increase Your Addiction to Porn. 
+                    <div class="daily-text">Subcribe to <span class="vipp">VIP</span> and recieve a daily task, each one carefully designed to increase your addiction to Porn.
+                    </div>
 
                         <input type="checkbox" name="checkbox-checked"   />
 
