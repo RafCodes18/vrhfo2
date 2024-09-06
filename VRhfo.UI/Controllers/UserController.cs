@@ -164,7 +164,15 @@ namespace VRhfo.UI.Controllers
 
         public ActionResult Index(string username)
         {
+
             User user = UserManager.LoadByUsername(username);
+
+            var authUser = HttpContext.Session.GetObject<User>("user");
+
+            if (authUser == null)
+            {
+                return RedirectToAction(nameof(Login), "Home");
+            }
             return View(user);
         }
 
