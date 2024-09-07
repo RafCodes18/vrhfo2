@@ -579,8 +579,12 @@
     <div class="canvas-details">
         <div class="vid-details-top-row">
             <div class="title-and-date">
-                <h2 class="vid-title-txt">@Model.video.Title</h2>
-                <h4 class="form-date">@Model.video.FormattedUploadDate</h4>
+                <h2 class="vid-title-txt">
+                    @Model.video.Title    <span class=" dot wht">• </span>
+                </h2>
+                <h4 class="form-date">@Model.video.FormattedUploadDate <span class=" dot wht">• </span> </h4>
+                <p class="form-date">@Model.video.FormattedViews views</p>
+
             </div>
             @*OLD LIKES*@
             @* <p>
@@ -617,7 +621,6 @@
             <div class="details-last-first2">
                 <span class="by-txt">Creator:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
             </div>
-            <p class="views-txt">@Model.video.FormattedViews views</p>
         </div>
     </div>
 
@@ -650,17 +653,19 @@
                     </div>
                 </div>
             </div>
+            
             <!--ADD A COMMENT -->
             <div class="comments-input-container">
-                <div class="avatar-container user-txt">
-                    <div class="avatar-circle">
-                        <span class="avatar-letter">U</span>
-                    </div>                
+                <div class="add-left">
+                    <div class="avatar-container user-txt">
+                        <div class="avatar-circle">
+                            <span class="avatar-letter">U</span>
+                        </div>                
+                    </div>
+                    <div class="comment-box">
+                        <div class="comment-input" contenteditable="true" role="textbox"> <span class="placeholdert">Add a comment...</span> </div>
+                    </div>
                 </div>
-                <div class="comment-box">
-                    <div class="comment-input" contenteditable="true" role="textbox"> <span class="placeholdert">Add a comment...</span> </div>
-                </div>
-
                 <button class="comment-submit" id="btnComment">COMMENT</button>
             </div>
         </div>
@@ -684,11 +689,17 @@
                                 <path opacity=".1" d="M2.64359 6.17018s4.98999 8.46842 4.84809 8.29592L.672817 6.15639c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.59307c.06618-.10278.15723-.18719.26472-.24541.10748-.05823.22793-.08837.35016-.08765l1.97077.01379c-.12214-.00082-.24253.02917-.35.08722-.10748.05804-.19858.14226-.26488.24486l-2.3866 3.67647c-.08614.13466-.12731.29319-.11757.45275.00974.15955.06988.3119.17177.43508z" fill="#000"></path>
                             </svg>
                         </span>
+
                     </div>
 
-
-                    <p class="content"><span class="comments-username">@@@(comment.User.Username)</span>: @comment.Content</p>
-                    <p class="date-posted-txt">@comment.DatePosted.ToShortDateString()</p> 
+                    <div class="comment-top">
+                        <div class="content">
+                            <span class="comments-username">@@@(comment.User.Username)</span>
+                            <p class="date-posted-txt">@comment.FormattedUploadDate</p>
+                       
+                        </div>
+                        <p class="comment-content">@comment.Content  </p>
+                    </div>
                 </div>
             }
         </div>
@@ -696,14 +707,28 @@
 
     <!--Vid details CSS -->
     <style>
+        .add-left{
+            display: flex;
+        }
+        .comment-content{
+            padding: 5px;
+            color: #ccc;
+        }
+        .content{
+            display: flex;
+        }
+        .dot.wht{
+            color: #888;
+            font-size: 20px;
+        }
         .title-and-date{
             display: flex;
         }
         .form-date{
-            color: #666;
-            margin-top: 18px;
+            color: #888;
+            margin-top: 12px;
             font-size: large;
-            margin-left: 10px;
+            margin-left: 4px;
 
         }
         .comments-top{
@@ -715,21 +740,21 @@
             height: 100px;
             margin: 0 !important;
             padding-top: 10px;
-
+            
         }
         .comments-username{
             color: var(--accent-color);
+            margin-right: 10px;
+            font-size: 16px;
         }
         .comments-cont{
             overflow-y: scroll;
         }
         .date-posted-txt{
-            color: #555;
-            position: absolute;
+            color: #666;
             font-size: 13px;
             right: 0;
             bottom: 0;
-
         }
         .video-watermark{
             height: 30px; 
@@ -788,7 +813,7 @@
             color: rgba(131, 131, 131, 0.82);
         }
         .by-txt{
-            color: rgba(131, 131, 131, 0.82);
+            color: #999;
             margin-left: 10px;
         }
         .top-row-second-box{
@@ -822,10 +847,11 @@
         }
         .vid-title-txt{
             margin-top: 4px;
+            color: #ddd;
 
         }
         .category-txt{
-            color: #999 !important;
+            color: #777 !important;
             font-size: large;
         }
         .category-txt:hover{
@@ -868,7 +894,7 @@
  /* OLD COMMENTS CSS*/
       
         .placeholdert {
-            color: #999;
+            color: #999 !important;
             pointer-events: none;
         }
         
@@ -936,6 +962,8 @@
         }
         .comments-header-title-left{
             display: flex;
+            font-size: 18px;
+            color: #bbb;
              
         }
 
@@ -997,10 +1025,11 @@
             padding: 15px !important;
             align-items: center;
             border-radius: 12px !important;
-            margin-top: -20px !important;
+            margin-top: 0px !important;
             width: 100% !important;
             height: 400px !important;
             overflow-y: scroll;
+            border: 1px solid #222;
         }
         .black-nav{
             background: #000;
