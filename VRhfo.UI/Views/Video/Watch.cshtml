@@ -736,6 +736,7 @@
         }
         .add-left{
             display: flex;
+            width: 100%;
         }
         .comment-content{
             padding: 5px;
@@ -926,8 +927,10 @@
         }
         
         .comment-submit{
-            align-self: flex-end;
-            background: none;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            background: #000;
             color: inherit;
             border: none;
             padding: 0;
@@ -935,9 +938,9 @@
             cursor: pointer;
             outline: 1px solid var(--primary-color);
             padding: 5px;
-            margin-right: 20%;
             transition: all .3s ease;
             -webkit-transition: all .3s ease;
+            z-index: 99;
         }
         .comment-submit:hover{
                 background-color: rgba(193, 218, 110, 0.80);
@@ -953,7 +956,7 @@
          .comment-box{
             position: relative;
             margin-left: 20px;
-            width: 400px !important;
+            width: 80% !important;
         }
         .user-txt{
             display:flex;

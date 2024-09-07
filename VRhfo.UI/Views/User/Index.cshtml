@@ -53,17 +53,65 @@
     <div class="bottom-boxes">
         <div class="boxx top">
             <div class="tasks-title">
-                <h3>Completed Tasks</h3>
+                <h3>Completed Tasks</h3>                
+            </div>
+            <div class="tasks-container">
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
             </div>
         </div>
         <div class="boxx bottom">
             <div class="history-title">
                 <h3>Watch History</h3>
             </div>
+            <div class="tasks-container">
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+                <div class="task"></div>
+            </div>
         </div>
     </div>
 </div>
-<style>
+<style>  
+    @@media(min-width: 1000px){
+        .task{
+            max-width: 700px;
+        }
+    }
+    .boxx.top, .boxx.bottom{
+        overflow-y: scroll;
+    }
+    .tasks-container{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px        
+    }
+    .task{
+        position: relative;
+        height: 44px;
+        width: 96%;
+        background-color: #222;
+        border: 1px solid #444;
+        padding: 5px;
+        margin: 3px 10px;
+        border-radius: 10px;
+    }
     .meter-container{
         position: relative;
          
@@ -266,7 +314,7 @@
             height: 90% !important;
         }
         .bottom-boxes{
-            margin-top: 180px !important;
+            margin-top: 200px !important;
         }
         .date-join-txt{
             font-size: 10px;
