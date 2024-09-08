@@ -3,6 +3,360 @@
 *@
 @{
 }
-<div>
-    Annnnnnnnnnnnnnnnnnnnnnnd we're Live!
-</div>
+
+    <!--VIDEOJS  PLAYER  -->
+    <div class="video-container paused " data-volume-level="high">
+        <div class="video-controls-container ">
+            <div class="timeline-container">
+
+                <div class="timeline">
+                    <div class="thumb-indicator">
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="play-pause-btn">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+                    </svg>
+                    <svg class="pause-icon" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M14,19H18V5H14M6,19H10V5H6V19Z" />
+                    </svg>
+                </button>
+                <div class="volume-container">
+                    <button class="mute-btn">
+
+                        <svg class="volume-high-icon" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+                        </svg>
+                        <svg class="volume-low-icon" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M5,9V15H9L14,20V4L9,9M18.5,12C18.5,10.23 17.5,8.71 16,7.97V16C17.5,15.29 18.5,13.76 18.5,12Z" />
+                        </svg>
+                        <svg class="volume-muted-icon" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.53C15.58,18.04 14.83,18.46 14,18.7V20.77C15.38,20.45 16.63,19.82 17.68,18.96L19.73,21L21,19.73L12,10.73M19,12C19,12.94 18.8,13.82 18.46,14.64L19.97,16.15C20.62,14.91 21,13.5 21,12C21,7.72 18,4.14 14,3.23V5.29C16.89,6.15 19,8.83 19,12M16.5,12C16.5,10.23 15.5,8.71 14,7.97V10.18L16.45,12.63C16.5,12.43 16.5,12.21 16.5,12Z" />
+                        </svg>
+                    </button>
+                    <input class="volume-slider" type="range" min="0" max="1" step="any" value="1" />
+                </div>
+                <div class="duration-container">
+                    <div class="current-time">0:00</div>
+                    /
+                    <div class="total-time">10:00</div>
+                </div>
+                <button class="theater-btn">
+                    <svg class="tall" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M19 6H5c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H5V8h14v8z" />
+                    </svg>
+                    <svg class="wide" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M19 7H5c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm0 8H5V9h14v6z" />
+                    </svg>
+                </button>s
+                <button class="full-screen-btn">
+                    <svg class="open" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+                    </svg>
+                    <svg class="close" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z" />
+                    </svg>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <video class="vid" preload="auto" autoplay>
+            <source src="#" type="video/mp4">
+        </video>
+
+
+    </div>
+
+
+                    <style>
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .vid{
+    }
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 1000px;
+        flex-direction: column;
+        justify-content: center;
+        margin-inline: auto;
+        background-color: black !important;
+        margin-left: 0;
+    }
+
+        .video-container.theater,
+        .video-container.full-screen {
+            max-width: initial;
+            width: 100%;
+            z-index: 9999;
+        }
+
+        .video-container.full-screen {
+            max-height: 100vh;
+        }
+
+        .video-container.theater {
+            top: 0;
+            position: relative;
+            width: 100%;
+            max-height: 90vh;
+            padding: 0;
+            margin: 0;
+            margin-left: 0 !important;
+            bottom: 20px;
+        }s
+
+            .video-container.theater video {
+                margin-top: 0;
+                padding: 0;
+                width: 100%;
+                margin-left: 0 !important;
+                max-height: 80vh !important;
+            }
+
+    video {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding-left: 0;
+    }
+
+    .video-controls-container {
+        position: absolute;
+        bottom: 120px;
+        left: 0;
+        right: 0;
+        color: white;
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 150ms ease-in-out;
+        padding-bottom: 10px;
+    }
+
+        .video-controls-container::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+            width: 100%;
+            aspect-ratio: 6 / 1;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+    .video-container:hover .video-controls-container,
+    .video-container:focus-within .video-controls-container,
+    .video-container.paused .video-controls-container {
+        opacity: 1;
+    }
+
+    .video-controls-container .controls {
+        display: flex;
+        gap: .5rem;
+        padding: .25rem;
+        align-items: center;
+        opacity: inherit;
+        =
+    }
+
+        .video-controls-container .controls button {
+            background: none;
+            border: none;
+            color: inherit;
+            padding: 0;
+            height: 35px;
+            width: 35px;
+            margin: 0;
+            font-size: 1.1rem;
+            cursor: pointer;
+            opacity: .85;
+            transition: opacity 150ms ease-in-out;
+            padding-top: 5px;
+        }
+
+            .video-controls-container .controls button:hover {
+                opacity: 1;
+            }
+
+    .video-container.paused .pause-icon {
+        display: none;
+    }
+
+    .video-container:not(.paused) .play-icon {
+        display: none;
+    }
+
+    .video-container.theater .tall {
+        display: none;
+    }
+
+    .video-container:not(.theater) .wide {
+        display: none;
+    }
+
+    .video-container.full-screen .open {
+        display: none;
+    }
+
+    .video-container:not(.full-screen) .close {
+        display: none;
+    }
+
+    .volume-high-icon,
+    .volume-low-icon,
+    .volume-muted-icon {
+        display: none;
+    }
+
+    .video-container[data-volume-level="high"] .volume-high-icon {
+        display: block;
+    }
+
+    .video-container[data-volume-level="low"] .volume-low-icon {
+        display: block;
+    }
+
+    .video-container[data-volume-level="muted"] .volume-muted-icon {
+        display: block;
+    }
+
+    .volume-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .volume-slider {
+        margin-top: 8px;
+        width: 0;
+        transform-origin: left;
+        transform: scaleX(0);
+        transition: width 250ms ease-in-out, transform 250ms ease-in-out;
+        background: var(--primary-color);
+    }
+
+        .volume-container:hover .volume-slider,
+        .volume-slider:focus-within {
+            width: 100px;
+            transform: scaleX(1);
+        }
+
+    .duration-container {
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+        flex-grow: 1;
+    }
+
+    .timeline-container {
+        height: 7px;
+        margin-inline: .5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    .timeline {
+        background-color: rgba(100,100,100,.5);
+        height: 7px;
+        width: 100%;
+        position: relative !important;
+    }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: calc(100% - var(--preview-position) * 100%);
+            background-color: rgba(150,150,150) !important;
+            display: none;
+        }
+
+        .timeline::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: calc(100% - var(--progress-position) * 100%);
+            background-color: var(--primary-color) !important;
+        }
+
+        .timeline .thumb-indicator {
+            --scale: 1;
+            position: absolute;
+            transform: translateX(-50%) scale(var(--scale));
+            height: 200%;
+            top: -50%;
+            left: calc(var(--progress-position) * 100%);
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            transition: transform 150ms ease-in-out;
+            aspect-ratio: 1 / 1;
+        }
+
+    .timeline-container.scrubbing .timeline::before,
+    .timeline-container:hover .timeline::before {
+        display: block;
+    }
+
+    .timeline-container.scrubbing .thumb-indicator,
+    .timeline-container:hover .thumb-indicator {
+        --scale: 1;
+    }
+
+    .video-container.scrubbing .timeline,
+    .timeline-container:hover .timeline {
+        height: 100% !important;
+    }
+
+    input[type=range] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            border-radius: 10px !important;
+            height: 6px;
+            cursor: pointer;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin-top: -4px;
+            margin-right: 5px;
+            -webkit-appearance: none;
+        }
+
+        input[type=range]::-moz-range-track {
+            border-radius: 10px;
+            height: 3px;
+            background-color: #fff;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            border-radius: 10px;
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin-top: -4px;
+            margin-right: 5px;
+            background-color: #fff;
+        }
+                    </style>
