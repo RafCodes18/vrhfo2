@@ -5,7 +5,7 @@ namespace VRhfo.PL;
 
 public partial class tblVideosLiked
 {
-    public int UserID { get; set; }
+    public Guid UserID { get; set; }
 
     public int VideoID { get; set; }
 

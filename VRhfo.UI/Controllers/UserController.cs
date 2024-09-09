@@ -77,7 +77,7 @@ namespace VRhfo.UI.Controllers
         }
 
         // GET: User/Profile
-        public ActionResult Profile(int userId)
+        public ActionResult Profile(Guid userId)
         {
             ProfileViewModel pVM = new ProfileViewModel();
             pVM.User = UserManager.LoadById(userId);
@@ -103,6 +103,7 @@ namespace VRhfo.UI.Controllers
                 user.IsSubscribed = false;
                 user.Auth0UserId = "";
                 user.RegistrationDate = DateTime.Now;
+                user.Id = Guid.NewGuid();
 
                 if (UserManager.Insert(user) > 0)
                 {

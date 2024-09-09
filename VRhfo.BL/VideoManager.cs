@@ -7,7 +7,7 @@ namespace VRhfo.BL
     public static class VideoManager
     {
 
-        public static List<Video> GetUsersLikedVideos(int userId)
+        public static List<Video> GetUsersLikedVideos(Guid userId)
         {
             List<Video> likedVids = new List<Video>();
             try
@@ -271,7 +271,7 @@ namespace VRhfo.BL
             }
         }
 
-        public static List<Video> LoadByUserId(int userId)
+        public static List<Video> LoadByUserId(Guid userId)
         {
             List<Video> list = new List<Video>();
 

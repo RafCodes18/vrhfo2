@@ -11,7 +11,7 @@ namespace VRhfo.UI.Controllers
     public class VideoController : Controller
     {
         [HttpPost]
-        public ActionResult CheckIfLiked(int userId, int postId)
+        public ActionResult CheckIfLiked(Guid userId, int postId)
         {
             bool isLiked = LikedVideosManager.CheckIfLiked(userId, postId);
             return Json(new { isLiked });

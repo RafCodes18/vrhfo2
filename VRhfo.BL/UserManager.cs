@@ -18,7 +18,7 @@ namespace VRhfo.BL
             }
         }
 
-        public static User LoadById(int id)
+        public static User LoadById(Guid id)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace VRhfo.BL
                         RegistrationDate = user.RegistrationDate,
                         Username = user.Username,
                         SubscribedDate = user.SubscribedDate,
-                        Password = user.Password
+                        Password = user.Password                        
                     };
 
                     dc.tblUsers.Add(tb);

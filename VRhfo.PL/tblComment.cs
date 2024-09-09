@@ -13,7 +13,7 @@ public partial class tblComment
 
     public DateTime DatePosted { get; set; }
 
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
 
     public int VideoId { get; set; }
     public virtual tblUser User { get; set; }

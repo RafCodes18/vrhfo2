@@ -8,7 +8,7 @@ namespace VRhfo.BL.Models
 {
     public class VideosLiked
     {
-        public int UserID { get; set; }
+        public Guid UserID { get; set; }
 
         public int VideoID { get; set; }
 

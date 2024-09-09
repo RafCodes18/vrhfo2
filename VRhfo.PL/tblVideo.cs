@@ -38,7 +38,7 @@ public partial class tblVideo
 
     public int Dislikes { get; set; }
 
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
 
     public virtual ICollection<tblVideosLiked> tblVideosLikeds { get; set; } = new List<tblVideosLiked>();
 }

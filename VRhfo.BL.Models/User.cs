@@ -4,7 +4,7 @@ namespace VRhfo.BL.Models
 {
     public class User
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Auth0UserId { get; set; } //This is the unique ID that Auth0 assigns to each user.
 
         [Required(ErrorMessage = "Username required")]

@@ -12,7 +12,7 @@ namespace VRhfo.BL
 {
     public class LikedVideosManager
     {
-        public static bool CheckIfLiked(int userId, int postId)
+        public static bool CheckIfLiked(Guid userId, int postId)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace VRhfo.BL
             }
         }
 
-        public static int Delete(int userId, int postId)
+        public static int Delete(Guid userId, int postId)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace VRhfo.BL
             }
         }
 
-        private static void Remove(int userID, int videoID)
+        private static void Remove(Guid userID, int videoID)
         {
             try
             {

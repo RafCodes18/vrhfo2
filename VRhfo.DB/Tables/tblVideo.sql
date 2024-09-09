@@ -16,6 +16,6 @@
     [ContentWarning] NVARCHAR(255) NOT NULL, 
     [Likes] INT NOT NULL, 
     [Dislikes] INT NOT NULL, 
-    [UserId] INT NOT NULL, 
+    [UserId] UNIQUEIDENTIFIER NOT NULL, 
     [PreviewVideoURL] VARCHAR(MAX) NOT NULL
 )
