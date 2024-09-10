@@ -12,7 +12,6 @@ public partial class tblVideo
     public string Category { get; set; } = null!;
 
     public string ThumbnailUrl { get; set; } = null!;
-    public string PreviewVideoURL { get; set; } = null!;
 
     public string VideoUrl { get; set; } = null!;
 
@@ -39,6 +38,8 @@ public partial class tblVideo
     public int Dislikes { get; set; }
 
     public Guid UserId { get; set; }
+
+    public string PreviewVideoURL { get; set; } = null!;
 
     public virtual ICollection<tblVideosLiked> tblVideosLikeds { get; set; } = new List<tblVideosLiked>();
 }

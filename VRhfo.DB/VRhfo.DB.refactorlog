@@ -7,4 +7,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Auth0UserId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="ac65b568-7895-4574-a460-4229ebbfc231" ChangeDateTime="09/09/2024 03:52:13">
+    <Property Name="ElementName" Value="[dbo].[tblUserWatchedVideo].[uniq]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblUserWatchedVideo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="16495967-7f16-4600-ac06-6d92427b4972" ChangeDateTime="09/09/2024 04:00:07">
+    <Property Name="ElementName" Value="[dbo].[tblUserWatchedVideo].[WatchDuration]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblUserWatchedVideo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WatchDurationTicks" />
+  </Operation>
 </Operations>

@@ -337,5 +337,53 @@ namespace VRhfo.BL
                 return isLiked ? "like-yes" : "like-noL";
             }
         }
+
+        public static int InsertWatchEntry(WatchEntry userWatchedVid)
+        {
+
+            int result = 0;
+            if (userWatchedVid == null) { return 0; }
+
+            using(VRhfoEntities dc = new VRhfoEntities())
+            {
+                tblWatchEntry tblRow = new tblWatchEntry
+                {
+                    UserId = userWatchedVid.UserId,
+                    VideoId = userWatchedVid.VideoId,
+                    WatchDurationTicks = userWatchedVid.WatchDurationTicks,
+                    Completed = userWatchedVid.Completed,
+                    LastDateWatched = userWatchedVid.LastDateWatched,
+                    FirstViewed = userWatchedVid.FirstViewed,
+                    TimesViewed = userWatchedVid.TimesViewed
+                };
+                dc.tblWatchEntries.Add(tblRow);
+                result = dc.SaveChanges();
+            }
+
+            return result;
+        }
+
+        public static bool UpdateWatchEntry(WatchEntry userWatchedVid)
+        {
+            using(VRhfoEntities db = new VRhfoEntities())
+            {
+                var tblRow = db.tblWatchEntries.FirstOrDefault(row => row.UserId == userWatchedVid.UserId && row.VideoId == userWatchedVid.VideoId);
+
+                if (tblRow != null)
+                {
+                    tblRow.WatchDurationTicks = userWatchedVid.WatchDurationTicks;
+                    tblRow.LastDateWatched = userWatchedVid.LastDateWatched;
+                    tblRow.Completed = userWatchedVid.Completed;
+                    
+                    db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
     }
 }

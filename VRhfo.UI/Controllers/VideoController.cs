@@ -4,12 +4,18 @@ using VRhfo.BL.Models;
 using VRhfo.UI.Views.ViewModels;
 using X.PagedList;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace VRhfo.UI.Controllers
 {
     public class VideoController : Controller
     {
+        private User GetCurrentUser()
+        {
+            return HttpContext.Session.GetObject<User>("user");
+        }
+
         [HttpPost]
         public ActionResult CheckIfLiked(Guid userId, int postId)
         {
@@ -80,16 +86,24 @@ namespace VRhfo.UI.Controllers
             // Revert '-' (or '+') back to spaces
             string cleanTitle = title.Replace("-", " ");
 
+            //grab user
             User currentUser = HttpContext.Session.GetObject<User>("user");
             ViewBag.CurrentUser = currentUser;
             
             VideoViewModel videoViewModel = new VideoViewModel();
 
-            // Important change: Look up the video by title (slug) now       
+            if(currentUser != null)
+            {
+                videoViewModel.LoggedInUserId = currentUser.Id;
+            }
 
+            //Load video 
             videoViewModel.video = VideoManager.LoadByTitle(cleanTitle);
+            
+            //load user
             videoViewModel.video.user = UserManager.LoadById(videoViewModel.video.UserId);
-            // 
+            
+            //load suggested videos
             List<Video> list = VideoManager.GetSuggestedVideos(8, title);
             videoViewModel.suggestedVideos = list;
 
@@ -104,7 +118,54 @@ namespace VRhfo.UI.Controllers
             
 
             videoViewModel.video.Comments = CommentManager.GetCommentsByVideoId(videoViewModel.video.Id);
+
+            if (currentUser != null)
+            {
+                var watchEntry = new WatchEntry
+                {         
+                    UserId = currentUser.Id,
+                    VideoId = videoViewModel.video.Id,
+                    WatchDuration = TimeSpan.Zero,
+                    LastDateWatched = DateTime.Now,
+                    FirstViewed = DateTime.Now,
+                    Completed = false
+                };
+                VideoManager.InsertWatchEntry(watchEntry);
+
+            }
+
             return View(videoViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateWatchProgress(Guid userId,  int videoId, long watchDuration, bool completed)
+        {          
+            var watchEntry = new WatchEntry()
+            {
+                UserId = userId,
+                VideoId = videoId,
+
+                LastDateWatched = DateTime.UtcNow,                
+                WatchDurationTicks = watchDuration,
+                Completed = completed,
+            };
+
+            try
+            {
+                if (VideoManager.UpdateWatchEntry(watchEntry))
+                {                   
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Failed to update watch entry" });
+                }
+            }
+            catch (Exception ex)
+            {                
+                return Json(new { success = false, message = "An error occurred while updating watch entry" });
+            }
+
         }
 
         // GET: VideoController/Upload

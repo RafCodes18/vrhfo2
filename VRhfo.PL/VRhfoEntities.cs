@@ -23,6 +23,8 @@ public partial class VRhfoEntities : DbContext
 
     public virtual DbSet<tblVideosLiked> tblVideosLikes { get; set; }
 
+    public virtual DbSet<tblWatchEntry> tblWatchEntries { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=VRhfo.DB;Integrated Security=True");
@@ -31,7 +33,7 @@ public partial class VRhfoEntities : DbContext
     {
         modelBuilder.Entity<tblComment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC0771597C95");
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC076BB77324");
 
             entity.ToTable("tblComment");
 
@@ -43,10 +45,11 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblUser>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC07D2A703A1");
+            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC07B73574CF");
 
             entity.ToTable("tblUser");
 
+            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Auth0UserId)
                 .HasMaxLength(10)
                 .IsFixedLength();
@@ -61,20 +64,21 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC0794BE693B");
+            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC07D7E627B9");
 
             entity.ToTable("tblVideo");
 
             entity.Property(e => e.Category).HasMaxLength(255);
             entity.Property(e => e.ContentWarning).HasMaxLength(255);
             entity.Property(e => e.Genre).HasMaxLength(50);
+            entity.Property(e => e.PreviewVideoURL).IsUnicode(false);
             entity.Property(e => e.Title).HasMaxLength(255);
             entity.Property(e => e.UploadDate).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<tblVideosLiked>(entity =>
         {
-            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D88C5FCF69C");
+            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D881AA11771");
 
             entity.ToTable("tblVideosLiked");
 
@@ -82,12 +86,22 @@ public partial class VRhfoEntities : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.tblVideosLikeds)
                 .HasForeignKey(d => d.UserID)
-                .HasConstraintName("FK__tblVideos__UserI__2A4B4B5E");
+                .HasConstraintName("FK__tblVideos__UserI__2C3393D0");
 
             entity.HasOne(d => d.Video).WithMany(p => p.tblVideosLikeds)
                 .HasForeignKey(d => d.VideoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__tblVideos__Video__2B3F6F97");
+                .HasConstraintName("FK__tblVideos__Video__2D27B809");
+        });
+
+        modelBuilder.Entity<tblWatchEntry>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC074BB2C6C2");
+
+            entity.ToTable("tblWatchEntry");
+
+            entity.Property(e => e.FirstViewed).HasColumnType("datetime");
+            entity.Property(e => e.LastDateWatched).HasColumnType("datetime");
         });
 
         OnModelCreatingPartial(modelBuilder);

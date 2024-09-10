@@ -10,8 +10,15 @@ const currentTime = document.querySelector('.current-time');
 const totalTime = document.querySelector('.total-time');
 const timelineContainer = document.querySelector('.timeline-container');
 const controlsContainer = document.querySelector(".video-controls-container");
+const currentUserIdd = document.getElementById("curr-user").textContent;
+const currVidId = document.getElementById("curr-vid").textContent;
+
 
 let hideControlsTimeout;
+
+// watch stats
+let _watchDuration = 0;
+let intervalId;
 
 function SkipForward() {
     if (video) {
@@ -238,22 +245,29 @@ video.addEventListener('click', () => {
 });
 
 
+
+
+
+
+
+
+
 video.addEventListener("play", () => {
     videoContainer.classList.remove("paused");
+    console.log("play detected");
+    intervalId = setInterval(updateWatchDuration, 5000); // Every 5 seconds
 });
 
 video.addEventListener("pause", () => {
     videoContainer.classList.add("paused");
-});
+    clearInterval(intervalId);
 
+
+});
 
 function togglePlay() {
     video.paused ? video.play() : video.pause();
 }
-
-
-
-
 //REMOVE PAGE RIGHT IN THEATER MODE
 // Select the main element whose flex direction needs to be changed
 
@@ -279,3 +293,72 @@ observer.observe(videoContainer, { attributes: true, attributeFilter: ['class'] 
 
 // Initial check in case the class is already present
 updateFlexDirection();
+
+
+
+
+
+
+
+
+
+// Function to update watch duration
+function updateWatchDuration() {
+    _watchDuration = video.currentTime;
+    localStorage.setItem('watchDuration', _watchDuration);
+}
+
+
+// Send final update when video ends
+video.addEventListener('ended', function () {
+    sendProgressUpdate();
+});
+
+// Send update when user leaves the page
+window.addEventListener('beforeunload', function () {
+    sendProgressUpdate();
+});
+
+// Function to send progress update
+function sendProgressUpdate() {
+    const completed = currentTime === _watchDuration;
+
+    if (!currentUserIdd || currentUserIdd === '00000000-0000-0000-0000-000000000000') {
+        console.log('User not logged in, progress not tracked');
+        return;
+    } else {
+        console.log("sending stats...");
+        fetch('/Video/UpdateWatchProgress', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userId: currentUserIdd,
+                videoId: currVidId, // You need to set this variable based on the current video
+                watchDuration: formatDuration(_watchDuration),
+                completed: completed
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Progress updated successfully');
+                } else {
+                    console.log('Progress upload failed')
+                    console.log(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+}
+
+// Helper function to format duration as TimeSpan string
+function formatDuration(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+

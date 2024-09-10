@@ -8,7 +8,6 @@ public partial class tblUser
     public Guid Id { get; set; }
 
     public string Username { get; set; } = null!;
-    public string Password { get; set; } = null!;
 
     public string Email { get; set; } = null!;
 
@@ -20,6 +19,7 @@ public partial class tblUser
 
     public DateTime SubscribedDate { get; set; }
 
+    public string Password { get; set; } = null!;
 
     public virtual ICollection<tblVideosLiked> tblVideosLikeds { get; set; } = new List<tblVideosLiked>();
 }
