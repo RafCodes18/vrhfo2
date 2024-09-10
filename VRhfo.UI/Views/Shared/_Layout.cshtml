@@ -499,10 +499,7 @@ r            height: 320px;
             }
             .home-link{
                 margin-top: 10px !important;
-            }
-
-            .
-
+            }            
         }
 
     .categories-ul-container{
@@ -648,6 +645,29 @@ r            height: 320px;
             margin-bottom: 0px;
             border-bottom: 1px dotted #333;
         }
+
+        .mobile-footer{
+            width: 100vw;
+            height: 55px !important;
+            position: fixed;
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+            background: #111;
+            z-index: 999;
+            align-content: center;
+        }
+        .mf-link{
+            padding: 4px;
+            font-size: 13px;
+            padding-top: 24px;
+        }
+        @@media(min-width: 1000px)
+        {
+            .mobile-footer{
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -739,11 +759,8 @@ r            height: 320px;
                     </ul>
             </div>    
             </div>
-        </nav>        
-        
-
-    </header>       
-        
+        </nav>                
+    </header>               
         <main role="main" class="pb-3 page " >
             <nav id="sidebar" class="">
                 <a class="sb-link home-link" asp-action="Index" asp-controller="Video" asp-route-category=""><svg class=" home-svg" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.7 17.957h-5.829a.764.764 0 0 1-.762-.762v-3.62c0-.914-.724-1.638-1.638-1.638-.915 0-1.639.724-1.639 1.638v3.62c0 .42-.343.762-.762.762H1.317a.764.764 0 0 1-.762-.762V7.441c0-.686.343-1.334.876-1.715L9.09.201c.266-.19.61-.19.876 0l7.658 5.525c.534.381.877 1.029.877 1.715v9.792a.822.822 0 0 1-.8.724Zm-5.067-1.486h4.344v-9.03a.651.651 0 0 0-.267-.495l-7.201-5.22-7.202 5.181a.651.651 0 0 0-.266.496v9.03h4.343v-2.858a3.139 3.139 0 0 1 3.125-3.124 3.139 3.139 0 0 1 3.124 3.124v2.896Z" fill="#fff"></path></svg> Home</a>
@@ -787,14 +804,19 @@ r            height: 320px;
                 </div>
             </div>
 
-
+            <div class="mobile-footer">
+                <div class="mf-link">Categories</div>
+                <div class="mf-link">New</div>
+                <div class="mf-link">Login</div>
+                <div class="mf-link">Live</div>
+                <div class="mf-link">Premium</div>
+            </div>
             @RenderBody()
         </main>
     
-    <footer class="  footer text-muted">
+    <footer class="footer text-muted">
         <div class="container center">
             <p class="center"> &copy; 2024 - brainbreaker.tv </p>
-
         </div>
     </footer>
 
@@ -955,7 +977,8 @@ r            height: 320px;
     const sidebar = document.getElementById('sidebar');
     const toggleButton = document.getElementById('toggleSidebar');
     const main = document.querySelector('main');
-
+    const mobileFooter = document.querySelector('mobile-footer');
+   
     toggleButton.addEventListener('click', () => {
         console.log("toggled");
         //if hamburger clicked in desktop mode, close sidebar.
@@ -965,18 +988,21 @@ r            height: 320px;
         } else {
             //otherwise open it
             sidebar.classList.toggle('open');
+
         }        
     });
 
     // Check the screen size using media query
     function checkScreenSize() {
-        if (window.matchMedia("(max-width: 1000px)").matches) {
+        if (window.matchMedia("(max-width: 1000px)").matches) {                                    
+            
             // Execute your JavaScript code for mobile devices
             console.log("Mobile mode detected");
 
             toggleButton.onclick = function () {
                 sidebar.classList.toggle("mobile-sidebar");
             };
+
         } else {
             // Execute your JavaScript code for non-mobile devices
             console.log("Non-mobile mode detected");
