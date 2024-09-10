@@ -38,7 +38,6 @@
             color: deepskyblue;
             font-weight: 700;
             font-size: 20px;
-            margin-bottom: 20px;
 
 
         }
@@ -233,6 +232,9 @@
         .welcum{
             width: 180px;
             white-space: nowrap;
+            bottom: 0;
+            top: auto;
+            margin-left: -15px !important;
 
         }       
 
@@ -647,10 +649,10 @@ r            height: 320px;
         }
 
         .mobile-footer{
-            width: 100vw;
+            width: 100%;
             height: 65px !important;
             position: fixed;
-            bottom: 0;
+            bottom: 0px;
             display: flex;
             justify-content: space-around;
             background: #111;
@@ -664,22 +666,30 @@ r            height: 320px;
             align-items: center;
             text-decoration: none;
             color: #333;
+            padding-bottom: 12px;
+            padding-top: 6px;
         }
 
-        .footer-icon {
-            font-size: 24px;
+        .footer-icon img{
             margin-bottom: 2px;
-        }
-
-        .footer-text {
-            font-size: 12px;
+            height: 22px;
+            width: 22px;
         }
         @@media(min-width: 1000px)
         {
             .mobile-footer{
                 display: none !important;
             }
+           
         }
+        .footer-text{
+            color: #aaa !important;
+            font-size: 13px;
+        }
+        .nav-left{
+            display: flex;
+        }
+
     </style>
 </head>
 <body>
@@ -704,12 +714,14 @@ r            height: 320px;
             <div class="container-fluid">
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-lg-row nav-top">
-                        <button class="hamburger" id="toggleSidebar">☰</button>
-                            <li class="nav-item">                               
-                                <a class="navbar-brand" asp-area="" asp-controller="Video" asp-action="Index" asp-route-category="Latest">
-                                     <p class="site-name-logo"><span class="white">Brain</span>B<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="white">.tv</span></p>
-                                </a>
-                            </li>
+                       
+                            <div class="nav-left">
+                                <button class="hamburger" id="toggleSidebar">☰</button>
+
+                                    <a class="navbar-brand brain-break" asp-area="" asp-controller="Video" asp-action="Index" asp-route-category="Latest">
+                                         <p class="site-name-logo"><span class="white">Brain</span>B<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="white">.tv</span></p>
+                                    </a>
+                            </div>
                             
                             <li class="nav-item search">
                                 <form class="form-inline my-2 my-lg-0 search-form">
@@ -818,20 +830,24 @@ r            height: 320px;
 
             <div class="mobile-footer">
                 <a href="#" class="footer-item">
-                    <span class="footer-icon">🏠</span>
+                    <span class="footer-icon"><img src="~/img/home.png" /></span>
                     <span class="footer-text">Home</span>
                 </a>
                 <a href="#" class="footer-item">
-                    <span class="footer-icon">🔍</span>
+                    <span class="footer-icon"><img src="~/img/search.png" /></span>
                     <span class="footer-text">Search</span>
                 </a>
                 <a href="#" class="footer-item">
-                    <span class="footer-icon">📁</span>
-                    <span class="footer-text">Categories</span>
+                    <span class="footer-icon"><img src="~/img/user.png" /></span>
+                    <span class="footer-text">Login</span>
                 </a>
                 <a href="#" class="footer-item">
-                    <span class="footer-icon">👤</span>
-                    <span class="footer-text">Login</span>
+                    <span class="footer-icon"><img src="~/img/categories.png" /></span>
+                    <span class="footer-text">Categories</span>
+                </a>
+                <a asp-action="JoinNow" asp-controller="Home" class="footer-item">
+                    <span class="footer-icon"><img src="~/img/diamond.png" /></span>
+                    <span class="footer-text">Premium</span>
                 </a>
             </div>
         

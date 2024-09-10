@@ -125,16 +125,18 @@ body {
   
 
 }
+@media(min-width: 505px){
+    .hamburger{
+        margin-top: 10px;
+    }
+}
 @media (max-width: 506px) {
-   
-
     .sub-link-item {
         font-size: x-small !important;
         padding: 17px 4px !important;
     }
     .site-name-logo{
-        font-size: 30px !important;
-        
+        font-size: 30px !important;        
     }
     .join-now{
         padding-right: 0 !important;
@@ -150,10 +152,7 @@ body {
     }
     li .nav-item{
         margin:0 ;
-    }
-   
-    
-        
+    }               
 }
 @media(max-width: 450px){
     .dropdown-content{
@@ -191,7 +190,7 @@ body {
         margin-left: -60px !important; 
     }
     .dropdown{
-        margin-top:3px !important;
+        margin-top:-3px !important;
     }
 }
 @media (max-width: 376px) {
@@ -219,9 +218,8 @@ body {
         max-width: 80vw;
     }
     .site-name-logo {
-        font-size: 28px !important;
-        margin-top: 5px !important;
-    }    
+        font-size: 28px !important;         
+     }       
 }
 
 @media(max-width: 357px){
@@ -261,9 +259,7 @@ body {
      
 
 @media(max-width: 430px) {
-    .navbar-brand {
-        margin-right: 120px !important;
-     }
+     
     .nav-item{
         padding: 0 !important;
         margin: 0 !important;
