@@ -390,5 +390,13 @@ namespace VRhfo.BL
 
             }
         }
+
+        public static bool CheckIfWatchEntry(WatchEntry userWatchedVid)
+        {
+            using(VRhfoEntities dc = new VRhfoEntities())
+            {
+                return dc.tblWatchEntries.Any(row => row.UserId == userWatchedVid.UserId && row.VideoId == userWatchedVid.VideoId);
+            }
+        }
     }
 }

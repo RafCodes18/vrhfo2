@@ -131,8 +131,11 @@ namespace VRhfo.UI.Controllers
                     Completed = false
                 };
 
-                VideoManager.InsertWatchEntry(watchEntry);
-
+                //only insert a watch entry if the video hasnt already been watched
+                if (!VideoManager.CheckIfWatchEntry(watchEntry))
+                {
+                    VideoManager.InsertWatchEntry(watchEntry);
+                }                
             }
 
             return View(videoViewModel);
@@ -151,15 +154,15 @@ namespace VRhfo.UI.Controllers
             };
 
             try
-            {
-                if (VideoManager.UpdateWatchEntry(watchEntry))
-                {                   
-                    return Json(new { success = true });
-                }
-                else
-                {
-                    return Json(new { success = false, message = "Failed to update watch entry" });
-                }
+            {              
+                    if (VideoManager.UpdateWatchEntry(watchEntry))
+                    {
+                        return Json(new { success = true });
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "Failed to update watch entry" });
+                    }                       
             }
             catch (Exception ex)
             {                
