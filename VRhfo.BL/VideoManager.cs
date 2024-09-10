@@ -375,7 +375,8 @@ namespace VRhfo.BL
 
                 if (tblRow != null)
                 {
-                    tblRow.WatchDurationTicks = userWatchedVid.WatchDurationTicks;
+                                            //tracking total lifetime watch duration, not per session and resetting to 0
+                    tblRow.WatchDurationTicks +=  userWatchedVid.WatchDurationTicks;
                     tblRow.LastDateWatched = userWatchedVid.LastDateWatched;
                     tblRow.Completed = userWatchedVid.Completed;
                     
