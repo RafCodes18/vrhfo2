@@ -265,7 +265,7 @@
 
             </div>
             <div class="create-account">
-                <h2>Lets create an account</h2>
+                <h1>Lets create an account</h1>
                 <div class="form">
                     <input type="email" required placeholder="Email" />
                     <input type="password" required placeholder="Password" />
@@ -280,6 +280,21 @@
 
  
 <style>
+    .create-account h1{
+        width: 100%;
+        text-align: left;
+        margin-left: 11px;
+        color: #fff !important;
+    }
+    .create-account{
+        width: 90%;
+        background-color: #111;
+        padding: 20px;
+        height: 800px !important;
+        border: 1px solid var(--accent-color);
+        border-radius: 10px;
+
+    }
     .create-account input{
         width: 100%;
         border: none;
@@ -288,13 +303,15 @@
         padding: 14px;
         margin: 3px;
         margin-bottom: 10px;
+        background-color: #222;
+        color: #fff;
     }
     .form{
         display: flex;
         flex-direction: column;
-        justify-content: center;
         max-width: 500px;
-        width: 100%;
+        width: 95%;
+        height: 100%;        
     }
     .back-btn{
         position: absolute;
@@ -449,10 +466,10 @@
        }
        .top-3-rows{
            margin-top: -100px !important;
-       }
+       }       
    }
 
-   @@media(max-width: 670px){
+   @@media(max-width: 670px){       
        .cards{
            margin-top: 10px;
            flex-direction: column;
@@ -509,6 +526,26 @@
            margin-top: 20px !important;
        }
    }
+
+   @@media(max-width: 430px){
+        .create-account {
+            max-width: 290px !important;
+            margin-top: 30px !important;
+        }
+        .create-account h1{
+            font-size: 21px !important;
+        }
+   }
+
+    @@media(max-width: 350px) {
+        .create-account {
+            max-width: 260px !important;
+            min-height: 400px !important;
+        }
+        .second-card{
+            margin-top: 200px !important;
+        }
+    }
 
 </style>
  
