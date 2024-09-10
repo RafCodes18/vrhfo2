@@ -99,10 +99,7 @@
         padding: 0;
         height: 40px;
         margin-top: -10px;
-    }
-    .vid-details-top-row p {
-        font-size: large;
-    }
+    }   
     .page-left-container{
         margin-left: 20px;
     }
@@ -166,8 +163,7 @@
             padding: 5px !important;
             
                 margin-bottom: -30px;
-        }
-      
+        }    
          .video-container{
             margin: 0;
             margin-top: 0;
@@ -181,6 +177,19 @@
             width: 96%;
             margin-top: 0 !important;
         }
+        .title-and-date{
+             flex-direction: column;
+             padding: 0 !important;
+             margin: 0 !important;
+        }
+        .vid-details-bottom-row{
+            align-self: end;
+        }
+        .form-date{
+            padding: 0 !important;
+            margin: 0 !important;            
+        }
+ 
     }
     @@media(min-width: 930px){
         .page-right-container{
@@ -468,11 +477,8 @@
         @@media(max-width: 450px){
             .vid-title-txt{
                font-size: large;
-               max-width
             }
-            .category-txt{
-                font-size: small !important;
-            }
+           
             .vid-details-bottom-row{
             padding-top: 6px !important;
         }
@@ -583,11 +589,14 @@
         <div class="vid-details-top-row">
             <div class="title-and-date">
                 <h2 class="vid-title-txt">
-                    @Model.video.Title    <span class=" dot wht">• </span>
+                    @Model.video.Title    
                 </h2>
-                <h4 class="form-date">@Model.video.FormattedUploadDate <span class=" dot wht">• </span> </h4>
-                <p class="form-date">@Model.video.FormattedViews views</p>
-
+                <div class="date-cont">
+                        <span class=" dot wht">• </span>
+                        <p class="form-date">@Model.video.FormattedUploadDate </p>
+                    <span class=" dot wht">• </span>
+                    <p class="form-date">@Model.video.FormattedViews views</p>
+                </div>
             </div>
             @*OLD LIKES*@
             @* <p>
@@ -710,20 +719,23 @@
 
     <!--Vid details CSS -->
     <style>
+        .date-cont {
+            display: flex;
+        }
         @@media(max-width: 1000px){
             .comments-header-title-left {
                 font-size: 15px !important;
             }
             .form-date{
-                font-size: 12px !important;
-                margin-left: 8px !important;
+                font-size: 15px !important;
+                color: #555 !important;
             }
 
             .vid-title-txt{
-                font-size: 18spx;
+                font-size: 18px;
             }
             .likes-ratio{
-                font-size: 14spx !important;
+                font-size: 16px !important;
             }
 
             .dot.wht {
@@ -735,15 +747,24 @@
             }
             .comment-input{
                 width: 20% !important ;
+            }              
+            .form-date{
+                margin-right: 15px !important;
+            }
+            .category-txt{
+                font-size: smaller !important;
             }
         }
+
+
+
         .add-left{
             display: flex;
             width: 100%;
         }
         .comment-content{
             padding: 5px;
-            color: #ccc;
+            color: #c7c7c7;
         }
         .content{
             display: flex;
@@ -754,13 +775,20 @@
         }
         .title-and-date{
             display: flex;
+            align-items: center;
+        }
+        .date-cont{
+            display: flex;
+            align-content: center !important;
+            flex-wrap: nowrap !important;
         }
         .form-date{
             color: #888;
-            margin-top: 12px;
             font-size: large;
-            margin-left: 4px;
-
+            margin-left: 4px;            
+        }
+        .date-cont P {
+            margin-bottom: 0 !important;
         }
         .comments-top{
             position: sticky;
@@ -782,7 +810,7 @@
             overflow-y: scroll;
         }
         .date-posted-txt{
-            color: #666;
+            color: #777;
             font-size: 13px;
             right: 0;
             bottom: 0;
@@ -1255,12 +1283,7 @@
 
 <!--NEWWw LIKE BUTTON FUNCTIONALITY-->
 <script>
-    
-
   
-
-       
-
     document.addEventListener('DOMContentLoaded', function () {
         const sidebar = document.getElementById('sidebar');
         const toggleButton = document.getElementById('toggleSidebar');
