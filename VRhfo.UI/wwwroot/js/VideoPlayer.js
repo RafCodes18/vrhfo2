@@ -336,7 +336,7 @@ function sendProgressUpdate() {
             body: JSON.stringify({
                 userId: currentUserIdd,
                 videoId: currVidId, // You need to set this variable based on the current video
-                watchDuration: formatDuration(_watchDuration),
+                watchDuration: formatDuration2(_watchDuration),
                 completed: completed
             })
         })
@@ -354,7 +354,7 @@ function sendProgressUpdate() {
 }
 
 // Helper function to format duration as TimeSpan string
-function formatDuration(seconds) {
+function formatDuration2(seconds) {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const remainingSeconds = Math.floor(seconds % 60);

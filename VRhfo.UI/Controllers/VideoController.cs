@@ -138,16 +138,15 @@ namespace VRhfo.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateWatchProgress(Guid userId,  int videoId, long watchDuration, bool completed)
+        public ActionResult UpdateWatchProgress([FromBody] dynamic body)
         {          
             var watchEntry = new WatchEntry()
             {
-                UserId = userId,
-                VideoId = videoId,
-
-                LastDateWatched = DateTime.UtcNow,                
-                WatchDurationTicks = watchDuration,
-                Completed = completed,
+                UserId = Guid.Parse(body.GetProperty("userId").GetString()),  // userId is a string (GUID)
+                VideoId = int.Parse(body.GetProperty("videoId").GetString()), // Assuming videoId is also a string
+                LastDateWatched = DateTime.UtcNow,  // Assuming you want to set the current time
+                WatchDurationTicks = ParseTimeSpan(body.GetProperty("watchDuration").GetString()), // You'll need to parse the timespan string
+                Completed = body.GetProperty("completed").GetBoolean()  // completed is a boolean
             };
 
             try
@@ -168,6 +167,13 @@ namespace VRhfo.UI.Controllers
 
         }
 
+        // Helper method to parse watch duration from string format
+        private long ParseTimeSpan(string timeSpanString)
+        {
+            // Assuming the format is hh:mm:ss or similar
+            TimeSpan timeSpan = TimeSpan.Parse(timeSpanString);
+            return timeSpan.Ticks;
+        }
         // GET: VideoController/Upload
         public ActionResult Upload()
         {

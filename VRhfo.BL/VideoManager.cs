@@ -375,6 +375,7 @@ namespace VRhfo.BL
                     tblRow.LastDateWatched = userWatchedVid.LastDateWatched;
                     tblRow.Completed = userWatchedVid.Completed;
                     
+
                     db.SaveChanges();
                     return true;
                 }
