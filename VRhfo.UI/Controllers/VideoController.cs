@@ -130,6 +130,7 @@ namespace VRhfo.UI.Controllers
                     FirstViewed = DateTime.Now,
                     Completed = false
                 };
+
                 VideoManager.InsertWatchEntry(watchEntry);
 
             }

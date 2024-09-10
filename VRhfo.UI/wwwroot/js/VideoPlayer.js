@@ -320,7 +320,8 @@ window.addEventListener('beforeunload', function () {
 });
 
 // Function to send progress update
-function sendProgressUpdate() {
+// Function to send progress update
+async function sendProgressUpdate() {
     const completed = currentTime === _watchDuration;
 
     if (!currentUserIdd || currentUserIdd === '00000000-0000-0000-0000-000000000000') {
@@ -328,28 +329,31 @@ function sendProgressUpdate() {
         return;
     } else {
         console.log("sending stats...");
-        fetch('/Video/UpdateWatchProgress', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                userId: currentUserIdd,
-                videoId: currVidId, // You need to set this variable based on the current video
-                watchDuration: formatDuration2(_watchDuration),
-                completed: completed
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log('Progress updated successfully');
-                } else {
-                    console.log('Progress upload failed')
-                    console.log(data.message);
-                }
-            })
-            .catch(error => console.error('Error:', error));
+        try {
+            const response = await fetch('/Video/UpdateWatchProgress', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userId: currentUserIdd,
+                    videoId: currVidId, // Ensure this variable is correctly set
+                    watchDuration: formatDuration2(_watchDuration),
+                    completed: completed
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                console.log('Progress updated successfully');
+            } else {
+                console.log('Progress update failed');
+                console.log(data.message);
+            }
+        } catch (error) {
+            console.error('Error occurred while updating progress:', error);
+        }
     }
 }
 
