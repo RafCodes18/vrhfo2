@@ -648,19 +648,31 @@ r            height: 320px;
 
         .mobile-footer{
             width: 100vw;
-            height: 55px !important;
+            height: 65px !important;
             position: fixed;
             bottom: 0;
             display: flex;
             justify-content: space-around;
             background: #111;
             z-index: 999;
-            align-content: center;
+            align-items: center;
         }
-        .mf-link{
-            padding: 4px;
-            font-size: 13px;
-            padding-top: 24px;
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .footer-icon {
+            font-size: 24px;
+            margin-bottom: 2px;
+        }
+
+        .footer-text {
+            font-size: 12px;
         }
         @@media(min-width: 1000px)
         {
@@ -805,12 +817,24 @@ r            height: 320px;
             </div>
 
             <div class="mobile-footer">
-                <div class="mf-link">Categories</div>
-                <div class="mf-link">New</div>
-                <div class="mf-link">Login</div>
-                <div class="mf-link">Live</div>
-                <div class="mf-link">Premium</div>
+                <a href="#" class="footer-item">
+                    <span class="footer-icon">🏠</span>
+                    <span class="footer-text">Home</span>
+                </a>
+                <a href="#" class="footer-item">
+                    <span class="footer-icon">🔍</span>
+                    <span class="footer-text">Search</span>
+                </a>
+                <a href="#" class="footer-item">
+                    <span class="footer-icon">📁</span>
+                    <span class="footer-text">Categories</span>
+                </a>
+                <a href="#" class="footer-item">
+                    <span class="footer-icon">👤</span>
+                    <span class="footer-text">Login</span>
+                </a>
             </div>
+        
             @RenderBody()
         </main>
     
