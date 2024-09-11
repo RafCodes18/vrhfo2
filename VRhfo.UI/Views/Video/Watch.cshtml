@@ -480,27 +480,26 @@
             }
            
             .vid-details-bottom-row{
-            padding-top: 6px !important;
-        }
+                padding-top: 6px !important;
+            }
             .uploaded-date{
                 font-size: xx-small !important;
             }
             .by-txt{
-                font-size: xx-small !important;
+                font-size: small !important;
                 margin-right: -4px;
             }
+            .username-txt2 {
+                    font-size: small !important;
+                }
 
-        .username-txt2 {
+            .vid-details-top-row{
+                margin-top: 3px;
+            }
+            .views-txt{
+                margin-bottom: 4px;
                 font-size: x-small !important;
             }
-
-        .vid-details-top-row{
-            margin-top: 3px;
-        }
-        .views-txt{
-            margin-bottom: 4px;
-            font-size: x-small !important;
-        }
             .likes-ratio{
                 font-size: medium !important;
                 text-wrap: nowrap;
@@ -627,7 +626,6 @@
         </div>
         <div class="vid-details-bottom-row">
             <p><a class="category-txt" asp-action="Index" asp-controller="Video" asp-route-category="@Model.video.Category">#@Model.video.Category </a></p>
-
         </div>
         <div class="vid-details-last">
             <div class="details-last-first2">
@@ -642,7 +640,7 @@
         
         <div class="comments-top">
             <div class="comments-header">
-                <div class="comments-header-title">.
+                <div class="comments-header-title">f
                     <div class="comments-header-title-left">
                         <p>Comments</p>
                         <span class=" dot ">• </span>
@@ -719,6 +717,9 @@
 
     <!--Vid details CSS -->
     <style>
+        body{
+            overflow-x: hidden;
+        }
         .date-cont {
             display: flex;
         }
@@ -752,10 +753,12 @@
                 margin-right: 15px !important;
             }
             .category-txt{
-                font-size: smaller !important;
+                font-size: small !important;
             }
         }
+        @@media(max-width: 400px){
 
+        }
 
 
         .add-left{
@@ -784,7 +787,7 @@
         }
         .form-date{
             color: #888;
-            font-size: large;
+            font-size: 16px;
             margin-left: 4px;            
         }
         .date-cont P {

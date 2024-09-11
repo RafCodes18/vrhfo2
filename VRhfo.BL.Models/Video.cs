@@ -122,7 +122,6 @@
             {
                 var currentDate = DateTime.UtcNow;
                 var dateDifference = currentDate - UploadDate;
-
                 if (dateDifference.TotalDays < 1)
                 {
                     return "Today";
@@ -137,19 +136,27 @@
                 }
                 else if (dateDifference.TotalDays < 14)
                 {
-                    return "1 wk ago";
+                    return "1 week ago";
                 }
                 else if (dateDifference.TotalDays < 30)
                 {
-                    return $"{(int)(dateDifference.TotalDays / 7)} wks ago";
+                    return $"{(int)(dateDifference.TotalDays / 7)} weeks ago";
+                }
+                else if (dateDifference.TotalDays < 60)
+                {
+                    return "1 month ago";
                 }
                 else if (dateDifference.TotalDays < 365)
                 {
-                    return $"{(int)(dateDifference.TotalDays / 30)} mths ago";
+                    return $"{(int)(dateDifference.TotalDays / 30)} months ago";
+                }
+                else if (dateDifference.TotalDays < 730)
+                {
+                    return "1 year ago";
                 }
                 else
                 {
-                    return $"{(int)(dateDifference.TotalDays / 365)} yrs ago";
+                    return $"{(int)(dateDifference.TotalDays / 365)} years ago";
                 }
             }
         }
