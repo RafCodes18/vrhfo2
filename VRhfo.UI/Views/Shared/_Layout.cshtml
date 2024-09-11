@@ -803,6 +803,8 @@ r            height: 320px;
                     <div class="breaker"></div>
                     <a class="sb-link" asp-action="Captions" asp-controller="Home">Porn Captions</a>
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Top">Top Creators</a>
+                    <div class="breaker"></div>
+                    <p class="sb-link">Your stats:</p>
 
             </nav>
             <div class="overlay hidden">
@@ -848,7 +850,15 @@ r            height: 320px;
                     <span class="footer-text">Search</span>
                 </a>
                 <a asp-action="JoinNow" asp-controller="Home" class="footer-item">
-                    <span class="footer-icon"><img src="~/img/diamond.png" /></span>
+                     
+                        <span class="footer-icon">
+                            <svg class="o-icon o-icon-svg " viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.06419 14.7411c-.10982-.0012-.21803-.0265-.31697-.0742-.09894-.0477-.18618-.1166-.25554-.2017L.672817 6.15741c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.5931c.06641-.10241.15756-.18643.26503-.2443.10747-.05787.2278-.08772.34985-.08679l8.695.06208c.1236.00146.2448.03333.3531.0928.1083.05946.2002.14469.2677.24815l2.4389 3.70997c.0882.13302.1318.29072.1244.4502-.0075.15947-.0655.31243-.1658.43665L8.63276 14.475c-.06879.0842-.15557.1519-.25396.1981-.0984.0462-.2059.0698-.31461.069v-.001z" fill="#37C4B3"></path>
+                                <path d="M10.9376 5.80361L8.06418 14.743 5.08044 5.76223l-4.578103-.0335c-.012524-.16198.028313-.3236.116275-.46018L3.00522 1.59306c.06943-.10727.16597-.19429.27984-.25225l2.91083 4.4293 3.60848.02562 2.84773-4.38792c.1124.05814.2109.14485.2838.25423L15.3748 5.373c.09.13702.1332.2995.1231.46313l-4.5603-.0335v.00098z" fill="#53E7D3"></path>
+                                <path d="M7.96372 1.29253h.00788l2.966 4.51109-5.87486-.04237 2.90098-4.46872z" fill="#B9F5ED"></path>
+                                <path opacity=".1" d="M2.64359 6.17018s4.98999 8.46842 4.84809 8.29592L.672817 6.15639c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.59307c.06618-.10278.15723-.18719.26472-.24541.10748-.05823.22793-.08837.35016-.08765l1.97077.01379c-.12214-.00082-.24253.02917-.35.08722-.10748.05804-.19858.14226-.26488.24486l-2.3866 3.67647c-.08614.13466-.12731.29319-.11757.45275.00974.15955.06988.3119.17177.43508z" fill="#000"></path>
+                            </svg>
+                        </span>                    
                     <span class="footer-text">Premium</span>
                 </a>
             </div>
@@ -869,7 +879,31 @@ r            height: 320px;
 </body>
 </html>
 
-<style> 
+<style>
+    <!-- DIAMOND AND LIKE BUTTONS -->
+    .o-icon-svg {
+        pointer-events: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .o-icon {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        position: relative;
+        vertical-align: middle;
+        fill: grey;
+        width: 24px;
+        height: 24px;
+    }
     #login-message{
         color: darkred !important;
         font-size: large;
