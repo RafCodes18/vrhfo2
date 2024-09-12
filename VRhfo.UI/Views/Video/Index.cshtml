@@ -549,4 +549,11 @@
             leftElement.style.background = '#1f2700'; // Reset to default
         }
     });
+
+    document.querySelectorAll('.card a').forEach(function (anchor) {
+        anchor.addEventListener('click', function (event) {
+            // Disable the anchor tag after click to prevent double clicking
+            event.target.disabled = true;
+        });
+    });
  </script>

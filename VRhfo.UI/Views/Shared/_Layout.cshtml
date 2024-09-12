@@ -81,8 +81,8 @@
 
             .btn-outline-primary:hover {
                 background-color: var(--primary-color);
-                color: white;
-                border: hidden;
+                color: #000;
+                border-color: var(--primary-color);
             }
 
         .form-control {
@@ -188,13 +188,12 @@
             background-color: black;
             color: white !important;
         }
-
-        .custom-search:focus .search{
-            border-color: white !important;
-        }
-       
+        .search-cue{
+            border: 1px solid white !important;
+            border-color: white;
+            color: white;
+        }       
         
-
         .sub-link-item:hover{
             color: #fff;
            background-color: #393939;
@@ -728,7 +727,7 @@ r            height: 320px;
                             <li class="nav-item search">
                                 <form class="form-inline my-2 my-lg-0 search-form">
                                     <div class="input-group searchbar">
-                                        <input type="search" class="form-control rounded custom-search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                        <input type="search" class="form-control  custom-search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                                         <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </form>
@@ -982,6 +981,16 @@ r            height: 320px;
     }
 </style>
 <script>
+    const searchCue = document.querySelector('.btn-outline-primary');
+    const searchBar = document.querySelector('.custom-search');
+
+    searchBar.addEventListener("focus", () => {
+        searchCue.classList.add("search-cue");
+    });
+    searchBar.addEventListener("focusout", () => {
+        searchCue.classList.remove("search-cue");
+    });
+
 
     window.onscroll = function () { myFunction() };
 

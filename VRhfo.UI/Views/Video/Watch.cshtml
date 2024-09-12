@@ -590,11 +590,9 @@
                 <h2 class="vid-title-txt">
                     @Model.video.Title    
                 </h2>
-                <div class="date-cont">
-                        <span class=" dot wht">• </span>
-                        <p class="form-date">@Model.video.FormattedUploadDate </p>
-                    <span class=" dot wht">• </span>
-                    <p class="form-date">@Model.video.FormattedViews views</p>
+                <div class="date-cont">                        
+                    <p class="form-date"><span class=" dot wht">• </span>@Model.video.FormattedUploadDate </p>                    
+                    <p class="form-date"><span class=" dot wht">• </span>@Model.video.FormattedViews views</p>
                 </div>
             </div>
             @*OLD LIKES*@
@@ -640,7 +638,7 @@
         
         <div class="comments-top">
             <div class="comments-header">
-                <div class="comments-header-title">f
+                <div class="comments-header-title"> 
                     <div class="comments-header-title-left">
                         <p>Comments</p>
                         <span class=" dot ">• </span>
@@ -1168,8 +1166,8 @@
             <div class="video">
                 <div class="sug-vid-img">
                     <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title.Replace(' ', '-')">
-                        <img src="~/img/@Model.suggestedVideos[i].ThumbnailUrl" height="100px" width="150px" class="sug-img" /> 
-                       </a>
+                        <img src="@Model.suggestedVideos[i].ThumbnailUrl" height="100" width="150" class="sug-img" /> 
+                    </a>
                 </div>
                 <div class="sug-vid-content">
                     <a class="title-link" asp-action="watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title"><h5 class="video-title">@Model.suggestedVideos[i].Title</h5></a>

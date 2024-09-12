@@ -99,9 +99,13 @@ namespace VRhfo.UI.Controllers
 
             //Load video 
             videoViewModel.video = VideoManager.LoadByTitle(cleanTitle);
-            
+
             //load user
-            videoViewModel.video.user = UserManager.LoadById(videoViewModel.video.UserId);
+            if (videoViewModel.video.UserId != Guid.Empty)
+            {
+                videoViewModel.video.user = UserManager.LoadById(videoViewModel.video.UserId);
+            }
+           
             
             //load suggested videos
             List<Video> list = VideoManager.GetSuggestedVideos(8, title);
