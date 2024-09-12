@@ -319,6 +319,15 @@ window.addEventListener('beforeunload', function () {
     sendProgressUpdate();
 });
 
+// Helper function to format duration as TimeSpan string
+function formatDuration2(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+
 // Function to send progress update
 // Function to send progress update
 async function sendProgressUpdate() {
@@ -357,12 +366,5 @@ async function sendProgressUpdate() {
     }
 }
 
-// Helper function to format duration as TimeSpan string
-function formatDuration2(seconds) {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-    return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-}
 
 

@@ -164,7 +164,9 @@
             margin-bottom: 5px;
             padding: 0;
         }
-
+        .custom-search{
+            color: white !important;
+        }
         .cust {
             border: 1px solid grey;
         }
@@ -693,7 +695,42 @@ r            height: 320px;
         #login-button2:hover{
             cursor: pointer;
         }
-        .
+        .your-stats-container{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            align-self: start;
+        }
+        .your-stats-container h5{
+            font-size: small;
+            left: 0 !important;
+            color: #ddd
+        }
+        .your-stats{
+            align-self: start;
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+            color: var(--primary-color) !important;
+        }
+
+        .result-box ul{
+            border-top: 1px solid #999;
+            padding: 15px 10px;
+            background-color: #000 !important;
+        }
+        .result-box ul li{
+            list-style: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+            .result-box li:hover {
+                background-color: #555;
+            }
+        .result-box{
+            max-height: 200px;
+            overflow-y: scroll;
+        }
     </style>
 </head>
 <body>
@@ -730,9 +767,12 @@ r            height: 320px;
                             <li class="nav-item search">
                                 <form class="form-inline my-2 my-lg-0 search-form">
                                     <div class="input-group searchbar">
-                                        <input type="search" class="form-control  custom-search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                        <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                        <input type="search" class="form-control  custom-search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" data-search/>
+                                        <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i></button>                                                                          
                                     </div>
+                                <div class="result-box">
+                                     
+                                </div>
                                 </form>
                             </li>
                         @{
@@ -806,8 +846,16 @@ r            height: 320px;
                     <a class="sb-link" asp-action="Captions" asp-controller="Home">Porn Captions</a>
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Top">Top Creators</a>
                     <div class="breaker"></div>
-                    <p class="sb-link">Your stats:</p>
 
+            <p class="sb-link your-stats"><a asp-action="JoinNow" asp-controller="Home">Your stats</a> </p>
+            <div class="your-stats-container">
+                        <h5>Today: 00:32:12</h5>
+                        <h5>This week: 5h</h5>
+                        <h5>This month: 23h</h5>
+                        <h5>This year: 114h</h5>
+                        <h5>Lifetime: 234h</h5>
+                    </div>
+                                        
             </nav>
             <div class="overlay hidden">
                   
@@ -984,17 +1032,7 @@ r            height: 320px;
     }
 </style>
 <script>
-    const searchCue = document.querySelector('.btn-outline-primary');
-    const searchBar = document.querySelector('.custom-search');
-
-    searchBar.addEventListener("focus", () => {
-        searchCue.classList.add("search-cue");
-    });
-    searchBar.addEventListener("focusout", () => {
-        searchCue.classList.remove("search-cue");
-    });
-
-
+    
     window.onscroll = function () { myFunction() };
 
     var navbar = document.getElementById("navbarr");
