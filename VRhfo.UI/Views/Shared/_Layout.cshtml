@@ -731,6 +731,12 @@ r            height: 320px;
             max-height: 200px;
             overflow-y: scroll;
         }
+
+        #Search::-webkit-search-cancel-button {
+            filter: invert(97%) sepia(11%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+            cursor: pointer;
+            padding: 2px;
+        }
     </style>
 </head>
 <body>
@@ -765,9 +771,9 @@ r            height: 320px;
                             </div>
                             
                             <li class="nav-item search">
-                                <form class="form-inline my-2 my-lg-0 search-form">
+                                <form class="form-inline   search-form">
                                     <div class="input-group searchbar">
-                                        <input type="search" class="form-control  custom-search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" data-search/>
+                                        <input id="Search" type="search" class="form-control  custom-search" placeholder="Search"   data-search/>
                                         <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i></button>                                                                          
                                     </div>
                                 <div class="result-box">
