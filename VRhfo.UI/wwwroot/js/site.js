@@ -5,24 +5,27 @@ const searchInput = document.querySelector("[data-search]");
 const resultBox = document.querySelector(".result-box");
 
 let suggestions = [
-    'Gooning',
-    'Binaural Beats',
-    'HFO',
-    'Hands free orgasm',
-    'Brainwashing',
-    'Porn addict',
-    'Porn addict brainwashing program',
-    'Porn worship',
-    'The greatest goon video ever made',
-    'Big titty JOI',
+    'Hypnosis porn trance',
+    'BrainBreak 1',
+    'Loopy Goon',
+    'Goon Hypnosis',
     'Average HFO enjoyer',
-    'Goon Binaural Beats'
+    'Jackpot HFO Hypno JOI',
+    'The Greatest Goon Video Ever Made',
+    'Big titty addiction',
+    'The Greatest Goon Video Ever Made',
+    'Lust angels',
+    'BIG TITTY LOVER JOI',
+    'Hypno Mindfuck Goon JOI',
+    'Brainwashed to gooon'
 ];
 let result = [];
 function display(result) {
 
-    const content = result.map((list) => {
-        return "<li>" + list + "</li>";
+    const content = result.map((listItem) => {
+        // Manually build the URL for the video
+        const url = `/Video/Watch?title=${listItem.replace(/ /g, '-')}`;
+        return `<li><a href="${url}" style="color:white">${listItem}</a></li>`;
     });
 
     resultBox.innerHTML = "<ul>" + content.join('') + "</ul>";
@@ -38,8 +41,7 @@ function display(result) {
 
 function selectInput(list) {
     console.log("search result item clicked");
-    searchInput.value = list.innerHTML;
-    resultBox.innerHTML = '';
+     resultBox.innerHTML = '';
 }
 
 
