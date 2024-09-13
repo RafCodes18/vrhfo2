@@ -452,6 +452,7 @@ r            height: 320px;
             align-items: center;
             padding-left: 13px;
             min-width: 200px;
+            overflow-y: scroll;
 
         }
         #sidebar.open {
@@ -706,8 +707,13 @@ r            height: 320px;
             flex-direction: column;
             align-items: start;
             align-self: start;
-            min-width: 100% !important;
+            width: 97% !important;
             font-family: 'Trebuchet MS';
+            background-color: #111;
+            border-radius: 10px; 
+            border: 1px solid grey;
+            padding: 5px;
+            margin-bottom: 15px;
         }
 
         .your-stats-container h5{
@@ -717,12 +723,16 @@ r            height: 320px;
             color: #555;
             align-self: center;
         }
-        .your-stats{
+        @@keyframes color-change {
+          0% { color: #888; }
+          50% { color: #666; }
+          100% { color: #aaa; }
+        }
+        .your-stats a{
             align-self: start;
             margin-left: 0 !important;
             padding-left: 0 !important;
-            color: var(--secondary-color) !important;
-            margin-top: -10px;
+            color: var(--accent-color) !important;
         }
 
         .result-box ul{
@@ -883,7 +893,7 @@ r            height: 320px;
                 <div class="breaker"></div>
 
                 <p class="sidebar-title">Categories</p>                
-                    <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Latest"><img class="sidebar-icons" src="~/img/new (1).png" />  Latest uploads</a>
+                    <a class="sb-link sb-link-top" asp-action="Index" asp-controller="Video" asp-route-category="Latest"><img class="sidebar-icons" src="~/img/new (1).png" />  Latest uploads</a>
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Brainwashing"><img class="sidebar-icons" src="~/img/cogwheel.png" />  Brainwashing</a>
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Gooning"><img class="sidebar-icons"src="~/img/hypnosis.png" />  Gooning</a>                                             
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="HFO"><img class="sidebar-icons" src="~/img/prohibition.png" /> HFO <span class="explain">(Hands Free Orgasm)</span></a>
@@ -895,8 +905,9 @@ r            height: 320px;
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Top">Top Creators</a>
                     <div class="breaker"></div>
 
-                    <p class="sb-link your-stats"><a asp-action="JoinNow" asp-controller="Home">Watch time</a> </p>
                     <div class="your-stats-container">
+                    <p class="sb-link your-stats"><a asp-action="JoinNow" asp-controller="Home">Watch time</a> </p>
+
                        <div class="stats-2-boxes">
                              <div class="stat-box">
                                 <h5>Today: <span class="watch-time-value">00:32:12</span></h5>
@@ -910,7 +921,7 @@ r            height: 320px;
                        </div>
                         
                         
-                        <h5>Lifetime: <span class="watch-time-lifetime">234h</span></h5>
+                        <h5>Lifetime: <span class="watch-time-lifetime">234 hours</span></h5>
                     </div>
                                         
             </nav>
@@ -1003,13 +1014,28 @@ r            height: 320px;
 </html>
 
 <style>
+    .sb-link-top{
+        margin-top: -2px;
+    }
     .watch-time-lifetime{
-        color: #bf0101 !important;
         font-weight: 600;
-        
+        animation: color-change-red 5s infinite;
+    }
+
+    @@keyframes color-change-red {
+        0% {
+            color: red;
+        }
+        50% {
+            color: darkred;
+        }
+        100% {
+            color: red;
+        }
     }
     .watch-time-value{
         color: var(--accent-color);
+        animation: color-change 5s infinite;
     }
     .stats-2-boxes{
         display: flex;

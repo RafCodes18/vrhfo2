@@ -327,7 +327,7 @@ body {
    /*ScrollBar*/
 /* width */
 ::-webkit-scrollbar {
-    width:6px;
+    width:9px;
 }
 
 /* Track */
