@@ -79,6 +79,12 @@
             border-color: var(--primary-color);
         }.btn-outline-primary:focus {
             border-color: var(--primary-color) !important;
+        }.btn-outline-primary2:focus {
+            border-color: var(--primary-color) !important;
+        }
+        .btn-outline-primary2{
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
         }
 
             .btn-outline-primary:hover {
@@ -195,7 +201,7 @@
         .search-cue{
             border: 1px solid white !important;
             border-color: white;
-            color: white;
+            color: white !important;
         }       
         
         .sub-link-item:hover{
@@ -439,7 +445,7 @@ r            height: 320px;
             background-color: transparent;
             transition: transform 0.3s ease-in-out;
             z-index: 9999;
-            margin-top: 10px !important;
+            margin-top:9px !important;
             margin-right: 0;
             display: flex;
             flex-direction: column;
@@ -575,7 +581,7 @@ r            height: 320px;
               display: inline-flex;
               align-items: center;
               font-weight: 600;
-              color: red;
+              color: #bc0000;
               font-size: 15px;
             }
 
@@ -584,7 +590,7 @@ r            height: 320px;
   display: inline-block;
   width: 7px;
   height: 7px;
-  background-color: red;
+  background-color: #b80404;
   border-radius: 50%;
                 margin-right: 5px;
                 margin-left: 7px;
@@ -700,17 +706,23 @@ r            height: 320px;
             flex-direction: column;
             align-items: start;
             align-self: start;
+            min-width: 100% !important;
+            font-family: 'Trebuchet MS';
         }
+
         .your-stats-container h5{
-            font-size: small;
+            padding: 1px;
+            font-size: medium;
             left: 0 !important;
-            color: #ddd
+            color: #555;
+            align-self: center;
         }
         .your-stats{
             align-self: start;
             margin-left: 0 !important;
             padding-left: 0 !important;
-            color: var(--primary-color) !important;
+            color: var(--secondary-color) !important;
+            margin-top: -10px;
         }
 
         .result-box ul{
@@ -735,6 +747,37 @@ r            height: 320px;
             filter: invert(97%) sepia(11%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
             cursor: pointer;
             padding: 2px;
+        }
+        .mobile-search{ 
+            position: fixed;
+            top: 12%;
+            width: 98%;
+            z-index: 999;
+        }
+        .mobile-search input{
+                position: relative;
+                width: 100%;
+                background-color: black;
+                border: 1px solid var(--primary-color);
+                padding: 8px 20px;
+                font-size: large;
+        }
+        .mobile-search input:focus{
+                    outline: none !important;
+                    box-shadow: none !important;
+                    border-color: white !important;
+                    background-color: black;
+                    color: white !important;
+        }        
+        .overlay2{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #000;
+            opacity: 0.9;
+            z-index: 99;      
         }
     </style>
 </head>
@@ -852,17 +895,29 @@ r            height: 320px;
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Top">Top Creators</a>
                     <div class="breaker"></div>
 
-            <p class="sb-link your-stats"><a asp-action="JoinNow" asp-controller="Home">Your stats</a> </p>
-            <div class="your-stats-container">
-                        <h5>Today: 00:32:12</h5>
-                        <h5>This week: 5h</h5>
-                        <h5>This month: 23h</h5>
-                        <h5>This year: 114h</h5>
-                        <h5>Lifetime: 234h</h5>
+                    <p class="sb-link your-stats"><a asp-action="JoinNow" asp-controller="Home">Watch time</a> </p>
+                    <div class="your-stats-container">
+                       <div class="stats-2-boxes">
+                             <div class="stat-box">
+                                <h5>Today: <span class="watch-time-value">00:32:12</span></h5>
+                                <h5>This week: <span class="watch-time-value">5h</span></h5>
+                             </div>
+                             
+                             <div class="stat-box">
+                                <h5>This month: <span class="watch-time-value">23h</span></h5>
+                                <h5>This year: <span class="watch-time-value">114h</span></h5>
+                             </div>                                                                             
+                       </div>
+                        
+                        
+                        <h5>Lifetime: <span class="watch-time-lifetime">234h</span></h5>
                     </div>
                                         
             </nav>
             <div class="overlay hidden">
+                  
+            </div>
+            <div class="overlay2 hidden">
                   
             </div>
                       
@@ -887,7 +942,7 @@ r            height: 320px;
                 </div>
             </div>
 
-            <div class="mobile-footer">
+            <div class="mobile-footer">                
                 <a asp-action="Index" asp-controller="Video" asp-route-category="Latest" class="footer-item">
                     <span class="footer-icon"><img src="~/img/home.png" /></span>
                     <span class="footer-text">Home</span>
@@ -900,7 +955,7 @@ r            height: 320px;
                     <span class="footer-icon"><img src="~/img/user.png" /></span>
                     <span class="footer-text">Login</span>
                 </a>               
-                <a class="footer-item">
+                <a  class="footer-item search-link">
                     <span class="footer-icon"><img src="~/img/search.png" /></span>
                     <span class="footer-text">Search</span>
                 </a>
@@ -917,7 +972,20 @@ r            height: 320px;
                     <span class="footer-text">Premium</span>
                 </a>
             </div>
-        
+       
+        <div class="mobile-search hidden">
+            <form class="form-inline   search-form">
+                <div class="input-group searchbar">
+                    <input id="mobileSearch" type="search" class="form-control  " placeholder="Search" data-search />
+                    <button type="button" class="btn btn-outline-primary2  "><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="result-box">
+                </div>
+            </form>
+            <div class="close-btn" onclick="toggleHidden()">
+                Close
+            </div>
+        </div>
             @RenderBody()
         </main>
     
@@ -935,6 +1003,34 @@ r            height: 320px;
 </html>
 
 <style>
+    .watch-time-lifetime{
+        color: #bf0101 !important;
+        font-weight: 600;
+        
+    }
+    .watch-time-value{
+        color: var(--accent-color);
+    }
+    .stats-2-boxes{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .stat-box{
+        width: 100%;
+    }
+    .close-btn{
+        padding: 5px;
+        background-color: #222;
+        border: 1px solid var(--accent-color);
+        position: absolute;
+        right: 15px;
+        width: 60px;
+        margin-top: 9px;
+        text-align: center;
+        border-radius: 10px;
+
+    }
     <!-- DIAMOND AND LIKE BUTTONS -->
     .o-icon-svg {
         pointer-events: none;
@@ -1035,9 +1131,36 @@ r            height: 320px;
     input:focus{
         outline-color: darkgrey;
     }
+    .search-link:hover{
+        cursor: pointer;
+    }
+
 </style>
 <script>
     
+    const mobileSearch = document.querySelector(".mobile-search");
+    const searchLink = document.querySelector(".search-link");
+    const overlay2 = document.querySelector('.overlay2');
+    const mobileSearchInput = document.getElementById('mobileSearch');
+    const searchCue2 = document.querySelector('.btn-outline-primary2');
+
+    searchLink.onclick = function() {
+        mobileSearch.classList.toggle("hidden");
+        overlay2.classList.toggle('hidden');
+    };
+
+    function toggleHidden(){
+        mobileSearch.classList.toggle("hidden");
+        overlay2.classList.toggle('hidden');
+    }
+
+    mobileSearchInput.addEventListener("focus", () => {
+        searchCue2.classList.add("search-cue");
+    });
+    mobileSearchInput.addEventListener("focusout", () => {
+        searchCue2.classList.remove("search-cue");
+    });
+
     window.onscroll = function () { myFunction() };
 
     var navbar = document.getElementById("navbarr");
