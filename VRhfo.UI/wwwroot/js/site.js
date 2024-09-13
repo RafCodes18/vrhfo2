@@ -25,7 +25,7 @@ function display(result) {
     const content = result.map((listItem) => {
         // Manually build the URL for the video
         const url = `/Video/Watch?title=${listItem.replace(/ /g, '-')}`;
-        return `<li><a href="${url}" style="color:white">${listItem}</a></li>`;
+        return `<li><a href="${url}" style="color: white">${listItem}</a></li>`;
     });
 
     resultBox.innerHTML = "<ul>" + content.join('') + "</ul>";
