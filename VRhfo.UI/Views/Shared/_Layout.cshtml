@@ -874,13 +874,14 @@ r            height: 320px;
                         }
                         else
                         {
-
-                            <li class="nav-item">
-                                <a id="login-button" class="nav-link text-light login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light join-now" asp-controller="Home" asp-action="JoinNow">Join Now</a>
-                            </li>
+                            <div class="nav-login-buttons">
+                                <li class="nav-item">
+                                    <a id="login-button" class="nav-link text-light login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light join-now" asp-controller="Home" asp-action="JoinNow">Join Now</a>
+                                </li>
+                             </div>
                         }
                     </ul>
             </div>    
@@ -1014,6 +1015,9 @@ r            height: 320px;
 </html>
 
 <style>
+    .nav-login-buttons{
+        display: flex;
+    }
     .sb-link-top{
         margin-top: -2px;
     }
