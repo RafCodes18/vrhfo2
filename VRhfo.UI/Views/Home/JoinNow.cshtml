@@ -36,9 +36,11 @@
         --text-color: #000;
         --background-color: #000;
         --primary-color: #BFFF00;
-        --primary-color-hover: #afd200;
+        --primary-color-hover: rgba(191, 255, 0, .7);
+        --primary-color-card-hover: rgba(191, 255, 0, .2);
         --secondary-color: #262727;
         --accent-color: #97a7b3;
+        --primary-color-dark: rgba(24, 30, 0, 1);
     }
  
     a{
@@ -376,7 +378,7 @@
     .bottom-price{
         position: absolute;
         bottom: -12px;
-        left: 10;
+        left: 10px;
     }
     .strikedTxt{
         text-decoration:line-through;
@@ -395,7 +397,7 @@
         padding: 8px 11px;
         margin-right: 10px;
     }  .join-now-btn-small:hover{
-        background-color: rgb(176, 212, 0);
+        background-color: var(--primary-color-hover);
         transition-duration: 200ms;
     }
     .model-img{
@@ -458,7 +460,7 @@
    }
    .card:hover{
        outline-color: white;
-       background: radial-gradient(rgba(212, 230, 100, 0.53), rgba(145, 152, 229, 0.00));
+       background: radial-gradient(var(--primary-color-card-hover), rgba(145, 152, 229, 0.00));
    }
    @@media(min-width: 700px){
        .cards{
@@ -498,7 +500,7 @@
        }
        .site-name-logo{
            font-size: 2.4rem !important;
-           letter-spacing: -2px !important;
+           letter-spacing: -4px !important;
        }
         
        .strikedTxt{
