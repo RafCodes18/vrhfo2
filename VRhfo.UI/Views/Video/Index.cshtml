@@ -29,11 +29,11 @@
      }
 
     .card {
-        border-radius: 10px;
+        border-radius: 5px;
         text-align: center;
         margin: 0;
         border: none;
-        background-color: #222;
+        background-color: transparent;
         padding: 0px; /* Moved padding from .card-container to here */
         width: 100%;
         overflow:hidden;
@@ -42,27 +42,25 @@
 
     .vid-img {
         max-width: 100%; /* Changed from a fixed height to a max-width */
-        height: auto; /* Ensures aspect ratio is maintained */
-        border-radius: 8px 8px 8px 8px;
-        height: 220px;
-        padding: 1px;
+        height: 190px;
         min-width: 200px;
         object-fit: cover;
     }
     .card:hover{
         box-shadow: 5px 5px 40px 8px rgb(212, 255, 0, .22);
         cursor: pointer;
-        background-color: #333
+        background-color: #333;
+        outline: 1px solid grey;
      }
 
     .description {
         background-color: transparent;
-         padding: 10px;
+        padding: 6px;
         margin: 0;
         font-size: small;
         text-align: left;
-        height: 80px;
-        color: #ffffff; /* added color white for text visibility on black background */
+        height: auto !important;
+        color: #888; /* added color white for text visibility on black background */
         height: auto;
     }
 
@@ -192,7 +190,9 @@
      }
     .vid-title{
         width: 100%;
-        font-size: x-large;
+        font-size: 16px;
+        color: #ccc;
+        margin-bottom: 0 !important;
     }
 
     .profile-username {
@@ -437,13 +437,15 @@
                     <div class="description">
                         <div class="d-top-row">
                             <h5 class="vid-title">@item.Title</h5>
-                            <p class="likes"><img class="like-icon" src="~/img/heart.svg" alt="Heart Icon" height="19" width="19">
-                                @item.FormattedLikes
-                            </p>
                         </div>
-                        <div class="d-bottom-row">
-                            <p>@item.Category</p>
-                            @item.FormattedUploadDate
+
+                        <div class="details-bottom-row">
+                            <div class="upload-date">
+                                @item.FormattedUploadDate
+                            </div>
+                            <div class="details-views">
+                                @item.FormattedViews <img src="~/img/vision.png" height="20" width="20" />
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -462,6 +464,11 @@
 </div>
 
  <style>
+     .details-bottom-row{
+         display: flex;
+         justify-content: space-between;
+         font-size: 12px;
+     }
      @@media(max-width: 600px){
            
         .card-img{
