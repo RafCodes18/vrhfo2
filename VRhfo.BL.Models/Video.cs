@@ -21,6 +21,16 @@
         public bool IsPreview { get; set; }// If True, returns 5 min preview, if false must be paid.
 
         public User user { get; set; }
+
+        public string TruncatedTitle
+        {
+            get{                
+                return Title.Length <= 60 ? Title : Title.Substring(0, 60) + "...";
+            }
+                
+        }
+
+
         public string FormattedUploadDateDMY
         {
             get

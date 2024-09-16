@@ -84,13 +84,17 @@
 
     @@media (max-width: 660px) {
         .card-container {
-            margin: 0 !important;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         }
         .card{
             max-width: 100vw;
+            margin: 0 !important;
+            margin-left: 10px !important;
+        }       
+    }
+    @@media(max-width: 550px){
+        .card{
+            margin-bottom: -40px !important;
         }
-
     }
 
     <!--PAGINATION -->
@@ -130,7 +134,7 @@
         align-items: center;
         position: relative; /* Make the container a positioning reference */
         margin-bottom: 20px; /* Add margin to the bottom to push it away from content */
-        margin-top: 150px;
+        margin-top: 110px;
     }
 
     .pagination {
@@ -440,7 +444,7 @@
                 
                     <div class="description">
                         <div class="d-top-row">
-                            <h5 class="vid-title">@item.Title</h5>
+                            <h5 class="vid-title">@item.TruncatedTitle</h5>
                         </div>
 
                         <div class="details-bottom-row">
@@ -484,10 +488,7 @@
      }
       
      @@media(max-width: 548px){
-        .card-container {
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        }
-
+       
         .card-img {
             height: 100px;
         }
@@ -516,7 +517,7 @@
             font-size: xx-small;
         }
      }
-    @@media(max-width: 400px) {
+    @@media(max-width: 550px) {
         .card-container {
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         }
@@ -531,7 +532,7 @@
             height: 100px !important;
         }
         .vid-title{
-            font-size: medium !important;  
+            font-size: 11px !important;  
             margin-top: 15px;
             margin-bottom: -2px;
         }
@@ -545,6 +546,10 @@
         }
         .d-bottom-row {
             font-size: xx-small;
+        }
+
+        .upload-date {
+            font-size: x-small !important;
         }
     }
  

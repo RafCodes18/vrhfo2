@@ -76,12 +76,12 @@
         }
       
         .sug-img{
-            border-radius: 3px;
-        object-fit: cover;
+            border-radius: 5px;
+            object-fit: cover;
     }
         .video:hover{
-            -webkit-box-shadow: 10px 10px hotpink;
-        box-shadow: 5px 5px 40px 8px rgba(255, 133, 255, 0.22);
+            -webkit-box-shadow: 10px 10px var(--primary-color-hover);
+        box-shadow: 5px 5px 40px 8px var(--primary-color-card-hover);
     }
 
         .vid{
@@ -1163,20 +1163,22 @@
      @for (int i = 0; i < Model.suggestedVideos.Count; i++)
      {
         <div class="suggested-videos">
-            <div class="video">
-                <div class="sug-vid-img">
-                    <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title.Replace(' ', '-')">
-                        <img src="@Model.suggestedVideos[i].ThumbnailUrl" height="100" width="150" class="sug-img" /> 
-                    </a>
-                </div>
-                <div class="sug-vid-content">
-                    <a class="title-link" asp-action="watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title"><h5 class="video-title">@Model.suggestedVideos[i].Title</h5></a>
-                    <a asp-action="Index" asp-controller="Video" asp-route-category="@Model.suggestedVideos[i].Category"> <p class="vid-category">@Model.suggestedVideos[i].Category</p></a>
-                    <div class="sug-vid-content-bottom">
-                        <img src="~/img/vision.png" height="22px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
+            <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title.Replace(' ', '-')">
+                <div class="video">
+                    <div class="sug-vid-img">
+                    
+                            <img src="@Model.suggestedVideos[i].ThumbnailUrl" height="100" width="150" class="sug-img" /> 
+                       
+                    </div>
+                    <div class="sug-vid-content">
+                            <h5 class="video-title">@Model.suggestedVideos[i].Title</h5>
+                          
+                        <div class="sug-vid-content-bottom">
+                            <img src="~/img/vision.png" height="22px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
+                        </div>
                     </div>
                 </div>
-            </div>           
+            </a>
         </div>
 
      }
@@ -1232,6 +1234,7 @@
     .video-title {
         padding-left: 5px;
         max-width: 300px;
+        color: #bbb;
     }
 
     .page-right-container {
