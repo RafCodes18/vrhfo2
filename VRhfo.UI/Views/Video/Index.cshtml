@@ -47,7 +47,10 @@
         object-fit: cover;
     }
     .card:hover{
-        box-shadow: 5px 5px 40px 8px rgb(212, 255, 0, .22);
+/*         box-shadow: 5px 5px 40px 8px rgb(212, 255, 0, .22);
+ */        
+        box-shadow: 5px 5px 40px 8px var(--primary-color-card-hover);
+
         cursor: pointer;
         background-color: #333;
         outline: 1px solid grey;
@@ -227,7 +230,8 @@
         white-space: pre-line; 
     }
     .left{
-        background: #181e00;
+       /*  background: #181e00; */
+       background: var(--primary-color-dark);
     }
     .right{
         background-image: url('https://front.sexlikereal.com/s/refactor/images/banners/bg-banner-premium-side.jpg');
