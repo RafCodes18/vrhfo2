@@ -269,10 +269,29 @@
             <div class="create-account">
                 <h1>Lets create an account</h1>
                 <div class="form">
-                    <input type="email" required placeholder="Email" />
-                    <input type="password" required placeholder="Password" />
+                
+                    <div class="input-box">
+                        <img class="form-icon" src="~/img/mail.png" height="20" width="20" />
+                        <input type="email" required placeholder="Email" />
 
+                    </div>
+                    
+                    <div class="input-box">
+                        <img class="form-icon" src="~/img/lock.png" height="20" width="20" />
+                        <input type="password" required placeholder="Password" />
+                    </div>
 
+                    <div class="newsletter-box">
+                        <input class="email-check" type="checkbox" id="check" />
+                        <p class="inform-email">I would like to receive occasional email updates from BrainBreaker.TV</p>
+                    </div>
+                    
+                    <div class="inform-consent">                        
+                        By submitting this form, you certify that you are 18 years of age or older, and agree to the Terms-of-Service Agreement
+                    </div>
+                    <div class="join-btn">
+                        <input class="join-now-input" type="submit" value="Join Now" />
+                    </div>
                 </div>                
             </div>
 
@@ -282,6 +301,44 @@
 
  
 <style>
+ 
+    .join-now-input:hover{
+        cursor: pointer;
+        background-color: var(--primary-color-hover) !important;
+    }
+    .join-now-input{
+        background-color: var(--primary-color) !important;
+        font-weight: 800 !important;
+    }
+    .inform-consent{
+        color: #666;
+        margin: 10px 0px; 
+        word-wrap: break-word;
+        text-align: start;
+        margin-left: 15px !important;
+    } .inform-email{
+        text-align: start;
+        word-wrap: break-word;
+        margin-left: 10px;
+    }
+    .email-check{
+        max-width: 20px !important;       
+    }
+    .newsletter-box{
+        display: flex;
+        justify-content:center;
+        color: #eee !important;
+        font-size: larger;
+    }
+    .input-box{
+        position: relative;
+    }
+    .form-icon{
+        position: absolute;
+        bottom: 50%;
+        transform: translateY(50%);
+        left: 20px;
+    }
     .create-account h1{
         width: 100%;
         text-align: left;
@@ -305,8 +362,12 @@
         padding: 14px;
         margin: 3px;
         margin-bottom: 10px;
-        background-color: #222;
-        color: #fff;
+        background-color: #fff;
+        color: #222;
+        padding-left: 44px !important;
+        padding-top: 20px !important;
+        font-weight: 400 !important;
+        font-size: 17px !important;
     }
     .form{
         display: flex;
@@ -362,8 +423,8 @@
        margin: 10px;
        width: 90%;
        max-width: 400px;
-       height: auto;
-          background: rgba( 255, 255, 255, 0.05 );
+       height: 200px !;
+       background: rgba( 255, 255, 255, 0.05 );
         box-shadow: 0 8px 32px 0 rgba( 31, 31, 31, 0.37 );
         backdrop-filter: blur( 2px );
         -webkit-backdrop-filter: blur( 2px );
@@ -529,7 +590,7 @@
        }
    }
 
-   @@media(max-width: 430px){
+   @@media(max-width: 675px){
         .create-account {
             max-width: 290px !important;
             margin-top: 30px !important;
@@ -537,15 +598,25 @@
         .create-account h1{
             font-size: 21px !important;
         }
+
+        .second-card {
+            margin-top: 200px !important;
+        }
    }
 
     @@media(max-width: 350px) {
         .create-account {
             max-width: 260px !important;
-            min-height: 400px !important;
+            min-height: 430px !important;
         }
         .second-card{
-            margin-top: 200px !important;
+            margin-top: 380px !important;
+        }
+        .inform-consent{
+            padding: 0 !important;
+        }
+        .newsletter-box{
+            max-height: 15px;
         }
     }
 
