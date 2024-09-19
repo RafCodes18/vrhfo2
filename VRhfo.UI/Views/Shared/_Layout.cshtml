@@ -870,10 +870,10 @@ r            height: 320px;
                                         <div class="dropdown">
                                             <span class="username-txt">@@@username &#x25BC;</span>
                                             <div class="dropdown-content">
-                                                <a asp-action="Index" asp-controller="User" asp-route-username="@username">Profile</a>
-                                                <a asp-action="Liked" asp-controller="Home">favorites</a>
-                                                <a asp-action="Upload" asp-controller="Video">Upload +</a>
-                                                <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username">Manage Account</a>
+                                                <a asp-action="Index" asp-controller="User" asp-route-username="@username">  <img src="~/img/user.png" height="25" width="25" class="m-1"/>Profile</a>
+                                                <a asp-action="Liked" asp-controller="Home"><img src="~/img/like.svg" class="m-1" />Favorites</a>
+                                                <a asp-action="Upload" asp-controller="Video"><img src="~/img/upload.png" height="25" width="25" class="m-1" /> Upload +</a>
+                                                <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username"><i class="bx bxs-lock-alt m-1"></i>Manage Account</a>
                                                 <a href="#" class="forgot">Forgot Password</a><!-- this will just be change username and password page, user can select which -->
                                                 <a class="forgot" asp-action="Logout" asp-controller="User">Logout</a>
                                             </div>
@@ -1027,7 +1027,7 @@ r            height: 320px;
 </body>
 </html>
 
-<style>
+<style>   
     .nav-login-buttons{
         display: flex;
     }

@@ -114,10 +114,12 @@
         
         <h2 class="form-title">Subscriptions</h2>
 
-        <p>Active</p>
+        
         <div class="subscription-container">
-            <h5>@Model.Subscription_Tier</h5> 
-            
+            <div class="tier-container">
+                <h4>@Model.Subscription_Tier </h4>
+                <p>Active <span style="color: green">●</span></p>
+            </div>
             <div class="buttons-box">
                 <button class="cancel-btn">Cancel Subscription</button>
                 <button class="manage-btn">Manage Payments ↗</button>
@@ -150,6 +152,15 @@
     </div>
 </div>
 <style>
+    .tier-container{
+        display: flex;        
+    }
+    .tier-container h4{
+        margin-right: 14px;
+    }
+    .tier-container p{
+        margin-top: 3px;
+    }
     .subscription-form{
         width: 700px !important;
         min-width: 600px !important;
