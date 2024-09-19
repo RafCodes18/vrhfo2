@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    Layout = "";
 }
 
 <!DOCTYPE html>
@@ -7,18 +7,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BrainBreaker.TV - Payment Successful</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <style>
-        *{
-            box-sizing: border-box;
+
+        :root {
+            /* OLD->   --primary-color: #d4ff00;
+        */
+            --text-color: #000;
+            --background-color: #000;
+            --primary-color: #BFFF00;
+            --primary-color-hover: rgba(191, 255, 0, .7);
+            --primary-color-card-hover: rgba(191, 255, 0, .2);
+            --secondary-color: #262727;
+            --accent-color: #97a7b3;
+            --primary-color-dark: rgba(24, 30, 0, 1);
+            /* --text-color: #fff;
+            --background-color: #fff !important;
+            --primary-color: rgb(221, 6, 109);
+            --primary-color-hover: rgba(221, 6, 109, .7);
+            --secondary-color: #222;
+            --accent-color: #b6bae8;
+            --primary-color-dark: rgba(221, 6, 109, .13);*/
+            /*        --text-color: #fff;
+            --background-color: #120606;
+            --primary-color: #e00000;
+            --primary-color-hover: #c50606;
+            --secondary-color: #991515;
+            --accent-color: #f23b3b;*/
         }
-        body{
-            background-color: black;
+
+        body {
+            background-image: url('../../img/greytexture.jpg') !important;
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: auto;
+            font-family: sans-serif;
         }
+
+           
         .center{            
             display: flex;
             justify-content: center;
@@ -27,37 +58,78 @@
           
         }
         .text-box{
-            background-color: #111;
             height: 400px;            
             display: flex;
             padding: 20px;
             justify-content: center;
             flex-direction: column;
             align-items: center;
-            border: 1px solid grey;
             border-radius: 5px;
+            background: rgba( 15, 15, 15, .7 );
+            box-shadow: 0 8px 32px 0 rgba( 131, 138, 135, 0.27 );
+            -webkit-backdrop-filter: blur( 15.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.68 );
         }
         .text-box h1{
             color: white;
         }  
         .access-granted{
-            color: #666;
+            color: #999;
+            margin-top: -10px !important;
+            font-size: large !important;
         }
         .green-box{
-            color: green;
-            border: 1px solid green;
+            color: #34c54b;
+            border: 1px solid #34c54b;
             padding: 10px;
             border-radius: 5px;
         }
         .green-box a{
-            color: green !important;
+            color: #34c54b !important;
+        }
+        .text-box img{
+            margin-top: -60px !important;
+        }
+
+        .site-name-logo {
+            color: var(--primary-color);
+            font-family: "Barlow", sans-serif;
+            font-weight: 700;
+            font-size: 2.4rem;
+            letter-spacing: -1px;
+            padding: 0px !important;
+            margin: 0 !important;
+            position: relative;
+            margin-top: 15px !importantl;
+        }
+
+        .white {
+            color: #fff;
+        }
+
+        .rotate-right {
+            display: inline-block; /* Ensures the span takes up only as much space as the letter */
+            transform: rotate(30deg); /* Rotate the element by 45 degrees */
+            margin-left: 3px;
+            margin-right: -2px;
+        }
+
+        .rotate-left {
+            display: inline-block; /* Ensures the span takes up only as much space as the letter */
+            transform: rotate(340deg); /* Rotate the element by 45 degrees */
+            margin-right: -1px;
         }
     </style>
+    
+    <div class="logo">
+        <p class="site-name-logo"><span class="white">Brain</span>B<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="white">.tv</span></p>
 
+    </div>
     <div class="center">
         <div class="text-box">
-            <img src="~/img/greencheck.svg" height="30" width="30" />
-            <h1>Payment Successfull!</h1>
+            <img src="~/img/greencheck.svg" height="40" width="40" />
+            <h1>Purchase Successfull!</h1>
             <p class="access-granted">Access Granted</p>
 
             <div class="green-box">
@@ -67,7 +139,7 @@
         </div>
     </div>
     
-    
+     
     <script type="text/javascript" defer>
         // JavaScript to handle countdown and redirect
         window.onload = function () {
@@ -85,7 +157,7 @@
                 }
             }, 1000); // Run every 1000 milliseconds (1 second)
         };
-    </script>
+    </script>  
 </body>
 </html>
 

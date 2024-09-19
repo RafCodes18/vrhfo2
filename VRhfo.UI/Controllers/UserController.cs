@@ -104,12 +104,13 @@ namespace VRhfo.UI.Controllers
         {
             try
             {
-                user.SubscribedDate = DateTime.Now; //what happ be after reg
+                user.SubscriptionStartDate = DateTime.Now; //what happ be after reg
                 user.IsSubscribed = true;
                 user.Auth0UserId = "xxx";
                 user.RegistrationDate = DateTime.Now; 
                 user.Id = Guid.NewGuid();
-                user.Username = "xxxaf";
+                user.Username = user.Email.Substring(0, user.Email.IndexOf('@'));
+                user.NextRenewalDueDate = DateTime.Now.AddDays(30);
                 if (UserManager.Insert(user) > 0)
                 {
                     SetUser(user);

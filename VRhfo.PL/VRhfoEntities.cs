@@ -33,7 +33,7 @@ public partial class VRhfoEntities : DbContext
     {
         modelBuilder.Entity<tblComment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC076BB77324");
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC077354576C");
 
             entity.ToTable("tblComment");
 
@@ -45,7 +45,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblUser>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC07B73574CF");
+            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC07E5225C04");
 
             entity.ToTable("tblUser");
 
@@ -54,17 +54,21 @@ public partial class VRhfoEntities : DbContext
                 .HasMaxLength(10)
                 .IsFixedLength();
             entity.Property(e => e.Email).HasMaxLength(50);
+            entity.Property(e => e.NextRenewalDueDate).HasColumnType("date");
             entity.Property(e => e.Password)
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.RegistrationDate).HasColumnType("date");
             entity.Property(e => e.SubscribedDate).HasColumnType("datetime");
+            entity.Property(e => e.SubscriptionTier)
+                .HasMaxLength(50)
+                 .HasConversion<string>();
             entity.Property(e => e.Username).HasMaxLength(120);
         });
 
         modelBuilder.Entity<tblVideo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC07D7E627B9");
+            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC075BEF721B");
 
             entity.ToTable("tblVideo");
 
@@ -78,13 +82,13 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideosLiked>(entity =>
         {
-            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D881AA11771");
+            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D882D29A3F3");
 
             entity.ToTable("tblVideosLiked");
 
             entity.Property(e => e.LikedDate).HasColumnType("datetime");
 
-            entity.HasOne(d => d.User).WithMany(p => p.tblVideosLikeds)
+            entity.HasOne(d => d.User).WithMany(p => p.tblVideosLikes)
                 .HasForeignKey(d => d.UserID)
                 .HasConstraintName("FK__tblVideos__UserI__2C3393D0");
 
@@ -96,7 +100,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblWatchEntry>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC074BB2C6C2");
+            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC07ABF2C24E");
 
             entity.ToTable("tblWatchEntry");
 

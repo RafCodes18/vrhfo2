@@ -1,7 +1,13 @@
 ﻿
 function cardClicked(card) {
     const selectedCardId = card.id; 
-    console.log(selectedCardId)
+    const selectedTier = card.getAttribute("data-tier");
+
+    // Set the hidden input field to the selected tier
+    document.getElementById("subTier").value = selectedTier;
+
+    console.log(subTier)
+    console.log(selectedTier)
      
     // Remove the "selected" class from all cards
     var allCards = document.querySelectorAll('.card');
@@ -40,6 +46,7 @@ function cardClicked(card) {
         price: price,
         imgURL: imgURL
     };
+    subTier.nodeValue = planType;
     console.log("Card Data:", cardData);
 
     //Show step 2

@@ -1,5 +1,6 @@
 ﻿using VRhfo.BL.Models;
 using VRhfo.PL;
+using static VRhfo.BL.Models.User;
 
 namespace VRhfo.BL
 {
@@ -27,13 +28,15 @@ namespace VRhfo.BL
                     tblUser tblUser = dc.tblUsers.FirstOrDefault(x => x.Id == id);
                     User user = new User();
                     user.Id = id;
-                    user.SubscribedDate = tblUser.SubscribedDate;
+                    user.SubscriptionStartDate = tblUser.SubscribedDate;
                     user.Username = tblUser.Username;
                     user.Email = tblUser.Email;
                     user.Auth0UserId = tblUser.Auth0UserId;
                     user.IsSubscribed = tblUser.IsSubscribed == 1 ? true : false;
                     user.RegistrationDate = tblUser.RegistrationDate;
                     user.Password = tblUser.Password;
+                    user.Subscription_Tier = tblUser.SubscriptionTier;
+
 
                     return user;
                 }
@@ -59,8 +62,10 @@ namespace VRhfo.BL
                         IsSubscribed = (byte)(user.IsSubscribed == true ? 1 : 0),
                         RegistrationDate = user.RegistrationDate,
                         Username = user.Username,
-                        SubscribedDate = user.SubscribedDate,
-                        Password = user.Password                        
+                        SubscribedDate = user.SubscriptionStartDate,
+                        Password = user.Password,
+                        SubscriptionTier = user.Subscription_Tier,
+                        NextRenewalDueDate = user.NextRenewalDueDate 
                     };
 
                     dc.tblUsers.Add(tb);
@@ -98,7 +103,9 @@ namespace VRhfo.BL
                                 {
                                     //login successful with correct hashed or unhashed password
 
-                                    user.SubscribedDate = row.SubscribedDate;
+                                    user.SubscriptionStartDate = row.SubscribedDate;
+                                    user.NextRenewalDueDate = row.NextRenewalDueDate;
+                                    user.Subscription_Tier = row.SubscriptionTier;
                                     user.RegistrationDate = row.RegistrationDate;
                                     user.Username = row.Username;
                                     user.IsSubscribed = row.IsSubscribed != 0;
@@ -108,7 +115,10 @@ namespace VRhfo.BL
                                 }
                                 else if (row.Password == user.Password)
                                 {
-                                    user.SubscribedDate = row.SubscribedDate;
+                                    user.SubscriptionStartDate = row.SubscribedDate;
+                                    user.Subscription_Tier = row.SubscriptionTier;
+                                                                        user.NextRenewalDueDate = row.NextRenewalDueDate;
+
                                     user.RegistrationDate = row.RegistrationDate;
                                     user.Username = row.Username;
                                     user.IsSubscribed = row.IsSubscribed != 0;
@@ -178,9 +188,11 @@ namespace VRhfo.BL
                     Password = row.Password,
                     Email = row.Email,
                     RegistrationDate = row.RegistrationDate,
-                    SubscribedDate = row.SubscribedDate,
+                    SubscriptionStartDate = row.SubscribedDate,
                     Auth0UserId = row.Auth0UserId,
-                };
+                    Subscription_Tier = row.SubscriptionTier,
+                    NextRenewalDueDate = row.NextRenewalDueDate
+            };
             }
         }
     }

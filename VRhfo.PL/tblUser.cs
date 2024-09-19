@@ -21,5 +21,9 @@ public partial class tblUser
 
     public string Password { get; set; } = null!;
 
-    public virtual ICollection<tblVideosLiked> tblVideosLikeds { get; set; } = new List<tblVideosLiked>();
+    public string SubscriptionTier { get; set; } = null!;
+
+    public DateTime NextRenewalDueDate { get; set; }
+
+    public virtual ICollection<tblVideosLiked> tblVideosLikes { get; set; } = new List<tblVideosLiked>();
 }
