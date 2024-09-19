@@ -91,6 +91,11 @@ namespace VRhfo.UI.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult PaymentSuccess()
+        {
+            return View();
+        }
 
         // POST: UserController/Create
         [HttpPost]
@@ -99,16 +104,16 @@ namespace VRhfo.UI.Controllers
         {
             try
             {
-                user.SubscribedDate = DateTime.Now;
-                user.IsSubscribed = false;
-                user.Auth0UserId = "";
-                user.RegistrationDate = DateTime.Now;
+                user.SubscribedDate = DateTime.Now; //what happ be after reg
+                user.IsSubscribed = true;
+                user.Auth0UserId = "xxx";
+                user.RegistrationDate = DateTime.Now; 
                 user.Id = Guid.NewGuid();
-
+                user.Username = "xxxaf";
                 if (UserManager.Insert(user) > 0)
                 {
                     SetUser(user);
-                    return RedirectToAction(nameof(Index), "Video");
+                    return RedirectToAction(nameof(PaymentSuccess), "User");
                 }
                 else
                 {
@@ -190,26 +195,6 @@ namespace VRhfo.UI.Controllers
             User user = UserManager.LoadByUsername(username);
 
             return View(user);
-        }
-
-        /*   [HttpPost]
-           public ActionResult CreateAccount(User user)
-           {
-               try
-               {
-                   int results = UserManager.Insert(user);
-
-                   if (results != 0)
-                   {
-                       Login(user);
-                   }
-               }
-               catch (Exception)
-               {
-
-                   throw;
-               }
-           } */
-
+        }       
     }
 }

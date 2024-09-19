@@ -268,17 +268,18 @@
             </div>
             <div class="create-account">
                 <h1>Lets create an account</h1>
-                <div class="form">
-                
+                <form class="form" asp-action="Create" asp-controller="User" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                     <div class="input-box">
                         <img class="form-icon" src="~/img/mail.png" height="20" width="20" />
-                        <input type="email" required placeholder="Email" />
+                        <input asp-for="Email" type="email" required placeholder="Email" />
 
                     </div>
                     
                     <div class="input-box">
                         <img class="form-icon" src="~/img/lock.png" height="20" width="20" />
-                        <input type="password" required placeholder="Password" />
+                        <input asp-for="Password" type="password" required placeholder="Password" />
                     </div>
 
                     <div class="newsletter-box">
@@ -292,7 +293,7 @@
                     <div class="join-btn">
                         <input class="join-now-input" type="submit"  value="Join Now" />
                     </div>
-                </div>                
+                </form>                
             </div>
 
     </div>

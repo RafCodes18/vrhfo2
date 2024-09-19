@@ -53,6 +53,7 @@ namespace VRhfo.BL
                 {
                     tblUser tb = new tblUser()
                     {
+                        Id = user.Id,
                         Email = user.Email,
                         Auth0UserId = user.Auth0UserId,
                         IsSubscribed = (byte)(user.IsSubscribed == true ? 1 : 0),

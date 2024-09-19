@@ -1,0 +1,91 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BrainBreaker.TV - Payment Successful</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            background-color: black;
+        }
+        .center{            
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            margin-top: 100px;
+          
+        }
+        .text-box{
+            background-color: #111;
+            height: 400px;            
+            display: flex;
+            padding: 20px;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid grey;
+            border-radius: 5px;
+        }
+        .text-box h1{
+            color: white;
+        }  
+        .access-granted{
+            color: #666;
+        }
+        .green-box{
+            color: green;
+            border: 1px solid green;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .green-box a{
+            color: green !important;
+        }
+    </style>
+
+    <div class="center">
+        <div class="text-box">
+            <img src="~/img/greencheck.svg" height="30" width="30" />
+            <h1>Payment Successfull!</h1>
+            <p class="access-granted">Access Granted</p>
+
+            <div class="green-box">
+                <p>Redirecting you back to Premium... Enjoy!</p>
+                <p>Redirecting in <span id="countdown">5</span> seconds or <a asp-action="Index" asp-controller="Video">click here </a> to continue</p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script type="text/javascript" defer>
+        // JavaScript to handle countdown and redirect
+        window.onload = function () {
+            var countdown = 5; // Start countdown from 5
+            var countdownElement = document.getElementById('countdown'); // Get the countdown element
+
+            // Update the countdown every second
+            var countdownInterval = setInterval(function () {
+                countdownElement.textContent = countdown; // Update the <h1> with the current countdown value
+                countdown--;
+
+                if (countdown < 0) {
+                    clearInterval(countdownInterval); // Stop the countdown when it reaches 0
+                    window.location.href = "/Video/Index"; // Redirect to the desired URL
+                }
+            }, 1000); // Run every 1000 milliseconds (1 second)
+        };
+    </script>
+</body>
+</html>
+
