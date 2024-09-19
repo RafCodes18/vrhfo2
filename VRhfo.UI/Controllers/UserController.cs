@@ -111,6 +111,7 @@ namespace VRhfo.UI.Controllers
                 user.Id = Guid.NewGuid();
                 user.Username = user.Email.Substring(0, user.Email.IndexOf('@'));
                 user.NextRenewalDueDate = DateTime.Now.AddDays(30);
+                user.GoonScore = 15; //the default 15 points for joining, will go down if first week watch time does not surpass 1 hour
                 if (UserManager.Insert(user) > 0)
                 {
                     SetUser(user);
@@ -151,6 +152,7 @@ namespace VRhfo.UI.Controllers
         // GET: UserController/Delete/5
         public ActionResult Delete(int id)
         {
+            //CHANGE USERNAME to DELETED to keep comments, comments will show as (Deleted) and still show content
             return View();
         }
 

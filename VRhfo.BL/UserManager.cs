@@ -36,7 +36,7 @@ namespace VRhfo.BL
                     user.RegistrationDate = tblUser.RegistrationDate;
                     user.Password = tblUser.Password;
                     user.Subscription_Tier = tblUser.SubscriptionTier;
-
+                    user.GoonScore = tblUser.GoonScore;
 
                     return user;
                 }
@@ -65,7 +65,8 @@ namespace VRhfo.BL
                         SubscribedDate = user.SubscriptionStartDate,
                         Password = user.Password,
                         SubscriptionTier = user.Subscription_Tier,
-                        NextRenewalDueDate = user.NextRenewalDueDate 
+                        NextRenewalDueDate = user.NextRenewalDueDate ,
+                        GoonScore = user.GoonScore
                     };
 
                     dc.tblUsers.Add(tb);
@@ -111,6 +112,7 @@ namespace VRhfo.BL
                                     user.IsSubscribed = row.IsSubscribed != 0;
                                     user.Email = row.Email;
                                     user.Password = GetHash(user.Password);
+                                    user.GoonScore = row.GoonScore;
                                     return true;
                                 }
                                 else if (row.Password == user.Password)
@@ -124,6 +126,7 @@ namespace VRhfo.BL
                                     user.IsSubscribed = row.IsSubscribed != 0;
                                     user.Email = row.Email;
                                     user.Password = user.Password;
+                                    user.GoonScore = row.GoonScore;
                                     return true;
                                 }
                                 else
@@ -191,7 +194,8 @@ namespace VRhfo.BL
                     SubscriptionStartDate = row.SubscribedDate,
                     Auth0UserId = row.Auth0UserId,
                     Subscription_Tier = row.SubscriptionTier,
-                    NextRenewalDueDate = row.NextRenewalDueDate
+                    NextRenewalDueDate = row.NextRenewalDueDate,
+                    GoonScore = row.GoonScore
             };
             }
         }

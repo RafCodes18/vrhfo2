@@ -6,6 +6,15 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <style>
+    button, input[type="submit"], input[type="reset"] {
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
     body {
         background: rgb(21, 21, 21);
     }
@@ -21,7 +30,6 @@
         margin: 18px;
         background-color: rgba(27, 27, 27, 0.59);
         box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075), 0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
-        width: 1000px;
     }
 
 
@@ -29,12 +37,12 @@
                 display: flex;
                 justify-content: center;
                 margin-top: 40px;
-                width: 100vw;
-               
-
-            }
-            @@media(max-width: 350px){
-               .settings-form{
+                width: 100vw !important;
+                margin-left: 50px;
+    }
+            @@media(max-width: 1000px){
+               .wrapperM{
+                   flex-direction: column;
                }
             }
 
@@ -52,18 +60,15 @@
     }
        .save-button{
            border-radius: 10px;
-        background: hsla(0, 0%, 36%, 1);
-        background: linear-gradient(180deg, hsla(0, 0%, 36%, 1) 0%, hsla(0, 0%, 23%, 1) 99%);
-        background: -moz-linear-gradient(180deg, hsla(0, 0%, 36%, 1) 0%, hsla(0, 0%, 23%, 1) 99%);
-        background: -webkit-linear-gradient(180deg, hsla(0, 0%, 36%, 1) 0%, hsla(0, 0%, 23%, 1) 99%);
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#5D5D5D", endColorstr="#3B3B3B", GradientType=1 );
-           padding: 10px 0px;
-           color: white;
+            background-color: #ccc;
+            padding: 10px 0px;
+           color: black;
            font-size: x-large;
            border: none;
        }     
        .save-button:hover{
-            background: rgba(159, 159, 159, 0.25);
+            background: rgba(199, 199, 199, 0.95);
+            transition: ease-in .2s all;
         }
         label{
             font-size: larger;
@@ -102,16 +107,26 @@
 
         <input class="save-button" type="button" value="Save Changes" onClick="window.location.reload();" />
     </form>
-</div>
 
-<div class="wrapperM">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <form method="post" asp-controller="User" asp-action="Update" class="settings-form">
+
+    <!--SUBSCRIPTIONS-->
+    <form method="post" asp-controller="User" asp-action="Delete" class="settings-form subscription-form">
+        
         <h2 class="form-title">Subscriptions</h2>
 
-       
-    </form>
+        <p>Active</p>
+        <div class="subscription-container">
+            <h5>@Model.Subscription_Tier</h5> 
+            
+            <div class="buttons-box">
+                <button class="cancel-btn">Cancel Subscription</button>
+                <button class="manage-btn">Manage Payments ↗</button>
+            </div>           
+
+        </div>
+     </form>
 </div>
+ 
 
 <div class="modal w3-modal" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -135,6 +150,45 @@
     </div>
 </div>
 <style>
+    .subscription-form{
+        width: 700px !important;
+        min-width: 600px !important;
+    }
+    .cancel-btn{
+        background-color: rgba(230, 30, 30, .3) !important;
+        border: 1px solid darkred !important;
+        border-radius: 4px;
+        padding: 10px;
+        color: white !important;
+        margin-right: 5px;
+    }
+
+    .cancel-btn:hover {
+        background-color: rgba(230, 30, 30, .4) !important  ;
+            transition: ease .5s all;
+        }
+    .manage-btn{
+        background-color: rgba(100,100,10,.5) !important;
+        border-radius: 4px;
+        padding: 10px;
+        color: white !important;
+    }
+    .manage-btn:hover {
+            background-color: rgba(100,100,10,.7) !important;
+            transition: ease .5s all;
+        }
+    .subscription-container{
+        width: 100%;
+        border: 1px dashed var(--primary-color);
+        padding: 30px;
+        background-color: var(--primary-color-dark);
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: -30px;
+        margin-top: 50px;
+    }
     .black-nav {
         background: #000 !important;
     }
@@ -190,6 +244,19 @@
     }
 </style>
 <script>
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleSidebar');
+        const main = document.querySelector('main');
+
+        main.classList.add('sidebar-closed');
+        sidebar.classList.add('closed');
+
+        const likeButtons = document.querySelectorAll('.likeL');
+        const currentUser = @Html.Raw(Json.Serialize(ViewBag.CurrentUser)); // Access the user from the ViewBag
+    });
     document.addEventListener('DOMContentLoaded', function () {
         const usernameInput = document.querySelector('.username-input');
         const emailInput = document.querySelector('.email-input');

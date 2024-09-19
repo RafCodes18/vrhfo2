@@ -10,4 +10,5 @@
     [Password] VARCHAR(50) NOT NULL, 
     [SubscriptionTier] VARCHAR(50) NOT NULL, 
     [NextRenewalDueDate] DATE NOT NULL, 
+    [GoonScore] INT NOT NULL, 
 )

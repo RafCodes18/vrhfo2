@@ -25,5 +25,7 @@ public partial class tblUser
 
     public DateTime NextRenewalDueDate { get; set; }
 
+    public int GoonScore { get; set; }
+
     public virtual ICollection<tblVideosLiked> tblVideosLikes { get; set; } = new List<tblVideosLiked>();
 }

@@ -28,5 +28,7 @@ namespace VRhfo.BL.Models
         public string Subscription_Tier { get; set; }
  
 
+
+        public int GoonScore { get; set; }
     }
 }

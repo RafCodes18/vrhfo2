@@ -33,7 +33,7 @@ public partial class VRhfoEntities : DbContext
     {
         modelBuilder.Entity<tblComment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC077354576C");
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC07F84BA110");
 
             entity.ToTable("tblComment");
 
@@ -45,7 +45,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblUser>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC07E5225C04");
+            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC07FDB4E67C");
 
             entity.ToTable("tblUser");
 
@@ -62,13 +62,13 @@ public partial class VRhfoEntities : DbContext
             entity.Property(e => e.SubscribedDate).HasColumnType("datetime");
             entity.Property(e => e.SubscriptionTier)
                 .HasMaxLength(50)
-                 .HasConversion<string>();
+                .IsUnicode(false);
             entity.Property(e => e.Username).HasMaxLength(120);
         });
 
         modelBuilder.Entity<tblVideo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC075BEF721B");
+            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC07BF6715DF");
 
             entity.ToTable("tblVideo");
 
@@ -82,7 +82,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideosLiked>(entity =>
         {
-            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D882D29A3F3");
+            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D880265F903");
 
             entity.ToTable("tblVideosLiked");
 
@@ -100,7 +100,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblWatchEntry>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC07ABF2C24E");
+            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC07C9E2E0C9");
 
             entity.ToTable("tblWatchEntry");
 
