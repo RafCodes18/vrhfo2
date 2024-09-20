@@ -110,43 +110,45 @@
 
 
     <!--SUBSCRIPTIONS-->
-    <form method="post" asp-controller="User" asp-action="Delete" class="settings-form subscription-form">
+    <div class="settings-form subscription-form">
         
         <h2 class="form-title">Subscriptions</h2>
 
-        
-        <div class="subscription-container active">
-            <div class="tier-container">
-                <h4>@Model.Subscription_Tier </h4>
-                <p>Active <span style="color: green">●</span></p>
+        <div class="subscriptions-container">
+            <div class="subscription-container active">
+                <div class="tier-container">
+                    <h4>@Model.Subscription_Tier </h4>
+                    <p>Active <span style="color: green">●</span></p>
+                </div>
+                <div class="buttons-box">
+                    <button class="cancel-btn" onclick="toggleCancelModal()">Cancel </button>
+                    <a target="_blank" rel="noopener noreferrer" href="https://epoch.com/"><button class="manage-btn">Manage Payments ↗</button></a>
+                </div>           
+                <p class="next-charge">Your next charge of $20.00 will be processed on 10/21/2024 </p>
             </div>
-            <div class="buttons-box">
-                <button class="cancel-btn">Cancel Subscription</button>
-                <button class="manage-btn">Manage Payments ↗</button>
-            </div>           
 
+            <div class="subscription-container">
+                <div class="tier-container">
+                    <h4>Yearly </h4>
+                </div>
+                <div class="buttons-box">
+                    <button class="upgrade-btn">Upgrade and Save </button>
+                </div>
+
+            </div>
+
+            <div class="subscription-container">
+                <div class="tier-container">
+                    <h4>Lifetime </h4>
+                </div>
+                <div class="buttons-box">
+                    <button class="upgrade-btn">Upgrade and Save </button>
+                </div>
+
+            </div>
         </div>
-
-        <div class="subscription-container">
-            <div class="tier-container">
-                <h4>Yearly </h4>
-            </div>
-            <div class="buttons-box">
-                <button class="upgrade-btn">Upgrade </button>
-            </div>
-
-        </div>
-
-        <div class="subscription-container">
-            <div class="tier-container">
-                <h4>Lifetime </h4>
-            </div>
-            <div class="buttons-box">
-                <button class="upgrade-btn">Upgrade </button>
-            </div>
-
-        </div>
-     </form>
+        <input type="submit" value="submit" />
+     </div>
 </div>
  
 
@@ -171,7 +173,62 @@
         </div>
     </div>
 </div>
+
+
+<div id="cancelModal" class="">
+    <p class="login-custom-x" onclick="toggleCancelModal()">x</p>
+    <h1>Are you sure you want to cancel? </h1>
+    <p>Canceling your subscription will delete your account and all data associated with it. </p>
+    <p>Your last charge was 09/20/2024. </p>
+    <p>You will not be charged further. </p>
+
+    <button class="cancel-btn" >Yes end my subscription</button>
+</div>
 <style>
+    .login-custom-x {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right: 12px;
+        margin-top: 3px;
+        font-size: x-large;
+        color: #888;
+    }
+
+        .login-custom-x:hover {
+            border-radius: 8px !important;
+            cursor: pointer;
+            color: #fff;
+            transition: 300ms;
+        }
+    #cancelModal{
+        display: none;        
+        position: fixed;
+        top: 20%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 99999;
+        width: 500px;
+        background-color: black !important;
+        height: 500px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .hidden2{
+        display: block !important;
+    }
+    .subscriptions-container{
+        margin-top: -30px;
+    }
+    .next-charge{
+        position: absolute;
+        bottom: 0;
+        font-size: small;
+        color: var(--accent-color);
+        margin-bottom: 5px;
+    }
     .upgrade-btn{
         background: var(--secondary-color);      
         border-radius: 10px;
@@ -195,12 +252,13 @@
     .subscription-form{
         width: 700px !important;
         min-width: 600px !important;
+        position: relative;
     }
     .cancel-btn{
         background-color: rgba(230, 30, 30, .3) !important;
         border: 1px solid darkred !important;
-        border-radius: 4px;
-        padding: 10px;
+        border-radius: 6px;
+        padding: 6px;
         color: white !important;
         margin-right: 5px;
     }
@@ -210,13 +268,14 @@
             transition: ease .5s all;
         }
     .manage-btn{
-        background-color: rgba(100,100,10,.5) !important;
+        background-color: rgba(100,100,100,.5) !important;
         border-radius: 4px;
-        padding: 10px;
+        padding: 7px;
         color: white !important;
+        margin-right: -16px;
     }
     .manage-btn:hover {
-            background-color: rgba(100,100,10,.7) !important;
+            background-color: rgba(100,100,100,.6) !important;
             transition: ease .5s all;
         }
     .subscription-container{
@@ -230,6 +289,7 @@
         align-items: center;
         margin-bottom: -30px;
         margin-top: 50px;
+        position: relative;
     }
     .black-nav {
         background: #000 !important;
@@ -350,4 +410,9 @@
             }
         });
     });
+
+    const cancelModal = document.getElementById("cancelModal");
+    function toggleCancelModal() {
+        cancelModal.classList.toggle("hidden2");
+    }
 </script>

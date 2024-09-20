@@ -36,7 +36,7 @@ namespace VRhfo.UI.Controllers
                 if (TempData?["returnUrl"] != null)
                     return Redirect(TempData["returnUrl"]?.ToString());
                 else
-                    return RedirectToAction("Index", "Video");
+                    return RedirectToAction("Index", "User");
             }
             catch (Exception ex)
             {
