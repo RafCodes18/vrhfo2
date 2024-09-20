@@ -115,7 +115,7 @@
         <h2 class="form-title">Subscriptions</h2>
 
         
-        <div class="subscription-container">
+        <div class="subscription-container active">
             <div class="tier-container">
                 <h4>@Model.Subscription_Tier </h4>
                 <p>Active <span style="color: green">●</span></p>
@@ -124,6 +124,26 @@
                 <button class="cancel-btn">Cancel Subscription</button>
                 <button class="manage-btn">Manage Payments ↗</button>
             </div>           
+
+        </div>
+
+        <div class="subscription-container">
+            <div class="tier-container">
+                <h4>Yearly </h4>
+            </div>
+            <div class="buttons-box">
+                <button class="upgrade-btn">Upgrade </button>
+            </div>
+
+        </div>
+
+        <div class="subscription-container">
+            <div class="tier-container">
+                <h4>Lifetime </h4>
+            </div>
+            <div class="buttons-box">
+                <button class="upgrade-btn">Upgrade </button>
+            </div>
 
         </div>
      </form>
@@ -152,6 +172,17 @@
     </div>
 </div>
 <style>
+    .upgrade-btn{
+        background: var(--secondary-color);      
+        border-radius: 10px;
+        color: white;
+        padding: 10px;
+        font-weight: 600;
+    }
+    .active{
+        border: 1px dashed var(--primary-color) !important;
+        background-color: var(--primary-color-dark) !important;
+    }
     .tier-container{
         display: flex;        
     }
@@ -190,9 +221,9 @@
         }
     .subscription-container{
         width: 100%;
-        border: 1px dashed var(--primary-color);
+        border: 1px dashed grey;
         padding: 30px;
-        background-color: var(--primary-color-dark);
+        background-color: rgba(10,10,10,.4);
         border-radius: 10px;
         display: flex;
         justify-content: space-between;
