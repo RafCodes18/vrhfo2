@@ -30,5 +30,14 @@ namespace VRhfo.BL.Models
 
 
         public int GoonScore { get; set; }
+
+
+        public string FormattedUploadDateDMY
+        {
+            get
+            {
+                return RegistrationDate.ToString("MMM dd, yyyy");
+            }
+        }
     }
 }
