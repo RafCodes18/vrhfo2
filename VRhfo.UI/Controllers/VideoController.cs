@@ -108,7 +108,7 @@ namespace VRhfo.UI.Controllers
            
             
             //load suggested videos
-            List<Video> list = VideoManager.GetSuggestedVideos(8, title);
+            List<Video> list = VideoManager.GetSuggestedVideos(12, title);
             videoViewModel.suggestedVideos = list;
 
             if(currentUser != null)

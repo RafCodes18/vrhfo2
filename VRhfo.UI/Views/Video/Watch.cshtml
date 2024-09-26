@@ -188,7 +188,7 @@
         .form-date{
             padding: 0 !important;
             margin: 0 !important;            
-        }
+        }       
  
     }
     @@media(min-width: 930px){
@@ -504,6 +504,10 @@
                 font-size: medium !important;
                 text-wrap: nowrap;
             }
+
+        .sug-img {
+            max-width: 150px !important;
+        }
         }
 
     .mobile-sidebar {
@@ -681,9 +685,14 @@
 
 
         <div class="comments-cont">
+            @if(Model.video.Comments.Count <= 0)
+            {
+            <h2 class="no-comments">No comments</h2>
+            }
             <!--LOOOP THROUGH EACH COMMENT -->
             @foreach (var comment in Model.video.Comments)
             {
+               
                 <div class="comment" data-datePosted=@comment.DatePosted>
                     <div class="avatar-container">
                         <div class="avatar-circle">
@@ -1159,32 +1168,48 @@
     }
            
 
-    <!--Suggested videos -->
-     @for (int i = 0; i < Model.suggestedVideos.Count; i++)
-     {
-        <div class="suggested-videos">
-            <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title.Replace(' ', '-')">
-                <div class="video">
-                    <div class="sug-vid-img">
+    <div class="suggested-videos-grid">
+        <!--Suggested videos -->
+         @for (int i = 0; i < Model.suggestedVideos.Count; i++)
+         {
+            <div class="suggested-video-item">
+                <a asp-action="Watch" asp-controller="Video" asp-route-title="@Model.suggestedVideos[i].Title.Replace(' ', '-')">
+                    <div class="video">
+                        <div class="sug-vid-img">
                     
-                            <img src="@Model.suggestedVideos[i].ThumbnailUrl" height="100" width="150" class="sug-img" /> 
+                                <img src="@Model.suggestedVideos[i].ThumbnailUrl" height="100" width="200" class="sug-img" /> 
                        
-                    </div>
-                    <div class="sug-vid-content">
-                            <h5 class="video-title">@Model.suggestedVideos[i].Title</h5>
+                        </div>
+                        <div class="sug-vid-content">
+                                <h5 class="video-title">@Model.suggestedVideos[i].Title</h5>
                           
-                        <div class="sug-vid-content-bottom">
-                            <img src="~/img/vision.png" height="22px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
+                            <div class="sug-vid-content-bottom">
+                                <img src="~/img/vision.png" height="22px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </div>
-
-     }
+                </a>
+            </div>
+         }
+    </div>
 </div>
 
 <style> 
+    .no-comments{
+        color: white !important;
+    }
+    .video-title{
+        color: #bbb !important;
+    }
+    .sug-vid-content{
+        color: #9a9a9a !important; 
+    }
+    .suggested-videos-grid{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        margin-top: 10px !important;
+    }
         main{
             margin-top: -20px !important;
         }
@@ -1217,25 +1242,6 @@
     .cta-text {
     }
 
-    .suggested-videos {
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
-        margin-top: 10px;
-        margin-left: 5px;
-        position: relative;
-    }
-
-    .video {
-        display: flex;
-    }
-
-    .video-title {
-        padding-left: 5px;
-        max-width: 300px;
-        color: #bbb;
-    }
 
     .page-right-container {
         flex-grow: 0;
@@ -1245,25 +1251,7 @@
         margin-top: 10px !important; 
         margin-left: 10px
     }
-
-    .sug-vid-content {
-        position: relative;
-        margin-left: 5px;
-    }
-
-    .suggested-videos p {
-        color: #666666;
-        padding: 0 !important;
-        padding-left: 5px !important;
-        margin-top: 3px;
-    }
-
-    .sug-vid-content-bottom {
-        color: #b0b0b0;
-        padding: 0 !important;
-        position: absolute;
-        bottom: 0 !important;
-    }
+   
 
     .title-link {
         color: white;
