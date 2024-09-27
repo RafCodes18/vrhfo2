@@ -78,7 +78,9 @@
         .sug-img{
             border-radius: 5px;
             object-fit: cover;
-    }
+            height: 120px;
+            width: 180PX;
+        }
         .video:hover{
             -webkit-box-shadow: 10px 10px var(--primary-color-hover);
         box-shadow: 5px 5px 40px 8px var(--primary-color-card-hover);
@@ -88,6 +90,7 @@
             margin-left: 50px;
            outline: 2px solid #111 !important;
            border-radius: 3px;
+           min-width: 760px !important;
          }    
     .sug-title{
         width: 200px;
@@ -153,7 +156,10 @@
    
 
 
-    @@media (max-width: 930px) {
+    @@media (max-width: 1000px) {
+        .vid{
+            min-width: 0 !important;
+        }
         main{
             flex-direction: column !important;
         }
@@ -638,7 +644,7 @@
 
 
     <!--COMMMENT SECTION-->
-    <div class="comments-section">
+    <div class="comments-section" id="comments-section">
         
         <div class="comments-top">
             <div class="comments-header">
@@ -684,10 +690,10 @@
 
 
 
-        <div class="comments-cont">
+        <div class="comments-cont" >
             @if(Model.video.Comments.Count <= 0)
             {
-            <h2 class="no-comments">No comments</h2>
+            <h2 class="no-comments" id="no-comments">No comments</h2>
             }
             <!--LOOOP THROUGH EACH COMMENT -->
             @foreach (var comment in Model.video.Comments)
@@ -724,13 +730,25 @@
 
     <!--Vid details CSS -->
     <style>
+        .no-comments{
+            position: absolute;
+            top: 0;
+            bottom: 0;            
+            left: auto;
+            right: auto;
+            transform: translateX(50%);
+            transform: translateY(50%);
+        }
+        .no-overflow{
+            overflow: hidden !important;
+        }
         body{
             overflow-x: hidden;
         }
         .date-cont {
             display: flex;
         }
-        @@media(max-width: 1000px){
+        @@media(max-width: 1000px){            
             .comments-header-title-left {
                 font-size: 15px !important;
             }
@@ -785,7 +803,6 @@
         }
         .title-and-date{
             display: flex;
-            align-items: center;
         }
         .date-cont{
             display: flex;
@@ -1177,7 +1194,7 @@
                     <div class="video">
                         <div class="sug-vid-img">
                     
-                                <img src="@Model.suggestedVideos[i].ThumbnailUrl" height="100" width="200" class="sug-img" /> 
+                                <img src="@Model.suggestedVideos[i].ThumbnailUrl"   class="sug-img" /> 
                        
                         </div>
                         <div class="sug-vid-content">
@@ -1245,7 +1262,7 @@
 
     .page-right-container {
         flex-grow: 0;
-        max-width: 460px;
+        max-width: 560px;
         position: relative;
         margin-bottom: 300px;
         margin-top: 10px !important; 
@@ -1276,10 +1293,17 @@
 <!--NEWWw LIKE BUTTON FUNCTIONALITY-->
 <script>
   
+    
     document.addEventListener('DOMContentLoaded', function () {
         const sidebar = document.getElementById('sidebar');
         const toggleButton = document.getElementById('toggleSidebar');
         const main = document.querySelector('main');
+        const commentsCont = document.getElementById('comments-section');
+        const noComments = document.getElementById('no-comments');
+
+        if(noComments){
+            commentsCont.classList.add('no-overflow');
+        }
 
         main.classList.add('sidebar-closed');
         sidebar.classList.add('closed');
