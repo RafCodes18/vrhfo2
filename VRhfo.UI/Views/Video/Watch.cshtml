@@ -1032,7 +1032,7 @@
                 background-color: rgba(193, 218, 110, 0.80);
         }
             .comment-submit:focus {
-                outline: 1px solid hotpink; /* Add focus styling here */
+                outline: 1px solid rgba(193, 218, 110, 0.80); /* Add focus styling here */
             }
          .comment-input{
             border-bottom: 1px solid grey;
@@ -1439,33 +1439,11 @@
     const commentsContainer = document.querySelector('.comments-section');
     const placeholder = commentInput.querySelector('.placeholdert');
     const btnComment = document.getElementById('btnComment');
-    
-     btnComment.onclick = function () {
-         commentInput.innerHTML = "";
-     }
-    // Remove the placeholder when the user clicks inside the contenteditable div
-    commentInput.addEventListener('click', () => {
-        if (placeholder) {
-            placeholder.remove();
-        }
-    });
-
+         
+   
     // Add the placeholder back if the user clears the comment input
     commentInput.addEventListener('input', () => {
         if (commentInput.textContent.trim() === '') {
-            if (!placeholder) {
-                const newPlaceholder = document.createElement('span');
-                newPlaceholder.classList.add('placeholder');
-                newPlaceholder.textContent = 'Add a comment...';
-                commentInput.appendChild(newPlaceholder);
-            }
-        }
-    });
-
-    // Restore placeholder when the input loses focus (user clicks anywhere else on the page)
-    document.addEventListener('click', (event) => {
-        const isCommentInput = event.target.closest('.comment-input');
-        if (!isCommentInput && commentInput.textContent.trim() === '') {
             if (!placeholder) {
                 const newPlaceholder = document.createElement('span');
                 newPlaceholder.classList.add('placeholdert');
@@ -1474,8 +1452,21 @@
             }
         }
     });
+    // Restore placeholder when the input loses focus (user clicks anywhere else on the page)
+    document.addEventListener('click', (event) => {
+        const isCommentInput = event.target.closest('.comment-input');
+        if (!isCommentInput && commentInput.textContent.trim() === '') {
+            
+                const newPlaceholder = document.createElement('span');
+                newPlaceholder.classList.add('placeholdert');
+                newPlaceholder.textContent = 'Add a comment...';
+                commentInput.appendChild(newPlaceholder);
+          
+        }
+    });
 
     commentSubmit.addEventListener('click', () => {
+        console.log("submit btn clicked....");
         const commentText = commentInput.textContent.trim();
         if (commentText) {
             // Your logic to submit the comment
@@ -1487,6 +1478,16 @@
             newPlaceholder.classList.add('placeholdert');
             newPlaceholder.textContent = 'Add a comment...';
             commentInput.appendChild(newPlaceholder);
+        }
+    });
+
+    // Remove the placeholder when the user clicks inside the contenteditable div
+    commentInput.addEventListener('click', () => {
+        if (placeholder) {
+            console.log('placeholder exists, removing it. ')
+            placeholder.remove();
+            commentInput.textContent = '';
+            placeholdertextContent = '';
         }
     });
 </script>
