@@ -187,12 +187,12 @@ function toggleMute() {
         volumeSlider.style.background = 'darkgrey';
     }
     else {
-        volumeSlider.style.background = `linear-gradient(to right, deeppink ${value}%, darkgray ${value}%)`;
+        volumeSlider.style.background = `linear-gradient(to right, #BFFF00 ${value}%, #777 ${value}%)`;
     }
 }
 volumeSlider.addEventListener('input', function () {
     const value = this.value * 100; // Get value as percentage
-    this.style.background = `linear-gradient(to right, deeppink ${value}%, darkgray ${value}%)`;
+    this.style.background = `linear-gradient(to right, #BFFF00 ${value}%, #777 ${value}%)`;
 });
 
 
