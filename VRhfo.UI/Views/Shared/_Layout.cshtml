@@ -923,14 +923,13 @@ r            height: 320px;
 
                        <div class="stats-2-boxes">
                              <div class="stat-box">
-                                <h5>Today: <span class="watch-time-value">00:32:12</span></h5>
-                                <h5>This month: <span class="watch-time-value">23h</span></h5>
-
+                                <h5><span class="lesser">Today </span><span class="watch-time-value">32m 12s</span></h5>
+                                <h5><span class="lesser">This month </span> <span class="watch-time-value">23h</span></h5>
                              </div>
                              
                              <div class="stat-box">
-                                <h5>This week: <span class="watch-time-value">5h</span></h5>
-                                <h5>This year: <span class="watch-time-value">114h</span></h5>
+                                <h5><span class="lesser">This week </span> <span class="watch-time-value">5h 12m</span></h5>
+                             <h5><span class="lesser">This year</span> <span class="watch-time-value">114h</span></h5>
                              </div>                                                                             
                        </div>
                         
@@ -1029,6 +1028,9 @@ r            height: 320px;
 </html>
 
 <style>   
+    .lesser{
+        font-size: smaller;
+    }
     .nav-login-buttons{
         display: flex;
     }
@@ -1057,11 +1059,20 @@ r            height: 320px;
     }
     .stats-2-boxes{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         width: 100%;
     }
     .stat-box{
         width: 100%;
+        font-size: small;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }  
+    .stat-box h5{
+        font-size: 15px;
+        display: flex;
+        flex-direction: column;
     }
     .close-btn{
         padding: 5px;
