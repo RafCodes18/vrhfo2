@@ -255,7 +255,7 @@ video.addEventListener('click', () => {
 video.addEventListener("play", () => {
     videoContainer.classList.remove("paused");
     console.log("play detected");
-    intervalId = setInterval(updateWatchDuration, 5000); // Every 5 seconds
+    intervalId = setInterval(updateWatchDuration, 5000); // Sets local storage watch duration every 5 seconds (video current time)
 });
 
 video.addEventListener("pause", () => {
@@ -304,8 +304,8 @@ updateFlexDirection();
 
 // Function to update watch duration
 function updateWatchDuration() {
-    _watchDuration = video.currentTime;
-    localStorage.setItem('watchDuration', _watchDuration);
+    _watchDuration = Math.floor(video.currentTime);
+    localStorage.setItem('watchDuration', _watchDuration + " seconds.");
 }
 
 
@@ -319,16 +319,13 @@ window.addEventListener('beforeunload', function () {
     sendProgressUpdate();
 });
 
-// Helper function to format duration as TimeSpan string
-function formatDuration2(seconds) {
+function formatDuration2(microseconds) {
+    const seconds = microseconds / 1_000_000;  // Convert microseconds to seconds
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const remainingSeconds = Math.floor(seconds % 60);
     return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
 }
-
-
-// Function to send progress update
 // Function to send progress update
 async function sendProgressUpdate() {
     const completed = currentTime === _watchDuration;
@@ -347,7 +344,7 @@ async function sendProgressUpdate() {
                 body: JSON.stringify({
                     userId: currentUserIdd,
                     videoId: currVidId, // Ensure this variable is correctly set
-                    watchDuration: formatDuration2(_watchDuration),
+                    watchDuration: _watchDuration,
                     completed: completed
                 })
             });

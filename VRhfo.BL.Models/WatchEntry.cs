@@ -20,13 +20,7 @@ namespace VRhfo.BL
         public int TimesViewed {  get; set; }
 
         [Column(TypeName = "bigint")]
-        public long WatchDurationTicks { get; set; }
-
-        [NotMapped]
-        public TimeSpan WatchDuration
-        {
-            get => TimeSpan.FromTicks(WatchDurationTicks);
-            set => WatchDurationTicks = value.Ticks;
-        }
+        public int WatchDurationTicks { get; set; }
+       
     }
 }

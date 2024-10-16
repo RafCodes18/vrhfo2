@@ -129,7 +129,7 @@ namespace VRhfo.UI.Controllers
                 {         
                     UserId = currentUser.Id,
                     VideoId = videoViewModel.video.Id,
-                    WatchDuration = TimeSpan.Zero,
+                    WatchDurationTicks = 0,
                     LastDateWatched = DateTime.Now,
                     FirstViewed = DateTime.Now,
                     Completed = false
@@ -153,7 +153,7 @@ namespace VRhfo.UI.Controllers
                 UserId = Guid.Parse(body.GetProperty("userId").GetString()),  // userId is a string (GUID)
                 VideoId = int.Parse(body.GetProperty("videoId").GetString()), // Assuming videoId is also a string
                 LastDateWatched = DateTime.UtcNow,  // Assuming you want to set the current time
-                WatchDurationTicks = ParseTimeSpan(body.GetProperty("watchDuration").GetString()), // You'll need to parse the timespan string
+                WatchDurationTicks = body.GetProperty("watchDuration").GetInt32(), // You'll need to parse the timespan string
                 Completed = body.GetProperty("completed").GetBoolean()  // completed is a boolean
             };
 
