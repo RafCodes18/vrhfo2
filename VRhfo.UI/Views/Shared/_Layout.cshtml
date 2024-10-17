@@ -913,7 +913,10 @@ r            height: 320px;
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="HFO"><img class="sidebar-icons" src="~/img/prohibition.png" /> HFO <span class="explain">(Hands Free Orgasm)</span></a>
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Hypnosis"><img class="sidebar-icons" src="~/img/hypnosis (2).png" />  Hypnosis</a>  
                     <div class="breaker"></div>
-                    <a class="sb-link" asp-action="Live" asp-controller="Home"><img class="sidebar-icons" src="~/img/tv.png" />TV <span class="live-indicator">Live</span></a>
+                    
+                    <a class="sb-link" asp-action="Live" asp-controller="Home">
+                        <img class="sidebar-icons" src="~/img/tv.png" />TV <span class="live-indicator">Live</span></a>
+                    
                     <div class="breaker"></div>
                     <a class="sb-link" asp-action="Captions" asp-controller="Home">Porn Captions</a>
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Top">Top Creators</a>
@@ -1325,4 +1328,72 @@ r            height: 320px;
 
     // Also call the function when the window is resized
     window.addEventListener("resize", checkScreenSize);
+</script>
+
+
+//create account
+<script>
+    // Function to create a GUID
+    function createGuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    // Function to get a cookie by name
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function sendGuidToServer(guid) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/User/CreateFreeAccount", true); // Adjust endpoint as necessary
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log("Account created successfully.");
+                } else {
+                    console.error("Error creating account. Status:", xhr.status);
+                    console.error("Response:", xhr.responseText);
+                }
+            }
+        };
+        xhr.onerror = function () {
+            console.error("Network error occurred");
+        };
+        xhr.send(JSON.stringify({ guid: guid }));
+    }
+
+    // Main logic: check cookie, create if not exists, send GUID to server
+    (function () {
+        const cookieName = "userGuid";
+        let userGuid = getCookie(cookieName);
+
+        if (!userGuid) {
+            // Cookie not found, create a new GUID
+            userGuid = createGuid();
+            setCookie(cookieName, userGuid, 365); // Store for 1 year
+            console.log("New GUID created and stored in cookie:", userGuid);
+
+            // Send the GUID to the server to create a basic account
+            sendGuidToServer(userGuid);
+        } else {
+            console.log("User GUID already exists:", userGuid);
+        }
+    })();
 </script>

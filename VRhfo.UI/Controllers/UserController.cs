@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using VRhfo.BL;
 using VRhfo.BL.Models;
 using VRhfo.UI.ViewModels;
@@ -219,6 +220,53 @@ namespace VRhfo.UI.Controllers
                 monthly = monthlySeconds,
                 lifetime = lifetimeSeconds
             });
+        }
+
+
+        // Define a model class for the incoming data
+        public class CreateAccountRequest
+        {
+            public string Guid { get; set; }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateFreeAccount()
+        {
+            try
+            {
+                // Read the incoming JSON data from the request body asynchronously
+                using (var reader = new StreamReader(Request.Body))
+                {
+                    var body = await reader.ReadToEndAsync();
+                    var request = JsonConvert.DeserializeObject<CreateAccountRequest>(body);
+
+                    // Check if the GUID is valid
+                    if (request == null || string.IsNullOrEmpty(request.Guid))
+                    {
+                        return BadRequest(new { message = "GUID is required." });
+                    }
+
+                    // Perform account creation logic here using request.Guid
+                    // Assuming UserManager.InsertFreeAccountGUID is made async
+                    int result = await UserManager.InsertFreeAccountGUIDAsync(request.Guid);
+                    if (result > 0)
+                    {
+                        // If account creation is successful
+                        return Ok(new { message = "Account created successfully." });
+                    }
+                    return BadRequest(new { message = "Failed to create account." });
+                }
+            }
+            catch (JsonException ex)
+            {
+                // Handle JSON deserialization errors
+                return BadRequest(new { message = "Invalid data format.", details = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                return StatusCode(500, new { message = "An error occurred while creating the account.", details = ex.Message });
+            }
         }
     }
 }

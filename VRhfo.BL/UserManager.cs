@@ -281,5 +281,42 @@ namespace VRhfo.BL
                 throw;
             }
         }
+
+        public static async Task<int> InsertFreeAccountGUIDAsync(string guid)
+        {
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    tblUser freeUser = new tblUser()
+                    {
+
+                        Id = Guid.Parse(guid),
+                        Auth0UserId = "free-user", // Dummy Auth0 user ID
+                        Username = "Free User", // Placeholder username
+                        Email = "freeuser@example.com", // Dummy email
+                        Password = "FreeUserPassword123", // Placeholder password
+                        RegistrationDate = DateTime.UtcNow, // Current date as registration date
+                        SubscribedDate = DateTime.UtcNow, // Start date for subscription
+                        IsSubscribed = 0, // Not subscribed
+                        NextRenewalDueDate = DateTime.UtcNow.AddYears(1), // Dummy renewal date, 1 year ahead
+                        SubscriptionTier = "Free", // Subscription tier for free users
+                        GoonScore = 0,// Placeholder
+                    };
+
+                    // Save the user to the database
+                    dc.tblUsers.Add(freeUser);
+                    return  dc.SaveChanges(); // Return the number of state entries written to the database
+                }
+            
+        
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
