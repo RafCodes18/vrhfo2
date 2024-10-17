@@ -198,6 +198,88 @@ namespace VRhfo.BL
                     GoonScore = row.GoonScore
             };
             }
+        }        
+
+        public static int LoadTodaysWatchTime(Guid userId)
+        {
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    var today = DateTime.UtcNow.Date;
+
+                    var todaysWatchTime = dc.tblWatchEntries
+                        .Where(w => w.UserId == userId && w.LastDateWatched >= today)
+                        .Sum(w => (int?)w.WatchDurationTicks) ?? 0;
+
+                    return todaysWatchTime;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static int LoadWeeklyWatchTime(Guid userId)
+        {
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    var lastWeek = DateTime.UtcNow.Date.AddDays(-7);
+
+                    var weeklyWatchTime = dc.tblWatchEntries
+                        .Where(w => w.UserId == userId && w.LastDateWatched >= lastWeek)
+                        .Sum(w => (int?)w.WatchDurationTicks) ?? 0;
+
+                    return weeklyWatchTime;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static int LoadLifetimeWatchTime(Guid userId)
+        {
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    var lifetimeWatchTime = dc.tblWatchEntries
+                        .Where(w => w.UserId == userId)
+                        .Sum(w => (int?)w.WatchDurationTicks) ?? 0;
+
+                    return lifetimeWatchTime;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static int LoadMonthlyWatchTime(Guid userId)
+        {
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    var lastMonth = DateTime.UtcNow.Date.AddDays(-30);
+
+                    var monthlyWatchTime = dc.tblWatchEntries
+                        .Where(w => w.UserId == userId && w.LastDateWatched >= lastMonth)
+                        .Sum(w => (int?)w.WatchDurationTicks) ?? 0;
+
+                    return monthlyWatchTime;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

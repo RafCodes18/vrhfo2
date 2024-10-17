@@ -198,6 +198,27 @@ namespace VRhfo.UI.Controllers
             User user = UserManager.LoadByUsername(username);
 
             return View(user);
-        }       
+        }
+
+        [HttpGet]
+        public IActionResult GetWatchTime(Guid userId)
+        {
+
+            //HERE only grabbing the seconds. 
+            //Daily will query based on watch entries LastDateWatched value being today, then total the durations
+            //Weekly will query videos first watched 
+            int dailySeconds = UserManager.LoadTodaysWatchTime(userId);
+            int weeklySeconds = UserManager.LoadWeeklyWatchTime(userId);
+            int monthlySeconds = UserManager.LoadMonthlyWatchTime(userId);
+            int lifetimeSeconds = UserManager.LoadLifetimeWatchTime(userId);
+
+            return Json(new
+            {
+                daily = dailySeconds,
+                weekly = weeklySeconds,
+                monthly = monthlySeconds,
+                lifetime = lifetimeSeconds
+            });
+        }
     }
 }

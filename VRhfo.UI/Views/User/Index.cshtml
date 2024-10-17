@@ -16,9 +16,10 @@
                 <div class="wt-title">
                     Watch Time 
                 </div>
-                <div class="wt-today wt">Today: 22m </div>
-                <div class="wt-week wt">This week: 2h 12m</div>
-                <div class="wt-month wt">This month: 5h 47m </div>
+                <div class="wt-today wt">Today: <span id="daily-watch-time"></span></div>
+                <div class="wt-week wt">This week: <span id="weekly-watch-time"></span></div>
+                <div class="wt-month wt">This month: <span id="monthly-watch-time"></span> </div>
+                <div class="wt-month wt">Lifetime: <span id="lifetime-watch-time"></span> </div>
             </div>
             <div class="date-join-txt">Date Joined: @Model.FormattedUploadDateDMY</div>
         </div>
@@ -334,6 +335,53 @@
         outline: 1px solid grey;        
     }
 </style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const userId = '@Model.Id'; // Replace this with your actual user ID retrieval
+
+        fetch(`/User/GetWatchTime?userId=${userId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                    console.log("error")
+                }
+                return response.json();
+            })
+            .then(data => {
+                //here i should only be returning the seconds value, then with JS format it to 3h 12m, or 2d 1h 45m, or 4m)
+               
+                // Helper function to format seconds into human-readable time
+                function formatTime(seconds) {
+                    const days = Math.floor(seconds / (3600 * 24));
+                    seconds %= 3600 * 24;
+                    const hours = Math.floor(seconds / 3600);
+                    seconds %= 3600;
+                    const minutes = Math.floor(seconds / 60);
+                    const remainingSeconds = seconds % 60;
+
+                    let timeString = '';
+
+                    if (days > 0) timeString += `${days}d `;
+                    if (hours > 0) timeString += `${hours}h `;
+                    if (minutes > 0) timeString += `${minutes}m `;
+                    if (remainingSeconds > 0 && days === 0) timeString += `${remainingSeconds}s`; // Only show seconds if no days
+
+                    return timeString.trim();
+                }
+
+                // Use the helper function to format and display the watch times
+                document.getElementById('daily-watch-time').textContent = `${formatTime(data.daily)}`;
+                document.getElementById('weekly-watch-time').textContent = `${formatTime(data.weekly)}`;
+                document.getElementById('monthly-watch-time').textContent = `${formatTime(data.monthly)}`;
+                document.getElementById('lifetime-watch-time').textContent = `${formatTime(data.lifetime)}`;
+            })
+            .catch(error => {
+                console.error('Error fetching watch time stats:', error);
+            });
+    });
+</script>
 
 <script defer>
     const outerCircle = document.querySelector(".outer-circle");
