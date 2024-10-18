@@ -60,15 +60,20 @@
                     <div class="grid-item">
                         <input type="checkbox" name="checkbox-checked">
                     </div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div><div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div><div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
+                    <div class="grid-item">                        <input type="checkbox" name="checkbox-checked">
+</div>
+                    <div class="grid-item">                        <input type="checkbox" name="checkbox-checked">
+</div>
+                    <div class="grid-item">
+                        <input type="checkbox" name="checkbox-checked">
+                    </div> <div class="grid-item">
+                        <input type="checkbox" name="checkbox-checked">
+                    </div> <div class="grid-item">
+                        <input type="checkbox" name="checkbox-checked">
+                    </div> <div class="grid-item">
+                        <input type="checkbox" name="checkbox-checked">
+                    </div>
+          
                     <!-- Add as many items as needed -->
                 </div>
             </div>
@@ -129,6 +134,10 @@
     </div>
 </div>
 <style> 
+    h3{
+        padding: 10px;
+        margin-bottom: -20px !important;
+    }
     .img-and-title img{
         border-radius: 2px;
         margin-right: 4px;
@@ -162,6 +171,7 @@
         text-align: center;
         border: 1px solid #ccc; 
         height: 80px;
+        border-radius: 10px;
     }
     .img-and-title{
         display: flex;
@@ -183,7 +193,8 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        margin-top: 13px        
+        margin-top: 13px;
+        padding: 10px;
     }
     .task{
         position: relative;
@@ -378,7 +389,9 @@
         border-radius: 8px;
         color: #888;
     }
-
+    .bottom{
+            height: 700px !important;
+    }
     .top-boxes .boxx {
         height: 200px;
     }
@@ -399,7 +412,9 @@
             margin-left: 14px;
             max-width: 90vw !important;
         }
-
+        .boxx.top, .boxx.bottom{
+           max-width: 90% !important;
+        }
         .top-boxes .boxx {
             height: 90% !important;
         }
@@ -418,6 +433,17 @@
             font-size: 15px;
             letter-spacing: 0;
         }
+        .img-and-title p{
+            font-size: smaller !important;
+        }
+        .task{
+            width: 100% !important;
+            margin-left: 0 !important;
+        }
+        .boxx{
+            padding: 0 !important;
+        }
+
     }
 
     /* Optional: for visualization purposes */
