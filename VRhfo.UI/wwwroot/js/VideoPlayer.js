@@ -84,7 +84,7 @@ document.addEventListener("keydown", e => {
             e.preventDefault();
         }
    
-    switch (e.key.toLowerCase()) {
+    /*switch (e.key.toLowerCase()) {
         case " ":
             if(tagName === "button") return
         case "k":
@@ -104,7 +104,7 @@ document.addEventListener("keydown", e => {
         case "arrowleft":
             SkipBackward();
             break;
-    }
+    }*/
 });
 
 
@@ -255,7 +255,7 @@ video.addEventListener('click', () => {
 video.addEventListener("play", () => {
     videoContainer.classList.remove("paused");
     console.log("play detected");
-    intervalId = setInterval(updateWatchDuration, 5000); // Sets local storage watch duration every 5 seconds (video current time)
+    intervalId = setInterval(updateWatchDuration, 1000); // Sets local storage watch duration every 5 seconds (video current time)
 });
 
 video.addEventListener("pause", () => {
@@ -306,6 +306,7 @@ updateFlexDirection();
 function updateWatchDuration() {
     _watchDuration = Math.floor(video.currentTime);
     localStorage.setItem('watchDuration', _watchDuration + " seconds.");
+    console.log(_watchDuration);
 }
 
 
