@@ -1,4 +1,5 @@
-﻿using VRhfo.BL.Models;
+﻿using System.Security.Policy;
+using VRhfo.BL.Models;
 using VRhfo.PL;
 using static VRhfo.BL.Models.User;
 
@@ -316,6 +317,107 @@ namespace VRhfo.BL
             {
 
                 throw;
+            }
+        }
+
+        public static User LoadWatchedVideos(string username)
+        {
+
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    // Find the user by username
+                    var user = dc.tblUsers.FirstOrDefault(u => u.Username == username);
+                    if (user == null)
+                    {
+                        return null; // or handle user not found
+                    }
+
+                    var today = DateTime.Today;
+                    var weekAgo = today.AddDays(-7);
+
+                    // Query the watch history for the user by their userId
+                    var watchEntries = dc.tblWatchEntries
+                                        .Where(we => we.UserId == user.Id)
+                                        .Select(we => new
+                                        {
+                                            we.VideoId,
+                                            we.LastDateWatched
+                                        })
+                                        .ToList();
+
+                    // Videos watched today
+                    var videosWatchedToday = watchEntries
+                                             .Where(we => we.LastDateWatched >= today)
+                                             .Select(we => we.VideoId)
+                                             .Distinct()
+                                             .ToList();
+
+                    // Videos watched in the past week (excluding today)
+                    var videosWatchedPastWeek = watchEntries
+                                                .Where(we => we.LastDateWatched >= weekAgo && we.LastDateWatched < today)
+                                                .Select(we => we.VideoId)
+                                                .Distinct()
+                                                .ToList();
+
+                    // Videos watched more than a week ago
+                    var restOfVideosWatched = watchEntries
+                                              .Where(we => we.LastDateWatched < weekAgo)
+                                              .Select(we => we.VideoId)
+                                              .Distinct()
+                                              .ToList();
+
+                    // Fetch the video details for each category
+                    var videosToday = dc.tblVideos
+                                        .Where(v => videosWatchedToday.Contains(v.Id))
+                                        .Select(v => new Video
+                                        {
+                                            Id = v.Id,
+                                            Title = v.Title,
+                                            ThumbnailUrl = v.ThumbnailUrl,
+                                            Duration = v.Duration,
+                                            VideoUrl = v.VideoUrl
+                                        })
+                                        .ToList();
+
+                    var videosPastWeek = dc.tblVideos
+                                           .Where(v => videosWatchedPastWeek.Contains(v.Id))
+                                           .Select(v => new Video
+                                           {
+                                               Id = v.Id,
+                                               Title = v.Title,
+                                               ThumbnailUrl = v.ThumbnailUrl,
+                                               Duration = v.Duration,
+                                               VideoUrl = v.VideoUrl
+                                           })
+                                           .ToList();
+
+                    var videosRest = dc.tblVideos
+                                       .Where(v => restOfVideosWatched.Contains(v.Id))
+                                       .Select(v => new Video
+                                       {
+                                           Id = v.Id,
+                                           Title = v.Title,
+                                           ThumbnailUrl = v.ThumbnailUrl,
+                                           Duration = v.Duration,
+                                           VideoUrl = v.VideoUrl
+                                       })
+                                       .ToList();
+
+                    // Populate the UserModel with categorized watch history
+                    return new User
+                    {
+                        VideosWatchedToday = videosToday,
+                        VideosWatchedPastWeek = videosPastWeek,
+                        RestOfVideosWatched = videosRest
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception appropriately
+                throw new ApplicationException("An error occurred while loading watched videos.", ex);
             }
         }
     }

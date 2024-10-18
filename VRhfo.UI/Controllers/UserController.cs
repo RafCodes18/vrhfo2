@@ -37,7 +37,7 @@ namespace VRhfo.UI.Controllers
                 if (TempData?["returnUrl"] != null)
                     return Redirect(TempData["returnUrl"]?.ToString());
                 else
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Video");
             }
             catch (Exception ex)
             {
@@ -179,12 +179,24 @@ namespace VRhfo.UI.Controllers
 
             var authUser = HttpContext.Session.GetObject<User>("user");
 
-            if (authUser == null)
+            if (authUser == null || authUser.Username == "")
             {
                 return RedirectToAction(nameof(Login), "Home");
             }
+
+
+            User userHistory = new User();
+            userHistory = UserManager.LoadWatchedVideos(username);
+            user.VideosWatchedToday = userHistory.VideosWatchedToday;
+            user.VideosWatchedPastWeek = userHistory.VideosWatchedPastWeek;
+            user.RestOfVideosWatched = userHistory.RestOfVideosWatched;
+
+
             return View(user);
         }
+
+
+
 
         public IActionResult Logout()
         {

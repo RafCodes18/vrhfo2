@@ -39,5 +39,10 @@ namespace VRhfo.BL.Models
                 return RegistrationDate.ToString("MMM dd, yyyy");
             }
         }
+
+        public List<Video> WatchHistory { get; set; }
+        public List<Video> VideosWatchedToday { get; set; }
+        public List<Video> VideosWatchedPastWeek { get; set; }
+        public List<Video> RestOfVideosWatched { get; set; }
     }
 }

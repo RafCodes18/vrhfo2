@@ -51,7 +51,7 @@
             </div>
         </div>
     </div>
-    <div class="bottom-boxes">
+        <div class="bottom-boxes">
         <div class="boxx top">
             <div class="tasks-title">
                 <h3>Completed Tasks</h3>                
@@ -74,21 +74,60 @@
                 <h3>Watch History</h3>
             </div>
             <div class="tasks-container">
-                <div class="task"></div>
-                <div class="task"></div>
-                <div class="task"></div>
-                <div class="task"></div>
-                <div class="task"></div>
-                <div class="task"></div>
-                <div class="task"></div>
-                <div class="task"></div>
-                <div class="task"></div>
-                <div class="task"></div>
-            </div>
+                <div class="watched-today">
+                    Today
+                </div>
+                @foreach(var item in Model.VideosWatchedToday)
+                {            
+                    <a asp-action="Watch" asp-controller="Video" asp-route-title="@item.Title">
+                        <div class="task">
+                            <div class="img-and-title">
+                                <img src="@item.ThumbnailUrl" height="20" width=20 />
+                                <p>@item.Title</p>
+                            </div>
+                            <p>@item.Duration</p>
+                        </div>
+                    </a>
+                }
+                <div class="watched-week">
+                    Last 7 Days
+                </div>
+                @foreach (var item in Model.VideosWatchedPastWeek)
+                {
+                    <a asp-action="Watch" asp-controller="Video" asp-route-title="@item.Title">
+                        <div class="task">
+                            <div class="img-and-title">
+                                <img src="@item.ThumbnailUrl" height="20" width=20 />
+                                <p>@item.Title</p>
+                            </div>
+                            <p>@item.Duration</p>
+                        </div>
+                    </a>
+                }
+
+                <div class="watched-week">
+                   All
+                </div>
+                @foreach (var item in Model.RestOfVideosWatched)
+                {
+                    <a asp-action="Watch" asp-controller="Video" asp-route-title="@item.Title">
+                        <div class="task">
+                            <div class="img-and-title">
+                                <img src="@item.ThumbnailUrl" height="20" width=20 />
+                                <p>@item.Title</p>
+                            </div>
+                            <p>@item.Duration</p>
+                        </div>
+                    </a>
+                }
+            </div>           
         </div>
     </div>
 </div>
 <style>  
+    .img-and-title{
+        display: flex;
+    }
     @@media(min-width: 1000px){
         .task{
             max-width: 700px;
@@ -112,6 +151,8 @@
         padding: 5px;
         margin: 3px 10px;
         border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
     }
     .meter-container{
         position: relative;
@@ -279,6 +320,8 @@
     .bottom-boxes {
         flex-direction: column;
         margin-top: 15px;
+        max-width: 75%;
+        min-width: 300px !important;
     }
 
     .boxx {
