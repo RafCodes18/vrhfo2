@@ -320,6 +320,8 @@ namespace VRhfo.BL
             }
         }
 
+        //Put the watchedLastWeek video properties in the User model instead of creating a VM
+        //One method loads all 3 watch histories 
         public static User LoadWatchedVideos(string username)
         {
 

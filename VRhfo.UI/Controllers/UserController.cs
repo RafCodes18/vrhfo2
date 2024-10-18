@@ -184,7 +184,7 @@ namespace VRhfo.UI.Controllers
                 return RedirectToAction(nameof(Login), "Home");
             }
 
-
+            //watch stats are grabbed all at once and stored in an empty user so I can place them in actual user
             User userHistory = new User();
             userHistory = UserManager.LoadWatchedVideos(username);
             user.VideosWatchedToday = userHistory.VideosWatchedToday;
