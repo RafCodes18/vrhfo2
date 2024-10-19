@@ -346,6 +346,7 @@ namespace VRhfo.BL
 
             using(VRhfoEntities dc = new VRhfoEntities())
             {
+
                 if(dc.tblWatchEntries.Any(s => s.Id == userWatchedVid.Id && s.VideoId == userWatchedVid.VideoId))
                 {
                     return 0;

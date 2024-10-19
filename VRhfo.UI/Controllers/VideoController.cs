@@ -151,10 +151,10 @@ namespace VRhfo.UI.Controllers
             var watchEntry = new WatchEntry()
             {
                 UserId = Guid.Parse(body.GetProperty("userId").GetString()),  // userId is a string (GUID)
-                VideoId = int.Parse(body.GetProperty("videoId").GetString()), // Assuming videoId is also a string
-                LastDateWatched = DateTime.UtcNow,  // Assuming you want to set the current time
-                WatchDurationTicks = body.GetProperty("watchDuration").GetInt32(), // You'll need to parse the timespan string
-                Completed = body.GetProperty("completed").GetBoolean()  // completed is a boolean
+                VideoId = int.Parse(body.GetProperty("videoId").GetString()), 
+                LastDateWatched = DateTime.UtcNow,  
+                WatchDurationTicks = body.GetProperty("watchDuration").GetInt32(), // parse the timespan string
+                Completed = body.GetProperty("completed").GetBoolean()  
             };
 
             try
