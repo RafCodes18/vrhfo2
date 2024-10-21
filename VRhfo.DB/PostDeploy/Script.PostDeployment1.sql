@@ -14,3 +14,4 @@ Post-Deployment Script Template
 :r .\DefaultData\Comments.sql
 :r .\DefaultData\VideosLiked.sql
 :r .\DefaultData\WatchEntries.sql
+:r .\DefaultData\Replies.sql

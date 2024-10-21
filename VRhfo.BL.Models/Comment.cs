@@ -1,4 +1,6 @@
-﻿namespace VRhfo.BL.Models
+﻿using System.Net.NetworkInformation;
+
+namespace VRhfo.BL.Models
 {
     public class Comment
     {
@@ -7,13 +9,15 @@
         public DateTime DatePosted { get; set; }
         public Guid UserId { get; set; } // or public User User { get; set; }
         public int VideoId { get; set; } // or public Video Video { get; set; }
-        
-        
+        public int LikesCount { get; set; }
+        public int DislikesCount { get; set; }
+
+
         //navigation properties (not database fields)
         public User User { get; set; }
         public Video Video { get; set; }
 
-
+        public List<Reply> Replies { get; set; }
 
         public string FormattedUploadDate
         {
