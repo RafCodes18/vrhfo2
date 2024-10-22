@@ -260,8 +260,9 @@ namespace VRhfo.UI.Controllers
 
             if (CommentManager.InsertComment(newComment) > 0)
             {
-                return Json(new { success = true, comment = newComment });
+                newComment.User = UserManager.LoadById(newComment.UserId);
 
+                return Json(new { success = true, comment = newComment });              
             }
             else
             {
