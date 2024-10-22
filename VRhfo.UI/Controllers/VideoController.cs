@@ -244,5 +244,31 @@ namespace VRhfo.UI.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public IActionResult AddComment([FromBody] dynamic commentDto)
+        {
+            User currentUser = GetCurrentUser();
+            // Validate commentDto and save the comment in the database
+            var newComment = new Comment
+            {
+                Content = commentDto.GetProperty("commentText").GetString(),
+                DatePosted = DateTime.UtcNow,
+                UserId = currentUser.Id,
+                VideoId = int.Parse(commentDto.GetProperty("videoId").GetString())
+            };
+
+            if (CommentManager.InsertComment(newComment) > 0)
+            {
+                return Json(new { success = true, comment = newComment });
+
+            }
+            else
+            {
+                return Json(new { success = false, comment = newComment });
+
+            }
+
+        }
     }
 }

@@ -27,5 +27,5 @@ public partial class tblUser
 
     public int GoonScore { get; set; }
 
-    public virtual ICollection<tblVideosLiked> tblVideosLikes { get; set; } = new List<tblVideosLiked>();
+    public virtual ICollection<tblVideosLiked> tblVideosLikeds { get; set; } = new List<tblVideosLiked>();
 }

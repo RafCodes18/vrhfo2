@@ -12,7 +12,8 @@ namespace VRhfo.BL
             {
                 List<tblComment> tblComments = db.tblComments
                     .Where(c => c.VideoId == videoId)
-                    .Include(c => c.User) // Include the tblUser navigation property
+                    .Include(c => c.User)
+                    .OrderByDescending(c => c.DatePosted)
                     .ToList();
 
                 List<Comment> comments = new List<Comment>();
@@ -33,6 +34,34 @@ namespace VRhfo.BL
                 }
 
                 return comments;
+            }
+        }
+
+        public static int InsertComment(Comment newComment)
+        {
+            try
+            {
+                int result;
+                using(VRhfoEntities dc = new VRhfoEntities())
+                {
+                    tblComment newRow = new tblComment();
+                    newRow.Content = newComment.Content;
+                    newRow.DatePosted = newComment.DatePosted;  
+                    newRow.UserId = newComment.UserId;
+                    newRow.VideoId = newComment.VideoId;
+                   /* newRow.DislikesCount = 0;
+                    newRow.LikesCount = 0;
+*/
+                    dc.tblComments.Add(newRow);
+
+                    result = dc.SaveChanges();  
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

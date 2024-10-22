@@ -793,7 +793,7 @@
             flex-direction: column;
         }
         .like-btns:hover{
-            fill: blue;
+            fill: #ddd;
             cursor: pointer;
             transition: ease .5s;
         }
@@ -1202,10 +1202,10 @@
             border-radius: 12px !important;
             margin-top: 0px !important;
             width: 100% !important;
-            max-height: 600px !important;
             overflow-y: scroll;
             border: 1px solid #222;
             overflow-x: hidden;
+            height: 800px;
         }
         .black-nav{
             background: #000;
@@ -1493,10 +1493,13 @@
     });
 </script>
 
+
+
+
 <!-- OLD - COMMENT JS-->
  <script type="text/javascript">
     const commentInput = document.querySelector('.comment-input');
-    const commentSubmit = document.querySelector('.comment-submit');
+    const submitBtn = document.querySelector('.comment-submit');
     const commentsContainer = document.querySelector('.comments-section');
     const placeholder = commentInput.querySelector('.placeholdert');
     const btnComment = document.getElementById('btnComment');
@@ -1509,7 +1512,7 @@
                 const newPlaceholder = document.createElement('span');
                 newPlaceholder.classList.add('placeholdert');
                 newPlaceholder.textContent = 'Add a comment...';
-                commentInput.appendChild(newPlaceholder);
+                commentInput.appendChild(newPlaceholder);                
             }
         }
     });
@@ -1522,16 +1525,65 @@
                 newPlaceholder.classList.add('placeholdert');
                 newPlaceholder.textContent = 'Add a comment...';
                 commentInput.appendChild(newPlaceholder);
-          
+            console.log("No placeholder, adding one...");
         }
     });
 
-    commentSubmit.addEventListener('click', () => {
+    // Add the placeholder back if the user clears the comment input
+     commentInput.addEventListener('input', () => {
+
+        if (commentInput.textContent.trim() === '' || commentInput.textContent.trim() === "Add a comment...") {
+            btnComment.disabled = true;
+            console.log("comment submit btn disbaled");
+        } else {
+            btnComment.disabled = false;
+            console.log("valid comment added, btn submit enabled");
+        }
+        
+     });
+    submitBtn.addEventListener('click', () => {
         console.log("submit btn clicked....");
+
+        if (commentInput.textContent.trim() === '' || commentInput.textContent.trim() === "Add a comment...") {
+            btnComment.disabled = true;
+            console.log("comment submit btn disbaled");
+        } else {
+            btnComment.disabled = false;
+            console.log("valid comment added, btn submit enabled");
+        }
+
         const commentText = commentInput.textContent.trim();
-        if (commentText) {
+
+        if (commentText && commentText !== "Add a comment...") {
             // Your logic to submit the comment
             console.log('Comment submitted:', commentText);
+
+            fetch('/Video/AddComment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    commentText: commentText,
+                    videoId: '@Model.video.Id'
+                })
+
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle success (e.g., add the new comment to the UI)
+                    console.log(data);
+
+                    // Clear the comment input
+                    commentInput.textContent = '';
+                    submitButton.disabled = true;
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error('Error:', error);
+                });
+
+
             // Clear the input after submitting
             commentInput.textContent = '';
             // Restore placeholder after clearing input
@@ -1541,7 +1593,7 @@
             commentInput.appendChild(newPlaceholder);
         }
     });
-
+    
     // Remove the placeholder when the user clicks inside the contenteditable div
     commentInput.addEventListener('click', () => {
         if (placeholder) {

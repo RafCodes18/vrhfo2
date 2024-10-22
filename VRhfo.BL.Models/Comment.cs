@@ -26,13 +26,21 @@ namespace VRhfo.BL.Models
                 var currentDate = DateTime.UtcNow;
                 var dateDifference = currentDate - DatePosted;
 
-                if (dateDifference.TotalDays < 1)
+                if (dateDifference.TotalMinutes < 1)
                 {
-                    return "Today";
+                    return "Just now";
+                }
+                else if (dateDifference.TotalMinutes < 60)
+                {
+                    return $"{(int)dateDifference.TotalMinutes} minutes ago";
+                }
+                else if (dateDifference.TotalHours < 24)
+                {
+                    return $"{(int)dateDifference.TotalHours} hours ago";
                 }
                 else if (dateDifference.TotalDays < 2)
                 {
-                    return "1 day ago";
+                    return "Yesterday";
                 }
                 else if (dateDifference.TotalDays < 7)
                 {
