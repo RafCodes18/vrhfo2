@@ -1342,53 +1342,11 @@
             </div>
          }
     </div>
+ 
 
 </div>
 
-<div id="login-modal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <p>Please log in to like, reply, or comment.</p>
-        <button onclick="redirectToLogin()">Log In</button>
-        <button onclick="redirectToRegister()">Register</button>
-    </div>
-</div>
-
-<style> 
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1000; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-    }
-
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+<style>     
 
     .suggested-video-item:hover{
         border-radius: 10px !important;
@@ -1748,16 +1706,18 @@
         const commentsSection = document.getElementById("comments-section");
         const loginModal = document.getElementById("login-modal");
         const isAuthenticated = commentsSection.dataset.isAuthenticated === "True"; // Convert to boolean
+        console.log("isAuthenticated: " + isAuthenticated);
+        const overlay = document.querySelector('.overlay');
 
         commentsSection.addEventListener("click", function (event) {
+            console.log("Comment section clicked");
             // Check if the user is not authenticated
             if (!isAuthenticated) {
                 // Check if the clicked element is a like button, reply button, or anywhere in the comments container
-                if (event.target.closest('.like-btn') || event.target.closest('.reply-btn') || event.target.closest('.dislike-btn')) {
                     console.log("here");
                     event.preventDefault(); // Prevent default action
-                    showModal();
-                }
+                    showModal();  
+                    toggleModal();
             }
         });
 
@@ -1765,6 +1725,10 @@
             loginModal.style.display = "block"; // Show the modal
         }
 
+        function toggleModal() {
+            loginModal.classList.toggle('hidden');
+            overlay.classList.toggle('hidden');
+        }
         window.closeModal = function () {
             loginModal.style.display = "none"; // Hide the modal
         }

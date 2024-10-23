@@ -200,9 +200,8 @@ namespace VRhfo.UI.Controllers
 
         public IActionResult Logout()
         {
-            User nullUser = new User();
-            nullUser.Username = "";
-            SetUser(nullUser);
+            HttpContext.Session.Remove("user");
+
             return RedirectToAction("Index", "Video");
         }
 
