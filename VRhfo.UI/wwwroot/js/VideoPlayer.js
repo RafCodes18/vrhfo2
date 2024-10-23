@@ -262,7 +262,6 @@ video.addEventListener("pause", () => {
     videoContainer.classList.add("paused");
     clearInterval(intervalId);
 
-
 });
 
 function togglePlay() {
@@ -306,7 +305,6 @@ updateFlexDirection();
 function updateWatchDuration() {
     _watchDuration = Math.floor(video.currentTime);
     localStorage.setItem('watchDuration', _watchDuration + " seconds.");
-    console.log(_watchDuration);
 }
 
 

@@ -286,8 +286,13 @@ namespace VRhfo.UI.Controllers
         {
             var commentId = int.Parse(likeData.GetProperty("commentId").GetString());
             var isLike = likeData.GetProperty("isLike").GetBoolean();
-
+            
+            if(GetCurrentUser() == null || GetCurrentUser().Id == Guid.Empty)
+            {
+                return Json(new { success = false, message = "An error occurred while processing your request." });
+            }
             var userId = GetCurrentUser().Id;
+         
             var existingLike = CommentManager.CheckForExistingLikeEntry(commentId, userId);
 
             if (existingLike != null)
@@ -308,13 +313,11 @@ namespace VRhfo.UI.Controllers
                 };
                 CommentManager.InsertLikeDislikeEntry(newLike);
             }
-
-
             // Return the updated like/dislike counts
             var likeCount = CommentManager.LoadLikeCount(commentId);
             var dislikeCount = CommentManager.LoadDislikeCount(commentId);
 
-            return Json(new { likeCount, dislikeCount });
+            return Json(new {success = true, likeCount, dislikeCount });
 
         }
 
