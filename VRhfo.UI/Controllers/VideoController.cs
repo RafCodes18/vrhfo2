@@ -282,8 +282,11 @@ namespace VRhfo.UI.Controllers
         }
 
         [HttpPost]
-        public JsonResult LikeComment(int commentId, bool isLike)
+        public JsonResult LikeComment([FromBody] dynamic likeData)
         {
+            var commentId = int.Parse(likeData.GetProperty("commentId").GetString());
+            var isLike = likeData.GetProperty("isLike").GetBoolean();
+
             var userId = GetCurrentUser().Id;
             var existingLike = CommentManager.CheckForExistingLikeEntry(commentId, userId);
 
@@ -300,7 +303,8 @@ namespace VRhfo.UI.Controllers
                 {
                     UserId = userId,
                     CommentId = commentId,
-                    IsLike = isLike
+                    IsLike = isLike,
+                    CreatedAt = DateTime.UtcNow
                 };
                 CommentManager.InsertLikeDislikeEntry(newLike);
             }

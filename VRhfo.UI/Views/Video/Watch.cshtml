@@ -3,8 +3,8 @@
 
 @{
     ViewData["Title"] = "Video - vrhfo.com";
-
-
+     
+        var username = HttpContextAccessor.HttpContext?.Session.GetString("username");    
 }
 
 <script type="text/javascript" src="~/js/VideoPlayer.js" defer></script>
@@ -670,8 +670,7 @@
             </div>
         </div>
     </div>
-
-
+     
     <!--COMMMENT SECTION-->
     <div class="comments-section" id="comments-section">
         
@@ -758,15 +757,8 @@
                         <div class="comment-actions">
                             <div class="like-btn" data-comment-id="@comment.Id">
                                 <svg class="o-icon o-icon-svg like-btns" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero"></path></svg>
-                                @if (comment.LikesCount == 0)
-                                {
-                                    <span></span>
-                                }
-                                else{
-                                      <span class="like-count-@comment.Id">
-                                        @comment.LikesCount
-                                    </span>                                    
-                                }                                  
+
+                                <span id="like-count-@comment.Id">@comment.LikesCount</span>
 
                             </div>
 
@@ -1315,10 +1307,7 @@
 </div>
 
 <!--RIGHT SIDE OF PAGE (SUGGESTED VIDEOS) -->
-<div class="page-right-container">
-    @{
-        var username = HttpContextAccessor.HttpContext?.Session.GetString("username");
-    }
+<div class="page-right-container">   
     @if (!Authenticate.IsAuthenticated(Context)|| username == "")
     {
         <!--join premium container-->
@@ -1713,7 +1702,7 @@
         document.querySelectorAll('.like-btn').forEach(function (button) {
             button.addEventListener('click', function () {
                 var commentId = this.getAttribute('data-comment-id');
-                console.log("commentId");
+                console.log(commentId);
 
                 sendLikeDislikeRequest(commentId, true);
             });
@@ -1721,24 +1710,31 @@
 
         document.querySelectorAll('.dislike-btn').forEach(function (button) {
             button.addEventListener('click', function () {
-                var commentId = this.getAttribute('data-comment-id');
+                var commentId = this.getAttribute('data-comment-id');               
                 sendLikeDislikeRequest(commentId, false);
             });
         });
 
         function sendLikeDislikeRequest(commentId, isLike) {
-            fetch('/Comment/LikeComment', {
+            fetch('/Video/LikeComment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('input[name="__RequestVerificationToken"]').value
                 },
                 body: JSON.stringify({ commentId: commentId, isLike: isLike })
             })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('like-count-' + commentId).innerText = data.likeCount;
-                    document.getElementById('dislike-count-' + commentId).innerText = data.dislikeCount;
+                    console.log(commentId);
+                    const likeCountElement = document.getElementById('like-count-' + commentId);
+                    const dislikeCountElement = document.getElementById('dislike-count-' + commentId);
+
+                    // Update like count
+                    if (likeCountElement) {
+                        likeCountElement.innerText = data.likeCount; // Update like count
+                    } else {
+                        console.warn('Like count element not found for comment ID:', commentId);
+                    }
                 })
                 .catch(error => console.error('Error:', error));
         }
