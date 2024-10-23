@@ -1238,13 +1238,14 @@ r            height: 320px;
         var username = document.getElementById('email').value;
         var password = document.getElementById('password').value;
         var loginMessage = document.getElementById('login-message');
+        var returnUrl = window.location.href;
 
         fetch('/User/LoginModal', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username: username, password: password })
+            body: JSON.stringify({ username: username, password: password, returnUrl: returnUrl})
         })
             .then(response => {
                 if (!response.ok) {                   
@@ -1255,7 +1256,7 @@ r            height: 320px;
                 if (data.success) {
                     // Login successful
                     console.log(data.message);
-                    window.location.href = '/';
+                    window.location.href = data.returnUrl || '/'; 
                 } else {
                     // Login failed
                     console.log(data.message);

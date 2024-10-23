@@ -650,6 +650,7 @@
 
                     <div id="tooltip">
                         @* <div id='likeButton_@Model.video.Id' class='buttonH heartH like-btn' data-post-id="@Model.video.Id"></div> *@
+                        <!--HEART BUTTON-->
                         <div class="likeL @Model.likeState" data-video-id=@Model.video.Id></div>
 
                         <span id="tooltiptext"><a class="tip-link" asp-action="Login" asp-controller="Home">Login</a> or <a asp-action="JoinNow" asp-controller="Home">Join</a> to like</span>
@@ -1439,6 +1440,19 @@
         const commentsCont = document.getElementById('comments-section');
         const noComments = document.getElementById('no-comments');
 
+        function toggleModal() {
+            loginModal.classList.toggle('hidden');
+            overlay.classList.toggle('hidden');
+        }
+        window.closeModal = function () {
+            loginModal.style.display = "none"; // Hide the modal
+        }
+                const commentsSection = document.getElementById("comments-section");
+                const loginModal = document.getElementById("login-modal");
+                const isAuthenticated = commentsSection.dataset.isAuthenticated === "True"; // Convert to boolean
+                console.log("isAuthenticated: " + isAuthenticated);
+                const overlay = document.querySelector('.overlay');
+
         if(noComments){
             commentsCont.classList.add('no-overflow');
         }
@@ -1453,7 +1467,7 @@
 
         // Check if user is logged in
         const isLoggedIn = currentUser && currentUser.username && currentUser.username !== "";
-
+        
         likeButtons.forEach(button => {
             const tooltip = button.parentElement.querySelector('#tooltiptext');
 
@@ -1466,14 +1480,16 @@
                 tooltip.style.display = 'block';
                 console.log("User is not logged in");
             }
-
+           
             button.addEventListener('click', (event) => {
                 if (!isLoggedIn) {
-                    // User is not logged in, redirect to login
-                    event.preventDefault();
-                    console.log("User must log in to like this video.");
-                    const baseUrl = window.location.origin;
-                    window.location.href = `${baseUrl}/Home/Login`;
+                    @* // User is not logged in, redirect to login
+                        event.preventDefault();
+                        console.log("User must log in to like this video.");
+                        const baseUrl = window.location.origin;
+                        window.location.href = `${baseUrl}/Home/Login`; *@
+                        toggleModal();
+                    console.log("togglemodal");
                 } else {
                     // User is logged in, toggle like state
                     event.target.classList.toggle("like-noL");

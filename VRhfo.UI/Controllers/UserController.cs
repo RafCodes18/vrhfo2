@@ -58,6 +58,8 @@ namespace VRhfo.UI.Controllers
             // Extract username and password
             string username = json["username"]?.ToString();
             string password = json["password"]?.ToString();
+            string returnUrl = json["returnUrl"]?.ToString();  
+
 
             User user = new User()
             {
@@ -69,7 +71,7 @@ namespace VRhfo.UI.Controllers
             if (loginWorked)
             {
                 SetUser(user1);
-                return Json(new { success = true, message = "Login successful" });
+                return Json(new { success = true, message = "Login successful",  returnUrl = returnUrl });
             }
             else
             {
