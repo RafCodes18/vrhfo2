@@ -71,6 +71,7 @@
     <Build Include="Tables\tblVideosLiked.sql" />
     <Build Include="Tables\tblWatchEntry.sql" />
     <Build Include="Tables\tblReply.sql" />
+    <Build Include="Tables\tblCommentLikes.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeploy\Script.PreDeployment1.sql" />
@@ -86,5 +87,6 @@
     <None Include="PostDeploy\DefaultData\VideosLiked.sql" />
     <None Include="PostDeploy\DefaultData\WatchEntries.sql" />
     <None Include="PostDeploy\DefaultData\Replies.sql" />
+    <None Include="PostDeploy\DefaultData\CommentLikes.sql" />
   </ItemGroup>
 </Project>
