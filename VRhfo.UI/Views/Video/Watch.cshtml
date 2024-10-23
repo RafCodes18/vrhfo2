@@ -753,19 +753,44 @@
                                 </div>
                                 <p class="comment-content">@comment.Content  </p>
                             </div>
+                       
 
                         <div class="comment-actions">
-                            <div class="like-btn">
+                            <div class="like-btn" data-comment-id="@comment.Id">
                                 <svg class="o-icon o-icon-svg like-btns" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero"></path></svg>
+                                @if (comment.LikesCount == 0)
+                                {
+                                    <span></span>
+                                }
+                                else{
+                                      <span class="like-count-@comment.Id">
+                                        @comment.LikesCount
+                                    </span>                                    
+                                }                                  
+
                             </div>
-                            <div class="dislike-btn">
+
+                            <div class="dislike-btn " data-comment-id="@comment.Id">
                                 <svg class="o-icon o-icon-svg like-btns" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 2h-4v12h4V2zM1 13c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 22l6.58-6.59c.37-.36.59-.86.59-1.41V4c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z" fill-rule="nonzero"></path></svg>
+                                <span class="dislike-count-@comment.Id">
+                                    @if (comment.DislikesCount == 0)
+                                    {
+                                        <span></span>
+                                    }
+                                    else
+                                    {
+                                       @*  <span class="like-count-@comment.Id">
+                                            @comment.DislikesCount
+                                        </span> *@
+                                    }
+                                </span>
+
                             </div>
+
                             <div class="reply-btn">
                                 REPLY    
                             </div>
                         </div>
-
                         <!-- Reply Input Box (Initially hidden) -->
                         <div class="reply-box-container" id="reply-box-@comment.Id" style="display: none;">
                             <div class="reply-input">
@@ -821,8 +846,15 @@
             cursor: pointer;
             transition: ease .5s;
         }
-        .like-btns{
+        .like-btn{
             margin-right: 14px;
+            padding: 1px;
+        }
+        .dislike-btn{
+            margin-right: 14px;
+            padding: 1px;
+        }
+        .like-btns{
             width: 20px !important;
         }
         .comment-actions{
@@ -1520,7 +1552,7 @@
 
 
 
-<!-- OLD - COMMENT JS-->
+<!-- NEW - COMMENT JS-->
  <script type="text/javascript">
     const commentInput = document.querySelector('.comment-input');
     const submitBtn = document.querySelector('.comment-submit');
@@ -1672,6 +1704,47 @@
             placeholdertextContent = '';
         }
     });
+
+
+
+
+//Liking comments functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.like-btn').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var commentId = this.getAttribute('data-comment-id');
+                console.log("commentId");
+
+                sendLikeDislikeRequest(commentId, true);
+            });
+        });
+
+        document.querySelectorAll('.dislike-btn').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var commentId = this.getAttribute('data-comment-id');
+                sendLikeDislikeRequest(commentId, false);
+            });
+        });
+
+        function sendLikeDislikeRequest(commentId, isLike) {
+            fetch('/Comment/LikeComment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('input[name="__RequestVerificationToken"]').value
+                },
+                body: JSON.stringify({ commentId: commentId, isLike: isLike })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('like-count-' + commentId).innerText = data.likeCount;
+                    document.getElementById('dislike-count-' + commentId).innerText = data.dislikeCount;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    });
+
+
 </script>
 
 

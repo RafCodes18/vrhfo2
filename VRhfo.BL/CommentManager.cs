@@ -43,7 +43,7 @@ namespace VRhfo.BL
             {
                 List<tblComment> tblComments = db.tblComments
                     .Where(c => c.VideoId == videoId)
-                    .Include(c => c.UserId)
+                    .Include(c => c.User)
                     .OrderByDescending(c => c.DatePosted)
                     .ToList();
 
@@ -151,8 +151,7 @@ namespace VRhfo.BL
                     // Count the number of likes for the given commentId
                     int likeCount = dc.tblCommentLikes
                         .Where(cl => cl.CommentId == commentId && cl.IsLike == true)
-                        .Count();
-
+                        .Count();                    
                     return likeCount;
                 }
             }

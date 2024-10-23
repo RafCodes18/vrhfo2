@@ -123,6 +123,11 @@ namespace VRhfo.UI.Controllers
 
             videoViewModel.video.Comments = CommentManager.GetCommentsByVideoId(videoViewModel.video.Id);
 
+            foreach(Comment c in videoViewModel.video.Comments)
+            {
+                c.LikesCount = CommentManager.LoadLikeCount(c.Id);
+                c.DislikesCount = CommentManager.LoadDislikeCount(c.Id);
+            }
             if (currentUser != null)
             {
                 var watchEntry = new WatchEntry
