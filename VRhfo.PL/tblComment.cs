@@ -18,7 +18,4 @@ public partial class tblComment
     public int LikesCount { get; set; }
 
     public int DislikesCount { get; set; }
-
-    public virtual tblUser User { get; set; }
-
 }

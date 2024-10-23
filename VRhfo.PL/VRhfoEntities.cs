@@ -17,6 +17,8 @@ public partial class VRhfoEntities : DbContext
 
     public virtual DbSet<tblComment> tblComments { get; set; }
 
+    public virtual DbSet<tblCommentLike> tblCommentLikes { get; set; }
+
     public virtual DbSet<tblReply> tblReplies { get; set; }
 
     public virtual DbSet<tblUser> tblUsers { get; set; }
@@ -35,7 +37,7 @@ public partial class VRhfoEntities : DbContext
     {
         modelBuilder.Entity<tblComment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC07519AD6ED");
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC07825A6113");
 
             entity.ToTable("tblComment");
 
@@ -45,9 +47,18 @@ public partial class VRhfoEntities : DbContext
             entity.Property(e => e.DatePosted).HasColumnType("datetime");
         });
 
+        modelBuilder.Entity<tblCommentLike>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC076D17014D");
+
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+        });
+
         modelBuilder.Entity<tblReply>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblReply__3214EC07DE06236D");
+            entity.HasKey(e => e.Id).HasName("PK__tblReply__3214EC07F35BC28A");
 
             entity.ToTable("tblReply");
 
@@ -59,7 +70,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblUser>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC07920D7EDD");
+            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC0741BEFF79");
 
             entity.ToTable("tblUser");
 
@@ -82,7 +93,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC07B682B326");
+            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC071A9BD48A");
 
             entity.ToTable("tblVideo");
 
@@ -96,7 +107,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideosLiked>(entity =>
         {
-            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D884733856B");
+            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D88EB8FB959");
 
             entity.ToTable("tblVideosLiked");
 
@@ -104,17 +115,17 @@ public partial class VRhfoEntities : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.tblVideosLikeds)
                 .HasForeignKey(d => d.UserID)
-                .HasConstraintName("FK__tblVideos__UserI__2E1BDC42");
+                .HasConstraintName("FK__tblVideos__UserI__30F848ED");
 
             entity.HasOne(d => d.Video).WithMany(p => p.tblVideosLikeds)
                 .HasForeignKey(d => d.VideoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__tblVideos__Video__2F10007B");
+                .HasConstraintName("FK__tblVideos__Video__31EC6D26");
         });
 
         modelBuilder.Entity<tblWatchEntry>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC07B3FF1A20");
+            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC07C1CFD467");
 
             entity.ToTable("tblWatchEntry");
 

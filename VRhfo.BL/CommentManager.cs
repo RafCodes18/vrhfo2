@@ -6,13 +6,44 @@ namespace VRhfo.BL
 {
     public class CommentManager
     {
+        public static CommentLikes CheckForExistingLikeEntry(int commentId, Guid userId)
+        {
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    tblCommentLike cl = dc.tblCommentLikes.FirstOrDefault(cl => cl.UserId == userId && cl.CommentId == commentId);
+                    
+                    if (cl != null)
+                    {
+                        CommentLikes clm = new CommentLikes()
+                        {
+                            UserId = cl.UserId,
+                            CommentId = cl.CommentId,
+                            CreatedAt = (DateTime)cl.CreatedAt,
+                            IsLike = cl.IsLike,
+                            Id = cl.Id
+                        };
+                        return clm;
+                    }          
+                    return null;                   
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            throw new NotImplementedException();
+        }
+
         public static List<Comment> GetCommentsByVideoId(int videoId)
         {
             using (VRhfoEntities db = new VRhfoEntities())
             {
                 List<tblComment> tblComments = db.tblComments
                     .Where(c => c.VideoId == videoId)
-                    .Include(c => c.User)
+                    .Include(c => c.UserId)
                     .OrderByDescending(c => c.DatePosted)
                     .ToList();
 
@@ -62,6 +93,100 @@ namespace VRhfo.BL
             {
 
                 throw;
+            }
+        }
+
+        public static int InsertLikeDislikeEntry(CommentLikes newLike)
+        {
+            try
+            {
+                int results = 0;
+
+                using(VRhfoEntities dc = new VRhfoEntities())
+                {
+                    tblCommentLike cl = new tblCommentLike();
+                    cl.CreatedAt = newLike.CreatedAt;
+                    cl.UserId = newLike.UserId;
+                    cl.CommentId = newLike.CommentId;
+                    cl.IsLike = newLike.IsLike; 
+
+                    dc.tblCommentLikes.Add(cl);
+                    return dc.SaveChanges();   
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static int LoadDislikeCount(int commentId)
+        {
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    // Count the number of dislikes for the given commentId
+                    int dislikeCount = dc.tblCommentLikes
+                        .Where(cl => cl.CommentId == commentId && cl.IsLike == false)
+                        .Count();
+
+                    return dislikeCount;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex; // You can log the exception before throwing if necessary
+            }
+        }
+
+        public static int LoadLikeCount(int commentId)
+        {
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    // Count the number of likes for the given commentId
+                    int likeCount = dc.tblCommentLikes
+                        .Where(cl => cl.CommentId == commentId && cl.IsLike == true)
+                        .Count();
+
+                    return likeCount;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex; // You can log the exception before throwing if necessary
+            }
+        }
+
+        public static int UpdateLikeDislikeEntry(CommentLikes existingLike)
+        {
+            try
+            {
+                int results = 0;
+
+                using(VRhfoEntities dc = new VRhfoEntities())
+                {
+                    var row = dc.tblCommentLikes.FirstOrDefault(s => s.Id == existingLike.Id);
+
+                    if (row != null)
+                    {
+                        row.IsLike = existingLike.IsLike;
+                        return dc.SaveChanges();
+                    }
+                    else
+                    {
+                        return 0; // Indicating no rows were affected
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

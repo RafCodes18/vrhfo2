@@ -274,7 +274,40 @@ namespace VRhfo.UI.Controllers
                 return Json(new { success = false, comment = newComment });
 
             }
+        }
+
+        [HttpPost]
+        public JsonResult LikeComment(int commentId, bool isLike)
+        {
+            var userId = GetCurrentUser().Id;
+            var existingLike = CommentManager.CheckForExistingLikeEntry(commentId, userId);
+
+            if (existingLike != null)
+            {
+                // Update the existing like/dislike if the user already interacted with the comment
+                existingLike.IsLike = isLike;
+                CommentManager.UpdateLikeDislikeEntry(existingLike);
+            }
+            else
+            {
+                // Create a new like/dislike
+                var newLike = new CommentLikes
+                {
+                    UserId = userId,
+                    CommentId = commentId,
+                    IsLike = isLike
+                };
+                CommentManager.InsertLikeDislikeEntry(newLike);
+            }
+
+
+            // Return the updated like/dislike counts
+            var likeCount = CommentManager.LoadLikeCount(commentId);
+            var dislikeCount = CommentManager.LoadDislikeCount(commentId);
+
+            return Json(new { likeCount, dislikeCount });
 
         }
+
     }
 }
