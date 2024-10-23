@@ -26,12 +26,16 @@ namespace VRhfo.BL.Models
                 var currentDate = DateTime.UtcNow;
                 var dateDifference = currentDate - DatePosted;
 
-                if (dateDifference.TotalMinutes < 1)
+                if (dateDifference.TotalMinutes < 1) { 
+                    return $"{(int)dateDifference.TotalSeconds} seconds ago";
+                }
+                else if (dateDifference.TotalSeconds >= 60 && dateDifference.TotalSeconds < 120)
                 {
-                    return "Just now";
+                    return $"{(int)dateDifference.TotalMinutes} minute ago";
+
                 }
                 else if (dateDifference.TotalMinutes < 60)
-                {
+                {                   
                     return $"{(int)dateDifference.TotalMinutes} minutes ago";
                 }
                 else if (dateDifference.TotalHours < 24)
@@ -48,19 +52,23 @@ namespace VRhfo.BL.Models
                 }
                 else if (dateDifference.TotalDays < 14)
                 {
-                    return "1 wk ago";
+                    return "1 week ago";
                 }
                 else if (dateDifference.TotalDays < 30)
                 {
-                    return $"{(int)(dateDifference.TotalDays / 7)} wks ago";
+                    return $"{(int)(dateDifference.TotalDays / 7)} weeks ago";
                 }
                 else if (dateDifference.TotalDays < 365)
                 {
-                    return $"{(int)(dateDifference.TotalDays / 30)} mths ago";
+                    return $"{(int)(dateDifference.TotalDays / 30)} months ago";
                 }
                 else
                 {
-                    return $"{(int)(dateDifference.TotalDays / 365)} yrs ago";
+                    if(dateDifference.TotalDays / 365 < 2)
+                    {
+                        return $"{(int)(dateDifference.TotalDays / 365)} year ago";
+                    }
+                    return $"{(int)(dateDifference.TotalDays / 365)} years ago";
                 }
             }
         }

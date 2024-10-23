@@ -765,6 +765,30 @@
                                 REPLY    
                             </div>
                         </div>
+
+                        <!-- Reply Input Box (Initially hidden) -->
+                        <div class="reply-box-container" id="reply-box-@comment.Id" style="display: none;">
+                            <div class="reply-input">
+                                <textarea id="reply-text-@comment.Id" placeholder="Add a reply..."></textarea>
+                            </div>
+                            <div class="reply-actions">
+                                <button onclick="submitReply('@comment.Id', @Model.video.Id)">Submit</button>
+                                <button onclick="closeReplyBox('@comment.Id')">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- Replies Section (Here you'll append replies dynamically) -->
+                        <div class="replies-container" id="replies-@comment.Id">
+                            
+                            @if(comment.Replies != null){
+                                @foreach (var reply in comment.Replies)
+                                {
+                                    <div class="reply">
+                                        <p>@reply.Content</p>
+                                    </div>
+                                }
+                            }
+                        </div>
                     </div>
 
                    

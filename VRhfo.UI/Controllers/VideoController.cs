@@ -249,6 +249,11 @@ namespace VRhfo.UI.Controllers
         public IActionResult AddComment([FromBody] dynamic commentDto)
         {
             User currentUser = GetCurrentUser();
+
+            if(currentUser == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             // Validate commentDto and save the comment in the database
             var newComment = new Comment
             {
