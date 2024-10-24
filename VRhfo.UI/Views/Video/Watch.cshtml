@@ -242,7 +242,7 @@
         box-sizing: border-box;
     }
     body{
-        margin: 0;
+        margin: 0;        
     }
     .video-container{
         position: relative;
@@ -401,6 +401,8 @@
        align-items: center;
        gap: .25rem;
        flex-grow: 1;
+       margin-top: auto;
+       font-size: larger;
    }
    .timeline-container{
        height: 7px;
@@ -780,22 +782,23 @@
 
                             </div>
 
-                            <div class="reply-btn">
+                            <div class="reply-btn" data-username="@comment.User.Username" onclick="openReplyBox('@comment.Id', '@comment.User.Username')">
                                 REPLY    
                             </div>
+                           
                         </div>
                         <!-- Reply Input Box (Initially hidden) -->
                         <div class="reply-box-container" id="reply-box-@comment.Id" style="display: none;">
-                            <div class="reply-input">
-                                <textarea id="reply-text-@comment.Id" placeholder="Add a reply..."></textarea>
-                            </div>
+                            <div contenteditable="true" class="reply-input"></div>
+
+
                             <div class="reply-actions">
                                 <button onclick="submitReply('@comment.Id', @Model.video.Id)">Submit</button>
                                 <button onclick="closeReplyBox('@comment.Id')">Cancel</button>
                             </div>
                         </div>
 
-                        <!-- Replies Section (Here you'll append replies dynamically) -->
+                        <!-- Replies Section  -->
                         <div class="replies-container" id="replies-@comment.Id">
                             
                             @if(comment.Replies != null){
@@ -817,6 +820,37 @@
 
     <!--Vid details CSS -->
     <style>
+
+        .reply-box-container {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        .reply-input {
+            width: 100%;
+            height: 50px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background: transparent;
+            color: #a6a6a6 !important;
+            min-width: 270px !important;
+        }
+
+        .reply-actions button {
+            margin-right: 10px;
+            padding: 5px 10px;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .reply-actions button:hover {
+                background-color: var(--secondary-color);
+            }
         .reply-btn{
             padding: 0 0.5rem 0 0.5rem;
             font-size: 0.85rem;
@@ -867,7 +901,8 @@
         }
         body{
             overflow-x: hidden;
-        }
+/*             background-color: white !important;
+ */        }
         .date-cont {
             display: flex;
         }
@@ -1451,7 +1486,9 @@
     .vid-category{
         color: #666 ;
     }
-
+    .reply-to-username{
+        color: deepskyblue !important;
+    }
 </style>
 
  <!-- HIDES PAGE_RIGHT_COTNAINER in THEATER MODE-->
@@ -1771,18 +1808,7 @@
             loginModal.classList.toggle('hidden');
             overlay.classList.toggle('hidden');
         }
-        window.closeModal = function () {
-            loginModal.style.display = "none"; // Hide the modal
-        }
-
-        window.redirectToLogin = function () {
-            window.location.href = '/login';
-        }
-
-        window.redirectToRegister = function () {
-            window.location.href = '/register';
-        }
-
+ 
 
         document.querySelectorAll('.like-btn').forEach(function (button) {
             button.addEventListener('click', function () {
@@ -1831,7 +1857,77 @@
 
     });
 
+    //Reply to comment
+    // Function to open the reply input box
+    function openReplyBox(commentId, username) {
+        const commentsSection = document.getElementById("comments-section");
 
+        const isAuthenticated = commentsSection.dataset.isAuthenticated === "True"; // Convert to boolean
+        console.log(isAuthenticated);
+
+        if (isAuthenticated) {
+            const replyBox = document.getElementById(`reply-box-${commentId}`);
+
+            if (replyBox) {
+                replyBox.style.display = 'block'; // Show the reply input box
+                 const replyInput = replyBox.querySelector('.reply-input');
+                    replyInput.innerHTML = `<span class="reply-to-username">@@${username}</span>&nbsp;`; // Pre-fill with the username and add a space
+    
+                    const range = document.createRange();
+                    const selection = window.getSelection();
+    
+                    // Set cursor at the end of the pre-filled username
+                    range.setStart(replyInput.childNodes[1], 1); // Positioning after the username + space
+                    range.collapse(true);
+    
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+    
+                    replyInput.focus(); // Focus on the reply input
+
+
+                // Handle Submit button
+                const submitBtn = replyBox.querySelector('.submit-reply-btn');
+                submitBtn.addEventListener('click', function () {
+                    const replyContent = replyInput.textContent.trim();
+                    if (replyContent) {
+                        console.log(`Submitting reply to comment ID ${commentId} with message: ${replyContent}`);
+                    
+                        // Add your fetch logic to submit the reply here
+                        fetch('/Video/AddReply', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                replyText: replyContent,
+                                commentId: commentId
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Reply successfully submitted:', data);
+                            replyBox.style.display = 'none'; // Optionally hide the reply box after submission
+                        })
+                        .catch(error => {
+                            console.error('Error submitting reply:', error);
+                        });
+                    }
+                });
+            }
+        } else {
+            console.log("User is not authenticated. Show login modal or redirect.");
+            // Show modal for non-authenticated users or redirect to login
+        }
+}
+
+    // Function to close the reply input box
+    function closeReplyBox(commentId) { 
+        console.log("close reply clicked");
+        const replyBox = document.getElementById(`reply-box-${commentId}`);
+        console.log(replyBox);
+        replyBox.style.display = 'none'; // Hide the reply input box
+    }
 </script>
 
 
