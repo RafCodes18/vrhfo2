@@ -667,7 +667,7 @@
         </div>
         <div class="vid-details-last">
             <div class="details-last-first2">
-                <span class="by-txt">Creator:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
+                <span class="by-txt">Made By:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
             </div>
         </div>
     </div>
@@ -835,7 +835,7 @@
             flex-direction: column;
         }
         .like-btns:hover{
-            fill: #ddd;
+            fill: var(--primary-color);
             cursor: pointer;
             transition: ease .5s;
         }
@@ -886,10 +886,10 @@
             }
 
             .vid-title-txt{
-                font-size: 18px;
+                font-size: 20px;
             }
             .likes-ratio{
-                font-size: 16px !important;
+                font-size: 19px !important;
             }
 
             .dot.wht {
@@ -920,8 +920,8 @@
         }
         .comment-content{
             padding: 5px;
-            color: #e7e7e7;
-            font-size: 15px;
+            color: #e1e1e1;
+            font-size: 16px;
             margin-top: -4px;
         }
         .content{
@@ -940,9 +940,10 @@
             flex-wrap: nowrap !important;
         }
         .form-date{
-            color: #888;
+            color: #a4a4a4 !important;
             font-size: 16px;
-            margin-left: 4px;            
+            margin-left: 4px;     
+            align-self: center;
         }
         .date-cont P {
             margin-bottom: 0 !important;
@@ -961,7 +962,7 @@
         .comments-username{
             color: var(--accent-color);
             margin-right: 10px;
-            font-size: 12px;
+            font-size: 13px;
         }
         .comments-cont{
             overflow-y: scroll;
@@ -1036,7 +1037,7 @@
         }
         .by-txt{
             color: #999;
-            margin-left: 10px;
+            margin-left: 5px;
         }
         .top-row-second-box{
             display: flex;;
@@ -1070,7 +1071,10 @@
         .vid-title-txt{
             margin-top: 4px;
             color: #bababa;
-
+            max-width: 400px;
+        }
+        .vid-details-top-row{
+            height: auto;
         }
         .category-txt{
             color: #777 !important;
@@ -1116,7 +1120,7 @@
  /* OLD COMMENTS CSS*/
       
         .placeholdert {
-            color: #999 !important;
+            color: #a6a6a6 !important;
             pointer-events: none;
         }
         
@@ -1332,7 +1336,7 @@
                        
                         </div>
                         <div class="sug-vid-content">
-                                <h5 class="video-title">@Model.suggestedVideos[i].Title</h5>
+                            <h5 class="video-title">@Model.suggestedVideos[i].Title</h5>
                           
                             <div class="sug-vid-content-bottom">
                                 <img src="~/img/vision.png" height="22px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
@@ -1360,7 +1364,13 @@
         margin-top: 10px;
     }
     .sug-vid-content{
-        color: #9a9a9a !important; 
+        color: #9a9a9a !important;  
+        position: relative;
+    }
+
+    .sug-vid-content-bottom {
+        position: relative;
+        
     }
     .suggested-videos-grid{
         display: grid;
