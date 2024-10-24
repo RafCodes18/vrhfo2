@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.Design;
 using VRhfo.BL.Models;
 using VRhfo.PL;
 
@@ -158,6 +159,37 @@ namespace VRhfo.BL
             catch (Exception ex)
             {
                 throw ex; // You can log the exception before throwing if necessary
+            }
+        }
+
+        public static List<Reply> LoadListOfReplies(int id)
+        {
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                { // Retrieve all replies associated with the given commentId
+                    var replies = dc.tblReplies
+                                    .Where(r => r.CommentId == id)
+                                    .OrderBy(r => r.DatePosted) // Optionally, you can order by the date posted
+                                    .Select(r => new Reply // Project each tblReply to a Reply object
+                                    {
+                                        Id = r.Id,
+                                        Content = r.Content,
+                                        DatePosted = r.DatePosted,
+                                        UserId = r.UserId,
+                                        CommentId = r.CommentId,
+                                        LikesCount = r.LikesCount,
+                                        DislikesCount = r.DislikesCount
+                                    })
+                                    .ToList();
+
+                    return replies;
+                };
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 

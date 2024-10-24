@@ -128,6 +128,23 @@ namespace VRhfo.UI.Controllers
                 c.LikesCount = CommentManager.LoadLikeCount(c.Id);
                 c.DislikesCount = CommentManager.LoadDislikeCount(c.Id);
             }
+ 
+            for(int i = 0; i < videoViewModel.video.Comments.Count; i++)
+            {
+                videoViewModel.video.Comments[i].Replies = CommentManager.LoadListOfReplies(videoViewModel.video.Comments[i].Id);
+            }
+            foreach (var comment in videoViewModel.video.Comments)
+            {
+                // Ensure Replies are not null
+                if (comment.Replies != null)
+                {
+                    foreach (var reply in comment.Replies)
+                    {
+                        // Load user for each reply
+                        reply.User = UserManager.LoadById(reply.UserId);
+                    }
+                }
+            }
             if (currentUser != null)
             {
                 var watchEntry = new WatchEntry

@@ -805,6 +805,7 @@
                                 @foreach (var reply in comment.Replies)
                                 {
                                     <div class="reply">
+                                        <p>@reply.User.Username</p>
                                         <p>@reply.Content</p>
                                     </div>
                                 }
