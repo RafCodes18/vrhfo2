@@ -1338,8 +1338,19 @@
                         <div class="sug-vid-content">
                             <h5 class="video-title">@Model.suggestedVideos[i].Title</h5>
                           
-                            <div class="sug-vid-content-bottom">
-                                <img src="~/img/vision.png" height="22px" width="20px"/> @Model.suggestedVideos[i].FormattedViews  | @Model.suggestedVideos[i].FormattedUploadDate
+                            <div class="sug-vid-content-bottom">                                
+                                <div class="bottom-row">
+                                    <div>
+                                        <img src="~/img/vision.png" height="22px" width="20px" />
+
+                                        @Model.suggestedVideos[i].FormattedViews
+
+                                    </div>
+                                <div>
+                                        @Model.suggestedVideos[i].FormattedUploadDate
+
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1352,7 +1363,12 @@
 </div>
 
 <style>     
-
+    .bottom-row{
+        width: 100% !important;
+        display: flex;
+        justify-content:space-between;
+      
+    }
     .suggested-video-item:hover{
         border-radius: 10px !important;
     }

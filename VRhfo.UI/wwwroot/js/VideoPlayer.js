@@ -84,10 +84,10 @@ document.addEventListener("keydown", e => {
             e.preventDefault();
         }
    
-    /*switch (e.key.toLowerCase()) {
+    switch (e.key.toLowerCase()) {
         case " ":
             if(tagName === "button") return
-        case "k":
+        /*case "k":
             togglePlay()
             break;
         case "f":
@@ -97,14 +97,14 @@ document.addEventListener("keydown", e => {
             toggleTheaterMode();
             break;
         case "m":
-            toggleMute();
+            toggleMute();*/
         case "arrowright":
             SkipForward();
             break;
         case "arrowleft":
             SkipBackward();
             break;
-    }*/
+    }
 });
 
 
