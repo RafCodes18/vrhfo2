@@ -8,7 +8,7 @@ namespace VRhfo.BL.Models
 {
     public class Reply
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Content { get; set; }
         public DateTime DatePosted { get; set; }
         public Guid UserId { get; set; }  // User who posted the reply

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Update;
 using System.ComponentModel.Design;
 using VRhfo.BL.Models;
 using VRhfo.PL;
@@ -115,6 +116,37 @@ namespace VRhfo.BL
                     return dc.SaveChanges();   
 
                 }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static int InsertReply(Reply newReply)
+        {
+            try
+            {
+                int result = 0;
+
+                using(VRhfoEntities dc = new VRhfoEntities())
+                {
+                    tblReply newRow = new tblReply();
+                    newRow.Content = newReply.Content;
+                    newRow.DatePosted = newReply.DatePosted;
+                    newRow.LikesCount = newReply.LikesCount;
+                    newRow.DislikesCount = newReply.DislikesCount;
+                    newRow.Id = newReply.Id;
+                    newRow.UserId = newReply.UserId;
+                    newRow.CommentId = newReply.CommentId;
+                   
+                    dc.tblReplies.Add(newRow);
+
+                    result = dc.SaveChanges();
+                }
+
+                return result;
             }
             catch (Exception ex)
             {

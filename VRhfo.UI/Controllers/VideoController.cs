@@ -27,7 +27,7 @@ namespace VRhfo.UI.Controllers
         [HttpPost]
         public ActionResult Like(int id, VideosLiked vidsLiked)
         {
-            
+
             var user = HttpContext.Session.GetObject<User>("user");
             vidsLiked.VideoID = id;
             vidsLiked.UserID = user.Id;
@@ -44,7 +44,7 @@ namespace VRhfo.UI.Controllers
             vidsLiked.UserID = user.Id;
 
             LikedVideosManager.Delete(vidsLiked.UserID, vidsLiked.VideoID);
-            return Json(new {PostId = vidsLiked.VideoID, isLiked = false});
+            return Json(new { PostId = vidsLiked.VideoID, isLiked = false });
 
         }
 
@@ -89,10 +89,10 @@ namespace VRhfo.UI.Controllers
             //grab user
             User currentUser = HttpContext.Session.GetObject<User>("user");
             ViewBag.CurrentUser = currentUser;
-            
+
             VideoViewModel videoViewModel = new VideoViewModel();
 
-            if(currentUser != null)
+            if (currentUser != null)
             {
                 videoViewModel.LoggedInUserId = currentUser.Id;
             }
@@ -105,13 +105,13 @@ namespace VRhfo.UI.Controllers
             {
                 videoViewModel.video.user = UserManager.LoadById(videoViewModel.video.UserId);
             }
-           
-            
+
+
             //load suggested videos
             List<Video> list = VideoManager.GetSuggestedVideos(12, title);
             videoViewModel.suggestedVideos = list;
 
-            if(currentUser != null)
+            if (currentUser != null)
             {
                 videoViewModel.likeState = VideoManager.checkIfCurrentVideoLiked(videoViewModel.video, currentUser);
             }
@@ -119,17 +119,17 @@ namespace VRhfo.UI.Controllers
             {
                 videoViewModel.likeState = "like-noL";
             }
-            
+
 
             videoViewModel.video.Comments = CommentManager.GetCommentsByVideoId(videoViewModel.video.Id);
 
-            foreach(Comment c in videoViewModel.video.Comments)
+            foreach (Comment c in videoViewModel.video.Comments)
             {
                 c.LikesCount = CommentManager.LoadLikeCount(c.Id);
                 c.DislikesCount = CommentManager.LoadDislikeCount(c.Id);
             }
- 
-            for(int i = 0; i < videoViewModel.video.Comments.Count; i++)
+
+            for (int i = 0; i < videoViewModel.video.Comments.Count; i++)
             {
                 videoViewModel.video.Comments[i].Replies = CommentManager.LoadListOfReplies(videoViewModel.video.Comments[i].Id);
             }
@@ -148,7 +148,7 @@ namespace VRhfo.UI.Controllers
             if (currentUser != null)
             {
                 var watchEntry = new WatchEntry
-                {         
+                {
                     UserId = currentUser.Id,
                     VideoId = videoViewModel.video.Id,
                     WatchDurationTicks = 0,
@@ -161,7 +161,7 @@ namespace VRhfo.UI.Controllers
                 if (!VideoManager.CheckIfWatchEntry(watchEntry))
                 {
                     VideoManager.InsertWatchEntry(watchEntry);
-                }                
+                }
             }
 
             return View(videoViewModel);
@@ -169,29 +169,29 @@ namespace VRhfo.UI.Controllers
 
         [HttpPost]
         public ActionResult UpdateWatchProgress([FromBody] dynamic body)
-        {          
+        {
             var watchEntry = new WatchEntry()
             {
                 UserId = Guid.Parse(body.GetProperty("userId").GetString()),  // userId is a string (GUID)
-                VideoId = int.Parse(body.GetProperty("videoId").GetString()), 
-                LastDateWatched = DateTime.UtcNow,  
+                VideoId = int.Parse(body.GetProperty("videoId").GetString()),
+                LastDateWatched = DateTime.UtcNow,
                 WatchDurationTicks = body.GetProperty("watchDuration").GetInt32(), // parse the timespan string
-                Completed = body.GetProperty("completed").GetBoolean()  
+                Completed = body.GetProperty("completed").GetBoolean()
             };
 
             try
-            {              
-                    if (VideoManager.UpdateWatchEntry(watchEntry))
-                    {
-                        return Json(new { success = true });
-                    }
-                    else
-                    {
-                        return Json(new { success = false, message = "Failed to update watch entry" });
-                    }                       
+            {
+                if (VideoManager.UpdateWatchEntry(watchEntry))
+                {
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Failed to update watch entry" });
+                }
             }
             catch (Exception ex)
-            {                
+            {
                 return Json(new { success = false, message = "An error occurred while updating watch entry" });
             }
 
@@ -272,7 +272,7 @@ namespace VRhfo.UI.Controllers
         {
             User currentUser = GetCurrentUser();
 
-            if(currentUser == null)
+            if (currentUser == null)
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -289,7 +289,7 @@ namespace VRhfo.UI.Controllers
             {
                 newComment.User = UserManager.LoadById(newComment.UserId);
 
-                return Json(new { success = true, comment = newComment });              
+                return Json(new { success = true, comment = newComment });
             }
             else
             {
@@ -303,13 +303,13 @@ namespace VRhfo.UI.Controllers
         {
             var commentId = int.Parse(likeData.GetProperty("commentId").GetString());
             var isLike = likeData.GetProperty("isLike").GetBoolean();
-            
-            if(GetCurrentUser() == null || GetCurrentUser().Id == Guid.Empty)
+
+            if (GetCurrentUser() == null || GetCurrentUser().Id == Guid.Empty)
             {
                 return Json(new { success = false, message = "An error occurred while processing your request." });
             }
             var userId = GetCurrentUser().Id;
-         
+
             var existingLike = CommentManager.CheckForExistingLikeEntry(commentId, userId);
 
             if (existingLike != null)
@@ -334,7 +334,36 @@ namespace VRhfo.UI.Controllers
             var likeCount = CommentManager.LoadLikeCount(commentId);
             var dislikeCount = CommentManager.LoadDislikeCount(commentId);
 
-            return Json(new {success = true, likeCount, dislikeCount });
+            return Json(new { success = true, likeCount, dislikeCount });
+
+        }
+
+        [HttpPost]
+        public JsonResult AddReply([FromBody] dynamic objData)
+        {
+         
+            var replyContent = objData.GetProperty("replyText").GetString();
+            var parentCommentId = int.Parse(objData.GetProperty("commentId").GetString());
+            User user = GetCurrentUser();
+
+
+            Reply newReply = new Reply(){
+                Content = replyContent,
+                CommentId = parentCommentId,
+                DatePosted = DateTime.UtcNow,
+                Id = Guid.NewGuid(),
+                DislikesCount = 0,
+                LikesCount = 0 ,
+                UserId = user.Id,
+            };
+
+            if (CommentManager.InsertReply(newReply) > 0) {
+                return Json(new { success = true, newReply });
+            }
+            else
+            {
+                return Json(new { success = false });
+            };
 
         }
 

@@ -800,7 +800,7 @@
 
 
                                 <div class="reply-actions">
-                                    <button onclick="submitReply('@comment.Id', @Model.video.Id)">Submit</button>
+                                    <button class="submit-reply-btn" @* onclick="submitReply('@comment.Id', @Model.video.Id)" *@>Submit</button>
                                     <button onclick="closeReplyBox('@comment.Id')">Cancel</button>
                                 </div>
                             </div>
@@ -878,7 +878,7 @@
 
 
                                                     <div class="reply-actions">
-                                                        <button onclick="submitReply('@reply.Id', @Model.video.Id)">Submit</button>
+                                                        <button class="submit-reply-btn" @* onclick="submitReply('@reply.Id', @Model.video.Id)" *@>Submit</button>
                                                         <button onclick="closeReplyBox('@reply.Id')">Cancel</button>
                                                     </div>
                                                 </div>
