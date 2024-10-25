@@ -140,7 +140,7 @@ namespace VRhfo.UI.Controllers
                 {
                     foreach (var reply in comment.Replies)
                     {
-                        // Load user for each reply
+                        // Load user that posted each reply
                         reply.User = UserManager.LoadById(reply.UserId);
                     }
                 }

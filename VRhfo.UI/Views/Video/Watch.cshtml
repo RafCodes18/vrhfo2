@@ -241,8 +241,9 @@
     *, *::before, *::after{
         box-sizing: border-box;
     }
+
     body{
-        margin: 0;        
+        margin: 0;
     }
     .video-container{
         position: relative;
@@ -760,7 +761,6 @@
                         <div class="comment-actions">
                             <div class="like-btn" data-comment-id="@comment.Id">
                                 <svg class="o-icon o-icon-svg like-btns" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero"></path></svg>
-
                                 <span id="like-count-@comment.Id">@comment.LikesCount</span>
 
                             </div>
@@ -768,20 +768,11 @@
                             <div class="dislike-btn " data-comment-id="@comment.Id">
                                 <svg class="o-icon o-icon-svg like-btns" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 2h-4v12h4V2zM1 13c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 22l6.58-6.59c.37-.36.59-.86.59-1.41V4c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z" fill-rule="nonzero"></path></svg>
                                 <span class="dislike-count-@comment.Id">
-                                    @if (comment.DislikesCount == 0)
-                                    {
-                                        <span></span>
-                                    }
-                                    else
-                                    {
-                                       @*  <span class="like-count-@comment.Id">
-                                            @comment.DislikesCount
-                                        </span> *@
-                                    }
+                                    
                                 </span>
 
                             </div>
-
+ 
                             <div class="reply-btn" data-username="@comment.User.Username" onclick="openReplyBox('@comment.Id', '@comment.User.Username')">
                                 REPLY    
                             </div>
@@ -789,25 +780,114 @@
                         </div>
                         <!-- Reply Input Box (Initially hidden) -->
                         <div class="reply-box-container" id="reply-box-@comment.Id" style="display: none;">
-                            <div contenteditable="true" class="reply-input"></div>
+                            <div class="avatar-container reply-avatar">
+                                <div class="avatar-circle">
+                                    <span class="avatar-letter">@comment.User.AvatarLetter</span>
+                                </div>
+                                <span class="diamondD">
+                                    <svg class="o-icon o-icon-svg " viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.06419 14.7411c-.10982-.0012-.21803-.0265-.31697-.0742-.09894-.0477-.18618-.1166-.25554-.2017L.672817 6.15741c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.5931c.06641-.10241.15756-.18643.26503-.2443.10747-.05787.2278-.08772.34985-.08679l8.695.06208c.1236.00146.2448.03333.3531.0928.1083.05946.2002.14469.2677.24815l2.4389 3.70997c.0882.13302.1318.29072.1244.4502-.0075.15947-.0655.31243-.1658.43665L8.63276 14.475c-.06879.0842-.15557.1519-.25396.1981-.0984.0462-.2059.0698-.31461.069v-.001z" fill="#37C4B3"></path>
+                                        <path d="M10.9376 5.80361L8.06418 14.743 5.08044 5.76223l-4.578103-.0335c-.012524-.16198.028313-.3236.116275-.46018L3.00522 1.59306c.06943-.10727.16597-.19429.27984-.25225l2.91083 4.4293 3.60848.02562 2.84773-4.38792c.1124.05814.2109.14485.2838.25423L15.3748 5.373c.09.13702.1332.2995.1231.46313l-4.5603-.0335v.00098z" fill="#53E7D3"></path>
+                                        <path d="M7.96372 1.29253h.00788l2.966 4.51109-5.87486-.04237 2.90098-4.46872z" fill="#B9F5ED"></path>
+                                        <path opacity=".1" d="M2.64359 6.17018s4.98999 8.46842 4.84809 8.29592L.672817 6.15639c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.59307c.06618-.10278.15723-.18719.26472-.24541.10748-.05823.22793-.08837.35016-.08765l1.97077.01379c-.12214-.00082-.24253.02917-.35.08722-.10748.05804-.19858.14226-.26488.24486l-2.3866 3.67647c-.08614.13466-.12731.29319-.11757.45275.00974.15955.06988.3119.17177.43508z" fill="#000"></path>
+                                    </svg>
+                                </span>
+
+                            </div>
+
+                            <div class="input-actions">
+                                <div contenteditable="true" class="reply-input"></div>
 
 
-                            <div class="reply-actions">
-                                <button onclick="submitReply('@comment.Id', @Model.video.Id)">Submit</button>
-                                <button onclick="closeReplyBox('@comment.Id')">Cancel</button>
+                                <div class="reply-actions">
+                                    <button onclick="submitReply('@comment.Id', @Model.video.Id)">Submit</button>
+                                    <button onclick="closeReplyBox('@comment.Id')">Cancel</button>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Replies Section  -->
-                        <div class="replies-container" id="replies-@comment.Id">
+                        <div class="replies-container " id="replies-@comment.Id">
                             
                             @if(comment.Replies != null){
                                 @foreach (var reply in comment.Replies)
-                                {
-                                    <div class="reply">
-                                        <p>@reply.User.Username</p>
-                                        <p>@reply.Content</p>
-                                    </div>
+                                { 
+
+                                    <div class="comment reply-border" data-datePosted=@reply.DatePosted>
+                                        <div class="avatar-container">
+                                            <div class="avatar-circle">
+                                                <span class="avatar-letter">@reply.User.AvatarLetter</span>
+                                            </div>
+                                            <span class="diamondD">
+                                                <svg class="o-icon o-icon-svg " viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8.06419 14.7411c-.10982-.0012-.21803-.0265-.31697-.0742-.09894-.0477-.18618-.1166-.25554-.2017L.672817 6.15741c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.5931c.06641-.10241.15756-.18643.26503-.2443.10747-.05787.2278-.08772.34985-.08679l8.695.06208c.1236.00146.2448.03333.3531.0928.1083.05946.2002.14469.2677.24815l2.4389 3.70997c.0882.13302.1318.29072.1244.4502-.0075.15947-.0655.31243-.1658.43665L8.63276 14.475c-.06879.0842-.15557.1519-.25396.1981-.0984.0462-.2059.0698-.31461.069v-.001z" fill="#37C4B3"></path>
+                                                    <path d="M10.9376 5.80361L8.06418 14.743 5.08044 5.76223l-4.578103-.0335c-.012524-.16198.028313-.3236.116275-.46018L3.00522 1.59306c.06943-.10727.16597-.19429.27984-.25225l2.91083 4.4293 3.60848.02562 2.84773-4.38792c.1124.05814.2109.14485.2838.25423L15.3748 5.373c.09.13702.1332.2995.1231.46313l-4.5603-.0335v.00098z" fill="#53E7D3"></path>
+                                                    <path d="M7.96372 1.29253h.00788l2.966 4.51109-5.87486-.04237 2.90098-4.46872z" fill="#B9F5ED"></path>
+                                                    <path opacity=".1" d="M2.64359 6.17018s4.98999 8.46842 4.84809 8.29592L.672817 6.15639c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.59307c.06618-.10278.15723-.18719.26472-.24541.10748-.05823.22793-.08837.35016-.08765l1.97077.01379c-.12214-.00082-.24253.02917-.35.08722-.10748.05804-.19858.14226-.26488.24486l-2.3866 3.67647c-.08614.13466-.12731.29319-.11757.45275.00974.15955.06988.3119.17177.43508z" fill="#000"></path>
+                                                </svg>
+                                            </span>
+
+                                        </div>
+
+                                        <div class="comment-body">
+                                            <div class="comment-top">
+                                                <div class="content">
+                                                    <span class="comments-username">@(reply.User.Username)</span>
+                                                    <p class="date-posted-txt">@reply.FormattedUploadDate</p>
+                                                </div>
+                                                <p class="comment-content"><span class="reply-to-username">@@jack3d</span> @reply.Content  </p>
+                                            </div>
+                                            <div class="comment-actions">
+                                                <!--Like button-->
+                                                <div class="like-btn" data-reply-id="@reply.Id">
+                                                    <svg class="o-icon o-icon-svg like-btns" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero"></path></svg>
+                                                    <span id="like-count-@reply.Id">@reply.LikesCount</span>
+
+                                                </div>
+                                                <!--Dislike button-->
+                                                <div class="dislike-btn " data-reply-id="@reply.Id">
+                                                    <svg class="o-icon o-icon-svg like-btns" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 2h-4v12h4V2zM1 13c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 22l6.58-6.59c.37-.36.59-.86.59-1.41V4c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z" fill-rule="nonzero"></path></svg>
+                                                    <span class="dislike-count-@reply.Id">
+                                                      
+                                                    </span>
+
+                                                </div>                                 
+                                                <div class="reply-btn" data-username="@reply.User.Username" onclick="openReplyBox('@reply.Id', '@reply.User.Username')">
+                                                    REPLY
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="reply-box-container" id="reply-box-@reply.Id" style="display: none;">
+                                                <div class="avatar-container reply-avatar">
+                                                    <div class="avatar-circle">
+                                                        <span class="avatar-letter">@reply.User.AvatarLetter</span>
+                                                    </div>
+                                                    <span class="diamondD">
+                                                        <svg class="o-icon o-icon-svg " viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M8.06419 14.7411c-.10982-.0012-.21803-.0265-.31697-.0742-.09894-.0477-.18618-.1166-.25554-.2017L.672817 6.15741c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.5931c.06641-.10241.15756-.18643.26503-.2443.10747-.05787.2278-.08772.34985-.08679l8.695.06208c.1236.00146.2448.03333.3531.0928.1083.05946.2002.14469.2677.24815l2.4389 3.70997c.0882.13302.1318.29072.1244.4502-.0075.15947-.0655.31243-.1658.43665L8.63276 14.475c-.06879.0842-.15557.1519-.25396.1981-.0984.0462-.2059.0698-.31461.069v-.001z" fill="#37C4B3"></path>
+                                                            <path d="M10.9376 5.80361L8.06418 14.743 5.08044 5.76223l-4.578103-.0335c-.012524-.16198.028313-.3236.116275-.46018L3.00522 1.59306c.06943-.10727.16597-.19429.27984-.25225l2.91083 4.4293 3.60848.02562 2.84773-4.38792c.1124.05814.2109.14485.2838.25423L15.3748 5.373c.09.13702.1332.2995.1231.46313l-4.5603-.0335v.00098z" fill="#53E7D3"></path>
+                                                            <path d="M7.96372 1.29253h.00788l2.966 4.51109-5.87486-.04237 2.90098-4.46872z" fill="#B9F5ED"></path>
+                                                            <path opacity=".1" d="M2.64359 6.17018s4.98999 8.46842 4.84809 8.29592L.672817 6.15639c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.59307c.06618-.10278.15723-.18719.26472-.24541.10748-.05823.22793-.08837.35016-.08765l1.97077.01379c-.12214-.00082-.24253.02917-.35.08722-.10748.05804-.19858.14226-.26488.24486l-2.3866 3.67647c-.08614.13466-.12731.29319-.11757.45275.00974.15955.06988.3119.17177.43508z" fill="#000"></path>
+                                                        </svg>
+                                                    </span>
+
+                                                </div>
+
+                                                <div class="input-actions">
+                                                    <div contenteditable="true" class="reply-input"></div>
+
+
+                                                    <div class="reply-actions">
+                                                        <button onclick="submitReply('@reply.Id', @Model.video.Id)">Submit</button>
+                                                        <button onclick="closeReplyBox('@reply.Id')">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                     </div>
+ 
                                 }
                             }
                         </div>
@@ -821,10 +901,22 @@
 
     <!--Vid details CSS -->
     <style>
-
+        .reply-border{
+            border-radius:0px 0px 0px 30px !important;
+            margin-left: -10px !important;
+        }
+        .replies-container{
+            width: 100%;
+            margin-left: 5px;
+            display: flex;
+            flex-direction: column;
+        }
         .reply-box-container {
             margin-top: 10px;
             margin-left: 10px;
+        }
+        .reply-avatar{
+            margin-right: 15px;
         }
 
         .reply-input {
@@ -836,7 +928,7 @@
             border-radius: 4px;
             background: transparent;
             color: #a6a6a6 !important;
-            min-width: 270px !important;
+            min-width: 270px !important;            
         }
 
         .reply-actions button {
@@ -986,14 +1078,13 @@
         }
         .comments-top{
             position: sticky;
-            top: -17px;
+            top: 0px;
             z-index: 9;
             background-color: #000;
             padding-bottom: 15px;
             height: 100px;
             margin: 0 !important;
-            padding-top: 10px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #262626;
         }
         .comments-username{
             color: var(--accent-color);
@@ -1286,15 +1377,16 @@
         }
         .comments-section {            
             position: relative;
-            padding: 15px !important;
+            padding: 0px 15px  !important;
             align-items: center;
             border-radius: 12px !important;
             margin-top: 0px !important;
             width: 100% !important;
             overflow-y: scroll;
-            border: 1px solid #222;
+            outline: 1px solid #222;
             overflow-x: hidden;
             height: 800px;
+            background-color: #070707;
         }
         .black-nav{
             background: #000;
@@ -1306,7 +1398,7 @@
             border-bottom: 1px solid #111 !important;
             border-left: 1px solid #191919;
             position: relative;
-            border-radius: 10px; 
+            border-radius: 10px 0px 0px 20px; 
             margin-left: 5px;
             margin-top: 15px;
         }
@@ -1870,7 +1962,7 @@
             const replyBox = document.getElementById(`reply-box-${commentId}`);
 
             if (replyBox) {
-                replyBox.style.display = 'block'; // Show the reply input box
+                replyBox.style.display = 'flex'; // Show the reply input box
                  const replyInput = replyBox.querySelector('.reply-input');
                     replyInput.innerHTML = `<span class="reply-to-username">@@${username}</span>&nbsp;`; // Pre-fill with the username and add a space
     
