@@ -13,7 +13,7 @@ public partial class tblReply
 
     public Guid UserId { get; set; }
 
-    public int CommentId { get; set; }
+    public Guid CommentId { get; set; }
 
     public int LikesCount { get; set; }
 

@@ -8,7 +8,7 @@ namespace VRhfo.BL
 {
     public class CommentManager
     {
-        public static CommentLikes CheckForExistingLikeEntry(int commentId, Guid userId)
+        public static CommentLikes CheckForExistingLikeEntry(Guid commentId, Guid userId)
         {
             try
             {
@@ -155,7 +155,7 @@ namespace VRhfo.BL
             }
         }
 
-        public static int LoadDislikeCount(int commentId)
+        public static int LoadDislikeCount(Guid commentId)
         {
             try
             {
@@ -175,7 +175,7 @@ namespace VRhfo.BL
             }
         }
 
-        public static int LoadLikeCount(int commentId)
+        public static int LoadLikeCount(Guid commentId)
         {
             try
             {
@@ -194,7 +194,7 @@ namespace VRhfo.BL
             }
         }
 
-        public static List<Reply> LoadListOfReplies(int id)
+        public static List<Reply> LoadListOfReplies(Guid id)
         {
             try
             {

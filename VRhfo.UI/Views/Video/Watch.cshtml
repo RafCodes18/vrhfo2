@@ -835,7 +835,7 @@
                                                     <span class="comments-username">@(reply.User.Username)</span>
                                                     <p class="date-posted-txt">@reply.FormattedUploadDate</p>
                                                 </div>
-                                                <p class="comment-content"><span class="reply-to-username">@@jack3d</span> @reply.Content  </p>
+                                                <p class="comment-content"><span class="reply-to-username">@reply.UserUsername</span> @reply.Content  </p>
                                             </div>
                                             <div class="comment-actions">
                                                 <!--Like button-->
@@ -1080,7 +1080,7 @@
             position: sticky;
             top: 0px;
             z-index: 9;
-            background-color: #000;
+            background-color: #070707;
             padding-bottom: 15px;
             height: 100px;
             margin: 0 !important;
@@ -1773,10 +1773,11 @@
         }
 
         const commentText = commentInput.textContent.trim();
+        const strippedCommentText = commentText.replace(/@@\w+\s?/, '');
 
-        if (commentText && commentText !== "Add a comment...") {
+        if (strippedCommentText && strippedCommentText !== "Add a comment...") {
             // Your logic to submit the comment
-            console.log('Comment submitted:', commentText);
+            console.log('Comment submitted:', strippedCommentText);
 
             fetch('/Video/AddComment', {
                 method: 'POST',
@@ -1784,7 +1785,7 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ 
-                    commentText: commentText,
+                    commentText: strippedCommentText,
                     videoId: '@Model.video.Id'
                 })
 
@@ -1983,8 +1984,10 @@
                 const submitBtn = replyBox.querySelector('.submit-reply-btn');
                 submitBtn.addEventListener('click', function () {
                     const replyContent = replyInput.textContent.trim();
-                    if (replyContent) {
-                        console.log(`Submitting reply to comment ID ${commentId} with message: ${replyContent}`);
+                    const strippedReplyText = replyContent.replace(/@@\w+\s?/, '');
+                    console.log(strippedReplyText);
+                    if (strippedReplyText) {
+                        console.log(`Submitting reply to comment ID ${commentId} with message: ${strippedReplyText}`);
                     
                         // Add your fetch logic to submit the reply here
                         fetch('/Video/AddReply', {
@@ -1993,14 +1996,21 @@
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                                replyText: replyContent,
+                                replyText: strippedReplyText,
                                 commentId: commentId
                             })
                         })
                         .then(response => response.json())
                         .then(data => {
-                            console.log('Reply successfully submitted:', data);
+                            
+                            if (data.success) {
+
+                                console.log('Reply successfully submitted:', data);
+
+
+                            }
                             replyBox.style.display = 'none'; // Optionally hide the reply box after submission
+
                         })
                         .catch(error => {
                             console.error('Error submitting reply:', error);

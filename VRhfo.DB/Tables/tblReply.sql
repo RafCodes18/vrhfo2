@@ -4,7 +4,7 @@
     [Content] VARCHAR(200) NOT NULL, 
     [DatePosted] DATETIME NOT NULL, 
     [UserId] UNIQUEIDENTIFIER NOT NULL, 
-    [CommentId] INT NOT NULL, 
+    [CommentId] UNIQUEIDENTIFIER NOT NULL, 
     [LikesCount] INT NOT NULL, 
     [DislikesCount] INT NOT NULL
 )

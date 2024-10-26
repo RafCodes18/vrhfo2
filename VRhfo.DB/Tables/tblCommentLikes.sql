@@ -2,7 +2,7 @@
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
     UserId UNIQUEIDENTIFIER NOT NULL, -- GUID of the user
-    CommentId INT NOT NULL,
+    CommentId UNIQUEIDENTIFIER NOT NULL,
     IsLike BIT NOT NULL, -- True for like, false for dislike
     CreatedAt DATETIME DEFAULT GETDATE()
 )

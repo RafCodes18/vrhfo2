@@ -37,7 +37,7 @@ namespace VRhfo.BL
                     user.RegistrationDate = tblUser.RegistrationDate;
                     user.Password = tblUser.Password;
                     user.Subscription_Tier = tblUser.SubscriptionTier;
-                    user.GoonScore = tblUser.GoonScore;
+                    user.GoonScore = tblUser.GoonScore;                   
 
                     return user;
                 }

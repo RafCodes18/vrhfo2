@@ -9,7 +9,7 @@ public partial class tblCommentLike
 
     public Guid UserId { get; set; }
 
-    public int CommentId { get; set; }
+    public Guid CommentId { get; set; }
 
     public bool IsLike { get; set; }
 

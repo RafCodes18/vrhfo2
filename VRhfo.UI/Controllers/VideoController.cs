@@ -5,6 +5,7 @@ using VRhfo.UI.Views.ViewModels;
 using X.PagedList;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
+using VRhfo.PL;
 
 
 namespace VRhfo.UI.Controllers
@@ -301,7 +302,7 @@ namespace VRhfo.UI.Controllers
         [HttpPost]
         public JsonResult LikeComment([FromBody] dynamic likeData)
         {
-            var commentId = int.Parse(likeData.GetProperty("commentId").GetString());
+            var commentId = Guid.Parse(likeData.GetProperty("commentId").GetString());
             var isLike = likeData.GetProperty("isLike").GetBoolean();
 
             if (GetCurrentUser() == null || GetCurrentUser().Id == Guid.Empty)
@@ -343,18 +344,21 @@ namespace VRhfo.UI.Controllers
         {
          
             var replyContent = objData.GetProperty("replyText").GetString();
-            var parentCommentId = int.Parse(objData.GetProperty("commentId").GetString());
+
+            ///exceptoion throwing here because reply "commentId" is a Guid, comment is int
+            var parentCommentId = Guid.Parse(objData.GetProperty("commentId").GetString());
             User user = GetCurrentUser();
 
 
-            Reply newReply = new Reply(){
+            Reply newReply = new Reply() {
                 Content = replyContent,
                 CommentId = parentCommentId,
                 DatePosted = DateTime.UtcNow,
                 Id = Guid.NewGuid(),
                 DislikesCount = 0,
-                LikesCount = 0 ,
+                LikesCount = 0,
                 UserId = user.Id,
+                UserUsername = LoadUser(user.Id)
             };
 
             if (CommentManager.InsertReply(newReply) > 0) {
@@ -367,5 +371,30 @@ namespace VRhfo.UI.Controllers
 
         }
 
+        private string LoadUser(Guid userId)
+        {
+            try
+            {                                   
+                 using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    // Assuming there's a Users table with a UserId and Username columns
+                    var user = dc.tblUsers.FirstOrDefault(u => u.Id == userId);
+
+                    if (user != null)
+                    {
+                        return user.Username;
+                    }
+                    else
+                    {
+                        throw new Exception("User not found");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
