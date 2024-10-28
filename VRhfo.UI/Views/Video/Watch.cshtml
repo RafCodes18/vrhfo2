@@ -839,13 +839,13 @@
                                             </div>
                                             <div class="comment-actions">
                                                 <!--Like button-->
-                                                <div class="like-btn" data-reply-id="@reply.Id">
+                                                <div class="like-btn" data-comment-id="@reply.Id">
                                                     <svg class="o-icon o-icon-svg like-btns" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 22h4V10H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" fill-rule="nonzero"></path></svg>
                                                     <span id="like-count-@reply.Id">@reply.LikesCount</span>
 
                                                 </div>
                                                 <!--Dislike button-->
-                                                <div class="dislike-btn " data-reply-id="@reply.Id">
+                                                <div class="dislike-btn " data-comment-id="@reply.Id">
                                                     <svg class="o-icon o-icon-svg like-btns" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 2h-4v12h4V2zM1 13c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 22l6.58-6.59c.37-.36.59-.86.59-1.41V4c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z" fill-rule="nonzero"></path></svg>
                                                     <span class="dislike-count-@reply.Id">
                                                       
@@ -1085,6 +1085,7 @@
             height: 100px;
             margin: 0 !important;
             border-bottom: 1px solid #262626;
+            border-top: 10px solid black !important;
         }
         .comments-username{
             color: var(--accent-color);
