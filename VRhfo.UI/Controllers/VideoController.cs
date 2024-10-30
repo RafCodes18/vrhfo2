@@ -85,7 +85,8 @@ namespace VRhfo.UI.Controllers
         public ActionResult Watch(string title)
         {
             // Revert '-' (or '+') back to spaces
-            string cleanTitle = title.Replace("-", " ");
+            string cleanTitle = title.Replace("-", " ").Replace("%27", "'");
+
 
             //grab user
             User currentUser = HttpContext.Session.GetObject<User>("user");
