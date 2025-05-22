@@ -223,8 +223,17 @@
         font-size: larger;
         font-weight: 700;
     }
+    .custom-x{
+        padding: 2px 8px;
+        margin-right: 4px;
+        margin-top: 3px;
+        font-size: large;
+    }
     .custom-x:hover{
         border-radius: 8px !important;
+        background-color: #444 !important;
+        transition: ease .5s background-color;
+            color: white;
     }
     .modal-yes{
         padding: 10px !important;
@@ -319,7 +328,7 @@
                 <div id="remove-fave-modal" class="w3-modal ">
                     <div class="w3-modal-content modal-main">
                         <div class="w3-container modal-contain">
-                            <span onclick="document.getElementById('remove-fave-modal').style.display='none'" class="w3-button w3-display-topright custom-x">&times;</span>
+                            <span onclick="document.getElementById('remove-fave-modal').style.display='none'" class="  w3-display-topright custom-x">&times;</span>
                             <p class="modal-question"> Remove from your favorites?</p>
                             <div class="modal-options">
                                 <p id="modal-yes" class="modal-yes">Yes</p>

@@ -175,7 +175,7 @@ namespace VRhfo.UI.Controllers
         }
 
         public ActionResult Index(string username)
-        {
+       {
 
             User user = UserManager.LoadByUsername(username);
 

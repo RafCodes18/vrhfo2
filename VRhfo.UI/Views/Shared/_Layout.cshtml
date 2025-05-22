@@ -859,8 +859,8 @@ r            height: 320px;
                                 <ul class="navbar-nav">
 
                                     <li class="nav-item welcum">
-                                         <img src="/img/bell.png" height="20" width="22" />
-                                        <p class="nav-link text-light dropdown">
+@*                                          <img src="/img/bell.png" height="20" width="22" />
+ *@                                        <p class="nav-link text-light dropdown">
                                             <!--diamond logo for premium -->
                                             <span class="diamond">
                                                 <svg class="o-iconD o-icon-svgD " viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -926,7 +926,16 @@ r            height: 320px;
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Top">Top Creators</a>
 
                     <div class="your-stats-container">
-                    <p class="sb-link your-stats"><a asp-action="JoinNow" asp-controller="Home">Watch time</a> </p>
+                @if (Authenticate.IsAuthenticated(Context) && username != "")
+                {
+                    <p class="sb-link your-stats"><a asp-action="Index" asp-controller="User" asp-route-username="@username">Hours Gooning</a> </p>
+
+                }
+                else
+                {
+                    <p class="sb-link your-stats"><a asp-action="JoinNow" asp-controller="Home">Hours Gooning</a> </p>
+
+                }
 
                        <div class="stats-2-boxes">
                              <div class="stat-box">
