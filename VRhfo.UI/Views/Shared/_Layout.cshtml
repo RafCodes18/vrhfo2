@@ -802,6 +802,18 @@ r            height: 320px;
         .nav-top{
             margin-right: 50px !important;
         }
+
+        @@media (max-width: 400px) {
+            .forgot-txt{
+                font-size: x-small !important;
+            }
+            .not-mem-txt{
+                font-size: x-small !important;
+            }
+            .login-modal-title{
+                font-size: 24px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -988,7 +1000,7 @@ r            height: 320px;
                     <span class="footer-icon"><img src="~/img/home.png" /></span>
                     <span class="footer-text">Home</span>
                 </a>
-                <a href="#" class="footer-item">
+                <a asp-aciton="Index" asp-controller="Video" asp-action="Categories" class="footer-item">
                     <span class="footer-icon"><img src="~/img/category.png" /></span>
                     <span class="footer-text">Categories</span>
                 </a>

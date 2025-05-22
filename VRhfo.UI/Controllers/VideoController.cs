@@ -169,6 +169,12 @@ namespace VRhfo.UI.Controllers
             return View(videoViewModel);
         }
 
+        [HttpGet]
+        public ActionResult Categories()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult UpdateWatchProgress([FromBody] dynamic body)
         {
