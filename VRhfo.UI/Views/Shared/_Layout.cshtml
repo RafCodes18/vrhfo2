@@ -667,7 +667,7 @@ r            height: 320px;
 
         .mobile-footer{
             width: 100%;
-            height: 65px !important;
+            height: 66px !important;
             position: fixed;
             bottom: 0px;
             display: flex;
@@ -1032,11 +1032,16 @@ r            height: 320px;
                     <span class="footer-icon"><img src="~/img/category.png" /></span>
                     <span class="footer-text">Categories</span>
                 </a>
+
+                <!--AUTH CHECK MOBILE LOGIN-->
+            @if (!Authenticate.IsAuthenticated(Context) && username != "")
+            {
                 <a id="login-button2"10 class="footer-item">
                     <span class="footer-icon"><img src="~/img/user.png" /></span>
                     <span class="footer-text">Login</span>
-                </a>               
-                <a  class="footer-item search-link">
+                </a>
+            }
+            <a  class="footer-item search-link">
                     <span class="footer-icon"><img src="~/img/search.png" /></span>
                     <span class="footer-text">Search</span>
                 </a>
