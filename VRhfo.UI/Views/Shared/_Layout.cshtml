@@ -258,14 +258,14 @@
             display: none;
             position: absolute;
             background-color: #111;
-            min-width: 160px;
+            min-width: 170px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 999;
-            border-radius: 4px;
+            border-radius: 10px;
             padding: 0px !important;
             font-size: large;
             margin-left: -10px;
-            margin-top: 7px;
+            margin-top: 3px;
             -moz-box-shadow: 0 0 3px #ccc;
             -webkit-box-shadow: 0 0 3px #ccc;
             box-shadow: 0 0 3px #ccc;
@@ -295,6 +295,7 @@
         }
         .forgot{
             font-size: small;
+            padding: 11px !important;
         }      
 
         .categories-content{
@@ -560,6 +561,7 @@ r            height: 320px;
         }
         .main-pg{
             width: 100vw;
+            overflow-y: auto;
         }
         .home-svg{
             margin-right: 5px;
@@ -814,6 +816,20 @@ r            height: 320px;
                 font-size: 24px !important;
             }
         }
+        .settings-gear{
+            margin: 6px;
+        }
+
+        .view-all-link{
+            background-color: #131313;
+            color: var(--accent-color);
+            font-size: 15px;
+            padding: 5px 9px;
+            border-radius: 7px;
+        }
+        .view-all-link:hover{
+            color: #979797;
+        }
     </style>
 </head>
 <body>
@@ -889,7 +905,7 @@ r            height: 320px;
                                                 <a asp-action="Index" asp-controller="User" asp-route-username="@username">  <img src="~/img/user.png" height="25" width="25" class="m-1"/>Profile</a>
                                                 <a asp-action="Liked" asp-controller="Home"><img src="~/img/like.svg" class="m-1" />Favorites</a>
                                                 <a asp-action="Upload" asp-controller="Video"><img src="~/img/upload.png" height="25" width="25" class="m-1" /> Upload +</a>
-                                                <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username"><i class="bx bxs-lock-alt m-1"></i>Manage Account</a>
+                                                <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username"><i class="fa-solid fa-gear settings-gear"></i>Manage Account</a>
                                                 <a href="#" class="forgot">Forgot Password</a><!-- this will just be change username and password page, user can select which -->
                                                 <a class="forgot" asp-action="Logout" asp-controller="User">Logout</a>
                                             </div>
@@ -928,6 +944,7 @@ r            height: 320px;
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Gooning"><img class="sidebar-icons"src="~/img/hypnosis.png" />  Gooning</a>                                             
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="HFO"><img class="sidebar-icons" src="~/img/prohibition.png" /> HFO <span class="explain">(Hands Free Orgasm)</span></a>
                     <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Hypnosis"><img class="sidebar-icons" src="~/img/hypnosis (2).png" />  Hypnosis</a>  
+                    <a class="view-all-link" asp-action="Categories" asp-controller="Video">View All</a>  
                     <div class="breaker"></div>
                     
                     <a class="sb-link" asp-action="Live" asp-controller="Home">
@@ -1028,11 +1045,11 @@ r            height: 320px;
        
         <div class="mobile-search hidden">
             <form class="form-inline   search-form">
-                <div class="input-group searchbar">
-                    <input id="mobileSearch" type="search" class="form-control  " placeholder="Search" data-search />
+                <div class="input-group searchbar ">
+                    <input id="mobileSearch" type="search" class="form-control mobile-search-bar" placeholder="Search" data-search />
                     <button type="button" class="btn btn-outline-primary2  "><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-                <div class="result-box">
+                <div class="result-box-2">
                 </div>
             </form>
             <div class="close-btn" onclick="toggleHidden()">

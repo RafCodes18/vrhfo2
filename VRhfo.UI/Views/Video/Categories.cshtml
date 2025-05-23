@@ -4,12 +4,13 @@
 }
 
 <style>
-
+  /*   * {
+        outline: 1px solid red !important;
+    } */
     @@media(max-width: 1000px) {
         .main-pg {
             margin-top: 50px !important;
             margin-left: 10px;
-            height: 160vh !important;
         }
 
         .card {
@@ -43,12 +44,12 @@
         color: var(--primary-color) !important;
         margin: 0;
         padding: 0;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
     }
 
     .main-pg {
-        height: 100vh;
+        min-height: 100%;
         width: 100%;
     }
 
@@ -62,6 +63,8 @@
         gap: 10px;
         margin-right: 90px;
         margin-left: 80px;
+                  padding-bottom: 70px !important;
+                  position: relative !important;
     }
 
     .card {
@@ -300,57 +303,131 @@
         background: #111;
         margin-top: -5px !important;
     }
+
+    .cat-card{
+        padding: 10px;
+        background-color: #888;
+        margin: 12px;
+        border-radius: 10px;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300px; /* or whatever size you want */
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cat-img{
+        z-index: 1;
+        width: 300px; 
+        height: 200px;
+    }
+    .cat-card-title{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--primary-color);
+        font-size: larger;
+        font-weight: 800;
+        z-index: 9;
+    }
+    .card-overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* gray/dark overlay */
+        z-index: 1;
+    }
+
+    #sidebar{
+        background-color: black;
+    }
 </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <div class="main-pg">
     <div class="page-title">
-        <p class="titl">Categories <img src="~/img/Yd60cw01.svg" height="50px" width="40px" /></p>
+        <p class="titl">All Categories <img src="~/img/Yd60cw01.svg" height="50px" width="40px" /></p>
     </div>
     <div class="card-container">
 
-        <div class="Categories-list-box maing-pg">
-            <div class="categories-list">
-                <ul>
-                    <li>
-                        <a asp-action="Index" asp-route-category="Gooning">Gooning</a>
-                    </li>
-                </ul>
+                  
+                <div class="cat-card">
+                    <a asp-action="Index" asp-route-category="Gooning">
+                        <img class="cat-img" src="~/img/ang.jpg" />
+                        <div class="card-overlay"></div>
 
-                <ul>
-                    <li>
-                        <a asp-action="Index" asp-route-category="Hypnosis">Hypnosis</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a asp-action="Index" asp-route-category="Latest">6 Hour Worship</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a asp-action="Index" asp-route-category="Edging">Edging Instruction</a>
-                    </li>
-                </ul>
-                 <ul>
-                    <li>
-                        <a href="#">FemDom</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="#">Satanic</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a asp-action="Index" asp-route-category="Brainwashing">Brainwashing</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                        <p class="cat-card-title">Gooning</p>
+                    </a>
+                </div>
 
+                <div class="cat-card">
+                    <a asp-action="Index" asp-route-category="Brainwashing">
+                        <img class="cat-img" src="~/img/nicole.jpg" />
+                        <div class="card-overlay"></div>
 
+                        <p class="cat-card-title">Brainwashing</p>
+                    </a>
+                </div>
+
+                <div class="cat-card">
+                    <a asp-action="Index" asp-route-category="HFO">
+                        <img class="cat-img" src="~/img/reily.jpg" />
+                        <div class="card-overlay"></div>
+
+                        <p class="cat-card-title">HFO</p>
+                    </a>
+                </div>
+
+                <div class="cat-card">
+                    <a asp-action="Index" asp-route-category="Gooning">
+                        <img class="cat-img" src="~/img/lana.jpg" />
+                        <div class="card-overlay"></div>
+
+                        <p class="cat-card-title">Sissy</p>
+                    </a>
+                </div>
+
+                <div class="cat-card">
+                    <a asp-action="Index" asp-route-category="Gooning">
+                        <img class="cat-img" src="~/img/ang.jpg" />
+                        <div class="card-overlay"></div>
+
+                        <p class="cat-card-title">Gooning</p>
+                    </a>
+                </div>
+
+                <div class="cat-card">
+                    <a asp-action="Index" asp-route-category="Brainwashing">
+                        <img class="cat-img" src="~/img/nicole.jpg" />
+                        <div class="card-overlay"></div>
+
+                        <p class="cat-card-title">Brainwashing</p>
+                    </a>
+                </div>
+
+                <div class="cat-card">
+                    <a asp-action="Index" asp-route-category="HFO">
+                        <img class="cat-img" src="~/img/reily.jpg" />
+                        <div class="card-overlay"></div>
+
+                        <p class="cat-card-title">HFO</p>
+                    </a>
+                </div>
+
+                <div class="cat-card">
+                    <a asp-action="Index" asp-route-category="Gooning">
+                        <img class="cat-img" src="~/img/lana.jpg" />
+                        <div class="card-overlay"></div>
+
+                        <p class="cat-card-title">Sissy</p>
+                    </a>
+                </div>  
     </div>
 </div>
 
