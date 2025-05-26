@@ -917,7 +917,7 @@
                                                 <a asp-action="Liked" asp-controller="Home"><img src="~/img/like.svg" class="m-1" />Favorites</a>
                                                 <a asp-action="Upload" asp-controller="Video"><img src="~/img/upload.png" height="25" width="25" class="m-1" /> Upload +</a>
                                                 <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username"><i class="fa-solid fa-gear settings-gear"></i>Manage Account</a>
-                                                <a href="#" class="forgot">Forgot Password</a><!-- this will just be change username and password page, user can select which -->
+                                                <a asp-action="ForgotPassword" asp-controller="User" class="forgot">Forgot Password</a><!-- this will just be change username and password page, user can select which -->
                                                 <a class="forgot bottom-DD-link" asp-action="Logout" asp-controller="User">Logout</a>
                                             </div>
                                         </div>
@@ -1017,7 +1017,7 @@
                         <div id="login-message"></div>
 
                         <button type="submit" class="login-btn ro ">Login</button>
-                        <p class="forgot-txt">Forgot password? Click <a href="#" class="here-txt">Here</a> to recover.</p>
+                        <p class="forgot-txt">Forgot password? Click <a asp-action="ForgotPassword" asp-controller="User" class="here-txt">Here</a> to recover.</p>
                     </form>
                     
                 </div>

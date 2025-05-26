@@ -24,6 +24,12 @@ namespace VRhfo.UI.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Login(User user)
         {
