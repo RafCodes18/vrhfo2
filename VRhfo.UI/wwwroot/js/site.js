@@ -64,6 +64,8 @@ searchInput.addEventListener("input", e => {
         return keyword.toLowerCase().includes(value.toLowerCase());
     });
     console.log(result);
+
+   // Call function to display
     display(result);
     if (!result.length) {
         resultBox.innerHTML = '';
