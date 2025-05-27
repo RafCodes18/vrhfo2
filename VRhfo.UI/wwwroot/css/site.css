@@ -156,15 +156,18 @@ body {
         margin:0 ;
     }               
 }
+@media(max-width: 461px){
+    .join-now {
+        display: none;
+    }
+}
 @media(max-width: 450px){
     .dropdown-content{
         margin-left: -80px !important;
     }
 }
 @media(max-width: 430px){
-    .join-now {
-        display: none;
-    }
+   
     .username-txt, .welcum{
         font-size: small !important;
         padding: 0 ;
