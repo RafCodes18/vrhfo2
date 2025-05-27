@@ -680,7 +680,7 @@
         </div>
         <div class="vid-details-last">
             <div class="details-last-first2">
-                <span class="by-txt">Made By:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
+                <span class="by-txt">Made By:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@mambaCode </a></p>
             </div>
         </div>
     </div>
@@ -760,7 +760,7 @@
                     <div class="comment-body">                             
                             <div class="comment-top">
                                 <div class="content">
-                                    <span class="comments-username">@(comment.User.Username)</span>
+                                    <span class="comments-username">JohnSmith</span>
                                     <p class="date-posted-txt">@comment.FormattedUploadDate</p>
                        
                                 </div>
@@ -787,7 +787,7 @@
                                 REPLY    
                             </div>
                            
-                        </div>
+                        </div>  
                         <!-- Reply Input Box (Initially hidden) -->
                         <div class="reply-box-container" id="reply-box-@comment.Id" style="display: none;">
                             <div class="avatar-container reply-avatar">
@@ -901,6 +901,7 @@
                                 }
                             }
                         </div>
+                    
                     </div>
 
                    
