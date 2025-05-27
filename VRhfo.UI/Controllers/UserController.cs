@@ -116,7 +116,7 @@ namespace VRhfo.UI.Controllers
                 user.SubscriptionStartDate = DateTime.Now; //what happ be after reg
                 user.IsSubscribed = true;
                 user.Auth0UserId = "xxx";
-                user.RegistrationDate = DateTime.Now; 
+                user.FirstVisit = DateTime.Now; 
                 user.Id = Guid.NewGuid();
                 user.Username = user.Email.Substring(0, user.Email.IndexOf('@'));
                 user.NextRenewalDueDate = DateTime.Now.AddDays(30);

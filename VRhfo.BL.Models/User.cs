@@ -17,7 +17,7 @@ namespace VRhfo.BL.Models
         
 
 
-        public DateTime RegistrationDate { get; set; } 
+        public DateTime FirstVisit { get; set; } 
         public DateTime SubscriptionStartDate { get; set; }
         public bool IsSubscribed { get; set; }
         
@@ -36,7 +36,7 @@ namespace VRhfo.BL.Models
         {
             get
             {
-                return RegistrationDate.ToString("MMM dd, yyyy");
+                return FirstVisit.ToString("MMM dd, yyyy");
             }
         }
 

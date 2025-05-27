@@ -13,19 +13,33 @@ public partial class tblUser
 
     public string Auth0UserId { get; set; } = null!;
 
-    public DateTime RegistrationDate { get; set; }
+    public DateTime FirstVisit { get; set; }
 
-    public byte IsSubscribed { get; set; }
+    public bool IsSubscribed { get; set; }
 
-    public DateTime SubscribedDate { get; set; }
+    public DateTime? SubscribedDate { get; set; }
 
-    public string Password { get; set; } = null!;
+    public string PasswordHash { get; set; } = null!;
 
     public string SubscriptionTier { get; set; } = null!;
 
     public DateTime NextRenewalDueDate { get; set; }
 
     public int GoonScore { get; set; }
+
+    public string? NormalizedEmail { get; set; }
+
+    public string? NormalizedUsername { get; set; }
+
+    public string? ConcurrencyStamp { get; set; }
+
+    public bool LockoutEnabled { get; set; }
+
+    public DateTime? LockoutEnd { get; set; }
+
+    public int AccessFailedCount { get; set; }
+
+    public string? SecurityStamp { get; set; }
 
     public virtual ICollection<tblVideosLiked> tblVideosLikeds { get; set; } = new List<tblVideosLiked>();
 }

@@ -1,5 +1,5 @@
 ﻿BEGIN 
-	INSERT INTO tblUser (Id, Username, Password, Email, Auth0UserId, RegistrationDate, IsSubscribed, SubscribedDate, SubscriptionTier, NextRenewalDueDate, GoonScore)
+	INSERT INTO tblUser (Id, Username, PasswordHash, Email, Auth0UserId, FirstVisit, IsSubscribed, SubscribedDate, SubscriptionTier, NextRenewalDueDate, GoonScore)
 	VALUES 
 		('8a844bae-880c-437d-a571-4b94b66c1fe3', 'JmoneySH', '1234', 'user1@email.com', 'auth01', '2023-01-01', 1, '2023-01-01 00:00:00', 'Monthly', '2023-02-01', 78),
 		('cd8093d3-6537-44fe-8e1c-dc80af075ada', 'HopelessGooner6969', '123', 'user2@email.com', 'auth02', '2023-02-01', 0, '2023-02-01 00:00:00', 'Yearly', '2023-03-01', 15),

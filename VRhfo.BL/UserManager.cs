@@ -29,13 +29,13 @@ namespace VRhfo.BL
                     tblUser tblUser = dc.tblUsers.FirstOrDefault(x => x.Id == id);
                     User user = new User();
                     user.Id = id;
-                    user.SubscriptionStartDate = tblUser.SubscribedDate;
+                    user.SubscriptionStartDate = (DateTime)tblUser.SubscribedDate;
                     user.Username = tblUser.Username;
                     user.Email = tblUser.Email;
                     user.Auth0UserId = tblUser.Auth0UserId;
-                    user.IsSubscribed = tblUser.IsSubscribed == 1 ? true : false;
-                    user.RegistrationDate = tblUser.RegistrationDate;
-                    user.Password = tblUser.Password;
+                    user.IsSubscribed = tblUser.IsSubscribed;
+                    user.FirstVisit = tblUser.FirstVisit;
+                    user.Password = tblUser.PasswordHash;
                     user.Subscription_Tier = tblUser.SubscriptionTier;
                     user.GoonScore = tblUser.GoonScore;                   
 
@@ -60,11 +60,11 @@ namespace VRhfo.BL
                         Id = user.Id,
                         Email = user.Email,
                         Auth0UserId = user.Auth0UserId,
-                        IsSubscribed = (byte)(user.IsSubscribed == true ? 1 : 0),
-                        RegistrationDate = user.RegistrationDate,
+                        IsSubscribed = user.IsSubscribed,
+                        FirstVisit = user.FirstVisit,
                         Username = user.Username,
                         SubscribedDate = user.SubscriptionStartDate,
-                        Password = user.Password,
+                        PasswordHash = user.Password,
                         SubscriptionTier = user.Subscription_Tier,
                         NextRenewalDueDate = user.NextRenewalDueDate ,
                         GoonScore = user.GoonScore
@@ -101,30 +101,30 @@ namespace VRhfo.BL
                             if (row != null)
                             {
                                 //check password 
-                                if (row.Password == GetHash(user.Password))
+                                if (row.PasswordHash == GetHash(user.Password))
                                 {
                                     //login successful with correct hashed or unhashed password
 
-                                    user.SubscriptionStartDate = row.SubscribedDate;
+                                    user.SubscriptionStartDate = (DateTime)row.SubscribedDate;
                                     user.NextRenewalDueDate = row.NextRenewalDueDate;
                                     user.Subscription_Tier = row.SubscriptionTier;
-                                    user.RegistrationDate = row.RegistrationDate;
+                                    user.FirstVisit = row.FirstVisit;
                                     user.Username = row.Username;
-                                    user.IsSubscribed = row.IsSubscribed != 0;
+                                    user.IsSubscribed = row.IsSubscribed;
                                     user.Email = row.Email;
                                     user.Password = GetHash(user.Password);
                                     user.GoonScore = row.GoonScore;
                                     return true;
                                 }
-                                else if (row.Password == user.Password)
+                                else if (row.PasswordHash == user.Password)
                                 {
-                                    user.SubscriptionStartDate = row.SubscribedDate;
+                                    user.SubscriptionStartDate = (DateTime)row.SubscribedDate;
                                     user.Subscription_Tier = row.SubscriptionTier;
                                                                         user.NextRenewalDueDate = row.NextRenewalDueDate;
 
-                                    user.RegistrationDate = row.RegistrationDate;
+                                    user.FirstVisit = row.FirstVisit;
                                     user.Username = row.Username;
-                                    user.IsSubscribed = row.IsSubscribed != 0;
+                                    user.IsSubscribed = row.IsSubscribed;
                                     user.Email = row.Email;
                                     user.Password = user.Password;
                                     user.GoonScore = row.GoonScore;
@@ -189,10 +189,10 @@ namespace VRhfo.BL
                 {
                     Username = row.Username,
                     Id = row.Id,
-                    Password = row.Password,
+                    Password = row.PasswordHash,
                     Email = row.Email,
-                    RegistrationDate = row.RegistrationDate,
-                    SubscriptionStartDate = row.SubscribedDate,
+                    FirstVisit = row.FirstVisit,
+                    SubscriptionStartDate = (DateTime)row.SubscribedDate,
                     Auth0UserId = row.Auth0UserId,
                     Subscription_Tier = row.SubscriptionTier,
                     NextRenewalDueDate = row.NextRenewalDueDate,
@@ -296,10 +296,10 @@ namespace VRhfo.BL
                         Auth0UserId = "free-user", // Dummy Auth0 user ID
                         Username = "Free User", // Placeholder username
                         Email = "freeuser@example.com", // Dummy email
-                        Password = "FreeUserPassword123", // Placeholder password
-                        RegistrationDate = DateTime.UtcNow, // Current date as registration date
+                        PasswordHash = "FreeUserPassword123", // Placeholder password
+                        FirstVisit = DateTime.UtcNow, // Current date as registration date
                         SubscribedDate = DateTime.UtcNow, // Start date for subscription
-                        IsSubscribed = 0, // Not subscribed
+                        IsSubscribed = false, // Not subscribed
                         NextRenewalDueDate = DateTime.UtcNow.AddYears(1), // Dummy renewal date, 1 year ahead
                         SubscriptionTier = "Free", // Subscription tier for free users
                         GoonScore = 0,// Placeholder
