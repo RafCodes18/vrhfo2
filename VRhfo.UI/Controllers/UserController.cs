@@ -30,6 +30,23 @@ namespace VRhfo.UI.Controllers
             return View();
         }
 
+       /* [HttpPost]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = UserManager.FindByEmailAsync(email);
+                if (user != null)
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, token }, protocol: Request.Scheme);
+                    await _emailClient.SendEmailAsync(model.Email, "Reset Password - PornWorship", callbackUrl);
+                }
+                return RedirectToAction("ForgotPasswordConfirmation");
+            }
+            return View(model);
+        }*/
+
         [HttpPost]
         public ActionResult Login(User user)
         {

@@ -25,5 +25,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+Console.WriteLine($"SENDGRID_API_KEY: {Environment.GetEnvironmentVariable("SENDGRID_API_KEY")}");
 
 app.Run();

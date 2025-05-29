@@ -22,6 +22,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -80,5 +81,6 @@ app.MapControllerRoute(
 );
 
 
+Console.WriteLine($"SENDGRID_API_KEY: {Environment.GetEnvironmentVariable("SENDGRID_API_KEY")}");
 
 app.Run();
