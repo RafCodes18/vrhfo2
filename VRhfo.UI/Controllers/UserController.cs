@@ -29,16 +29,18 @@ namespace VRhfo.UI.Controllers
         {
             return View();
         }
-
-       /* [HttpPost]
+/*
+        [HttpPost]
         public async Task<IActionResult> ForgotPassword(string email)
         {
             if (ModelState.IsValid)
             {
-                var user = UserManager.FindByEmailAsync(email);
+                ResetPassword resetPassword = new ResetPassword();
+                resetPassword.Email = email;
+                var user = await UserManager.FindByEmailAsync(resetPassword);
                 if (user != null)
                 {
-                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var token = await UserManager.GeneratePasswordResetTokenAsync(user);
                     var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, token }, protocol: Request.Scheme);
                     await _emailClient.SendEmailAsync(model.Email, "Reset Password - PornWorship", callbackUrl);
                 }
@@ -48,12 +50,12 @@ namespace VRhfo.UI.Controllers
         }*/
 
         [HttpPost]
-        public ActionResult Login(User user)
+        public async Task<IActionResult> Login(User user)
         {
             try
             {
-                bool loginWorked = UserManager.Login(user);
-                User user1 = UserManager.LoadByUsername(user.Username);
+                bool loginWorked = await UserManager.LoginAsync(user);
+                User user1 = await UserManager.LoadByUsernameAsync(user.Username);
                 
                 if (HttpContext != null && loginWorked == true) SetUser(user1);
 
@@ -71,7 +73,7 @@ namespace VRhfo.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoginModal([FromBody] dynamic loginData)
+        public async Task<IActionResult> LoginModal([FromBody] dynamic loginData)
         {
             // Validate credentials and perform login logic
             // Return appropriate JSON response
@@ -89,8 +91,8 @@ namespace VRhfo.UI.Controllers
                 Username = username,
                 Password = password
             };
-            bool loginWorked = UserManager.Login(user);
-            User user1 = UserManager.LoadByUsername(user.Username);
+            bool loginWorked = await UserManager.LoginAsync(user);
+            User user1 = await UserManager.LoadByUsernameAsync(user.Username);
             if (loginWorked)
             {
                 SetUser(user1);
@@ -103,10 +105,10 @@ namespace VRhfo.UI.Controllers
         }
 
         // GET: User/Profile
-        public ActionResult Profile(Guid userId)
+        public async Task<IActionResult> Profile(Guid userId)
         {
             ProfileViewModel pVM = new ProfileViewModel();
-            pVM.User = UserManager.LoadById(userId);
+            pVM.User =  await UserManager.LoadByIdAsync(userId);
             pVM.Videos = VideoManager.LoadByUserId(userId);
             return View(pVM);
         }
@@ -126,7 +128,7 @@ namespace VRhfo.UI.Controllers
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User user)
+        public async Task<IActionResult> Create(User user)
         {
             try
             {
@@ -138,7 +140,7 @@ namespace VRhfo.UI.Controllers
                 user.Username = user.Email.Substring(0, user.Email.IndexOf('@'));
                 user.NextRenewalDueDate = DateTime.Now.AddDays(30);
                 user.GoonScore = 15; //the default 15 points for joining, will go down if first week watch time does not surpass 1 hour
-                if (UserManager.Insert(user) > 0)
+                if (await UserManager.InsertAsync(user) > 0)
                 {
                     SetUser(user);
                     return RedirectToAction(nameof(PaymentSuccess), "User");
@@ -197,10 +199,11 @@ namespace VRhfo.UI.Controllers
             }
         }
 
-        public ActionResult Index(string username)
-       {
+        
+        public async Task<IActionResult> Index(string username)
+        {
 
-            User user = UserManager.LoadByUsername(username);
+            User user = await UserManager.LoadByUsernameAsync(username);
 
             var authUser = HttpContext.Session.GetObject<User>("user");
 
@@ -211,7 +214,7 @@ namespace VRhfo.UI.Controllers
 
             //watch stats are grabbed all at once and stored in an empty user so I can place them in actual user
             User userHistory = new User();
-            userHistory = UserManager.LoadWatchedVideos(username);
+            userHistory = await UserManager.LoadWatchedVideosAsync(username);
             user.VideosWatchedToday = userHistory.VideosWatchedToday;
             user.VideosWatchedPastWeek = userHistory.VideosWatchedPastWeek;
             user.RestOfVideosWatched = userHistory.RestOfVideosWatched;
@@ -230,24 +233,24 @@ namespace VRhfo.UI.Controllers
             return RedirectToAction("Index", "Video");
         }
 
-        public ActionResult ManageAccount(string username)
+        public async Task<IActionResult> ManageAccount(string username)
         {
-            User user = UserManager.LoadByUsername(username);
+            User user = await UserManager.LoadByUsernameAsync(username);
 
             return View(user);
         }
 
         [HttpGet]
-        public IActionResult GetWatchTime(Guid userId)
+        public async Task<IActionResult> GetWatchTime(Guid userId)
         {
 
             //HERE only grabbing the seconds. 
             //Daily will query based on watch entries LastDateWatched value being today, then total the durations
             //Weekly will query videos first watched 
-            int dailySeconds = UserManager.LoadTodaysWatchTime(userId);
-            int weeklySeconds = UserManager.LoadWeeklyWatchTime(userId);
-            int monthlySeconds = UserManager.LoadMonthlyWatchTime(userId);
-            int lifetimeSeconds = UserManager.LoadLifetimeWatchTime(userId);
+            int dailySeconds = await UserManager.LoadTodaysWatchTimeAsync(userId);
+            int weeklySeconds = await UserManager.LoadWeeklyWatchTimeAsync(userId);
+            int monthlySeconds = await UserManager.LoadMonthlyWatchTimeAsync(userId);
+            int lifetimeSeconds = await UserManager.LoadLifetimeWatchTimeAsync(userId);
 
             return Json(new
             {

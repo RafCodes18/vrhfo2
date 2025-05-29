@@ -82,7 +82,7 @@ namespace VRhfo.UI.Controllers
 
 
         // GET: VideoController/Watch/how-to-build-a-tube-site (example URL)
-        public ActionResult Watch(string title)
+        public async Task<ActionResult> Watch(string title)
         {
             // Revert '-' (or '+') back to spaces
             string cleanTitle = title.Replace("-", " ").Replace("%27", "'");
@@ -105,7 +105,7 @@ namespace VRhfo.UI.Controllers
             //load user
             if (videoViewModel.video.UserId != Guid.Empty)
             {
-                videoViewModel.video.user = UserManager.LoadById(videoViewModel.video.UserId);
+                videoViewModel.video.user = await UserManager.LoadByIdAsync(videoViewModel.video.UserId);
             }
 
 
@@ -143,7 +143,7 @@ namespace VRhfo.UI.Controllers
                     foreach (var reply in comment.Replies)
                     {
                         // Load user that posted each reply
-                        reply.User = UserManager.LoadById(reply.UserId);
+                        reply.User = await UserManager.LoadByIdAsync(reply.UserId);
                     }
                 }
             }
@@ -276,7 +276,7 @@ namespace VRhfo.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddComment([FromBody] dynamic commentDto)
+        public async Task<IActionResult> AddComment([FromBody] dynamic commentDto)
         {
             User currentUser = GetCurrentUser();
 
@@ -295,7 +295,7 @@ namespace VRhfo.UI.Controllers
 
             if (CommentManager.InsertComment(newComment) > 0)
             {
-                newComment.User = UserManager.LoadById(newComment.UserId);
+                newComment.User = await UserManager.LoadByIdAsync(newComment.UserId);
 
                 return Json(new { success = true, comment = newComment });
             }
