@@ -37,7 +37,7 @@ public partial class VRhfoEntities : DbContext
     {
         modelBuilder.Entity<tblComment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC07684E39C7");
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC0769C90AC8");
 
             entity.ToTable("tblComment");
 
@@ -50,7 +50,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblCommentLike>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC0711305285");
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC0719A989B8");
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -59,7 +59,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblReply>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblReply__3214EC073AB0B6B6");
+            entity.HasKey(e => e.Id).HasName("PK__tblReply__3214EC07A3C40AD7");
 
             entity.ToTable("tblReply");
 
@@ -72,17 +72,19 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblUser>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC0729819871");
+            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC071A64D3F0");
 
             entity.ToTable("tblUser");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.AccessFailedCount).HasDefaultValueSql("((0))");
             entity.Property(e => e.Auth0UserId)
                 .HasMaxLength(10)
                 .IsFixedLength();
             entity.Property(e => e.ConcurrencyStamp).HasMaxLength(128);
             entity.Property(e => e.Email).HasMaxLength(50);
             entity.Property(e => e.FirstVisit).HasColumnType("datetime");
+            entity.Property(e => e.LockoutEnabled).HasDefaultValueSql("((0))");
             entity.Property(e => e.LockoutEnd).HasColumnType("datetime");
             entity.Property(e => e.NextRenewalDueDate).HasColumnType("date");
             entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
@@ -90,6 +92,8 @@ public partial class VRhfoEntities : DbContext
             entity.Property(e => e.PasswordHash)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.PasswordResetToken).HasMaxLength(100);
+            entity.Property(e => e.PasswordResetTokenExpiration).HasColumnType("datetime");
             entity.Property(e => e.SecurityStamp).HasMaxLength(128);
             entity.Property(e => e.SubscribedDate).HasColumnType("datetime");
             entity.Property(e => e.SubscriptionTier)
@@ -100,7 +104,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC0714E4974E");
+            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC0797D15F29");
 
             entity.ToTable("tblVideo");
 
@@ -114,7 +118,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideosLiked>(entity =>
         {
-            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D88988CA3C9");
+            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D887FCB2518");
 
             entity.ToTable("tblVideosLiked");
 
@@ -132,7 +136,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblWatchEntry>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC079A3498D3");
+            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC0730CDE6C2");
 
             entity.ToTable("tblWatchEntry");
 

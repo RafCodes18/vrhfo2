@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using VRhfo.PL;
+using VRhfo.UI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,18 +14,31 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+// Add VRhfoEntities
+builder.Services.AddDbContext<VRhfoEntities>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("VRhfoEntities")));
+
+// Add EmailClient
+builder.Services.AddHttpClient<EmailClient>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration.GetValue<string>("EmailService:BaseAddress"));
+});
+
 //add ability to access Http Context
 builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage(); // Show detailed errors in development
+}
+else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

@@ -19,7 +19,7 @@ namespace VRhfo.BL
             {
             }
         }
-      /*  public static async Task<string> GeneratePasswordResetTokenAsync(User user)
+        public static async Task<string> GeneratePasswordResetTokenAsync(User user)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace VRhfo.BL
             {
                 throw;
             }
-        }*/
+        }
 
         public static async Task<User> FindByEmailAsync(ResetPassword rpModel)
         {
@@ -74,8 +74,8 @@ namespace VRhfo.BL
                         SubscriptionStartDate = (DateTime)row.SubscribedDate,
                         Auth0UserId = row.Auth0UserId,
                         Subscription_Tier = row.SubscriptionTier,
-                        NextRenewalDueDate = row.NextRenewalDueDate,
-                        GoonScore = row.GoonScore
+                        NextRenewalDueDate = (DateTime)row.NextRenewalDueDate,
+                        GoonScore = (int)row.GoonScore
                     };
                 }
             }
@@ -107,7 +107,7 @@ namespace VRhfo.BL
                         FirstVisit = tblUser.FirstVisit,
                         Password = tblUser.PasswordHash,
                         Subscription_Tier = tblUser.SubscriptionTier,
-                        GoonScore = tblUser.GoonScore
+                        GoonScore = (int)tblUser.GoonScore
                     };
 
                     return user;
@@ -167,13 +167,13 @@ namespace VRhfo.BL
                         {
                             user.SubscriptionStartDate = (DateTime)row.SubscribedDate;
                             user.Subscription_Tier = row.SubscriptionTier;
-                            user.NextRenewalDueDate = row.NextRenewalDueDate;
+                            user.NextRenewalDueDate = (DateTime)row.NextRenewalDueDate;
                             user.FirstVisit = row.FirstVisit;
                             user.Username = row.Username;
                             user.IsSubscribed = row.IsSubscribed;
                             user.Email = row.Email;
                             user.Password = row.PasswordHash == user.Password ? user.Password : GetHash(user.Password);
-                            user.GoonScore = row.GoonScore;
+                            user.GoonScore = (int)row.GoonScore;
                             return true;
                         }
                         return false;
@@ -216,8 +216,8 @@ namespace VRhfo.BL
                         SubscriptionStartDate = (DateTime)row.SubscribedDate,
                         Auth0UserId = row.Auth0UserId,
                         Subscription_Tier = row.SubscriptionTier,
-                        NextRenewalDueDate = row.NextRenewalDueDate,
-                        GoonScore = row.GoonScore
+                        NextRenewalDueDate = (DateTime)row.NextRenewalDueDate,
+                        GoonScore = (int)row.GoonScore
                     };
                 }
             }

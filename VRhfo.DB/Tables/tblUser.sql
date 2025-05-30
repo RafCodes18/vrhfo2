@@ -9,14 +9,16 @@
     [SubscribedDate] DATETIME NULL, 
     [PasswordHash] VARCHAR(50) NOT NULL, 
     [SubscriptionTier] VARCHAR(50) NOT NULL, 
-    [NextRenewalDueDate] DATE NOT NULL, 
-    [GoonScore] INT NOT NULL, 
+    [NextRenewalDueDate] DATE NULL, 
+    [GoonScore] INT NULL, 
 
     NormalizedEmail NVARCHAR(256) NULL, -- Identity
     NormalizedUsername NVARCHAR(256) NULL, -- Identity
     ConcurrencyStamp NVARCHAR(128) NULL, -- Identity
-    LockoutEnabled BIT NOT NULL DEFAULT 0, -- Identity, set to 0 to disable
+    LockoutEnabled BIT NULL DEFAULT 0, -- Identity, set to 0 to disable
     LockoutEnd DATETIME NULL, -- Identity
-    AccessFailedCount INT NOT NULL DEFAULT 0, -- Identity
+    AccessFailedCount INT NULL DEFAULT 0, -- Identity
     SecurityStamp NVARCHAR(128) NULL -- Identity
-)
+, 
+    [PasswordResetToken] NVARCHAR(100) NULL, 
+    [PasswordResetTokenExpiration] DATETIME NULL)

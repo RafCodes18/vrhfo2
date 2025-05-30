@@ -23,9 +23,9 @@ public partial class tblUser
 
     public string SubscriptionTier { get; set; } = null!;
 
-    public DateTime NextRenewalDueDate { get; set; }
+    public DateTime? NextRenewalDueDate { get; set; }
 
-    public int GoonScore { get; set; }
+    public int? GoonScore { get; set; }
 
     public string? NormalizedEmail { get; set; }
 
@@ -33,13 +33,17 @@ public partial class tblUser
 
     public string? ConcurrencyStamp { get; set; }
 
-    public bool LockoutEnabled { get; set; }
+    public bool? LockoutEnabled { get; set; }
 
     public DateTime? LockoutEnd { get; set; }
 
-    public int AccessFailedCount { get; set; }
+    public int? AccessFailedCount { get; set; }
 
     public string? SecurityStamp { get; set; }
+
+    public string? PasswordResetToken { get; set; }
+
+    public DateTime? PasswordResetTokenExpiration { get; set; }
 
     public virtual ICollection<tblVideosLiked> tblVideosLikeds { get; set; } = new List<tblVideosLiked>();
 }

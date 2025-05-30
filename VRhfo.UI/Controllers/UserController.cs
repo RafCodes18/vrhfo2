@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using VRhfo.BL;
 using VRhfo.BL.Models;
+using VRhfo.PL;
+using VRhfo.UI.Services;
 using VRhfo.UI.ViewModels;
 
 
@@ -9,6 +11,14 @@ namespace VRhfo.UI.Controllers
 {
     public class UserController : Controller
     {
+        private readonly EmailClient _emailClient;
+        private readonly VRhfoEntities _dbContext;
+
+        public UserController(EmailClient emailClient, VRhfoEntities dbContext)
+        {
+            _emailClient = emailClient;
+            _dbContext = dbContext;
+        }
         public void SetUser(User user)
         {
             if (user != null)
@@ -29,25 +39,38 @@ namespace VRhfo.UI.Controllers
         {
             return View();
         }
-/*
+
         [HttpPost]
-        public async Task<IActionResult> ForgotPassword(string email)
+        public async Task<IActionResult> ForgotPassword(ResetPassword rpModel)
         {
             if (ModelState.IsValid)
-            {
-                ResetPassword resetPassword = new ResetPassword();
-                resetPassword.Email = email;
-                var user = await UserManager.FindByEmailAsync(resetPassword);
+            {                 
+                var user = await UserManager.FindByEmailAsync(rpModel);
                 if (user != null)
                 {
                     var token = await UserManager.GeneratePasswordResetTokenAsync(user);
-                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, token }, protocol: Request.Scheme);
-                    await _emailClient.SendEmailAsync(model.Email, "Reset Password - PornWorship", callbackUrl);
+                    var callbackUrl = Url.Action("ResetPassword", "User", new { userId = user.Id, token }, protocol: Request.Scheme);
+                    await _emailClient.SendEmailAsync(rpModel.Email, "Reset Password - PornWorship", callbackUrl);
                 }
                 return RedirectToAction("ForgotPasswordConfirmation");
             }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ResetPassword(Guid userId, string token)
+        {
+            if (userId == Guid.Empty || string.IsNullOrEmpty(token))
+                return RedirectToAction("Index", "Home");
+            var model = new ResetPasswordViewModel { UserId = userId.ToString(), Token = token };
             return View(model);
-        }*/
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(User user)
