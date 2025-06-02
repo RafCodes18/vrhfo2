@@ -14,6 +14,9 @@
 }
 
 <style>
+    #toggleSidebar{
+        margin-bottom: -2px !important; 
+    }
     body{
         background-color: rgb(21, 21, 21) !important ;
     }
@@ -437,7 +440,7 @@
                   
                             <img class="vid-img" src="@item.ThumbnailUrl" alt="@item.Title" style="width: 100%;">
                             <div class="time-container">
-                                 <p class="card-time">@item.FormattedDuration </p>
+                                 <p class="card-time"><i class="fas fa-clock"></i> @item.FormattedDuration </p>
                             </div>
                    
                     </div>
@@ -452,7 +455,7 @@
                                 @item.FormattedUploadDate
                             </div>
                             <div class="details-views">
-                                @item.FormattedViews <img src="~/img/vision.png" height="20" width="20" />
+                                @item.FormattedViews <img src="~/img/vision.png"  height="20" width="20" />
                             </div>
                         </div>
                     </div>

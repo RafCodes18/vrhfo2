@@ -44,5 +44,10 @@ namespace VRhfo.BL.Models
         public List<Video> VideosWatchedToday { get; set; }
         public List<Video> VideosWatchedPastWeek { get; set; }
         public List<Video> RestOfVideosWatched { get; set; }
+
+
+        public string? PasswordResetToken { get; set; }
+
+        public DateTime? PasswordResetTokenExpiration { get; set; }
     }
 }

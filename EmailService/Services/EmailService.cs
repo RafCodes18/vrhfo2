@@ -55,7 +55,6 @@ namespace EmailService.Services
                 </div>";
 
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            msg.AddBcc(new EmailAddress("support@pornworship.com")); // BCC for visibility in Porkbun inbox
             var response = await client.SendEmailAsync(msg);
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK && response.StatusCode != System.Net.HttpStatusCode.Accepted)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
 using VRhfo.BL;
 using VRhfo.BL.Models;
@@ -41,6 +42,45 @@ namespace VRhfo.UI.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel rpModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                Guid userId = new Guid(rpModel.UserId);
+                User user = await UserManager.LoadByIdAsync(userId);
+                string newPassword = rpModel.ConfirmPassword;
+                if (user != null && user.PasswordResetTokenExpiration != null)
+                {
+                    // Check if the token is expired
+                    if (DateTime.UtcNow <= user.PasswordResetTokenExpiration.Value)
+                    {
+                        // Proceed with password reset logic
+                        int success = await UserManager.UpdatePassword(user, newPassword);
+                        // Example: user.Password = Hash(rpModel.NewPassword); etc.
+                        if(success >= 1)
+                        {
+                            return RedirectToAction("ResetPasswordConfirmation");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "The password reset link has expired. Please request a new one.");
+                        return View(rpModel);
+                    }
+                }
+
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public async Task<IActionResult> ForgotPassword(ResetPassword rpModel)
         {
             if (ModelState.IsValid)
@@ -51,16 +91,22 @@ namespace VRhfo.UI.Controllers
                     var token = await UserManager.GeneratePasswordResetTokenAsync(user);
                     var callbackUrl = Url.Action("ResetPassword", "User", new { userId = user.Id, token }, protocol: Request.Scheme);
                     await _emailClient.SendEmailAsync(rpModel.Email, "Reset Password - PornWorship", callbackUrl);
+                    return RedirectToAction("ForgotPasswordConfirmation", rpModel);
+
                 }
-                return RedirectToAction("ForgotPasswordConfirmation");
+                //for security, dont let them know if email exists, whether it does or not show same message
+                else
+                {
+                    return RedirectToAction("ForgotPasswordConfirmation", rpModel);
+                }
             }
             return View();
         }
 
         [HttpGet]
-        public ActionResult ForgotPasswordConfirmation()
+        public ActionResult ForgotPasswordConfirmation(ResetPassword rpModel)
         {
-            return View();
+            return View(rpModel);
         }
 
         [HttpGet]
@@ -104,15 +150,15 @@ namespace VRhfo.UI.Controllers
             var json = Newtonsoft.Json.Linq.JObject.Parse(loginData.ToString());
 
             // Extract username and password
-            string username = json["username"]?.ToString();
+            string email = json["email"]?.ToString();
             string password = json["password"]?.ToString();
             string returnUrl = json["returnUrl"]?.ToString();  
 
 
             User user = new User()
             {
-                Username = username,
-                Password = password
+                Email = email,
+                Password = password,                
             };
             bool loginWorked = await UserManager.LoginAsync(user);
             User user1 = await UserManager.LoadByUsernameAsync(user.Username);

@@ -19,6 +19,38 @@ namespace VRhfo.BL
             {
             }
         }
+
+        public static async Task<int> UpdatePassword(User user, string newPassword)
+        {
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    int result;
+                    var tblUser = await dc.tblUsers.FirstOrDefaultAsync(u => u.Id == user.Id);
+                    if (tblUser == null)
+                        throw new Exception("User not found.");
+
+                    // Hash the new password
+                    string hashedPassword = newPassword;
+
+                    // Update the password
+                    tblUser.PasswordHash = hashedPassword;
+
+                    // Clear the reset token and expiration if they exist
+                    tblUser.PasswordResetToken = null;
+                    tblUser.PasswordResetTokenExpiration = null;
+
+                    result = await dc.SaveChangesAsync();
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static async Task<string> GeneratePasswordResetTokenAsync(User user)
         {
             try
@@ -84,7 +116,7 @@ namespace VRhfo.BL
                 throw;
 
             }
-        }
+       }
 
         public static async Task<User> LoadByIdAsync(Guid id)
         {
@@ -107,7 +139,9 @@ namespace VRhfo.BL
                         FirstVisit = tblUser.FirstVisit,
                         Password = tblUser.PasswordHash,
                         Subscription_Tier = tblUser.SubscriptionTier,
-                        GoonScore = (int)tblUser.GoonScore
+                        GoonScore = (int)tblUser.GoonScore,
+                        PasswordResetToken = tblUser.PasswordResetToken,
+                        PasswordResetTokenExpiration = tblUser.PasswordResetTokenExpiration
                     };
 
                     return user;
@@ -154,11 +188,11 @@ namespace VRhfo.BL
         {
             try
             {
-                if (!string.IsNullOrEmpty(user.Username) && !string.IsNullOrEmpty(user.Password))
+                if (!string.IsNullOrEmpty(user.Email) && !string.IsNullOrEmpty(user.Password))
                 {
                     using (VRhfoEntities db = new VRhfoEntities())
                     {
-                        tblUser row = await db.tblUsers.FirstOrDefaultAsync(u => u.Username == user.Username);
+                        tblUser row = await db.tblUsers.FirstOrDefaultAsync(u => u.Email == user.Email);
                         if (row == null)
                             return false;
 
@@ -174,6 +208,7 @@ namespace VRhfo.BL
                             user.Email = row.Email;
                             user.Password = row.PasswordHash == user.Password ? user.Password : GetHash(user.Password);
                             user.GoonScore = (int)row.GoonScore;
+                           
                             return true;
                         }
                         return false;
