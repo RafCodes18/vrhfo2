@@ -80,12 +80,12 @@
         .sug-img{
             border-radius: 5px;
             object-fit: cover;
-            height: 120px;
+            max-height: 120px;
             width: 180PX;
             min-width: 150px !important;
         }
         .video{
-        height: 230px !important;
+        max-height: 230px !important;
     }
         .video:hover{
             outline: 1px solid #444;
@@ -102,10 +102,7 @@
 
            min-width: 760px !important;
          }    
-    .sug-title{
-        width: 200px;
-        flex-wrap: wrap;
-    }
+
     .vid-details-top-row{
         display: flex;
         justify-content: space-between;
@@ -680,7 +677,7 @@
         </div>
         <div class="vid-details-last">
             <div class="details-last-first2">
-                <span class="by-txt">Made By:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@mambaCode </a></p>
+                <span class="by-txt">Made By:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
             </div>
         </div>
     </div>
@@ -1476,18 +1473,21 @@
                        
                         </div>
                         <div class="sug-vid-content">
-                            <h5 class="video-title">@Model.suggestedVideos[i].Title</h5>
+                            <h5 class="sug-video-title">@Model.suggestedVideos[i].Title</h5>
+                            <div class="tooltip-box">@Model.suggestedVideos[i].Title</div>
+
                           
                             <div class="sug-vid-content-bottom">                                
                                 <div class="bottom-row">
-                                    <div>
+                                    <div class="sug-upload-date">
+                                        @Model.suggestedVideos[i].FormattedUploadDate
+
+                                    </div>
+                                <div>
                                         <img src="~/img/vision.png" height="22px" width="20px" />
 
                                         @Model.suggestedVideos[i].FormattedViews
 
-                                    </div>
-                                <div>
-                                        @Model.suggestedVideos[i].FormattedUploadDate
 
                                 </div>
                                 </div>
@@ -1502,12 +1502,35 @@
 
 </div>
 
-<style>     
+
+<style>    
+    .tooltip-box {
+        display: none;
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        white-space: normal;
+        width: max-content;
+        max-width: 180px;
+        z-index: 10;
+    }
+
+    .sug-vid-content:hover .tooltip-box {
+        display: block;
+    }
     .bottom-row{
         width: 100% !important;
         display: flex;
         justify-content:space-between;
-      
+        padding: 0px 6px;
+    }
+
+    .suggested-video-item{
+   s
     }
     .suggested-video-item:hover{
         border-radius: 10px !important;
@@ -1515,10 +1538,14 @@
     .no-comments{
         color: #777 !important;
     }
-    .video-title{
+    .sug-video-title{
         color: #bbb !important;
         margin-top: 10px;
-    }
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* limits to 2 lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+     }
     .sug-vid-content{
         color: #9a9a9a !important;  
         position: relative;
@@ -1566,13 +1593,24 @@
     .cta-text {
     }
 
+    @@media(max-width: 450px){
+        .join-premium-container{
+            max-width: 390px !important;
+        }
+        .sug-upload-date{
+            font-size: 12px !important;
+        }
+        .suggested-video-item{
+            margin: 4px;
+        }
+    }
 
     .page-right-container {
         flex-grow: 0;
         max-width: 560px;
         position: relative;
         margin-bottom: 300px;
-        margin-top: 10px !important; 
+        margin-top: 12px !important; 
         margin-left: 10px
     }
    
@@ -1604,8 +1642,18 @@
 
 
 <!--NEWWw LIKE BUTTON FUNCTIONALITY-->
-<script>     
+<script>
+
     document.addEventListener('DOMContentLoaded', function () {
+        const currentVideoId = @Model.video.Id;
+        setTimeout(() => {
+            fetch('/Video/RegisterView', {
+                method: 'POST',
+                body: JSON.stringify({ videoId: currentVideoId }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }, 5000); // after 5s
+
         const sidebar = document.getElementById('sidebar');
         const toggleButton = document.getElementById('toggleSidebar');
         const main = document.querySelector('main');
@@ -2047,6 +2095,17 @@
         console.log(replyBox);
         replyBox.style.display = 'none'; // Hide the reply input box
     }
+
+    document.querySelectorAll('.sug-video-title').forEach(el => {
+        const length = el.textContent.length;
+        if (length > 60) {
+            el.style.fontSize = '9px';
+        } else if (length > 30) {
+            el.style.fontSize = '14px';
+        } else {
+            el.style.fontSize = '16px';
+        }
+    });
 </script>
 
 

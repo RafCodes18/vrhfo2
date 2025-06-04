@@ -6,6 +6,71 @@ namespace VRhfo.BL
 {
     public static class VideoManager
     {
+        public static bool HasUserViewedRecently(Guid userId, int videoId, TimeSpan interval)
+        {
+            using (VRhfoEntities dc = new VRhfoEntities())
+            {
+                var since = DateTime.Now - interval;
+                return dc.tblVideoViews.Any(v =>
+                    v.UserId == userId &&
+                    v.VideoId == videoId &&
+                    v.ViewTime > since);
+            }
+        }
+        public static bool HasIpViewedRecently(string ip, int videoId, TimeSpan interval)
+        {
+            using (VRhfoEntities dc = new VRhfoEntities())
+            {
+                var since = DateTime.Now - interval;
+                return dc.tblVideoViews.Any(v =>
+                    v.IPAdress == ip &&
+                    v.VideoId == videoId &&
+                    v.ViewTime > since);
+            }
+        }
+        public static void LogUserView(Guid userId, int videoId)
+        {
+            using (VRhfoEntities dc = new VRhfoEntities())
+            {
+                var entry = new tblVideoView
+                {
+                    VideoId = videoId,
+                    UserId = userId,
+                    ViewTime = DateTime.Now
+                };
+
+                dc.tblVideoViews.Add(entry);
+                dc.SaveChanges();
+            }
+        }
+        public static void LogIpView(string ip, int videoId)
+        {
+            using (VRhfoEntities dc = new VRhfoEntities())
+            {
+                var entry = new tblVideoView
+                {
+                    VideoId = videoId,
+                    IPAdress = ip,
+                    ViewTime = DateTime.Now
+                };
+
+                dc.tblVideoViews.Add(entry);
+                dc.SaveChanges();
+            }
+        }
+
+        public static void IncrementView(int videoId)
+        {
+            using (VRhfoEntities dc = new VRhfoEntities())
+            {
+                var video = dc.tblVideos.FirstOrDefault(v => v.Id == videoId);
+                if (video != null)
+                {
+                    video.Views += 1;
+                    dc.SaveChanges();
+                }
+            }
+        }
 
         public static List<Video> GetUsersLikedVideos(Guid userId)
         {

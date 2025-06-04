@@ -6,6 +6,7 @@ using X.PagedList;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
 using VRhfo.PL;
+using VRhfo.UI.ViewModels;
 
 
 namespace VRhfo.UI.Controllers
@@ -403,5 +404,33 @@ namespace VRhfo.UI.Controllers
                 throw;
             }
         }
+
+        [HttpPost]
+        public IActionResult RegisterView([FromBody] ViewRequest request)
+        {
+            var user = GetCurrentUser();
+            var videoId = request.VideoId;
+
+            if (user != null)
+            {
+                if (!VideoManager.HasUserViewedRecently(user.Id, videoId, TimeSpan.FromMinutes(20)))
+                {
+                    VideoManager.IncrementView(videoId);
+                    VideoManager.LogUserView(user.Id, videoId);
+                }
+            }
+            else
+            {
+                var ip = HttpContext.Connection.RemoteIpAddress.ToString();
+                if (!VideoManager.HasIpViewedRecently(ip, videoId, TimeSpan.FromHours(1)))
+                {
+                    VideoManager.IncrementView(videoId);
+                    VideoManager.LogIpView(ip, videoId);
+                }
+            }
+
+            return Ok();
+        }
+
     }
 }
