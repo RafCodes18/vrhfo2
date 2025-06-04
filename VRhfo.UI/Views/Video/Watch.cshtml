@@ -640,8 +640,10 @@
                     @Model.video.Title    
                 </h2>
                 <div class="date-cont">                        
-                    <p class="form-date"><span class=" dot wht">• </span>@Model.video.FormattedUploadDate </p>                    
-                    <p class="form-date"><span class=" dot wht">• </span>@Model.video.FormattedViews views</p>
+                    <p class="form-date" title="@Model.video.UploadDate"><span class=" dot wht">• </span>@Model.video.FormattedUploadDate </p>
+                    <p class="form-date" title="@Model.video.Views">
+                        <span class="dot wht">• </span>@Model.video.FormattedViews @(Model.video.Views == 1 ? "view" : "views")
+                    </p>
                 </div>
             </div>
             @*OLD LIKES*@
@@ -757,8 +759,8 @@
                     <div class="comment-body">                             
                             <div class="comment-top">
                                 <div class="content">
-                                    <span class="comments-username">JohnSmith</span>
-                                    <p class="date-posted-txt">@comment.FormattedUploadDate</p>
+                                    <span class="comments-username">@@@comment.User.Username</span>
+                                    <p class="date-posted-txt" title="@comment.DatePosted">@comment.FormattedUploadDate</p>
                        
                                 </div>
                                 <p class="comment-content">@comment.Content  </p>
@@ -1076,7 +1078,7 @@
             flex-wrap: nowrap !important;
         }
         .form-date{
-            color: #a4a4a4 !important;
+            color: #818181 !important;
             font-size: 16px;
             margin-left: 4px;     
             align-self: center;

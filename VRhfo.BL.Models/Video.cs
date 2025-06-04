@@ -106,7 +106,6 @@
             }
         }
 
-
         public string FormattedViews
         {
             get
@@ -117,14 +116,19 @@
                 }
                 else if (Views < 1000000)
                 {
-                    return (Views / 1000.0).ToString("F1") + "k";
+                    double value = Views / 1000.0;
+                    return (value == Math.Floor(value) ? ((int)value).ToString() : value.ToString("0.#")) + "k";
                 }
                 else
                 {
-                    return (Views / 1000000.0).ToString("F1") + "M";
+                    double value = Views / 1000000.0;
+                    return (value == Math.Floor(value) ? ((int)value).ToString() : value.ToString("0.#")) + "M";
                 }
             }
         }
+
+
+
 
         public string FormattedUploadDate
         {
