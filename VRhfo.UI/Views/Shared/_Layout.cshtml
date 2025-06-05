@@ -752,16 +752,37 @@
             padding: 15px 10px;
             background-color: #000 !important;
         }
-        .result-box ul li{
+        .result-box-2{
+            padding: 2px;
+            background-color: #252525;
+
+        }.result-box-2 ul{
+            padding: 0px !important;
+                background-color: #333;
+        }
+            .result-box ul li {
             list-style: none;
             border-radius: 3px;
             padding: 5px 10px;
             cursor: pointer;
         }
-            .result-box li:hover {
+         .result-box-2 ul li{
+            list-style: none;
+            border-radius: 5px;
+            padding: 10px 10px;
+            cursor: pointer;
+        }
+        .result-box-2 li{
+            background-color: #111 !important;
+            margin: 3px;
+            padding: 3px;
+            color: var(--primary-color);
+        }
+        .result-box li:hover, .result-box-2 li:hover {
                 background-color: #555;
             }
-        .result-box{
+
+        .result-box, .result-box-2 {
             max-height: 200px;
             overflow-y: scroll;
         }
@@ -772,9 +793,9 @@
         }
         .mobile-search{ 
             position: fixed;
-            top: 12%;
+            top: 10%;
             width: 98%;
-            z-index: 999;
+            z-index: 999999999 !important;
         }
         .mobile-search input{
                 position: relative;
@@ -783,7 +804,8 @@
                 border: 1px solid var(--primary-color);
                 padding: 8px 20px;
                 font-size: large;
-        }
+                z-index: 999999999 !important;
+            }
         .mobile-search input:focus{
                     outline: none !important;
                     box-shadow: none !important;
@@ -799,7 +821,7 @@
             right: 0;
             background-color: #000;
             opacity: 0.9;
-            z-index: 99;      
+            z-index: 99999;      
         }
         .nav-top{
             margin-right: 50px !important;
@@ -1064,7 +1086,7 @@
         <div class="mobile-search hidden">
             <form class="form-inline   search-form">
                 <div class="input-group searchbar ">
-                    <input id="mobileSearch" type="search" class="form-control mobile-search-bar" placeholder="Search" data-search />
+                    <input id="mobileSearch" type="search" class="form-control mobile-search-bar" placeholder="Search" data-search2 />
                     <button type="button" class="btn btn-outline-primary2  "><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 <div class="result-box-2">
@@ -1261,11 +1283,12 @@
     const searchLink = document.querySelector(".search-link");
     const overlay2 = document.querySelector('.overlay2');
     const mobileSearchInput = document.getElementById('mobileSearch');
-    const searchCue2 = document.querySelector('.btn-outline-primary2');
 
     searchLink.onclick = function() {
         mobileSearch.classList.toggle("hidden");
         overlay2.classList.toggle('hidden');
+        mobileSearchInput.focus();
+
     };
 
     function toggleHidden(){
