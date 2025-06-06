@@ -194,9 +194,7 @@
              padding: 0 !important;
              margin: 0 !important;
         }
-        .vid-details-bottom-row{
-            align-self: end;
-        }
+
         .form-date{
             padding: 0 !important;
             margin: 0 !important;            
@@ -628,8 +626,30 @@
                     <video class="vid"  preload="auto" autoplay id="videoPlayer">
                         <source src="@Model.video.VideoUrl" type="video/mp4">
                     </video>
-                  <img class="video-watermark" src="~/img/bbtv-invisible.png" />
+@*                   <img class="video-watermark" src="~/img/bbtv-invisible.png" />
+ *@                  
+                 @*    <p class="record-edge">
+                        Record Edge
+                    </p> *@
+                  <div class="video-stats-overlay">
+                   @*  <div class="top-stats"> *@
+                    <p class="stats-for-gooners">👁️ 38m today | 5h this week
+</p>
+                   @*  <p class="stats-for-gooners">Stats for gooners:</p>
+
+                    <p class="stat1">12m 42s today</p> *@
+                    @* <p class="stat2">1h 44m this week</p>
+                    <p class="stat3">5h 5m lifetime</p> *@
+                  @*   </div> *@
+             
+                   @*  <div class="bottom-stats">
+                        <p class="stat4">Braincells lost: 3</p>
+                <p class="stat5">Edges Today:5</p>
+                    </div> *@
+
+                  </div>
                     
+
                 
     </div>
     <!-- VIDEO (canvas) DETAILS -->
@@ -639,12 +659,7 @@
                 <h2 class="vid-title-txt">
                     @Model.video.Title    
                 </h2>
-                <div class="date-cont">                        
-                    <p class="form-date" title="@Model.video.UploadDate"><span class=" dot wht">• </span>@Model.video.FormattedUploadDate </p>
-                    <p class="form-date" title="@Model.video.Views">
-                        <span class="dot wht">• </span>@Model.video.FormattedViews @(Model.video.Views == 1 ? "view" : "views")
-                    </p>
-                </div>
+                
             </div>
             @*OLD LIKES*@
             @* <p>
@@ -665,22 +680,31 @@
                         <!--HEART BUTTON-->
                         <div class="likeL @Model.likeState" data-video-id=@Model.video.Id></div>
 
-                        <span id="tooltiptext"><a class="tip-link" asp-action="Login" asp-controller="Home">Login</a> or <a asp-action="JoinNow" asp-controller="Home">Join</a> to like</span>
+                        <span id="tooltiptext"><a class="tip-link" asp-action="Login" asp-controller="Home">Login</a> or <a asp-action="JoinNow" asp-controller="Home">Join</a> to save</span>
                     </div>
 
-
-
-                    @Model.video.AverageRating %
+                    <p class="fave-txt">Favorites</p>
                 </div>
             </div>
         </div>
         <div class="vid-details-bottom-row">
-            <p><a class="category-txt" asp-action="Index" asp-controller="Video" asp-route-category="@Model.video.Category">#@Model.video.Category </a></p>
+            <div class="date-cont">
+                <p class="form-date" title="@Model.video.Views">
+                    @Model.video.FormattedViews @(Model.video.Views == 1 ? "view" : "views")
+                </p>
+                
+                <p class="form-date" title="@Model.video.UploadDate">| @Model.video.FormattedUploadDate </p>
+
+            </div>
+          
         </div>
         <div class="vid-details-last">
             <div class="details-last-first2">
                 <span class="by-txt">Made By:</span><a class="username-txt2" asp-action="Profile" asp-controller="User" asp-route-userid="@Model.video.UserId">@@@Model.video.user.Username </a></p>
             </div>
+            <p class="cat-p">
+                <a class="category-txt" asp-action="Index" asp-controller="Video" asp-route-category="@Model.video.Category">#@Model.video.Category </a>
+            </p>
         </div>
     </div>
      
@@ -1026,9 +1050,7 @@
             .vid-title-txt{
                 font-size: 20px;
             }
-            .likes-ratio{
-                font-size: 19px !important;
-            }
+    
 
             .dot.wht {
              display: none;
@@ -1119,6 +1141,42 @@
             right: 0;
             bottom: 0;
         }
+        .record-edge{
+            position: absolute;
+            right: 0;
+            top: 50%;
+            background-color: rgba(197, 0, 39, 1);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .record-edge:hover{
+                background-color: rgba(209, 0, 39, 1);
+            cursor: pointer;
+        }
+        .video-stats-overlay{
+            position: absolute;
+            bottom: 0;
+            margin: 0px;
+            padding: 0 !important;
+
+        }
+        .video-stats-overlay p{
+            margin: 0;
+            font-size: small;
+            padding: 0 !important;
+        }
+        .stat1{
+            color: red;
+        }
+        .stat2{
+            color: green;
+        }
+        .stat3{
+            color: blue;
+        }
+        .stats-for-gooners{
+            color: #919191; 
+        }
         .likeL:hover{
             cursor: pointer;
         }
@@ -1196,6 +1254,8 @@
             display: flex;
            color: #555;
            justify-content: space-between;
+           align-content: center;
+           align-items: center;
         }
         .views-txt{
             font-size: large;
@@ -1223,14 +1283,19 @@
             cursor: pointer;
         }    
         .likes-ratio{
-            font-size: x-large;
+            font-size: 19px;
             font-weight: 400;
-            color: var(--primary-color);
-            margin-top: 10px;
-            margin-right: 5px;
-            padding: 0 !important;
+            color: white;
+            margin-bottom: -10px !important;
+            padding:2px 8px !important;
             font-family: Dubai;
             display: flex;
+            background-color: #191919;
+            border-radius: 7px;
+        }
+        .fave-txt{
+            margin: 0 !important;
+            padding: 0px  4px!important;
         }
         .top-row-second-box{
             display: flex;
@@ -1475,8 +1540,9 @@
                        
                         </div>
                         <div class="sug-vid-content">
+
                             <h5 class="sug-video-title">@Model.suggestedVideos[i].Title</h5>
-                            <div class="tooltip-box">@Model.suggestedVideos[i].Title</div>
+                                                        <div class="tooltip-box">@Model.suggestedVideos[i].Title</div>
 
                           
                             <div class="sug-vid-content-bottom">                                
@@ -1521,7 +1587,7 @@
         z-index: 10;
     }
 
-    .sug-vid-content:hover .tooltip-box {
+    .sug-video-title:hover + .tooltip-box {
         display: block;
     }
     .bottom-row{

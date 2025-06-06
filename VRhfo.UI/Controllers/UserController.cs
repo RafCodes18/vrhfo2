@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using VRhfo.BL;
 using VRhfo.BL.Models;
 using VRhfo.PL;
+using VRhfo.UI.Models;
 using VRhfo.UI.Services;
 using VRhfo.UI.ViewModels;
 
@@ -34,6 +35,29 @@ namespace VRhfo.UI.Controllers
 
             }
         }
+        private User GetCurrentUser()
+        {
+            return HttpContext.Session.GetObject<User>("user");
+        }
+
+        [HttpPost]
+        public ActionResult SaveSessionData([FromBody] SessionDto data)
+        {
+            // Example: data contains SessionStart, SessionEnd, SessionDurationSeconds, WatchTimeSeconds
+            var ip = HttpContext.Connection.RemoteIpAddress.ToString();
+            var userId = GetCurrentUser().Id; // Your logic here
+
+            if(UserManager.SaveSessionData(userId, ip, data))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
+
 
         [HttpGet]
         public ActionResult ForgotPassword()

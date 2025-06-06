@@ -463,5 +463,10 @@ namespace VRhfo.BL
                 throw new ApplicationException("An error occurred while loading watched videos.", ex);
             }
         }
+
+        public static bool SaveSessionData(Guid userId, string ip, SessionDto data)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
