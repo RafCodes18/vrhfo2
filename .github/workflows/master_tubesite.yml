@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Build Web Project Only
-        run: dotnet build ./VRhfo.Web/VRhfo.Web.csproj --configuration Release
+        run: dotnet build ./VRhfo.UI/VRhfo.UI.csproj --configuration Release
 
       - name: Publish Web Project
-        run: dotnet publish ./VRhfo.Web/VRhfo.Web.csproj -c Release -o "${{github.workspace}}/publish"
+        run: dotnet publish ./VRhfo.UI/VRhfo.UI.csproj -c Release -o "${{github.workspace}}/publish"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
