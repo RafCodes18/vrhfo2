@@ -935,9 +935,9 @@
                                         <div class="dropdown">
                                             <span class="username-txt">@@@username &#x25BC;</span>
                                             <div class="dropdown-content">
-                                                <a class="top-DD-link" asp-action="Index" asp-controller="User" asp-route-username="@username">  <img src="~/img/user.png" height="25" width="25" class="m-1"/>Profile</a>
-                                                <a asp-action="Liked" asp-controller="Home"><img src="~/img/like.svg" class="m-1" />Favorites</a>
-                                                <a asp-action="Upload" asp-controller="Video"><img src="~/img/upload.png" height="25" width="25" class="m-1" /> Upload +</a>
+                                                <a class="top-DD-link" asp-action="Index" asp-controller="User" asp-route-username="@username">  <img src="@Url.Content("~/img/user.png")" height="25" width="25" class="m-1"/>Profile</a>
+                                                <a asp-action="Liked" asp-controller="Home"><img src="@Url.Content("~/img/like.svg")" class="m-1" />Favorites</a>
+                                                <a asp-action="Upload" asp-controller="Video"><img src="@Url.Content("~/img/upload.png")" height="25" width="25" class="m-1" /> Upload +</a>
                                                 <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username"><i class="fa-solid fa-gear settings-gear"></i>Manage Account</a>
 @*                                                 <a asp-action="ForgotPassword" asp-controller="User" class="forgot">Forgot Password</a><!-- this will just be change username and password page, user can select which -->
  *@                                                <a class="forgot bottom-DD-link" asp-action="Logout" asp-controller="User">Logout</a>
@@ -1049,11 +1049,11 @@
 
             <div class="mobile-footer">                
                 <a asp-action="Index" asp-controller="Video" asp-route-category="Latest" class="footer-item">
-                    <span class="footer-icon"><img src="~/img/home.png" /></span>
+                <span class="footer-icon"><img src="@Url.Content("~/img/home.png")" /></span>
                     <span class="footer-text">Home</span>
                 </a>
                 <a asp-aciton="Index" asp-controller="Video" asp-action="Categories" class="footer-item">
-                    <span class="footer-icon"><img src="~/img/category.png" /></span>
+                    <span class="footer-icon"><img src="@Url.Content("~/img/category.png")" /></span>
                     <span class="footer-text">Categories</span>
                 </a>
 
@@ -1061,12 +1061,12 @@
             @if (!Authenticate.IsAuthenticated(Context) && username != "")
             {
                 <a id="login-button2"10 class="footer-item">
-                    <span class="footer-icon"><img src="~/img/user.png" /></span>
+                    <span class="footer-icon"><img src="@Url.Content("~/img/user.png")" /></span>
                     <span class="footer-text">Login</span>
                 </a>
             }
             <a  class="footer-item search-link">
-                    <span class="footer-icon"><img src="~/img/search.png" /></span>
+                    <span class="footer-icon"><img src="@Url.Content("~/img/search.png")" /></span>
                     <span class="footer-text">Search</span>
                 </a>
                 <a asp-action="JoinNow" asp-controller="Home" class="footer-item">
