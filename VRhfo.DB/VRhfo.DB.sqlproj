@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{19a23628-3b29-4f77-a4ba-a314ce878a9a}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -90,5 +90,6 @@
     <None Include="PostDeploy\DefaultData\Replies.sql" />
     <None Include="PostDeploy\DefaultData\CommentLikes.sql" />
     <None Include="PostDeploy\DefaultData\VideoViews.sql" />
+    <None Include="remote.publish.xml" />
   </ItemGroup>
 </Project>
