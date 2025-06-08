@@ -418,7 +418,7 @@
             right: 0;
             background-color: #000;
             opacity: 0.8;
-            z-index: 999999999999;
+            z-index: 99999999;
         }
         .white{
             color: #fff;
@@ -446,7 +446,7 @@
             width: 100%;
             background-color: transparent;
             transition: transform 0.3s ease-in-out;
-            z-index: 9999;
+            z-index: 99999999999999 !important;
             margin-top:10px !important;
             margin-right: 0;
             display: flex;
@@ -1376,27 +1376,43 @@
     const toggleButton = document.getElementById('toggleSidebar');
     const main = document.querySelector('main');
     const mobileFooter = document.querySelector('mobile-footer');
-   
+    const overlay = document.querySelector('.overlay');
+
     toggleButton.addEventListener('click', () => {
         console.log("toggled");
         //if hamburger clicked in desktop mode, close sidebar.
+        //TOGGLE BUTTON CLICKED DESKTOP OR MOBILE FUNCTIONS
         if (window.innerWidth >= 1000) {
             sidebar.classList.toggle('closed');
-            main.classList.toggle('sidebar-closed');
+            main.classList.toggle('sidebar-closed');            
         } else {
             //otherwise open it
             sidebar.classList.toggle('open');
-
         }        
     });
 
     // Check the screen size using media query
+    //DETERMINE CSS CODE OR JS BASED ON DESKTOP VS MOBILE VIEW
     function checkScreenSize() {
         if (window.matchMedia("(max-width: 1000px)").matches) {                                    
             
-            // Execute your JavaScript code for mobile devices
+            //  !!mobile devices here!!           
             console.log("Mobile mode detected");
 
+            //TODO: grab hamburger on navbar, hide
+            
+            //TODO: grab hidden hamburger on mobile footer, show
+            
+            //detect clicks outside of sidebar and close sidebar if so
+            // Close sidebar on outside click
+            document.addEventListener("click", function (event) {
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickOnToggle = toggleButton.contains(event.target);
+
+                if (!isClickInsideSidebar && !isClickOnToggle) {
+                    sidebar.classList.remove("mobile-sidebar");
+                }
+            });
             toggleButton.onclick = function () {
                 sidebar.classList.toggle("mobile-sidebar");
             };
