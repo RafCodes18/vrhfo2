@@ -1049,7 +1049,7 @@
 
             <!--STICKY TIME STAMP DURATION OF SESSION-->
             <!--FORMATS: 00:45, 05:14, 01:13:06, etc-->
-            <p class="session-duration-sticky">05:14</p>
+            <p class="session-duration-sticky" id="timer">00:00</p>
 
 
 
@@ -1120,14 +1120,15 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
+ 
 <style>  
     .session-duration-sticky{
-        position: absolute;
-        bottom: 0;
-        right: 0;
+        position: fixed;
+        bottom: 20px;  
+        right: 20px; 
         color: darkred;
         font-size: 30px;
+        z-index: 9999999999999999999999 !important;
     }
     .lesser{
         font-size: smaller;
@@ -1293,7 +1294,15 @@
 
 </style>
 <script>
-    
+      let seconds = 0;
+    const timerElement = document.getElementById('timer');
+
+    setInterval(() => {
+        seconds++;
+        timerElement.textContent = `${seconds}s`;
+    }, 1000);
+
+
     const mobileSearch = document.querySelector(".mobile-search");
     const searchLink = document.querySelector(".search-link");
     const overlay2 = document.querySelector('.overlay2');

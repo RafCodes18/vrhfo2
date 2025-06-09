@@ -104,3 +104,5 @@ mosearchInput.addEventListener("input", e => {
         resultBox2.innerHTML = '';
     }
 }); 
+
+ 
