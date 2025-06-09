@@ -1049,7 +1049,7 @@
 
             <!--STICKY TIME STAMP DURATION OF SESSION-->
             <!--FORMATS: 00:45, 05:14, 01:13:06, etc-->
-            <p class="session-duration-sticky" id="timer">00:00</p>
+            <p class="session-duration-sticky" id="timer"></p>
 
 
 
@@ -1295,27 +1295,46 @@
 </style>
 <script>
 
- 
-      const timerElement = document.getElementById('timer');
+    const timerElement = document.getElementById('timer');
 
-    // Try to get the saved start time or set it to now
-    let startTime = localStorage.getItem('timerStart');
-    if (!startTime) {
-        startTime = Date.now();
-        localStorage.setItem('timerStart', startTime);
+    let visibleElapsed = parseInt(localStorage.getItem('visibleElapsed') || 0);
+    let visibleStartTime = null;
+    let interval = null;
+
+    function startTimer() {
+        visibleStartTime = Date.now();
+        interval = setInterval(updateTimer, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(interval);
+        if (visibleStartTime) {
+            visibleElapsed += Math.floor((Date.now() - visibleStartTime) / 1000);
+            localStorage.setItem('visibleElapsed', visibleElapsed);
+            visibleStartTime = null;
+        }
     }
 
     function updateTimer() {
-        const now = Date.now();
-        const elapsedSeconds = Math.floor((now - startTime) / 1000);
-        timerElement.textContent = `${elapsedSeconds}s`;
+        const current = visibleStartTime ? Math.floor((Date.now() - visibleStartTime) / 1000) : 0;
+        timerElement.textContent = `${visibleElapsed + current}s`;
     }
 
-    // Start updating every second
-    updateTimer();
-    setInterval(updateTimer, 1000);
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            startTimer();
+        } else {
+            stopTimer();
+        }
+    });
 
+    // Start when the page loads and is visible
+    if (document.visibilityState === 'visible') {
+        startTimer();
+    }
 
+    // Optional: Clear timer if needed
+    // localStorage.removeItem('visibleElapsed');
 
     const mobileSearch = document.querySelector(".mobile-search");
     const searchLink = document.querySelector(".search-link");
