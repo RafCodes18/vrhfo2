@@ -192,8 +192,7 @@ body {
     .dropdown-content{
         transform: scale(.9);
         margin-top: 0 !important;
-        margin-left: -60px !important; 
-    }
+     }
     .dropdown{
         margin-top:-3px !important;
     }
