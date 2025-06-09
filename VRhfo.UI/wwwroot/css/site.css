@@ -127,6 +127,8 @@ body {
   
 
 }
+
+ 
 @media(min-width: 505px){
     .hamburger{
         margin-top: 10px;
@@ -161,11 +163,7 @@ body {
         display: none;
     }
 }
-@media(max-width: 450px){
-    .dropdown-content{
-        margin-left: -80px !important;
-    }
-}
+
 @media(max-width: 430px){
    
     .username-txt, .welcum{
@@ -173,28 +171,24 @@ body {
         padding: 0 ;
         margin: 0;
     }
-    .welcum{
-        max-width: 100px !important;
-        margin-left: -110px !important;
-    }
+     
     .login-modal-main {
         max-width: 78% !important;
         height: 320px !important;
     }
-    .diamond{
-        display: none;
-    }
+ 
     .username-txt {
-        font-size: 12px;
+        font-size: 9px;
         font-weight: 400;
          
     }
-    .dropdown-content{
-        transform: scale(.9);
-        margin-top: 0 !important;
-     }
-    .dropdown{
-        margin-top:-3px !important;
+  
+    .diamond{
+        display: none;
+    }
+
+    .welcum{
+        width: 180px !important;
     }
 }
 @media (max-width: 376px) {
@@ -272,6 +266,9 @@ body {
     .nav-item{
         padding: 0 !important;
         margin: 0 !important;
+    }
+    .dropdown-content{
+        margin-left: -100px !important;
     }
 }
 
