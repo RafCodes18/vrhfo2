@@ -1294,13 +1294,27 @@
 
 </style>
 <script>
-      let seconds = 0;
-    const timerElement = document.getElementById('timer');
 
-    setInterval(() => {
-        seconds++;
-        timerElement.textContent = `${seconds}s`;
-    }, 1000);
+ 
+      const timerElement = document.getElementById('timer');
+
+    // Try to get the saved start time or set it to now
+    let startTime = localStorage.getItem('timerStart');
+    if (!startTime) {
+        startTime = Date.now();
+        localStorage.setItem('timerStart', startTime);
+    }
+
+    function updateTimer() {
+        const now = Date.now();
+        const elapsedSeconds = Math.floor((now - startTime) / 1000);
+        timerElement.textContent = `${elapsedSeconds}s`;
+    }
+
+    // Start updating every second
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
 
 
     const mobileSearch = document.querySelector(".mobile-search");
