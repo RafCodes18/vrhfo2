@@ -217,37 +217,37 @@ namespace VRhfo.UI.Controllers
         {
             return View();
         }
-
-        // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(User user)
+        public async Task<JsonResult> JoinNow(User user)
         {
             try
             {
-                user.SubscriptionStartDate = DateTime.Now; //what happ be after reg
+                user.SubscriptionStartDate = DateTime.Now;
                 user.IsSubscribed = true;
                 user.Auth0UserId = "xxx";
-                user.FirstVisit = DateTime.Now; 
+                user.FirstVisit = DateTime.Now;
                 user.Id = Guid.NewGuid();
                 user.Username = user.Email.Substring(0, user.Email.IndexOf('@'));
                 user.NextRenewalDueDate = DateTime.Now.AddDays(30);
-                user.GoonScore = 15; //the default 15 points for joining, will go down if first week watch time does not surpass 1 hour
+                user.GoonScore = 15;
+
                 if (await UserManager.InsertAsync(user) > 0)
                 {
                     SetUser(user);
-                    return RedirectToAction(nameof(PaymentSuccess), "User");
+                    return Json(new { success = true, message = "Registration successful!", redirectUrl = Url.Action("PaymentSuccess", "User") });
                 }
                 else
                 {
-                    throw new Exception();
+                    return Json(new { success = false, message = "Registration failed." });
                 }
             }
             catch (Exception ex)
             {
-                return RedirectToAction("JoinNow", "Home");
+                return Json(new { success = false, message = "An error occurred during registration." });
             }
         }
+
 
         // GET: UserController/Edit/5
         public ActionResult Edit(int id)

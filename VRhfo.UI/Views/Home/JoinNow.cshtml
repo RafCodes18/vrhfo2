@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
  <style>
     /*ScrollBar*/
@@ -274,38 +275,40 @@
                     </div>
 
             </div>
-            <div class="create-account">
-                <h1>Lets create an account</h1>
-                <form class="form" asp-action="Create" asp-controller="User" method="post">
+        <div class="create-account">
+            <h1>Let's create an account</h1>
+            <form id="registerForm" class="form" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    <div class="input-box">
-                        <img class="form-icon" src="~/img/mail.png" height="20" width="20" />
-                        <input asp-for="Email" type="email" required placeholder="Email" />
+                <div class="input-box">
+                    <img class="form-icon" src="~/img/mail.png" height="20" width="20" />
+                    <input name="Email" type="email" required placeholder="Email" />
+                </div>
 
-                    </div>
-                    
-                    <div class="input-box">
-                        <img class="form-icon" src="~/img/lock.png" height="20" width="20" />
-                        <input asp-for="Password" type="password" required placeholder="Password" minlength="10" />
-                    </div>
-                
-                    <div id="validation-message"></div>
+                <div class="input-box">
+                    <img class="form-icon" src="~/img/lock.png" height="20" width="20" />
+                    <input name="Password" type="password" required placeholder="Password" minlength="10" />
+                </div>
 
-                    <div class="newsletter-box">
-                        <input class="email-check" type="checkbox" id="check" />
-                        <p class="inform-email">I would like to receive occasional email updates from BrainBreaker.TV</p>
-                    </div>
-                    
-                    <div class="inform-consent">                        
-                        By submitting this form, you certify that you are 18 years of age or older, and agree to the Terms-of-Service Agreement
-                    </div>
-                    <div class="join-btn">
-                        <input class="join-now-input" type="submit"  value="Join Now" />
-                    </div>
-                    <input id="subTier" type="hidden" asp-for="Subscription_Tier" value="default"/>
-                </form>                
-            </div>
+                <div id="validation-message"></div>
+
+                <div class="newsletter-box">
+                    <input class="email-check" type="checkbox" id="check" name="ReceiveNewsletter" value="true" />
+                    <p class="inform-email">I would like to receive occasional email updates from BrainBreaker.TV</p>
+                </div>
+
+                <div class="inform-consent">
+                    By submitting this form, you certify that you are 18 years of age or older, and agree to the Terms-of-Service Agreement
+                </div>
+
+                <div class="join-btn">
+                    <input class="join-now-input" type="submit" value="Join Now" />
+                </div>
+
+                <input id="subTier" type="hidden" name="Subscription_Tier" value="default" />
+            </form>
+        </div>
+
 
     </div>
 
@@ -652,8 +655,100 @@
 
 </style>
  
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 <script src="~/js/JoinNow.js" defer>
     
 </script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<style>
+    /* Toastify Progress Bar */
+    .toastify .toastify-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        animation: toastifyProgressBar 3s linear forwards;
+    }
+
+    @@keyframes toastifyProgressBar {
+        from { width: 100%; }
+        to { width: 0%; }
+    }
+</style>
+
+<script>
+    $("#registerForm").submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: '/User/JoinNow',
+            data: $(this).serialize(),
+            success: function (response) {
+                const toast = Toastify({
+                    text: response.message,
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    style: {
+                        background: response.success
+                            ? "rgb(52, 197, 75)"
+                            : "rgba(230, 30, 30, .7)",
+                        position: "absolute",
+                        overflow: "hidden"
+                    },
+                    onClick: function(){} // required for Toastify to return element
+                }).showToast();
+
+                // Add progress bar after toast is in DOM
+                setTimeout(function() {
+                    const toastEl = document.querySelector('.toastify');
+                    if(toastEl) {
+                        const progressBar = document.createElement('div');
+                        progressBar.className = 'toastify-progress';
+                        toastEl.appendChild(progressBar);
+                    }
+                }, 100);
+
+                if (response.success && response.redirectUrl) {
+                    setTimeout(function () {
+                        window.location.href = response.redirectUrl;
+                    }, 1500);
+                }
+            },
+            error: function () {
+                const toast = Toastify({
+                    text: "Unexpected error occurred.",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    style: {
+                        background: "#E57373",
+                        position: "relative",
+                        overflow: "hidden"
+                    },
+                    onClick: function() {}
+                }).showToast();
+
+                setTimeout(function() {
+                    const toastEl = document.querySelector('.toastify');
+                    if(toastEl) {
+                        const progressBar = document.createElement('div');
+                        progressBar.className = 'toastify-progress';
+                        toastEl.appendChild(progressBar);
+                    }
+                }, 100);
+            }
+        });
+    });
+</script>
+

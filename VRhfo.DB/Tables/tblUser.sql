@@ -2,7 +2,7 @@
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [Username] NVARCHAR(120) NOT NULL, 
-    [Email] NVARCHAR(50) NOT NULL, 
+    [Email] NVARCHAR(50) NOT NULL UNIQUE, 
     [Auth0UserId] NCHAR(10) NOT NULL, 
     [FirstVisit] DATETIME NOT NULL, 
     [IsSubscribed] BIT NOT NULL, 

@@ -461,12 +461,19 @@
         }
 
         #toggleSidebar {
+            margin-left: 5px;
             background-color: transparent;
             border: none;
             color: white;
             font-size: 30px;
-            margin-left: 5px;
            
+        }
+
+        #toggleSidebarM {
+             background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 30px;
         }
         #toggleSidebar:hover{
             color: #bbb;
@@ -888,7 +895,7 @@
                     <ul class="navbar-nav flex-lg-row nav-top">
                        
                             <div class="nav-left">
-                                <button class="hamburger" id="toggleSidebar">☰</button>
+                                <button class="hamburger ham-top" id="toggleSidebar">☰</button>
 
                                     <a class="navbar-brand brain-break" asp-area="" asp-controller="Video" asp-action="Index" asp-route-category="Latest">
                                          <p class="site-name-logo"><span class="white">Brain</span>B<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="white">.tv</span></p>
@@ -1078,7 +1085,7 @@
                     <span class="footer-icon"><img src="@Url.Content("~/img/search.png")" /></span>
                     <span class="footer-text">Search</span>
                 </a>
-                <a asp-action="JoinNow" asp-controller="Home" class="footer-item">
+              @*   <a asp-action="JoinNow" asp-controller="Home" class="footer-item">
                      
                         <span class="footer-icon">
                             <svg class="o-icon o-icon-svg " viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -1089,7 +1096,12 @@
                             </svg>
                         </span>                    
                     <span class="footer-text">Premium</span>
-                </a>
+                </a> *@
+            <div  class="footer-item ">
+                    <button class="hamburger" id="toggleSidebarM">☰</button>
+                    <span class="footer-text">Menu</span>
+            </div>
+
             </div>
        
         <div class="mobile-search hidden">
@@ -1123,6 +1135,10 @@
 </html>
  
 <style>  
+    #sidebar.open {
+        display: block;
+        transform: translateX(0);
+    }
     .session-duration-sticky{
         position: fixed;
         bottom: 80px;  
@@ -1292,7 +1308,11 @@
     .search-link:hover{
         cursor: pointer;
     }
-
+    @@media (max-width: 1000px) { /* Adjust max-width as per your mobile breakpoint */
+ @*  .ham-top {
+    display: none; /* Hide the hamburger button on screens narrower than 768px */
+  } *@
+}
 </style>
 <script>
 
@@ -1433,22 +1453,35 @@
     //sidebar
     const sidebar = document.getElementById('sidebar');
     const toggleButton = document.getElementById('toggleSidebar');
+    const toggleButtonM = document.getElementById('toggleSidebarM');
     const main = document.querySelector('main');
-    const mobileFooter = document.querySelector('mobile-footer');
+    const mobileFooter = document.querySelector('.mobile-footer');
     const overlay = document.querySelector('.overlay');
 
-    toggleButton.addEventListener('click', () => {
-        console.log("toggled");
-        //if hamburger clicked in desktop mode, close sidebar.
-        //TOGGLE BUTTON CLICKED DESKTOP OR MOBILE FUNCTIONS
-        if (window.innerWidth >= 1000) {
-            sidebar.classList.toggle('closed');
-            main.classList.toggle('sidebar-closed');            
-        } else {
-            //otherwise open it
-            sidebar.classList.toggle('open');
-        }        
-    });
+    // Only add listeners if the buttons exist!
+    if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+            console.log("desktop toggled");
+            if (window.innerWidth >= 1000) {
+                sidebar.classList.toggle('closed');
+                main.classList.toggle('sidebar-closed');
+            } else {
+                sidebar.classList.toggle('open');
+            }
+        });
+    }
+
+    if (toggleButtonM) {
+        toggleButtonM.addEventListener('click', () => {
+            console.log("mobile toggled");
+            if (window.innerWidth >= 1000) {
+                sidebar.classList.toggle('closed');
+                main.classList.toggle('sidebar-closed');
+            } else {
+                sidebar.classList.toggle('open');
+            }
+        });
+    }
 
     // Check the screen size using media query
     //DETERMINE CSS CODE OR JS BASED ON DESKTOP VS MOBILE VIEW
@@ -1479,6 +1512,7 @@
         } else {
             // Execute your JavaScript code for non-mobile devices
             console.log("Non-mobile mode detected");
+ 
         }
     }
 
