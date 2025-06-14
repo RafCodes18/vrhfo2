@@ -699,9 +699,8 @@
         }
 
         .footer-icon img{
-            margin-bottom: 2px;
-            height: 29px;
-            width: 29px;
+=            height: 27px;
+            width: 27px;
         }
         @@media(min-width: 1000px)
         {
@@ -1135,6 +1134,9 @@
 </html>
  
 <style>  
+    .hamburger{
+        padding: 0 !important;
+    }
     #sidebar.open {
         display: block;
         transform: translateX(0);
@@ -1505,6 +1507,8 @@
 
                 if (!isClickInsideSidebar && !isClickOnToggle && !isClickOnToggleM) {
                     sidebar.classList.remove("mobile-sidebar");
+                    sidebar.classList.remove("open");
+
                 }
 
             });
