@@ -1479,6 +1479,7 @@
                 main.classList.toggle('sidebar-closed');
             } else {
                 sidebar.classList.toggle('open');
+ 
             }
         });
     }
@@ -1492,7 +1493,7 @@
             console.log("Mobile mode detected");
 
             //TODO: grab hamburger on navbar, hide
-            
+            if (toggleButton) toggleButton.style.display = 'none';
             //TODO: grab hidden hamburger on mobile footer, show
             
             //detect clicks outside of sidebar and close sidebar if so
@@ -1500,18 +1501,26 @@
             document.addEventListener("click", function (event) {
                 const isClickInsideSidebar = sidebar.contains(event.target);
                 const isClickOnToggle = toggleButton.contains(event.target);
+                const isClickOnToggleM = toggleButtonM && toggleButtonM.contains(event.target);
 
-                if (!isClickInsideSidebar && !isClickOnToggle) {
+                if (!isClickInsideSidebar && !isClickOnToggle && !isClickOnToggleM) {
                     sidebar.classList.remove("mobile-sidebar");
                 }
+
             });
+
             toggleButton.onclick = function () {
+                sidebar.classList.toggle("mobile-sidebar");
+            }; 
+            toggleButtonM.onclick = function () {
                 sidebar.classList.toggle("mobile-sidebar");
             };
 
         } else {
             // Execute your JavaScript code for non-mobile devices
             console.log("Non-mobile mode detected");
+            if (toggleButton) toggleButton.style.display = 'block';      // Hide top hamburger
+
  
         }
     }
