@@ -413,8 +413,11 @@ namespace VRhfo.UI.Controllers
             }
             catch (Exception ex)
             {
-                // Handle other exceptions
-                return StatusCode(500, new { message = "An error occurred while creating the account.", details = ex.Message });
+                return StatusCode(500, new
+                {
+                    message = "An error occurred while creating the account.",
+                    details = ex.ToString() // includes InnerException and full stack
+                });
             }
         }
     }
