@@ -22,4 +22,4 @@
 , 
     [PasswordResetToken] NVARCHAR(100) NULL, 
     [PasswordResetTokenExpiration] DATETIME NULL, 
-    [IPaddress] NCHAR(10) NULL)
+    [IPaddress] NCHAR(50) NULL)
