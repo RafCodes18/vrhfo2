@@ -411,7 +411,8 @@ namespace VRhfo.BL
                             SubscriptionTier = "Free",
                             GoonScore = 0,
                             PasswordResetToken = null,
-                            IPaddress = guid.IPAdress
+                            IPaddress = guid.IPAdress 
+                            
                         };
                         dc.tblUsers.Add(freeUser);
                                        
