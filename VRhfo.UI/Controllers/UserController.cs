@@ -221,18 +221,31 @@ namespace VRhfo.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> JoinNow(User user)
         {
+            var ip = HttpContext.Connection.RemoteIpAddress.ToString();
+
+            var userGuid = Request.Cookies["userGuid"];
+
+            // Get the 'free' user using the UserGuid from the form (instead of IP)
+            User userFree = await UserManager.GetFreeUserByGuid(userGuid);
+
+            if (userFree == null)
+            {
+                return Json(new { success = false, message = "User already subscribed." });
+            }
+
             try
             {
                 user.SubscriptionStartDate = DateTime.Now;
                 user.IsSubscribed = true;
                 user.Auth0UserId = "xxx";
-                user.FirstVisit = DateTime.Now;
-                user.Id = Guid.NewGuid();
+                user.FirstVisit = userFree.FirstVisit;
+                user.Id = userFree.Id;
                 user.Username = user.Email.Substring(0, user.Email.IndexOf('@'));
                 user.NextRenewalDueDate = DateTime.Now.AddDays(30);
                 user.GoonScore = 15;
+                user.IPAdress = ip;
 
-                if (await UserManager.InsertAsync(user) > 0)
+                if (await UserManager.UpgradeToPremium(user) > 0)
                 {
                     SetUser(user);
                     return Json(new { success = true, message = "Registration successful!", redirectUrl = Url.Action("PaymentSuccess", "User") });
@@ -377,10 +390,14 @@ namespace VRhfo.UI.Controllers
                     {
                         return BadRequest(new { message = "GUID is required." });
                     }
+                    var ip = HttpContext.Connection.RemoteIpAddress.ToString();
 
+                    User freeUser = new User();
+                    freeUser.Id = Guid.Parse(request.Guid);
+                    freeUser.IPAdress = ip;
                     // Perform account creation logic here using request.Guid
                     // Assuming UserManager.InsertFreeAccountGUID is made async
-                    int result = await UserManager.InsertFreeAccountGUIDAsync(request.Guid);
+                    int result = await UserManager.InsertFreeAccountGUIDAsync(freeUser);
                     if (result > 0)
                     {
                         // If account creation is successful

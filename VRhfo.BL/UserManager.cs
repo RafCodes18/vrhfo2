@@ -153,34 +153,80 @@ namespace VRhfo.BL
             }
         }
 
-        public static async Task<int> InsertAsync(User user, bool rollback = false)
+        public async static Task<User> GetFreeUserByGuid(string guid)
+        {
+            using (VRhfoEntities dc = new VRhfoEntities())
+            {
+                Guid parsedGuid;
+                if (!Guid.TryParse(guid, out parsedGuid))
+                    return null; // invalid GUID passed
+
+                var tbUser = await dc.tblUsers
+                    .FirstOrDefaultAsync(u => u.Id == parsedGuid && u.IsSubscribed == false);
+
+                if (tbUser == null)
+                    return null;
+
+                // Convert tblUser to User (assuming you have a mapping like this)
+                User user = new User
+                {
+                     Id = tbUser.Id,
+                     FirstVisit = tbUser.FirstVisit,
+                     IPAdress = tbUser.IPaddress
+                    // Add more fields if needed
+                };
+
+                return user;
+            }
+        }
+
+        //TODO: This needs to be changed to "UpgradeToSubscriber", insert free exists,
+        //only option is to upgrade (update the free)
+        public static async Task<int> UpgradeToPremium(User user, bool rollback = false)
         {
             try
             {
                 using (VRhfoEntities dc = new VRhfoEntities())
                 {
-                    tblUser tb = new tblUser
-                    {
-                        Id = user.Id,
-                        Email = user.Email,
-                        Auth0UserId = user.Auth0UserId,
-                        IsSubscribed = user.IsSubscribed,
-                        FirstVisit = user.FirstVisit,
-                        Username = user.Username,
-                        SubscribedDate = user.SubscriptionStartDate,
-                        PasswordHash = user.Password,
-                        SubscriptionTier = user.Subscription_Tier,
-                        NextRenewalDueDate = user.NextRenewalDueDate,
-                        GoonScore = user.GoonScore
-                    };
+                    // Grab the existing user row by ID
+                    var existingUser = await dc.tblUsers.FirstOrDefaultAsync(x => x.Id == user.Id);
 
-                    dc.tblUsers.Add(tb);
+
+                    // if user email exists, send back error
+                    var existingEmail = await dc.tblUsers.FirstOrDefaultAsync(x => x.Email == user.Email);
+                    if (existingEmail != null)
+                    {
+                        return 0;
+
+                    }
+                    if (existingUser != null)
+                    {
+                        // Update existing user's fields
+                        existingUser.Email = user.Email;
+                        existingUser.Auth0UserId = user.Auth0UserId;
+                        existingUser.IsSubscribed = user.IsSubscribed;
+                        existingUser.FirstVisit = user.FirstVisit;
+                        existingUser.Username = user.Username;
+                        existingUser.SubscribedDate = user.SubscriptionStartDate;
+                        existingUser.PasswordHash = user.Password;
+                        existingUser.SubscriptionTier = user.Subscription_Tier;
+                        existingUser.NextRenewalDueDate = user.NextRenewalDueDate;
+                        existingUser.GoonScore = user.GoonScore;
+                    }
+                    else
+                    {
+                        // Optional: handle the case where user does not exist (should not happen if upgrading)
+                        // Throw exception or return error code
+                        throw new Exception("User not found for upgrade.");
+                    }
+
                     return await dc.SaveChangesAsync();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                // Log the exception here if needed
+                throw; // Rethrow to caller, or return error code if preferred
             }
         }
 
@@ -343,28 +389,32 @@ namespace VRhfo.BL
             }
         }
 
-        public static async Task<int> InsertFreeAccountGUIDAsync(string guid)
+        public static async Task<int> InsertFreeAccountGUIDAsync(User guid)
         {
             try
             {
+                
+                // Check if it already exists (very unlikely with GUID)
                 using (VRhfoEntities dc = new VRhfoEntities())
                 {
-                    tblUser freeUser = new tblUser
-                    {
-                        Id = Guid.Parse(guid),
-                        Auth0UserId = "free-user",
-                        Username = "Free User",
-                        Email = "freeuser@example.com",
-                        PasswordHash = "FreeUserPassword123",
-                        FirstVisit = DateTime.UtcNow,
-                        SubscribedDate = DateTime.UtcNow,
-                        IsSubscribed = false,
-                        NextRenewalDueDate = DateTime.UtcNow.AddYears(1),
-                        SubscriptionTier = "Free",
-                        GoonScore = 0
-                    };
-
-                    dc.tblUsers.Add(freeUser);
+                        tblUser freeUser = new tblUser
+                        {
+                            Id = guid.Id,
+                            Auth0UserId = "free-user",
+                            Username = "Free User",
+                            Email = $"{Guid.NewGuid()}",
+                            PasswordHash = "FreeUserPassword123",
+                            FirstVisit = DateTime.UtcNow,
+                            SubscribedDate = DateTime.UtcNow,
+                            IsSubscribed = false,
+                            NextRenewalDueDate = DateTime.UtcNow.AddYears(1),
+                            SubscriptionTier = "Free",
+                            GoonScore = 0,
+                            PasswordResetToken = null,
+                            IPaddress = guid.IPAdress
+                        };
+                        dc.tblUsers.Add(freeUser);
+                                       
                     return await dc.SaveChangesAsync();
                 }
             }
@@ -467,6 +517,39 @@ namespace VRhfo.BL
         public static bool SaveSessionData(Guid userId, string ip, SessionDto data)
         {
             throw new NotImplementedException();
+        }
+
+        public static User GetFreeUserByIP(string ip)
+        {
+
+            try
+            {
+                using (VRhfoEntities dc = new VRhfoEntities())
+                {
+                    // Query the database for the user with the specified IP address
+                    tblUser freeUser = dc.tblUsers.FirstOrDefault(u => u.IPaddress == ip);
+
+                    if (freeUser != null)
+                    {
+                        // Map tblUser to User entity (assuming User is your domain model)
+                        User user = new User
+                        {
+                            Id = freeUser.Id,
+                               // Map other properties as needed
+                            FirstVisit = freeUser.FirstVisit
+
+                        };
+
+                        return user;
+                    }
+
+                    return null; // Return null if no user found with the given IP
+                }
+            }
+            catch (Exception)
+            {
+                throw; // Handle exceptions according to your application's error handling strategy
+            }
         }
     }
 }

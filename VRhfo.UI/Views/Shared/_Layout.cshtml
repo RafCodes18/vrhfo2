@@ -34,12 +34,23 @@
         body{
             overflow-x: hidden;
         }
+
         .username-txt{
             color: deepskyblue;
             font-weight: 700;
-            font-size: 20px;
         }
 
+        @@media(min-width: 520px) {
+            .username-txt {
+                font-size: 20px !important;
+            }
+        }
+
+        @@media(max-width: 405px) {
+            .username-txt {
+                font-size: 10px !important;
+            }
+        }
         }
         .username-txt:hover{
             cursor: pointer;
@@ -240,7 +251,6 @@
             color: #e058bb !important;
         }
         .welcum{
-            width: 180px;
             white-space: nowrap;
             bottom: 0;
             top: auto;
@@ -679,7 +689,7 @@
             display: flex;
             justify-content: space-around;
             background: #111;
-            z-index: 999;
+            z-index: 999999999999999999999999999999;
             align-items: center;
             /* Force hardware acceleration */
             transform: translateZ(0);
@@ -1621,3 +1631,4 @@
         navigator.sendBeacon('/User/SaveSessionData', JSON.stringify(payload));
     });
 </script>
+

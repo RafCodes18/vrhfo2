@@ -33,13 +33,12 @@ public partial class VRhfoEntities : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=tcp:vrhfosqlserver.database.windows.net,1433;Initial Catalog=vrhfo-db;Persist Security Info=False;User ID=sqladmin;Password=Par516170$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-
+        => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=VRhfo.DB;Integrated Security=True");
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<tblComment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC07CBAB4F3A");
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC077DB2077C");
 
             entity.ToTable("tblComment");
 
@@ -52,7 +51,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblCommentLike>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC076B62B9DE");
+            entity.HasKey(e => e.Id).HasName("PK__tblComme__3214EC0701C37F76");
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -61,7 +60,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblReply>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblReply__3214EC0732F98511");
+            entity.HasKey(e => e.Id).HasName("PK__tblReply__3214EC07829234BD");
 
             entity.ToTable("tblReply");
 
@@ -74,9 +73,11 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblUser>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC072B7D38E4");
+            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC07027C26E8");
 
             entity.ToTable("tblUser");
+
+            entity.HasIndex(e => e.Email, "UQ__tblUser__A9D1053400031F6D").IsUnique();
 
             entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.AccessFailedCount).HasDefaultValueSql("((0))");
@@ -86,6 +87,9 @@ public partial class VRhfoEntities : DbContext
             entity.Property(e => e.ConcurrencyStamp).HasMaxLength(128);
             entity.Property(e => e.Email).HasMaxLength(50);
             entity.Property(e => e.FirstVisit).HasColumnType("datetime");
+            entity.Property(e => e.IPaddress)
+                .HasMaxLength(10)
+                .IsFixedLength();
             entity.Property(e => e.LockoutEnabled).HasDefaultValueSql("((0))");
             entity.Property(e => e.LockoutEnd).HasColumnType("datetime");
             entity.Property(e => e.NextRenewalDueDate).HasColumnType("date");
@@ -106,7 +110,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC0724247A73");
+            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC0768E205BA");
 
             entity.ToTable("tblVideo");
 
@@ -120,7 +124,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideoView>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC07AA3E67A4");
+            entity.HasKey(e => e.Id).HasName("PK__tblVideo__3214EC07A2BCFDDC");
 
             entity.Property(e => e.IPAdress).HasMaxLength(50);
             entity.Property(e => e.ViewTime).HasColumnType("datetime");
@@ -128,7 +132,7 @@ public partial class VRhfoEntities : DbContext
 
         modelBuilder.Entity<tblVideosLiked>(entity =>
         {
-            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D8828CB4086");
+            entity.HasKey(e => new { e.UserID, e.VideoID }).HasName("PK__tblVideo__AC269D88ABD386D6");
 
             entity.ToTable("tblVideosLiked");
 
@@ -136,17 +140,17 @@ public partial class VRhfoEntities : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.tblVideosLikeds)
                 .HasForeignKey(d => d.UserID)
-                .HasConstraintName("FK__tblVideos__UserI__34C8D9D1");
+                .HasConstraintName("FK__tblVideos__UserI__35BCFE0A");
 
             entity.HasOne(d => d.Video).WithMany(p => p.tblVideosLikeds)
                 .HasForeignKey(d => d.VideoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__tblVideos__Video__35BCFE0A");
+                .HasConstraintName("FK__tblVideos__Video__36B12243");
         });
 
         modelBuilder.Entity<tblWatchEntry>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC07A034A887");
+            entity.HasKey(e => e.Id).HasName("PK__tblWatch__3214EC07D3C7F18C");
 
             entity.ToTable("tblWatchEntry");
 

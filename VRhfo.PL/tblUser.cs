@@ -9,7 +9,7 @@ public partial class tblUser
 
     public string Username { get; set; } = null!;
 
-    public string Email { get; set; } = null!;
+    public string? Email { get; set; }
 
     public string Auth0UserId { get; set; } = null!;
 
@@ -44,6 +44,8 @@ public partial class tblUser
     public string? PasswordResetToken { get; set; }
 
     public DateTime? PasswordResetTokenExpiration { get; set; }
+
+    public string? IPaddress { get; set; }
 
     public virtual ICollection<tblVideosLiked> tblVideosLikeds { get; set; } = new List<tblVideosLiked>();
 }

@@ -163,6 +163,13 @@
     /* .small{
         font-size: x-small;
     } */
+
+    @@media(min-width: 1000px){
+        .cards{
+            display: flex ;
+            flex-direction: row;
+        }
+    }
 </style>
 <div class="main-page ">
 
@@ -309,6 +316,8 @@
                 </div>
 
                 <input id="subTier" type="hidden" name="Subscription_Tier" value="default" />
+                <input type="hidden" id="userGuidField" name="UserGuid" value="" />
+
             </form>
         </div>
 
@@ -346,18 +355,31 @@
         word-wrap: break-word;
         text-align: start;
         margin-left: 15px !important;
-    } .inform-email{
+    } 
+
+    .newsletter-box {
+        display: flex;
+        align-items: flex-start; /* Changed from center to flex-start */
+        justify-content: flex-start; /* Added to align items to the left */
+        color: #eee !important;
+        margin: 10px 0; /* Added margin for spacing */
+        padding: 5px; /* Added padding for better containment */
+        flex-wrap: wrap; /* Allow wrapping if needed */
+        gap: 10px; /* Add gap between checkbox and text */
+    }
+
+    .email-check {
+        max-width: 20px !important;
+        min-width: 20px; /* Ensure checkbox doesn't shrink */
+        flex-shrink: 0; /* Prevent checkbox from shrinking */
+    }
+
+    .inform-email {
         text-align: start;
         word-wrap: break-word;
-        margin-left: 10px;
-    }
-    .email-check{
-        max-width: 20px !important;       
-    }
-    .newsletter-box{
-        display: flex;
-        justify-content:center;
-        color: #eee !important;
+        margin: 0; /* Remove margin-left since we're using gap */
+        flex: 1; /* Allow text to take remaining space */
+        line-height: 1.4; /* Improve readability */
     }
     .input-box{
         position: relative;
@@ -455,7 +477,7 @@
         outline: 1px solid var(--accent-color);
         position: relative;
        margin: 10px;
-       width: 80%;
+       width: 85%;
        max-width: 400px;
        height: 200px !;
        background: rgba( 255, 255, 255, 0.05 );
@@ -532,8 +554,7 @@
         padding: 0 !important;
     }
     .cards{
-        display: flex;
-        width: 90vw;
+         width: 90vw;
         justify-content: center;
         height: 40vh;
     }
@@ -593,8 +614,9 @@
             margin-top: -80px !important;
        }
        .main-features{
+           display: flex;
+           flex-direction: row;
            margin: 0 !important;
-           margin-bottom: 80px !important;
        }
        .site-name-logo{
            font-size: 2.4rem !important;
@@ -629,7 +651,7 @@
 
    @@media(max-width: 675px){
         .create-account {
-            max-width: 290px !important;
+            max-width: 280px !important;
             margin-top: 30px !important;
         }
         .create-account h1{
@@ -761,3 +783,16 @@
     });
 </script>
 
+//get GUID and send with form submission
+<script>
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', function () {
+        const userGuid = getCookie('userGuid');
+        document.getElementById('userGuidField').value = userGuid;
+    });
+</script>

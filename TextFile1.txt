@@ -7,3 +7,8 @@ Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=VRhfo.DB;Integrated S
 
 //this is scaffolding the DB, it looks at the DB and pulls in classes for each table from the DB
 //When do we scaffold? If we do not have .cs files representing each table or, If the database changes at all (Add a column, delete a column, change a data type, add a table, rename a table, rename column, etc)
+
+
+
+//        => optionsBuilder.UseSqlServer("Server=tcp:vrhfosqlserver.database.windows.net,1433;Initial Catalog=vrhfo-db;Persist Security Info=False;User ID=sqladmin;Password=Par516170$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+//        => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=VRhfo.DB;Integrated Security=True");

@@ -2,7 +2,7 @@
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [Username] NVARCHAR(120) NOT NULL, 
-    [Email] NVARCHAR(50) NOT NULL UNIQUE, 
+    [Email] NVARCHAR(50) NULL UNIQUE , 
     [Auth0UserId] NCHAR(10) NOT NULL, 
     [FirstVisit] DATETIME NOT NULL, 
     [IsSubscribed] BIT NOT NULL, 
@@ -21,4 +21,5 @@
     SecurityStamp NVARCHAR(128) NULL -- Identity
 , 
     [PasswordResetToken] NVARCHAR(100) NULL, 
-    [PasswordResetTokenExpiration] DATETIME NULL)
+    [PasswordResetTokenExpiration] DATETIME NULL, 
+    [IPaddress] NCHAR(10) NULL)

@@ -131,7 +131,7 @@ body {
  
 @media(min-width: 505px){
     .hamburger{
-        margin-top: 10px;
+        margin-top: 5px;
     }
 }
 @media (max-width: 506px) {
@@ -187,9 +187,6 @@ body {
         display: none;
     }
 
-    .welcum{
-        width: 180px !important;
-    }
 }
 @media (max-width: 376px) {
     .right-lnk {

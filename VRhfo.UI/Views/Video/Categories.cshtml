@@ -9,6 +9,24 @@
   /*   * {
         outline: 1px solid red !important;
     } */
+
+
+    .username-txt {
+        color: deepskyblue;
+        font-weight: 700;
+    }
+
+    @@media(min-width: 520px) {
+        .username-txt {
+            font-size: 20px !important;
+        }
+    }
+
+    @@media(max-width: 405px) {
+        .username-txt {
+            font-size: 10px !important;
+        }
+    }
     @@media(max-width: 1000px) {
         .main-pg {
             margin-top: 50px !important;
@@ -307,7 +325,6 @@
     }
     @@media(max-width: 560px){
         .username-txt{
-            font-size: 15px !important;
             margin-right: 8px !important;
         }
     }
