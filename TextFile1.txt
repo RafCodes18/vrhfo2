@@ -12,3 +12,7 @@ Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=VRhfo.DB;Integrated S
 
 //        => optionsBuilder.UseSqlServer("Server=tcp:vrhfosqlserver.database.windows.net,1433;Initial Catalog=vrhfo-db;Persist Security Info=False;User ID=sqladmin;Password=Par516170$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 //        => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=VRhfo.DB;Integrated Security=True");
+
+
+
+best themes: hiberbee, re-dark
