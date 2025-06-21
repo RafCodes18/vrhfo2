@@ -67,6 +67,16 @@ app.MapControllerRoute(
     defaults: new { controller = "Home", action = "liked" }
     );
 app.MapControllerRoute(
+    name: "terms",
+    pattern: "/terms-of-service",
+    defaults: new { controller = "Home", action = "TermsAndConditions" }
+    );
+app.MapControllerRoute(
+    name: "records",
+    pattern: "/2257-statement",
+    defaults: new { controller = "Home", action = "RecordsCompliance" }
+    );
+app.MapControllerRoute(
     name: "Category",
     pattern: "/c/{category}",
     defaults: new { controller = "Video", action = "Index" }
