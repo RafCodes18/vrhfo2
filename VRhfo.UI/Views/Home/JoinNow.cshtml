@@ -794,6 +794,7 @@
     document.getElementById('registerForm').addEventListener('submit', function () {
         const userGuid = getCookie('userGuid');
         document.getElementById('userGuidField').value = userGuid;
+        console.log("Guid sent:" + userGuid);
+
     });
-    console.log("Guid sent:"  + userGuid);
 </script>

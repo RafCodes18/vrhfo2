@@ -224,7 +224,10 @@ namespace VRhfo.UI.Controllers
             var ip = HttpContext.Connection.RemoteIpAddress.ToString();
 
             var userGuid = Request.Cookies["userGuid"];
-
+            if (userGuid == null)
+            {
+                return Json(new { success = false, message = "Guid not sent in request." });
+            }
             // Get the 'free' user using the UserGuid from the form (instead of IP)
             User userFree = await UserManager.GetFreeUserByGuid(userGuid);
 

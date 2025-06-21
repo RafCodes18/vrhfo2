@@ -1130,9 +1130,17 @@
             @RenderBody()
         </main>
     
-    <footer class="footer text-muted">
-        <div class="container center">
-            <p class="center"> &copy; 2025 - brainbreaker.tv </p>
+    <footer class="footer-box  text-muted">
+        <div class="center-footer">
+            <div class="footer-top-row">
+                <a href="#">Home</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms and Conditions</a>
+                <a href="#">DMCA</a>
+                <a href="#">18 U.S.C 2257</a>
+
+            </div>
+            <p class="footer-bottom-row"> &copy; 2025 - brainbreaker.tv </p>
         </div>
     </footer>
 
@@ -1144,6 +1152,58 @@
 </html>
  
 <style>  
+    .footer-box{
+        display: flex;
+        justify-content: center;
+        padding-bottom: 40px !important;
+    }
+    @@media(min-width: 1000px){
+        .footer-box{
+            padding-bottom: 0px !important;
+        }    
+    }
+    @@media(max-width: 1000px){
+        .footer-top-row{
+            flex-direction: column !important;
+            align-items: center;
+        }
+        .footer-box{
+            margin-top: -56px !important;
+        }
+    }
+    .center-footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 500px;
+        min-width: 100px;
+        width: 100%;
+        align-items:center;
+    }
+    .footer-top-row{
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex; 
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around !important;
+        margin-bottom: 20px !important;
+    }
+    .footer-top-row a{
+        color: #555;
+    }
+
+        .footer-top-row a:hover {
+            color: #656565;
+        }
+    .footer{
+          padding-bottom: 80px !important;
+          padding-top: 20px !important;
+    }
+    .footer p {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
     .hamburger{
         padding: 0 !important;
     }
