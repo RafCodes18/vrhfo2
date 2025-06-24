@@ -301,31 +301,115 @@ updateFlexDirection();
 
 
 
-// Function to update watch duration
+_watchDuration = 0; // Seconds watched on this video
+let sidebarUpdater = null;
+
+// Function to get total "Today" watch time from localStorage
+function getTodayWatchTime() {
+    const saved = localStorage.getItem('todayWatchTime');
+    return saved ? parseInt(saved) : 0;
+}
+
+// Function to set total "Today" watch time in localStorage
+function setTodayWatchTime(seconds) {
+    localStorage.setItem('todayWatchTime', seconds);
+}
+
+// Function to get stored watch date
+function getWatchDate() {
+    return localStorage.getItem('watchDate');
+}
+
+// Function to set today's date in localStorage
+function setWatchDate(dateString) {
+    localStorage.setItem('watchDate', dateString);
+}
+
+// Function to check if the date has changed (midnight passed)
+function checkForMidnightReset() {
+    const storedDate = getWatchDate();
+    const todayDate = new Date().toDateString();
+    if (storedDate !== todayDate) {
+        // It's a new day — reset today's watch time
+        console.log("New day detected, resetting today's watch time.");
+        setTodayWatchTime(0);
+        setWatchDate(todayDate);
+        updateSidebarWatchTimeDisplay(); // reset sidebar display to 0
+    }
+}
+
+// Function to update _watchDuration (per video)
 function updateWatchDuration() {
     _watchDuration = Math.floor(video.currentTime);
     localStorage.setItem('watchDuration', _watchDuration + " seconds.");
 }
 
+// Function to update the sidebar display from stored value
+function updateSidebarWatchTimeDisplay() {
+    const todayElem = document.querySelector('.stats-2-boxes .stat-box:first-child h5:first-child .watch-time-value');
+    const overlayElem = document.querySelector('.stats-for-gooners');
 
-// Send final update when video ends
+    if (todayElem) {
+        const totalSeconds = getTodayWatchTime();
+        let hrs = Math.floor(totalSeconds / 3600);
+        let mins = Math.floor((totalSeconds % 3600) / 60);
+        let secs = totalSeconds % 60;
+        todayElem.textContent = `${hrs > 0 ? hrs + 'h ' : ''}${mins}m ${secs}s`;
+        overlayElem.textContent = "👁️ " + `${hrs > 0 ? hrs + 'h ' : ''}${mins}m ${secs}s` + " today";
+    }
+
+
+}
+
+// On page load — refresh sidebar and set today's date if not set
+(function initializeWatchStats() {
+    const todayDate = new Date().toDateString();
+    if (!getWatchDate()) {
+        setWatchDate(todayDate);
+        setTodayWatchTime(0); // reset if no date exists
+    } else {
+        checkForMidnightReset();
+    }
+    updateSidebarWatchTimeDisplay();
+})();
+
+// When video plays, start counting
+video.addEventListener('play', function () {
+    if (sidebarUpdater === null) {
+        sidebarUpdater = setInterval(() => {
+            updateWatchDuration();
+            checkForMidnightReset(); // check every second for midnight pass
+
+            if (!video.paused && !video.ended) {
+                // Increment today's total watch time
+                let totalToday = getTodayWatchTime();
+                totalToday += 1; // 1 second passed
+                setTodayWatchTime(totalToday);
+
+                updateSidebarWatchTimeDisplay(); // Refresh sidebar display
+            }
+        }, 1000);
+    }
+});
+
+// When paused or ended, stop counting
+video.addEventListener('pause', function () {
+    clearInterval(sidebarUpdater);
+    sidebarUpdater = null;
+});
+
 video.addEventListener('ended', function () {
+    clearInterval(sidebarUpdater);
+    sidebarUpdater = null;
     sendProgressUpdate();
 });
 
-// Send update when user leaves the page
+// On user leaving page — send progress
 window.addEventListener('beforeunload', function () {
     sendProgressUpdate();
 });
 
-function formatDuration2(microseconds) {
-    const seconds = microseconds / 1_000_000;  // Convert microseconds to seconds
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-    return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-}
-// Function to send progress update
+// Your existing function stays
 async function sendProgressUpdate() {
     const completed = currentTime === _watchDuration;
 
@@ -342,7 +426,7 @@ async function sendProgressUpdate() {
                 },
                 body: JSON.stringify({
                     userId: currentUserIdd,
-                    videoId: currVidId, // Ensure this variable is correctly set
+                    videoId: currVidId,
                     watchDuration: _watchDuration,
                     completed: completed
                 })
@@ -361,6 +445,3 @@ async function sendProgressUpdate() {
         }
     }
 }
-
-
-

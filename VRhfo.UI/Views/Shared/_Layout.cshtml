@@ -265,18 +265,19 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #111;
+            background-color: #121212;
             min-width: 170px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 999;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 0px !important;
             font-size: large;
-            margin-left: -10px;
+            margin-left: -14px;
             margin-top: 3px;
             -moz-box-shadow: 0 0 3px #ccc;
             -webkit-box-shadow: 0 0 3px #ccc;
             box-shadow: 0 0 3px #ccc;
+             
         }
             .dropdown-content a {
                 color: white;
@@ -1420,7 +1421,7 @@
 }
 </style>
 <script>
-
+       
     const timerElement = document.getElementById('timer');
 
     let visibleElapsed = parseInt(localStorage.getItem('visibleElapsed') || 0);
@@ -1534,6 +1535,13 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
+         const saved = localStorage.getItem('todayWatchTime');
+          const todayElem2 = document.querySelector('.stats-2-boxes .stat-box:first-child h5:first-child .watch-time-value');
+        let hrs = Math.floor(saved / 3600);
+        let mins = Math.floor((saved % 3600) / 60);
+        let secs = saved % 60;
+        todayElem2.textContent = `${hrs > 0 ? hrs + 'h ' : ''}${mins}m ${secs}s`;
+
         const loginButton = document.getElementById('login-button');
         const loginButton2 = document.getElementById('login-button2');
         const loginModal = document.getElementById('login-modal');
