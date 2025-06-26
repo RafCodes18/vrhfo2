@@ -11,6 +11,7 @@ const totalTime = document.querySelector('.total-time');
 const timelineContainer = document.querySelector('.timeline-container');
 const controlsContainer = document.querySelector(".video-controls-container");
 const currentUserIdd = document.getElementById("curr-user").textContent;
+const currentUserIddNotLoggedIn = document.getElementById("curr-user-notloggedin").textContent;
 const currVidId = document.getElementById("curr-vid").textContent;
 
 
@@ -297,7 +298,7 @@ updateFlexDirection();
 
 
 
-
+//WATCH STATS
 
 
 

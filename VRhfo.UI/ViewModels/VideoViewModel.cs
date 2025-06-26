@@ -11,6 +11,7 @@ namespace VRhfo.UI.Views.ViewModels
         public string likeState { get; set; } 
         
         public Guid LoggedInUserId {  get; set; }
+        public Guid notLoggedInUserId {  get; set; }
 
     }
 }

@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using VRhfo.BL;
 using VRhfo.BL.Models;
-using VRhfo.UI.Views.ViewModels;
-using X.PagedList;
-using Microsoft.AspNetCore.Http.Extensions;
-using Microsoft.EntityFrameworkCore;
 using VRhfo.PL;
 using VRhfo.UI.ViewModels;
+using VRhfo.UI.Views.ViewModels;
+using X.PagedList;
 
 
 namespace VRhfo.UI.Controllers
@@ -98,6 +99,12 @@ namespace VRhfo.UI.Controllers
             if (currentUser != null)
             {
                 videoViewModel.LoggedInUserId = currentUser.Id;
+            }
+            else
+            {
+                //Get the local storage anon GUID
+                videoViewModel.notLoggedInUserId = Guid.Parse(Request.Cookies["userGuid"]);
+
             }
 
             //Load video 
