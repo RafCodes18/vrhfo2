@@ -343,3 +343,97 @@ body {
     ::-webkit-scrollbar-thumb:hover {
         background: #333;
     }
+
+
+ 
+.streak-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999999999999;
+    animation: fadeIn 0.3s ease-out;
+
+}
+
+.streak-box {
+    background: #1a1a1a;
+    border: 2px solid #aeff00;
+    border-radius: 16px;
+    padding: 30px 40px;
+    text-align: center;
+    box-shadow: 0 0 25px #aeff00aa;
+    animation: popUp 0.5s ease-out;
+    max-width: 400px;
+}
+
+.streak-emoji {
+    font-size: 3.5rem;
+    animation: flicker 1s infinite alternate;
+}
+
+.streak-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px #ff6600aa;
+}
+
+.streak-desc {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.close-btn-streak {
+    background: #aeff00;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 1rem;
+    color: #111; 
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    .close-btn-streak:hover {
+        background: #c6ff4d;
+    }
+
+@keyframes flicker {
+    0% {
+        text-shadow: 0 0 8px #ff6600aa;
+    }
+
+    100% {
+        text-shadow: 0 0 16px #ffaa00;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popUp {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

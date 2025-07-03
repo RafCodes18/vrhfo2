@@ -105,4 +105,63 @@ mosearchInput.addEventListener("input", e => {
     }
 }); 
 
- 
+
+// Streak logic and modal handling
+function getLocalDateString() {
+    return new Date().toLocaleDateString();
+}
+
+function showStreakModal(streak) {
+    const modal = document.getElementById("streakModal");
+    const title = document.getElementById("streakTitle");
+    const desc = document.getElementById("streakDesc");
+
+    title.textContent = `Streak: ${streak} Day${streak > 1 ? 's' : ''}`;
+    if (streak === 1) {
+        desc.textContent = "Welcome back. You're starting a new streak. Come back tomorrow to keep it going!";
+    } else if (streak === 3) {
+        desc.textContent = "Day 3! You're heating up. A reward may be unlocked soon…";
+    } else if (streak === 5) {
+        desc.textContent = "💎 Day 5. You're becoming elite. Keep going!";
+    } else {
+        desc.textContent = "Keep it up! Come back tomorrow to build your streak. Rewards may be coming… 👀";
+    }
+
+    modal.style.display = "flex";
+}
+
+function closeStreakModal() {
+    document.getElementById("streakModal").style.display = "none";
+}
+
+(function handleStreakLogic() {
+    const today = getLocalDateString();
+    const lastVisit = localStorage.getItem("lastVisitDate");
+    const lastModal = localStorage.getItem("lastModalShownDate");
+    let streak = parseInt(localStorage.getItem("streakCount") || "0");
+    let longest = parseInt(localStorage.getItem("longestStreak") || "0");
+
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toLocaleDateString();
+
+    if (lastVisit === today) return;
+
+    if (lastVisit === yesterdayStr) {
+        streak += 1;
+    } else {
+        if (streak > longest) {
+            localStorage.setItem("longestStreak", streak);
+        }
+        streak = 1;
+    }
+
+    // Save values
+    localStorage.setItem("streakCount", streak);
+    localStorage.setItem("lastVisitDate", today);
+
+    if (lastModal  !== today) {
+        localStorage.setItem("lastModalShownDate", today);
+        showStreakModal(streak);
+    }
+})();
