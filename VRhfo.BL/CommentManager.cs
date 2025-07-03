@@ -62,7 +62,8 @@ namespace VRhfo.BL
                         User = new User
                         {
                             Username = tblComment.User.Username,
-                        }
+                            Subscription_Tier = tblComment.User.SubscriptionTier
+                        },                        
                     });
                 }
 
