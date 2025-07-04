@@ -1,801 +1,950 @@
-﻿
-@{
+﻿@{
     Layout = "";
 }
-@model VRhfo.BL.Models.User
- 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>
-    body {
-        -webkit-text-size-adjust: 100%;
-        text-size-adjust: 100%;
-    }
-    /*ScrollBar*/
-    /* width */new
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: black;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #222;
-        border-radius: 20px;
-    }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #333;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamVault - Choose Your Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-    :root { 
-        --text-color: #000;
-        --background-color: #000;
-        --primary-color: #aeff00;
-        --primary-color-hover: rgba(191, 255, 0, .9);
-        --primary-color-card-hover: rgba(190, 255, 0, .2);
-        --secondary-color: #262727;
-        --accent-color: #97a7b3;
-        --primary-color-dark: rgba(24, 30, 0, 1);
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
 
-   /*      --text-color: #fff;
-        --background-color: #fff !important;
-        --primary-color: rgb(221, 6, 109);
-        --primary-color-hover: rgba(221, 6, 109, .7);
-        --secondary-color: #222;
-        --accent-color: #b6bae8;
-        --primary-color-dark: rgba(221, 6, 109, .13); */
-    }
- 
-    a{
-        color: white;
-        text-decoration: none;
-    }
-    .main-page{
-        margin: 0 !important; 
-        padding: 0 !important;
-    }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
 
-    .white {
-        color: #fff;
-    }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+        }
 
-    .rotate-right {
-        display: inline-block; /* Ensures the span takes up only as much space as the letter */
-        transform: rotate(30deg); /* Rotate the element by 45 degrees */
-        margin-left: 3px;
-        margin-right: -2px;
-    }
+            .logo .stream {
+                color: white;
+            }
 
-    .rotate-left {
-        display: inline-block; /* Ensures the span takes up only as much space as the letter */
-        transform: rotate(340deg); /* Rotate the element by 45 degrees */
-        margin-right: -1px;
-    }
+            .logo .vault {
+                color: #7fff00;
+            }
 
-    .site-name-logo {
-        color: var(--primary-color) !important;
-        font-family: "Barlow", sans-serif;
-        font-weight: 700;
-        font-style: normal;
-        font-size: 3.8rem;
-        letter-spacing: -7px;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    body{
-        background-image: url('~../../img/greytexture.jpg') !important;
-        /* Full height */
-        height: 100%;
-        /* Center and scale the image nicely */
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+        .header {
+            margin-bottom: -10px;
+            color: white;
+        }
 
-    .main-features {
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 20px 0 40px;
-        position: relative;
-    }
+            .header h1 {
+                margin-top: 10px;
+                font-family: "Raleway", sans-serif !important;
+                font-size: 32px;
+                font-weight: 700 !important;
+                margin-bottom: 25px;
+                /* background-image: linear-gradient(to right,#B347FF, #FF2969);*/
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-image: linear-gradient(to right, #666, #97a7b3);
+            }
 
-    .main_feature {
-        text-align: center;
-        background: #222 !important;
-        border-radius: 10px;
-        padding: 5px 10px;
-        margin: 0 5px;
-    }
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
 
-        .main_feature .feature-top-text {
-            font-weight: 800 !important;
-            font-size: 24px;
+        .stat-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
             margin-bottom: 5px;
         }
 
-    .choose-plan {
-        margin-top: 10px;
-        font-family: "Raleway", sans-serif !important;
-        font-size: 32px;
-        font-weight: 700 !important;
-        margin-bottom: 5px;
-        /* background-image: linear-gradient(to right,#B347FF, #FF2969);*/
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-image: linear-gradient(to right, #666, #97a7b3);
-    }
-
-    .main-page {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .top-3-rows {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-                margin-top: -40px !important;
-
-    }
-
-    body {
-        text-align: center;
-        font-family: 'Open Sans', Arial, sans-serif;
-        font-size: 14px;
-    }
-
-    .hidden{
-        display: none !important;
-    }
-    /* .small{
-        font-size: x-small;
-    } */
-
-    @@media(min-width: 1000px){
-        .cards{
-            display: flex ;
-            flex-direction: row;
+        .stat-label {
+            font-size: 0.9rem;
+            color: #bbb;
         }
-    }
-</style>
-<div class="main-page ">
 
-    <!--TOP 3 ITEMS-->
-    <div class="top-3-rows">
-        <a asp-area="" asp-controller="Video" asp-action="Index" asp-route-category="Latest">
-            <p class="site-name-logo"><span class="white">brain</span>b<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="white">.tv</span></p>
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 30px 20px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+        }
+
+            .pricing-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            }
+
+        .premium-card {
+            background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
+            transform: scale(1.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+            .premium-card:hover {
+                transform: scale(1.05) translateY(-10px);
+            }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #7fff00;
+            color: #000;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            flex-grow: 1;
+        }
+
+        .plan-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .plan-subtitle {
+            font-size: 1rem;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .price-section {
+            margin-bottom: 25px;
+        }
+
+        .original-price {
+            font-size: 1rem;
+            color: #888;
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #7fff00;
+            margin-bottom: 5px;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: #bbb;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+            .features li {
+                padding: 8px 0;
+                color: #ddd;
+                font-size: 0.95rem;
+                position: relative;
+                padding-left: 25px;
+            }
+
+                .features li::before {
+                    content: "✓";
+                    position: absolute;
+                    left: 0;
+                    color: #7fff00;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                }
+
+        .cta-button {
+            width: 100%;
+            padding: 15px 20px;
+            background: #7fff00;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: auto;
+        }
+
+            .cta-button:hover {
+                background: #6bdd00;
+                transform: translateY(-2px);
+            }
+
+        .basic-card .cta-button {
+            background: #7fff00;
+            color: #000;
+            border: 2px solid #7fff00;
+        }
+
+            .basic-card .cta-button:hover {
+                background: #6bdd00;
+                color: #000;
+            }
+
+        .user-stats {
+            margin: 40px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+            .user-stats h3 {
+                color: #bbb;
+                margin-bottom: 10px;
+                font-size: 1.2rem;
+            }
+
+        .trust-section {
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #7fff00;
+            font-size: 0.95rem;
+        }
+
+            .trust-section::before {
+                content: "✓";
+                background: #7fff00;
+                color: #000;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                font-size: 0.8rem;
+            }
+
+        .credit-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .credit-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #bbb;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .account-creation {
+            display: none;
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideUp 0.6s ease-out;
+        }
+
+            .account-creation.show {
+                display: block;
+            }
+
+        .selected-plan-summary {
+            background: rgba(127, 255, 0, 0.1);
+            border: 1px solid rgba(127, 255, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+            .selected-plan-summary h3 {
+                color: #7fff00;
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .selected-plan-summary .price {
+                font-size: 2rem;
+                color: #7fff00;
+                font-weight: 800;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                color: #ddd;
+                font-weight: 500;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 12px 16px;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                color: white;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+            }
+
+                .form-group input:focus {
+                    outline: none;
+                    border-color: #7fff00;
+                    background: rgba(255, 255, 255, 0.15);
+                }
+
+                .form-group input::placeholder {
+                    color: #888;
+                }
+
+        .back-button {
+            background: transparent;
+            color: #7fff00;
+            border: 2px solid #7fff00;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+            .back-button:hover {
+                background: rgba(127, 255, 0, 0.1);
+            }
+
+        .pricing-grid.hidden {
+            display: none;
+        }
+
+        .stats-bar.hidden,
+        .user-stats.hidden,
+        .trust-section.hidden,
+        .credit-cards.hidden {
+            display: none;
+        }
+
+        @@keyframes slideUp {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        @@media (max-width: 1000px) {
+            .container
+
+        {
+            max-width: 100%;
+        }
+
+        .stats-bar {
+            gap: 30px;
+        }
+
+        .pricing-grid {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            max-width: 100%;
+        }
+
+        .pricing-card {
+            padding: 20px 15px;
+            min-height: auto;
+        }
+
+        .premium-card {
+            transform: none;
+        }
+
+            .premium-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .plan-name {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .plan-subtitle {
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 1.8rem;
+        }
+
+        .price-period {
+            font-size: 0.85rem;
+        }
+
+        .features li {
+            padding: 5px 0;
+            font-size: 0.8rem;
+            padding-left: 20px;
+        }
+
+        .cta-button {
+            padding: 12px 16px;
+            font-size: 0.85rem;
+        }
+
+        }
+
+        @@media (max-width: 768px) {
+            .logo
+
+        {
+            font-size: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+        }
+
+        .stats-bar {
+            gap: 20px;
+        }
+
+        .stat-item {
+            padding: 12px 20px;
+        }
+
+        .pricing-grid {
+            gap: 12px;
+        }
+
+        .pricing-card {
+            padding: 18px 12px;
+        }
+
+        .plan-name {
+            font-size: 1.2rem;
+        }
+
+        .price {
+            font-size: 1.6rem;
+        }
+
+        .features li {
+            font-size: 0.75rem;
+        }
+
+        .cta-button {
+            padding: 10px 12px;
+            font-size: 0.8rem;
+        }
+
+        }
+
+        @@media (max-width: 480px) {
+            body
+
+        {
+            padding: 20px 10px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+        }
+
+        .stats-bar {
+            gap: 15px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-item {
+            padding: 10px 15px;
+        }
+
+        .pricing-grid {
+            gap: 8px;
+        }
+
+        .pricing-card {
+            padding: 15px 10px;
+        }
+
+        .plan-name {
+            font-size: 1.1rem;
+        }
+
+        .price {
+            font-size: 1.4rem;
+        }
+
+        .features li {
+            font-size: 0.7rem;
+            padding: 3px 0;
+        }
+
+        .cta-button {
+            padding: 8px 10px;
+            font-size: 0.75rem;
+        }
+
+        }
+
+        .site-name-logo {
+            color: #7fff00 !important;
+            font-family: "Barlow", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 2.5rem;
+            letter-spacing: -3px;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .rotate-left {
+            display: inline-block;
+            transform: rotate(340deg);
+            margin-right: -1px;
+        }
+
+        .rotate-right {
+            display: inline-block;
+            transform: rotate(30deg);
+            margin-left: 3px;
+            margin-right: -2px;
+        }
+
+        .white {
+            color: #fff;
+        }
+
+        .green {
+            color: #7fff00;
+        }
+
+        .plan-subtitle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .plan-ring {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 3px solid #888;
+            box-shadow: none;
+            flex-shrink: 0;
+        }
+
+        .basic-ring {
+            border-color: #888;
+        }
+
+        .premium-ring {
+            border-color: gold;
+            box-shadow: 0 0 8px 1px gold;
+        }
+
+        .lifetime-ring {
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, magenta, cyan, violet, blue, pink, magenta);
+            background-size: 300% 300%;
+            animation: rainbowPulse 3s linear infinite;
+        }
+
+        @@keyframes rainbowPulse {
+            0%
+
+        {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+
+        }
+
+        .site-name-logo-small {
+            scale: 1.1;
+            color: #7fff00 !important;
+        }
+
+        .gray {
+            color: #999;
+        }
+
+        .redirect-notice {
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .site-logo-link{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+         <a  class="site-logo-link" asp-controller="Video" asp-action="Index" asp-route-category="Latest">
+                <p class="site-name-logo"><span class="white">brain</span>b<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="white">.tv</span></p>
         </a>
-        <p class="choose-plan">Choose Your Plan</p>
-        <div class="main-features">
-            <div class="main_feature">
-                <div class="feature-top-text">
-                    1000+ <span class="small">videos</span>
+
+        <div class="header">
+            <h1>Choose Your Plan</h1>
+        </div>
+
+        <div class="stats-bar">
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card basic-card">
+                <div class="card-content">
+                    <h3 class="plan-name">Basic Premium</h3>
+                    <p class="plan-subtitle"><span class="plan-ring basic-ring"></span> The Porn Addict</p>
+                    <div class="price-section">
+                        <div class="original-price">$20/month</div>
+                        <div class="price">$4.99</div>
+                        <div class="price-period">/ month</div>
+                    </div>
+                    <ul class="features">
+                        <li>Fewer ads</li>
+                        <li>Save statistics</li>
+                        <li>Comment on videos, save favorites</li>
+                        <li>Cancel anytime</li>
+                    </ul>
                 </div>
-                <div class="feature-bottom-text">
-                    8k and 4k video
-                </div>
+                <button class="cta-button" onclick="selectPlan('basic')">Get Started</button>
             </div>
 
-            <div class="main_feature">
-                <div class="feature-top-text">
-                    Live Updates
+            <div class="pricing-card premium-card">
+                <div class="popular-badge">Most Popular</div>
+                <div class="card-content">
+                    <h3 class="plan-name">Full Premium</h3>
+                    <p class="plan-subtitle"><span class="plan-ring premium-ring"></span> The Gooner</p>
+                    <div class="price-section">
+                        <div class="original-price">$50/month</div>
+                        <div class="price">$14.99</div>
+                        <div class="price-period">/ month</div>
+                    </div>
+                    <ul class="features">
+                        <li>Everything in Basic</li>
+                        <li>Zero Ads</li>
+                        <li>Advanced statistics</li>
+                        <li>Profile badges</li>
+                    </ul>
                 </div>
-                <div class="feature-bottom-text">
-                    New videos daily
-                </div>
+                <button class="cta-button" onclick="selectPlan('premium')">Get Started</button>
             </div>
 
-            <div class="main_feature">
-                <div class="feature-top-text">
-                    500+  
+            <div class="pricing-card">
+                <div class="card-content">
+                    <h3 class="plan-name">Lifetime</h3>
+                    <p class="plan-subtitle"><span class="plan-ring lifetime-ring"></span> The Pornosexual</p>
+                    <div class="price-section">
+                        <div class="original-price">$500</div>
+                        <div class="price">$125</div>
+                        <div class="price-period">one time payment</div>
+                    </div>
+                    <ul class="features">
+                        <li>Unlimited access, forever</li>
+                        <li>All premium features</li>
+                        <li>Exclusive Content</li>
+                        <li>Exclusive profile badge</li>
+                    </ul>
                 </div>
-                <div class="feature-bottom-text">
-                    Top Goon Editors
-                </div>
+                <button class="cta-button" onclick="selectPlan('lifetime')">Get Started</button>
             </div>
         </div>
-    </div>
 
+        <div class="user-stats">
+            <h3>🔥 Join <span class="green">36,241</span> other Gooners on the #1 Gooning platform </h3>
+            <!-- <p class="site-name-logo-small"><span class="gray">brain</span>b<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="gray">.tv</span></p> -->
 
-    <!--PRODUCT CARDDS-->
-<div class="cards" >
-    <div class="card monthly" id="card-1" data-tier="Monthly"  onclick="cardClicked(this)">
-        <img class="model-img" src="~../../img/angelabb.png"></img>
-        <div class="card-content">
-            <h1>Monthly</h1>
-                <h3 style="color:var(--accent-color)">The Gooner</h3>
-              <p>Unlimited access</p>
-                <p>Cancel anytime</p>           
-         </div>
-         <div class="pricing blur">
-               <p class="strikedTxt">$2.00</p>
-                <div class="bottom-price">
-                    <p class="cents">$0.27 / day</p>
-                </div>
-            <a href="#"  class="join-now-btn-small">Join Now</a>           
-
-          </div>
-    </div>
-    <div class="card yearly" id="card-2" data-tier="Yearly" onclick="cardClicked(this)">
-                <img class="model-img" src="~../../img/alexisbg.png"></img>
-        <div class="card-content">
-            <h1>Yearly</h1>
-            <h3 style="color:var(--accent-color)">The Porn Addict</h3>
-                  <p>Unlimited access</p>
-                <p>Cancel anytime</p>
         </div>
-        <div class="pricing blur">
-               <p class="strikedTxt">$2.00</p>
-                <div class="bottom-price">
-                    <p class="cents">$0.67 / day</p>
-                </div>
-                        <a href="#"  class="join-now-btn-small">Join Now</a>           
 
-          </div>
-    </div>
 
-    <!--CARD 3-->
-     <div class="card yearly" id="card-3" data-tier="Lifetime"  onclick="cardClicked(this)">
-             <img class="model-img lana" src="~../../img/lana12.png"></img>
-            <div class="card-content">
-                <h1>Lifetime</h1>
-                    <h3 style="color:var(--accent-color)">The Pornosexual</h3>
-                    <p>Unlimited access</p>
-                    <p>100 years access</p>
+        <div class="trust-section">
+            Secure, discreet checkout
+        </div>
+
+        <div class="credit-cards">
+            <div class="credit-card">💳 Visa</div>
+            <div class="credit-card">💳 Mastercard</div>
+            <div class="credit-card">💳 American Express</div>
+            <div class="credit-card">💳 PayPal</div>
+        </div>
+
+        <div class="account-creation" id="accountForm">
+            <div class="selected-plan-summary" id="planSummary">
+                <!-- Plan details will be populated here -->
             </div>
-            <div class="pricing blur">
-                    <p class="strikedTxt">$1000</p>
-                    <div class="bottom-price">
-                        <p class="cents">$100</p>
-                    </div>
-                    <a href="#" class="join-now-btn-small">Join Now</a>          
-             </div>
-       </div>
- </div> 
 
+            <h2 style="text-align: center; margin-bottom: 30px; color: white;">Let's create your account</h2>
 
-
-
-    <!--step 2-->
-    <div class="step-2-container">
-           <div class="second-card">
-                    <img class="model-img second-card-image" src="~../../img/lana12.png"></img>
-
-                    <div class="card-content">
-                        <div class="second-card-plan-type">ss</div>
-                        <div class="discount strikedTxt">ss</div>
-                        <div class="offer-num cents">ss</div>
-                    </div>
-                    <div class="back-btn">
-                        
-                        <h3 id="back-button">< Back</h3>
-                    </div>
-
-            </div>
-        <div class="create-account">
-            <h1>Let's create an account</h1>
-            <form id="registerForm" class="form" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                <div class="input-box">
-                    <img class="form-icon" src="~/img/mail.png" height="20" width="20" />
-                    <input name="Email" type="email" required placeholder="Email" />
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 </div>
 
-                <div class="input-box">
-                    <img class="form-icon" src="~/img/lock.png" height="20" width="20" />
-                    <input name="Password" type="password" required placeholder="Password" minlength="10" />
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
                 </div>
 
-                <div id="validation-message"></div>
-
-                <div class="newsletter-box">
-                    <input class="email-check" type="checkbox" id="check" name="ReceiveNewsletter" value="true" />
-                    <p class="inform-email">I would like to receive occasional email updates from BrainBreaker.TV</p>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="submit" class="cta-button" style="width: 100%; margin-bottom: 15px; padding: 18px 20px;">Join Now</button>
+                    <p class="redirect-notice">You will be redirected to our trusted payment processor</p>
+                    <button type="button" class="back-button" onclick="goBack()">← Back to Plans</button>
                 </div>
-
-                <div class="inform-consent">
-                    By submitting this form, you certify that you are 18 years of age or older, and agree to the Terms-of-Service Agreement
-                </div>
-
-                <div class="join-btn">
-                    <input class="join-now-input" type="submit" value="Join Now" />
-                </div>
-
-                <input id="subTier" type="hidden" name="Subscription_Tier" value="default" />
-                <input type="hidden" id="userGuidField" name="UserGuid" value="" />
-
             </form>
         </div>
-
-
     </div>
 
-</div>
+    <script>
+        let selectedPlanData = null;
 
- 
-<style>
-
-    input:user-valid {
-        border: 2px solid var(--primary-color) !important;
-    }
-
-    input:user-invalid {
-        border: 2px solid red !important;
-    }
-
-    input:focus {
-        outline-color: darkgrey !important;
-    }
-    #validation-message {
-        color: darkred !important;
-        font-size: large;
-    }
-    .join-now-input:hover{
-        cursor: pointer;
-        background-color: var(--primary-color-hover) !important;
-    }
-    
-    .inform-consent{
-        color: #666;
-        margin: 10px 0px; 
-        word-wrap: break-word;
-        text-align: start;
-        margin-left: 15px !important;
-        font-size: 10px;
-    } 
-
-    .newsletter-box {
-        display: flex;
-        align-items: flex-start; /* Changed from center to flex-start */
-        justify-content: flex-start; /* Added to align items to the left */
-        color: #eee !important;
-        margin: 10px 0; /* Added margin for spacing */
-        padding: 5px; /* Added padding for better containment */
-        flex-wrap: wrap; /* Allow wrapping if needed */
-        gap: 10px; /* Add gap between checkbox and text */
-    }
-
-    .email-check {
-        max-width: 20px !important;
-        min-width: 20px; /* Ensure checkbox doesn't shrink */
-        flex-shrink: 0; /* Prevent checkbox from shrinking */
-    }
-
-    .inform-email {
-        text-align: start;
-        word-wrap: break-word;
-        margin: 0; /* Remove margin-left since we're using gap */
-        flex: 1; /* Allow text to take remaining space */
-        line-height: 1.4; /* Improve readability */
-    }
-    .input-box{
-        position: relative;
-    }
-    .form-icon{
-        position: absolute;
-        bottom: 50%;
-        transform: translateY(50%);
-        left: 20px;
-    }
-    .create-account h1{
-        width: 100%;
-        text-align: left;
-        margin-left: 11px;
-        color: #fff !important;
-    }
-    .create-account{
-        width: 90%;
-        background-color: #111;
-        padding: 20px;
-        height: 800px !important;
-        border: 1px solid var(--accent-color);
-        border-radius: 10px;
-
-    }
-    .create-account input{
-        width: 100%;
-        border: none;
-        outline: none;
-        border-radius: 10px;
-        padding: 14px;
-        margin: 3px;
-        margin-bottom: 10px;
-        background-color: #fff;
-        color: #222;
-        padding-left: 44px !important;
-        padding-top: 20px !important;
-        font-weight: 400 ;
-        font-size: 17px !important;
-    }
-
-    .join-now-input {
-        background-color: var(--primary-color) !important;
-        font-weight: 700 !important;
-    }
-    .form{
-        display: flex;
-        flex-direction: column;
-        max-width: 500px;
-        width: 95%;
-        height: 100%;        
-    }
-    .back-btn{
-        position: absolute;
-        bottom: 0;
-        margin-bottom: -50px !important;
-        display: flex;
-
-    } .back-btn:hover{
-        cursor: pointer;
-        transform: scale(1.2);
-    }
-    .second-card-image{
-        position: absolute;
-        right: 0;
-        height: 100%;
-        z-index: -1;
-    }
-    .create-account{
-        height: 100%;
-        width: 100%;
-        max-width: 400px;
-        max-height: 400px;
-        display: flex;
-        flex-direction: column;
-         align-items: center;
-         margin-left: 10px;
-         margin-right: 10px;
-    }
-    .create-account h2{
-        color: white;
-    }
-    .step-2-container{
-        display: none; 
-        position: relative;
-        margin: 0px 10px;
-        width: 100vw;
-        height: 50vh;
-        justify-content: center;
-    }
-    .second-card{
-        z-index: 99999;
-        text-align: left;
-       color: white !important;
-        outline: 1px solid var(--accent-color);
-        position: relative;
-       margin: 10px;
-       width: 85%;
-       max-width: 400px;
-       height: 200px !;
-       background: rgba( 255, 255, 255, 0.05 );
-        box-shadow: 0 8px 32px 0 rgba( 31, 31, 31, 0.37 );
-        backdrop-filter: blur( 2px );
-        -webkit-backdrop-filter: blur( 2px );
-        border-radius: 10px;
-        border: 1px solid rgba( 255, 255, 255, 0.18 );   
-    }
-    
-    .cents{
-        font-size: large;
-        font-weight: 700;
-    }
-    .bottom-price{
-        position: absolute;
-        bottom: -12px;
-        left: 10px;
-    }
-    .strikedTxt{
-        text-decoration:line-through;
-    }
-   .join-now-btn-small{
-        color: black !important;
-        font-weight: 700;
-        background-color: transparent;
-        border-radius: 4px;
-        cursor: pointer;
-        background-color: var(--primary-color); 
-        text-decoration: none;
-        margin-left: auto;
-        margin-top: auto;
-        margin-bottom: auto;
-        padding: 8px 11px;
-        margin-right: 10px;
-    }  .join-now-btn-small:hover{
-        background-color: var(--primary-color-hover);
-        transition-duration: 200ms;
-    }
-    .model-img{
-        position: absolute;
-        right: 0;
-        height: 100%;
-        z-index: -1;
-    }
-     .lana{
-        height: 96% !important;
-        bottom: 0;
-    }
-    .card-content{
-        padding: 10px;
-    }
-    .pricing{
-       background: rgba( 55, 55, 55, 0.15 );
-        box-shadow: 0 8px 32px 0 rgba( 31, 31, 31, 0.37 );
-        backdrop-filter: blur( 17px );
-        -webkit-backdrop-filter: blur( 17px );
-        border-radius: 0 0 10px 10px; 
-        
-
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 0 !important;
-        height: 60px ;
-        display: flex;
-    }
-    .main-page{
-        height: 100vh;
-    }
-    body{
-        margin: 0 !important;
-        overflow-x: hidden;
-        padding: 0 !important;
-    }
-    .cards{
-         width: 90vw;
-        justify-content: center;
-        height: 40vh;
-    }
-   .card{
-        transition-property: all; /* Specify which property to transition */
-        transition-duration: 0.7s; /* Duration of the transition */
-        transition-timing-function: ease; /* Timing function for the transition */
-       text-align: left;
-       color: white !important;
-       outline: 1px solid #111;
-       position: relative;
-       margin: 10px;
-       width: 90%;
-       max-width: 330px;
-       height: auto;
-          background: rgba( 255, 255, 255, 0.05 );
-        box-shadow: 0 8px 32px 0 rgba( 31, 31, 31, 0.37 );
-        backdrop-filter: blur( 2px );
-        -webkit-backdrop-filter: blur( 2px );
-        border-radius: 7px;
-        border: 1px solid rgba( 255, 255, 255, 0.18 );
-   }
-   .card:hover{
-       outline-color: #888;
-       background: radial-gradient(var(--primary-color-card-hover), rgba(145, 152, 229, 0.00));
-   }
-   @@media(min-width: 700px){
-       .cards{
-           margin-top: -40px;
-       }
-       .top-3-rows{
-           margin-top: -100px !important;
-       }       
-   }
-
-   @@media(max-width: 670px){       
-       .cards{
-           margin-top: 10px;
-           flex-direction: column;
-           align-items: center;
-           width: 100vw !important;
-       }
-       .card{
-           max-width: 100% !important;
-           height: auto;
-           margin: 6px !important;
-           margin-top: 0px;
-           font-size: x-small !important;
-       }
-       .main_feature{
-           font-size: small !important;
-       }
-       .feature-top-text{
-           font-size: medium !important;
-       }       
-       .top-3-rows{
-            margin-top: -100px !important;
-       }
-       .main-features{
-           display: flex;
-           flex-direction: row;
-           margin: 0 !important;
-       }
-       .site-name-logo{
-           font-size: 2.4rem !important;
-           letter-spacing: -4px !important;
-       }
-        
-       .strikedTxt{
-           position: absolute;
-           left: auto;
-           right: 0 ;
-           margin-right: 100px;
-       }
-       .bottom-price{
-           position: absolute;
-           left: auto;
-           right: 0 ;
-           margin-right: 100px;
-       }
-      
-       .step-2-container{
-           flex-direction: column !important;
-           align-items: center;
-           margin-bottom: 100px;
-       }
-       .second-card{
-           height: 140px !important;
-       }
-       .create-account{
-           margin-top: 20px !important;
-       }
-   }
-
-   @@media(max-width: 675px){
-        .create-account {
-            max-width: 280px !important;
-            margin-top: 30px !important;
-        }
-        .create-account h1{
-            font-size: 21px !important;
-        }
-
-        .second-card {
-            margin-top: 200px !important;
-        }
-   }
-
-    @@media(max-width: 33s0px) {
-        .create-account {
-            max-width: 260px !important;
-            min-height: 430px !important;
-        }
-        .second-card{
-            margin-top: 380px !important;
-        }
-        .inform-consent{
-            padding: 0 !important;
-        }
-        .newsletter-box{
-            max-height: 15px;
-        }
-    }
-
-
-</style>
- 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<script src="~/js/JoinNow.js" defer>
-    
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-<style>
-    /* Toastify Progress Bar */
-    .toastify .toastify-progress {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 4px;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        animation: toastifyProgressBar 3s linear forwards;
-    }
-
-    @@keyframes toastifyProgressBar {
-        from { width: 100%; }
-        to { width: 0%; }
-    }
-
-    body {
-        background: linear-gradient(to bottom, #000000, #1a1a1a) !important;
-    }
-</style>
-
-<script>
-    $("#registerForm").submit(function (e) {
-        e.preventDefault();
-
-        $.ajax({
-            type: "POST",
-            url: '/User/JoinNow',
-            data: $(this).serialize(),
-            success: function (response) {
-                const toast = Toastify({
-                    text: response.message,
-                    duration: 3000,
-                    close: true,
-                    gravity: "top",
-                    position: "right",
-                    stopOnFocus: true,
-                    style: {
-                        background: response.success
-                            ? "rgb(52, 197, 75)"
-                            : "rgba(230, 30, 30, .7)",
-                        position: "absolute",
-                        overflow: "hidden"
-                    },
-                    onClick: function(){} // required for Toastify to return element
-                }).showToast();
-
-                // Add progress bar after toast is in DOM
-                setTimeout(function() {
-                    const toastEl = document.querySelector('.toastify');
-                    if(toastEl) {
-                        const progressBar = document.createElement('div');
-                        progressBar.className = 'toastify-progress';
-                        toastEl.appendChild(progressBar);
-                    }
-                }, 100);
-
-                if (response.success && response.redirectUrl) {
-                    setTimeout(function () {
-                        window.location.href = response.redirectUrl;
-                    }, 1500);
-                }
+        const planDetails = {
+            basic: {
+                name: 'Basic Premium',
+                subtitle: 'Essential Access',
+                price: '$4.99',
+                period: '/ month',
+                originalPrice: '$10'
             },
-            error: function () {
-                const toast = Toastify({
-                    text: "Unexpected error occurred.",
-                    duration: 3000,
-                    close: true,
-                    gravity: "top",
-                    position: "right",
-                    stopOnFocus: true,
-                    style: {
-                        background: "#E57373",
-                        position: "relative",
-                        overflow: "hidden"
-                    },
-                    onClick: function() {}
-                }).showToast();
-
-                setTimeout(function() {
-                    const toastEl = document.querySelector('.toastify');
-                    if(toastEl) {
-                        const progressBar = document.createElement('div');
-                        progressBar.className = 'toastify-progress';
-                        toastEl.appendChild(progressBar);
-                    }
-                }, 100);
+            premium: {
+                name: 'Full Premium',
+                subtitle: 'Complete Experience',
+                price: '$19.99',
+                period: '/ month',
+                originalPrice: '$50/month'
+            },
+            lifetime: {
+                name: 'Lifetime',
+                subtitle: 'Forever Access',
+                price: '$100',
+                period: 'one time payment',
+                originalPrice: '$500'
             }
+        };
+
+        function selectPlan(plan) {
+            selectedPlanData = planDetails[plan];
+
+            // Add visual feedback
+            event.target.innerHTML = 'Processing...';
+            event.target.style.transform = 'scale(0.95)';
+
+            setTimeout(() => {
+                showAccountForm(plan);
+            }, 800);
+        }
+
+        function showAccountForm(planType) {
+            // Hide pricing elements
+            document.querySelector('.pricing-grid').classList.add('hidden');
+            document.querySelector('.stats-bar').classList.add('hidden');
+            document.querySelector('.user-stats').classList.add('hidden');
+            document.querySelector('.trust-section').classList.add('hidden');
+            document.querySelector('.credit-cards').classList.add('hidden');
+
+            // Update header
+            document.querySelector('.header h1').textContent = 'Almost there!';
+
+            // Populate plan summary
+            const planSummary = document.getElementById('planSummary');
+            planSummary.innerHTML = `
+                <h3>${selectedPlanData.name}</h3>
+                <p style="color: #bbb; margin-bottom: 15px;">${selectedPlanData.subtitle}</p>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <span style="text-decoration: line-through; color: #888; font-size: 1rem;">${selectedPlanData.originalPrice}</span>
+                    <span class="price">${selectedPlanData.price}</span>
+                    <span style="color: #bbb;">${selectedPlanData.period}</span>
+                </div>
+            `;
+
+            // Show account form and scroll to top
+            setTimeout(() => {
+                document.getElementById('accountForm').classList.add('show');
+                // Smooth scroll to top to center the form
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 300);
+        }
+
+        function goBack() {
+            // Hide account form
+            document.getElementById('accountForm').classList.remove('show');
+
+            // Show pricing elements
+            setTimeout(() => {
+                document.querySelector('.pricing-grid').classList.remove('hidden');
+                document.querySelector('.stats-bar').classList.remove('hidden');
+                document.querySelector('.user-stats').classList.remove('hidden');
+                document.querySelector('.trust-section').classList.remove('hidden');
+                document.querySelector('.credit-cards').classList.remove('hidden');
+
+                // Reset header
+                document.querySelector('.header h1').textContent = 'Choose Your Plan';
+
+                // Reset buttons
+                document.querySelectorAll('.cta-button').forEach(btn => {
+                    btn.innerHTML = 'Get Started';
+                    btn.style.transform = 'scale(1)';
+                });
+
+                selectedPlanData = null;
+            }, 300);
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+
+            // Add loading state
+            submitBtn.innerHTML = 'Creating Account...';
+            submitBtn.disabled = true;
+
+            // Simulate account creation
+            setTimeout(() => {
+                // In a real app, you'd send this data to your backend
+                const checkoutData = {
+                    email: email,
+                    plan: selectedPlanData,
+                    timestamp: new Date().toISOString()
+                };
+
+                console.log('Redirecting to payment processor with:', checkoutData);
+                alert(`Account created! Redirecting to secure checkout for ${selectedPlanData.name} plan...`);
+
+                // Reset form
+                submitBtn.innerHTML = 'Join Now';
+                submitBtn.disabled = false;
+                document.getElementById('signupForm').reset();
+
+                // In a real app, redirect to payment processor:
+                // window.location.href = `/checkout?plan=${planType}&email=${encodeURIComponent(email)}`;
+            }, 2000);
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.pricing-card');
+
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.opacity = '1';
+                    if (index === 1 && window.innerWidth > 1000) {
+                        card.style.transform = 'scale(1.05)';
+                    } else {
+                        card.style.transform = 'translateY(0)';
+                    }
+                }, index * 200);
+            });
+
+            // Handle responsive scaling on resize
+            window.addEventListener('resize', function() {
+                const premiumCard = document.querySelector('.premium-card');
+                if (window.innerWidth <= 1000) {
+                    premiumCard.style.transform = 'translateY(0)';
+                } else {
+                    premiumCard.style.transform = 'scale(1.05)';
+                }
+            });
         });
-    });
-</script>
-
-//get GUID and send with form submission
-<script>
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
-    document.getElementById('registerForm').addEventListener('submit', function () {
-        const userGuid = getCookie('userGuid');
-        document.getElementById('userGuidField').value = userGuid;
-        console.log("Guid sent:" + userGuid);
-
-    });
-</script>
+    </script>
+</body>
+</html>
