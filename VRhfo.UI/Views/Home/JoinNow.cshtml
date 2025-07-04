@@ -8,6 +8,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StreamVault - Choose Your Plan</title>
     <style>
+        :root {
+            /* OLD->   --primary-color: #d4ff00;  fix me
+        */
+            --text-color: #000;
+            --background-color: #000;
+            --primary-color: #7fff00;
+            --primary-color-hover: rgba(191, 255, 0, .7);
+            --primary-color-card-hover: rgba(291, 255, 200, .1);
+            --secondary-color: #262727;
+            --accent-color: #97a7b3;
+            --primary-color-dark: rgba(24, 30, 0, 1);
+            --join-now-hover: #6bdd00;
+            /* --text-color: #fff;
+            --background-color: #fff !important;
+            --primary-color: rgb(221, 6, 109);
+            --primary-color-hover: rgba(221, 6, 109, .7);
+            --secondary-color: #222;
+            --accent-color: #b6bae8;
+            --primary-color-dark: rgba(221, 6, 109, .13);*/
+            /* --text-color: #fff;
+            --background-color: #120606;
+            --primary-color: #e00000;
+            --primary-color-hover: #c50606;
+            --secondary-color: #991515;
+            --accent-color: #f23b3b;*/
+        }
         * {
             margin: 0;
             padding: 0;
@@ -44,7 +70,7 @@
             }
 
             .logo .vault {
-                color: #7fff00;
+                color: var(--primary-color);
             }
 
         .header {
@@ -137,7 +163,7 @@
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background: #7fff00;
+            background: var(--primary-color);
             color: #000;
             padding: 6px 20px;
             border-radius: 20px;
@@ -176,7 +202,7 @@
         .price {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #7fff00;
+            color: var(--primary-color);
             margin-bottom: 5px;
         }
 
@@ -203,7 +229,7 @@
                     content: "✓";
                     position: absolute;
                     left: 0;
-                    color: #7fff00;
+                    color: var(--primary-color);
                     font-weight: bold;
                     font-size: 1.1rem;
                 }
@@ -211,7 +237,7 @@
         .cta-button {
             width: 100%;
             padding: 15px 20px;
-            background: #7fff00;
+            background: var(--primary-color);
             color: #000;
             border: none;
             border-radius: 8px;
@@ -225,14 +251,14 @@
         }
 
             .cta-button:hover {
-                background: #6bdd00;
+                background: var(--join-now-hover);
                 transform: translateY(-2px);
             }
 
         .basic-card .cta-button {
-            background: #7fff00;
+            background: var(--primary-color);
             color: #000;
-            border: 2px solid #7fff00;
+            border: 2px solid var(--primary-color);
         }
 
             .basic-card .cta-button:hover {
@@ -260,13 +286,13 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            color: #7fff00;
+            color: var(--primary-color);
             font-size: 0.95rem;
         }
 
             .trust-section::before {
                 content: "✓";
-                background: #7fff00;
+                background: var(--primary-color);
                 color: #000;
                 border-radius: 50%;
                 width: 20px;
@@ -321,14 +347,14 @@
         }
 
             .selected-plan-summary h3 {
-                color: #7fff00;
+                color: var(--primary-color);
                 font-size: 1.5rem;
                 margin-bottom: 10px;
             }
 
             .selected-plan-summary .price {
                 font-size: 2rem;
-                color: #7fff00;
+                color: var(--primary-color);
                 font-weight: 800;
             }
 
@@ -357,7 +383,7 @@
 
                 .form-group input:focus {
                     outline: none;
-                    border-color: #7fff00;
+                    border-color: var(--primary-color);
                     background: rgba(255, 255, 255, 0.15);
                 }
 
@@ -367,8 +393,8 @@
 
         .back-button {
             background: transparent;
-            color: #7fff00;
-            border: 2px solid #7fff00;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
             padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
@@ -557,7 +583,7 @@
         }
 
         .site-name-logo {
-            color: #7fff00 !important;
+            color: var(--primary-color) !important;
             font-family: "Barlow", sans-serif;
             font-weight: 800;
             font-style: normal;
@@ -639,7 +665,7 @@
 
         .site-name-logo-small {
             scale: 1.1;
-            color: #7fff00 !important;
+            color: var(--primary-color) !important;
         }
 
         .gray {

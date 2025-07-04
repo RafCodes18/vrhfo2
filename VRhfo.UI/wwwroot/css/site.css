@@ -3,12 +3,13 @@
 */
     --text-color: #000;
     --background-color: #000;
-    --primary-color: #aeff00;
+    --primary-color: #7fff00;
     --primary-color-hover: rgba(191, 255, 0, .7);
     --primary-color-card-hover: rgba(291, 255, 200, .1);
     --secondary-color: #262727;
     --accent-color: #97a7b3;
     --primary-color-dark: rgba(24, 30, 0, 1);
+    --join-now-hover: #6bdd00;
     /* --text-color: #fff;
     --background-color: #fff !important;
     --primary-color: rgb(221, 6, 109);
