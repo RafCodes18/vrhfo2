@@ -659,15 +659,69 @@
 
         .redirect-notice {
             color: #aaa;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
         }
 
         .site-logo-link{
             text-decoration: none;
         }
+
+
+        .center-footer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 500px;
+            min-width: 100px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .footer-top-row {
+            margin: 0 !important;
+            padding: 0 !important;
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-around !important;
+            margin-bottom: 20px !important;
+        }
+
+            .footer-top-row a {
+                color: #555;
+            }
+
+                .footer-top-row a:hover {
+                    color: #656565;
+                }
+
+        .footer {
+            padding-bottom: 80px !important;
+            padding-top: 20px !important;
+        }
+
+            .footer p {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+        .footer-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            margin-top: 100px !important;
+        }
+
+        .footer-bottom-row {
+            margin-bottom: 8px !important;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
     <div class="container">
          <a  class="site-logo-link" asp-controller="Video" asp-action="Index" asp-route-category="Latest">
                 <p class="site-name-logo"><span class="white">brain</span>b<span class="rotate-left">r</span><span class="rotate-right">e</span>aker<span class="white">.tv</span></p>
@@ -781,8 +835,28 @@
                     <p class="redirect-notice">You will be redirected to our trusted payment processor</p>
                     <button type="button" class="back-button" onclick="goBack()">← Back to Plans</button>
                 </div>
+
             </form>
+
         </div>
+            <footer class="footer-box  text-muted">
+                <div class="center-footer">
+                    <div class="footer-top-row">
+                        <a asp-action="Index" asp-controller="Video">Home</a>
+                        <a asp-action="Privacy" asp-controller="Home">Privacy Policy</a>
+                        <a asp-action="TermsAndConditions" asp-controller="Home">Terms of Service</a>
+                        <a asp-action="DMCA" asp-controller="Home">DMCA</a>
+                        <a asp-action="RecordsCompliance" asp-controller="Home">18 U.S.C 2257</a>
+
+                    </div>
+                    <div class="footer-bottom-row">
+                       
+                     
+      </div>
+
+                    <p class="footer-bottom-row"> &copy; 2025 - <span class="bold">brainbreaker.tv </span></p>
+                </div>
+            </footer>
     </div>
 
     <script>
@@ -791,22 +865,22 @@
         const planDetails = {
             basic: {
                 name: 'Basic Premium',
-                subtitle: 'Essential Access',
+                subtitle: 'The Porn Addict',
                 price: '$4.99',
                 period: '/ month',
                 originalPrice: '$10'
             },
             premium: {
                 name: 'Full Premium',
-                subtitle: 'Complete Experience',
-                price: '$19.99',
+                subtitle: 'The Gooner',
+                price: '$14.99',
                 period: '/ month',
                 originalPrice: '$50/month'
             },
             lifetime: {
                 name: 'Lifetime',
-                subtitle: 'Forever Access',
-                price: '$100',
+                subtitle: 'The Pornosexual',
+                price: '$125',
                 period: 'one time payment',
                 originalPrice: '$500'
             }
