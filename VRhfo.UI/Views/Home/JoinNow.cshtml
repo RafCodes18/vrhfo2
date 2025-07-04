@@ -819,6 +819,17 @@
 
         /* Extra small screens */
         @@media (max-width: 480px) {
+            body{padding: 0 !important;}
+            .small-original {
+                font-size: .7rem !important;
+            }
+
+            .small-monthly {
+                font-size: .6rem !important;
+            }
+            .price{
+                font-size: 1.7rem !important;
+            }
             .site-name-logo
 
         {
@@ -858,6 +869,8 @@
         }
 
         }
+
+       
     </style>
 </head>
 <body>
@@ -1055,9 +1068,9 @@
                 <h3>${selectedPlanData.name}</h3>
                 <p style="color: #bbb; margin-bottom: 15px;">${selectedPlanData.subtitle}</p>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <span style="text-decoration: line-through; color: #888; font-size: 1rem;">${selectedPlanData.originalPrice}</span>
+                    <span style="text-decoration: line-through; color: #888;"   class="small-original">${selectedPlanData.originalPrice}</span>
                     <span class="price">${selectedPlanData.price}</span>
-                    <span style="color: #bbb;">${selectedPlanData.period}</span>
+                    <span style="color: #bbb;" class="small-monthly">${selectedPlanData.period}</span>
                 </div>
             `;
 
