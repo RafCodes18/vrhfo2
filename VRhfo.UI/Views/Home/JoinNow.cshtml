@@ -151,7 +151,7 @@
         .premium-card {
             background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
             transform: scale(1.05);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--primary-color);
         }
 
             .premium-card:hover {
@@ -587,7 +587,7 @@
             font-family: "Barlow", sans-serif;
             font-weight: 800;
             font-style: normal;
-            font-size: 2.5rem;
+            font-size: 3.1rem;
             letter-spacing: -3px;
             padding: 0 !important;
             margin: 0 !important;
@@ -870,7 +870,15 @@
 
         }
 
-       
+        .pricing-card.selected {
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .premium-card.deselected {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
     </style>
 </head>
 <body>
@@ -888,12 +896,12 @@
         </div>
 
         <div class="pricing-grid">
-            <div class="pricing-card basic-card">
+                <div class="pricing-card basic-card" onclick="selectCard(this, 'basic')">
                 <div class="card-content">
                     <h3 class="plan-name">Basic Premium</h3>
                     <p class="plan-subtitle"><span class="plan-ring basic-ring"></span> The Porn Addict</p>
                     <div class="price-section">
-                        <div class="original-price">$20/month</div>
+                        <div class="original-price">$12.99/month</div>
                         <div class="price">$4.99</div>
                         <div class="price-period">/ month</div>
                     </div>
@@ -904,16 +912,16 @@
                         <li>Cancel anytime</li>
                     </ul>
                 </div>
-                <button class="cta-button" onclick="selectPlan('basic')">Join Now</button>
+                    <button class="cta-button" onclick="event.stopPropagation(); selectPlan('basic')">Join Now</button>
             </div>
 
-            <div class="pricing-card premium-card">
+                <div class="pricing-card premium-card" onclick="selectCard(this, 'premium')">
                 <div class="popular-badge">Most Popular</div>
                 <div class="card-content">
                     <h3 class="plan-name">Full Premium</h3>
                     <p class="plan-subtitle"><span class="plan-ring premium-ring"></span> The Gooner</p>
                     <div class="price-section">
-                        <div class="original-price">$50/month</div>
+                        <div class="original-price">$25/month</div>
                         <div class="price">$14.99</div>
                         <div class="price-period">/ month</div>
                     </div>
@@ -924,10 +932,10 @@
                         <li>Profile badges</li>
                     </ul>
                 </div>
-                <button class="cta-button" onclick="selectPlan('premium')">Join Now</button>
+                    <button class="cta-button" onclick="event.stopPropagation(); selectPlan('premium')">Join Now</button>
             </div>
 
-            <div class="pricing-card">
+                <div class="pricing-card lifetime-card" onclick="selectCard(this, 'lifetime')">
                 <div class="card-content">
                     <h3 class="plan-name">Lifetime</h3>
                     <p class="plan-subtitle"><span class="plan-ring lifetime-ring"></span> The Pornosexual</p>
@@ -943,7 +951,7 @@
                         <li>Exclusive profile badge</li>
                     </ul>
                 </div>
-                <button class="cta-button" onclick="selectPlan('lifetime')">Join Now</button>
+                    <button class="cta-button" onclick="event.stopPropagation(); selectPlan('lifetime')">Join Now</button>
             </div>
         </div>
 
@@ -1014,6 +1022,7 @@
 
     <script>
         let selectedPlanData = null;
+                    let selectedCard = null;
 
         const planDetails = {
             basic: {
@@ -1038,10 +1047,31 @@
                 originalPrice: '$500'
             }
         };
+             function selectCard(cardElement, planType) {
+                // Remove selected class from all cards
+                document.querySelectorAll('.pricing-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
 
+                // Remove deselected class from premium card and add selected class to clicked card
+                const premiumCard = document.querySelector('.premium-card');
+                if (cardElement === premiumCard) {
+                    premiumCard.classList.remove('deselected');
+                    premiumCard.classList.add('selected');
+                } else {
+                    premiumCard.classList.add('deselected');
+                    cardElement.classList.add('selected');
+                }
+
+                selectedCard = cardElement;
+                selectedPlanData = planDetails[planType];
+            }
         function selectPlan(plan) {
             selectedPlanData = planDetails[plan];
-
+                 // Find the card that contains the clicked button and select it
+                const button = event.target;
+                const card = button.closest('.pricing-card');
+                selectCard(card, plan);
             // Add visual feedback
             event.target.innerHTML = 'Processing...';
             event.target.style.transform = 'scale(0.95)';
