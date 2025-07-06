@@ -231,7 +231,8 @@ namespace VRhfo.BL
                      v.IsPreview,
                      v.ContentWarning,
                      v.Likes,
-                     v.Dislikes
+                     v.Dislikes,
+                     v.PreviewVideoURL
                  }).ToList().ForEach(video => list.Add(new Video
                  {
                      Id = video.Id,
@@ -250,7 +251,8 @@ namespace VRhfo.BL
                      IsPreview = video.IsPreview == 1,
                      ContentWarning = video.ContentWarning,
                      Likes = video.Likes,
-                     Dislikes = video.Dislikes
+                     Dislikes = video.Dislikes,
+                     PreviewVideoURL = video.PreviewVideoURL
                  }));
 
                 return list;

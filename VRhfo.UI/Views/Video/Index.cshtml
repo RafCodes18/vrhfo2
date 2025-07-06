@@ -41,11 +41,11 @@
         width: 100%;
         overflow:hidden;
         margin: 0px 20px !important;
-    }
+     }
 
     .vid-img {
         max-width: 100%; /* Changed from a fixed height to a max-width */
-        height: 190px;
+        height: 230px;
         min-width: 200px;
         object-fit: cover;
     }
@@ -83,13 +83,17 @@
 
     @@media (max-width: 660px) {
         .card-container {
+            margin-left: 10px !important;
         }
         .card{
             max-width: 100vw;
             margin: 0 !important;
             margin-left: 10px !important;
-            max-height: 180px !important;
-        }       
+            border-radius: 0 !important;
+          }      
+          .vid-img{
+              border-radius: 0 !important;
+          }
     }
     @@media(max-width: 550px){
         .card{
@@ -428,37 +432,55 @@
         }
     </div>
     <div class="card-container">
-    @foreach (var item in Model)
-    {
-        <div class="card">
+        @foreach (var item in Model)
+        {
+            <div class="card">
                 <a asp-controller="Video" asp-action="Watch" asp-route-title="@item.Title.Replace(' ', '-')">
                     <div class="card-img">
-                  
-                            <img class="vid-img" src="@item.ThumbnailUrl" alt="@item.Title" style="width: 100%;">
-                            <div class="time-container">
-                                 <p class="card-time"><i class="fas fa-clock"></i> @item.FormattedDuration </p>
-                            </div>
-                   
-                    </div>
-                
-                    <div class="description">
-                        <div class="d-top-row">
-                            <h5 class="vid-title">@item.TruncatedTitle</h5>
+                        <img class="vid-img" src="@item.ThumbnailUrl" alt="@item.Title" style="width: 100%;">
+
+                        <!-- Add video element for preview -->
+                        <video class="preview-video"
+                               preload="none"
+                               muted
+                               loop
+                               data-preview-src="@item.PreviewVideoURL">
+                            <!-- Fallback if video doesn't load -->
+                            <source src="" type="video/mp4">
+                        </video>
+
+                        <!-- Views overlay (top-left) -->
+                        <div class="card-views-overlay">
+                            <img src="~/img/vision.png" />
+                            @item.FormattedViews
                         </div>
 
-                        <div class="details-bottom-row">
-                            <div class="upload-date">
-                                @item.FormattedUploadDate
-                            </div>
-                            <div class="details-views">
-                                <img src="~/img/vision.png" height="20" width="20" />   @item.FormattedViews views
-                            </div>
+                        <!-- Time overlay (top-right) -->
+                        <div class="time-container">
+                            <p class="card-time"><i class="fas fa-clock"></i> @item.FormattedDuration </p>
+                        </div>
+
+                        <!-- Title overlay (bottom) -->
+                        <div class="card-title-overlay">
+                            @item.TruncatedTitle
                         </div>
                     </div>
+
+                    <!-- Optional: keep metadata below if you still want it -->
+                    @*<div class="description">
+                <div class="d-top-row">
+                    <h5 class="vid-title">@item.TruncatedTitle</h5>
+                </div>
+                <div class="details-bottom-row">
+                    <div class="upload-date">@item.FormattedUploadDate</div>
+                    <div class="details-views">
+                        <img src="~/img/vision.png" height="20" width="20" /> @item.FormattedViews views
+                    </div>
+                </div>
+            </div>*@
                 </a>
-        </div>
-    }
-
+            </div>
+        }
 
 </div>
 
@@ -471,6 +493,123 @@
 </div>
 
  <style>
+    .card-img {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .preview-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .vid-img {
+        transition: opacity 0.3s ease;
+    }
+
+    /* Overlays transition */
+    .card-views-overlay,
+    .time-container,
+    .card-title-overlay {
+        transition: opacity 0.3s ease;
+        z-index: 10;
+    }
+
+    /* Remove the desktop hover CSS that was hiding overlays immediately */
+    @@media (hover: hover) and (pointer: fine) {
+        .card:hover .preview-video
+
+    {
+        opacity: 1;
+    }
+
+    .card:hover .vid-img {
+        opacity: 0;
+    }
+
+    /* Remove these lines - we'll handle overlay hiding in JavaScript */
+    /* .card:hover .card-views-overlay,
+        .card:hover .time-container,
+        .card:hover .card-title-overlay {
+            opacity: 0;
+        } */
+    }
+
+    /* Video playing state */
+    .card.video-playing .card-views-overlay,
+    .card.video-playing .time-container,
+    .card.video-playing .card-title-overlay {
+        opacity: 0;
+    }
+
+    /* Mobile preview state */
+    .card.preview-active .preview-video {
+        opacity: 1;
+    }
+
+    .card.preview-active .vid-img {
+        opacity: 0;
+    }
+
+    .card.preview-active .card-views-overlay,
+    .card.preview-active .time-container,
+    .card.preview-active .card-title-overlay {
+        opacity: 0;
+    }
+
+
+
+
+
+
+
+    .card-img {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-title-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 6px 10px;
+        background: rgba(0, 0, 0, 0.65);
+        color: #fff;
+        font-weight: bold;
+        font-size: 15px;
+        text-shadow: 1px 1px 2px #000;
+    }
+
+
+    .card-views-overlay {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 13px;
+        padding: 4px 8px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+        .card-views-overlay img {
+            width: 16px;
+            height: 16px;
+            filter: brightness(1.5);
+        }
+
      .details-bottom-row{
          display: flex;
          justify-content: space-between;
@@ -478,23 +617,17 @@
      }
      @@media(max-width: 600px){
            
-        .card-img{
-            height: 150px;
-        }
-        .vid-img{
-            height: 150px;
-        }
+      
+     
      }
       
      @@media(max-width: 548px){
-       
-        .card-img {
-            height: 100px;
+        .card-title-overlay {
+        
+            background: rgba(0, 0, 0, 0.45);
+           
         }
-
-        .vid-img {
-            height: 120px;
-        }
+ 
 
         .vid-title {
             font-size: medium !important;
@@ -518,22 +651,17 @@
      }
     @@media(max-width: 550px) {
         .card-container {
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
-
-        .card-img {
-            height: 100px;
-        }
-        .vid-img{
-            height: 120px;
-        }
+ 
         .description{
-            height: 100px !important;
+            height: 130px !important;
+            top: 19;
         }
         .vid-title{
             font-size: 11px !important;  
-            margin-top: 15px;
-            margin-bottom: -2px;
+            margin-top: -60px;
+            margin-bottom: -22px;
         }
         .likes{
             font-size: x-small !important;
@@ -554,6 +682,209 @@
  
  </style>
  <script>
+             document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.card');
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        let currentPreviewCard = null;
+        let currentPreviewVideo = null;
+
+        function stopCurrentPreview() {
+            if (currentPreviewCard && currentPreviewVideo) {
+                currentPreviewVideo.pause();
+                currentPreviewVideo.currentTime = 0;
+                currentPreviewCard.classList.remove('preview-active');
+            }
+            currentPreviewCard = null;
+            currentPreviewVideo = null;
+        }
+
+        cards.forEach(card => {
+            const video = card.querySelector('.preview-video');
+            const previewSrc = video.dataset.previewSrc;
+
+            let hoverTimeout;
+            let isVideoLoaded = false;
+
+            // Mobile touch handling
+            if (isMobile) {
+                let touchStartY = 0;
+                let touchStartX = 0;
+                let touchStartTime = 0;
+                let hasStartedPreview = false;
+                let previewTimeout;
+
+                card.addEventListener('touchstart', function(e) {
+                    touchStartY = e.touches[0].clientY;
+                    touchStartX = e.touches[0].clientX;
+                    touchStartTime = Date.now();
+                    hasStartedPreview = false;
+
+                    // Clear any existing preview timeout
+                    clearTimeout(previewTimeout);
+
+                    // Start checking for scroll after a delay
+                    previewTimeout = setTimeout(() => {
+                        if (!hasStartedPreview) {
+                            const currentY = e.touches && e.touches[0] ? e.touches[0].clientY : touchStartY;
+                            const currentX = e.touches && e.touches[0] ? e.touches[0].clientX : touchStartX;
+                            const deltaY = Math.abs(currentY - touchStartY);
+                            const deltaX = Math.abs(currentX - touchStartX);
+
+                            // Check if user is still touching and has moved
+                            if (deltaY > 5 || deltaX > 5) {
+                                startPreview();
+                            }
+                        }
+                    }, 400);
+                }, { passive: true });
+
+                card.addEventListener('touchmove', function(e) {
+                    const touchY = e.touches[0].clientY;
+                    const touchX = e.touches[0].clientX;
+                    const deltaY = Math.abs(touchY - touchStartY);
+                    const deltaX = Math.abs(touchX - touchStartX);
+                    const touchDuration = Date.now() - touchStartTime;
+
+                    // If user has moved enough and held long enough, start preview
+                    if ((deltaY > 10 || deltaX > 10) && touchDuration > 300 && !hasStartedPreview) {
+                        startPreview();
+                    }
+                }, { passive: true });
+
+                card.addEventListener('touchend', function(e) {
+                    clearTimeout(previewTimeout);
+
+                    if (!hasStartedPreview) {
+                        // Regular tap - let the link work normally
+                        return;
+                    } else {
+                        // Was previewing - prevent navigation but keep video playing
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Video continues playing until another card is touched
+                    }
+                });
+
+                function startPreview() {
+                    if (hasStartedPreview) return;
+
+                    hasStartedPreview = true;
+
+                    // Stop any current preview
+                    stopCurrentPreview();
+
+                    // Set this as the current preview
+                    currentPreviewCard = card;
+                    currentPreviewVideo = video;
+
+                    // Add preview class
+                    card.classList.add('preview-active');
+
+                    // Load and play video
+                    if (!isVideoLoaded && previewSrc) {
+                        video.src = previewSrc;
+                        video.load();
+                        isVideoLoaded = true;
+                    }
+
+                    video.currentTime = 0;
+                    video.play().catch(e => {
+                        console.log('Video play failed:', e);
+                    });
+                }
+            }
+            // Desktop hover handling
+            else {
+                card.addEventListener('mouseenter', function() {
+                    hoverTimeout = setTimeout(() => {
+                        if (!isVideoLoaded && previewSrc) {
+                            video.src = previewSrc;
+                            video.load();
+                            isVideoLoaded = true;
+                        }
+
+                        video.currentTime = 0;
+                        video.play().catch(e => {
+                            console.log('Video play failed:', e);
+                        });
+                    }, 500);
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    clearTimeout(hoverTimeout);
+                    video.pause();
+                    video.currentTime = 0;
+                });
+            }
+        });
+
+        // Stop preview when scrolling the page or touching outside
+        if (isMobile) {
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    stopCurrentPreview();
+                }, 1000);
+            }, { passive: true });
+
+            // Stop preview when touching outside of cards
+            document.addEventListener('touchstart', function(e) {
+                const touchedCard = e.target.closest('.card');
+                if (!touchedCard && currentPreviewCard) {
+                    stopCurrentPreview();
+                }
+            }, { passive: true });
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+         document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            const video = card.querySelector('.preview-video');
+            const previewSrc = video.dataset.previewSrc;
+
+            let hoverTimeout;
+            let isVideoLoaded = false;
+
+            card.addEventListener('mouseenter', function() {
+                // Delay before starting preview to avoid loading on quick hovers
+                hoverTimeout = setTimeout(() => {
+                    if (!isVideoLoaded && previewSrc) {
+                        video.src = previewSrc;
+                        video.load();
+                        isVideoLoaded = true;
+                    }
+
+                    video.currentTime = 0;
+                    video.play().catch(e => {
+                        console.log('Video play failed:', e);
+                    });
+                }, 500); // 500ms delay
+            });
+
+            card.addEventListener('mouseleave', function() {
+                clearTimeout(hoverTimeout);
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
+    });
+
+
     const checkbox = document.querySelector('input[type="checkbox"]');
     const leftElement = document.querySelector('.left');
 
