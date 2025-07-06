@@ -35,9 +35,8 @@
         }
 
 
-        body {
-            background: #111 !important;
-        }
+     
+     
 
         .custom-navbar {
             background-color: #212121 !important;
@@ -46,16 +45,16 @@
         .container {
             max-width: 90vw;
             margin: 0 auto;
-            background: #222;
+            background: #191919;
             backdrop-filter: blur(10px);
-            border-radius: 20px;
+            border-radius: 10px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             margin-top: 30px;
         }
 
         .header {
-            background: #333;
+            background: #212121;
             color: white;
             padding: 10px;
             text-align: center;
@@ -65,7 +64,7 @@
                 font-size: 2.5rem;
                 font-weight: 700;
                 margin-bottom: 10px;
-                color: #888;
+                color: #c8c8c8;
             }
 
             .header p {
@@ -81,7 +80,7 @@
         }
 
         .section {
-            background: #333;
+            background: #212121;
             border-radius: 16px;
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -120,11 +119,12 @@
             .form-group input {
                 width: 100%;
                 padding: 14px 16px;
-                border: 2px solid #e1e8ed;
+                border: 2px solid #898989;
                 border-radius: 10px;
                 font-size: 1rem;
                 transition: all 0.3s ease;
                 background: #333;
+                color: #666;
             }
 
                 .form-group input:focus {
@@ -492,7 +492,7 @@
                 <div class="form-group">
                     <label for="username">Username</label>
                     <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="text" id="username" value="rafadtgatelparradev" disabled>
+                        <input type="text" id="username" value="@Model.Username" disabled>
                         <button class="edit-btn" id="username-btn" onclick="editField('username')">Edit</button>
                     </div>
                 </div>
@@ -500,7 +500,7 @@
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="email" id="email" value="rafadtgatelparradev@gmail.com" disabled>
+                        <input type="email" id="email" value="@Model.Email" disabled>
                         <button class="edit-btn" id="email-btn" onclick="editField('email')">Edit</button>
                     </div>
                 </div>

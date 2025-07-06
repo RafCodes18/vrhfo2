@@ -1035,7 +1035,12 @@
                         
                         <h5>Lifetime: <span class="watch-time-lifetime">234 hours</span></h5>
                     </div>
-                                        
+                      @if (Authenticate.IsAuthenticated(Context) && username != "")
+                {
+                                <div class="account-settings-link">
+                                    <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username">Account Settings</a>
+                                </div>     
+                }
             </nav>
             <div class="overlay hidden">
                   
@@ -1180,6 +1185,10 @@
 </html>
  
 <style>  
+    .account-settings-link a{
+        text-decoration: underline !important;
+
+    }
     .log-out{
         margin-right: 5px !important;
     }
