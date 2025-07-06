@@ -188,8 +188,7 @@
      
     .d-top-row{
         display:flex;
-        justify-content:center;
-        flex-direction: column;
+        justify-content:space-between;
         margin-bottom:5px;
      }
     .d-bottom-row{
@@ -199,7 +198,6 @@
         color: #777;
      }
     .vid-title{
-        width: 100%;
         font-size: 16px;
         color: #ccc;
         margin-bottom: 0 !important;
@@ -461,24 +459,24 @@
                             <p class="card-time"><i class="fas fa-clock"></i> @item.FormattedDuration </p>
                         </div>
 
-                        <!-- Title overlay (bottom) -->
+                      @*   <!-- Title overlay (bottom) -->
                         <div class="card-title-overlay">
                             @item.TruncatedTitle
-                        </div>
+                        </div> *@
                     </div>
 
                     <!-- Optional: keep metadata below if you still want it -->
-                    @*<div class="description">
-                <div class="d-top-row">
-                    <h5 class="vid-title">@item.TruncatedTitle</h5>
-                </div>
-                <div class="details-bottom-row">
-                    <div class="upload-date">@item.FormattedUploadDate</div>
-                    <div class="details-views">
-                        <img src="~/img/vision.png" height="20" width="20" /> @item.FormattedViews views
-                    </div>
-                </div>
-            </div>*@
+                    <div class="description">
+                        <div class="d-top-row">
+                            <h5 class="vid-title">@item.TruncatedTitle</h5>
+                        </div>
+@*                         <div class="details-bottom-row">
+                            <div class="upload-date">@item.FormattedUploadDate</div>
+                            <div class="details-views">
+                                <img src="~/img/vision.png" height="20" width="20" /> @item.FormattedViews views
+                            </div>
+                        </div> *@
+            </div>
                 </a>
             </div>
         }
@@ -494,6 +492,8 @@
 </div>
 
  <style>
+     
+    
     .card-img {
         position: relative;
         overflow: hidden;
@@ -648,15 +648,7 @@
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
  
-        .description{
-            height: 130px !important;
-            top: 19;
-        }
-        .vid-title{
-            font-size: 11px !important;  
-            margin-top: -60px;
-            margin-bottom: -22px;
-        }
+       
         .likes{
             font-size: x-small !important;
             margin-bottom: -4px;
