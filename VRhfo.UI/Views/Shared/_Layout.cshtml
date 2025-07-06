@@ -464,9 +464,7 @@
             align-items: center;
             padding-left: 13px;
             min-width: 200px;
-            overflow-y: scroll;
-
-
+            overflow-y: scroll;          
         }
         #sidebar.open {
             transform: translateX(0);
@@ -610,6 +608,7 @@
               font-weight: 600;
                 color: var(--primary-color);
               font-size: 15px;
+              margin-right: 10px; 
             }
 
 .live-indicator::before {
@@ -999,8 +998,12 @@
                     <a class="view-all-link" asp-action="Categories" asp-controller="Video">View All</a>  
                     <div class="breaker"></div>
                     
-                    <a class="sb-link" asp-action="Live" asp-controller="Home">
-                        <img class="sidebar-icons" src="~/img/tv.png" />TV <span class="live-indicator">Live</span></a>
+                 <a class="sb-link sb-link-flex" asp-action="Live" asp-controller="Home">
+                    <span class="sb-left">
+                        <img class="sidebar-icons" src="~/img/tv.png" /> GoonTV™
+                    </span>
+                    <span class="live-indicator">  Live</span>
+                </a>
                     
                     <div class="breaker"></div>
                     <a class="sb-link" asp-action="Captions" asp-controller="Home">Porn Captions</a>
@@ -1185,6 +1188,21 @@
 </html>
  
 <style>  
+   .sb-link-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding-right: 8px;
+}
+
+.sb-link-flex .sb-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+ 
     .account-settings-link a{
         text-decoration: underline !important;
 

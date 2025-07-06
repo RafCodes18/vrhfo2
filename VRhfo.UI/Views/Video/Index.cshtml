@@ -56,7 +56,7 @@
 
         cursor: pointer;
         background-color: #282828;
-        outline: 3px solid rgba(80,80,80, .7);
+        outline: 2px solid rgba(280,280,280, .1);
      }
 
     .description {
@@ -469,13 +469,22 @@
                     <!-- Optional: keep metadata below if you still want it -->
                     <div class="description">
                         <div class="d-top-row">
-                            <h5 class="vid-title">@item.TruncatedTitle</h5>
+                            <div class="title-rating-wrapper">
+                                <h5 class="vid-title">@item.TruncatedTitle</h5>
+                                <div class="vid-rating">
+                                    <svg class="like-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#7fff00">
+                                        <path d="M1 21h4V9H1v12zM23 10.5c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v9c0 1.1.9 2 2 2h8c.78 0 1.48-.45 1.82-1.12l3.02-6.03c.1-.18.16-.39.16-.6v-2.25z" />
+                                    </svg>
+                                    <span>@item.AverageRating%</span>
+                                </div>
+                            </div>
                         </div>
 @*                         <div class="details-bottom-row">
                             <div class="upload-date">@item.FormattedUploadDate</div>
                             <div class="details-views">
                                 <img src="~/img/vision.png" height="20" width="20" /> @item.FormattedViews views
                             </div>
+
                         </div> *@
             </div>
                 </a>
@@ -493,8 +502,44 @@
 </div>
 
  <style>
-     
-    
+    .d-top-row .title-rating-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .vid-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-size: 14px;
+        color: white;
+        line-height: 1.2;
+    }
+
+    .vid-rating {
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-weight: bold;
+        color: var(--primary-color);
+        flex-shrink: 0;
+    }
+    .like-icon {
+        margin-right: 4px;
+        vertical-align: middle;
+        transition: transform 0.2s ease, filter 0.2s ease;
+        filter: drop-shadow(0 0 4px #7fff00aa);
+    }
+
+        .like-icon:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 8px #7fff00);
+        }
     .card-img {
         position: relative;
         overflow: hidden;
