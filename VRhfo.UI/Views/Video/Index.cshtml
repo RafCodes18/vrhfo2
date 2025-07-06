@@ -444,8 +444,9 @@
                                preload="none"
                                muted
                                loop
+                               playsinline
+                               webkit-playsinline
                                data-preview-src="@item.PreviewVideoURL">
-                            <!-- Fallback if video doesn't load -->
                             <source src="" type="video/mp4">
                         </video>
 
@@ -523,27 +524,20 @@
         z-index: 10;
     }
 
-    /* Remove the desktop hover CSS that was hiding overlays immediately */
+    /* Remove desktop hover CSS completely - handle in JS */
     @@media (hover: hover) and (pointer: fine) {
-        .card:hover .preview-video
+        /* Remove all hover states - we'll handle in JavaScript */
+    }
 
-    {
+    /* Video playing state for desktop */
+    .card.video-playing .preview-video {
         opacity: 1;
     }
 
-    .card:hover .vid-img {
+    .card.video-playing .vid-img {
         opacity: 0;
     }
 
-    /* Remove these lines - we'll handle overlay hiding in JavaScript */
-    /* .card:hover .card-views-overlay,
-        .card:hover .time-container,
-        .card:hover .card-title-overlay {
-            opacity: 0;
-        } */
-    }
-
-    /* Video playing state */
     .card.video-playing .card-views-overlay,
     .card.video-playing .time-container,
     .card.video-playing .card-title-overlay {
@@ -682,7 +676,7 @@
  
  </style>
  <script>
-             document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         const cards = document.querySelectorAll('.card');
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
@@ -713,56 +707,61 @@
                 let touchStartTime = 0;
                 let hasStartedPreview = false;
                 let previewTimeout;
+                let currentTouchCard = null; // Track which card is being touched
 
                 card.addEventListener('touchstart', function(e) {
+                    // Stop event bubbling
+                    e.stopPropagation();
+
                     touchStartY = e.touches[0].clientY;
                     touchStartX = e.touches[0].clientX;
                     touchStartTime = Date.now();
                     hasStartedPreview = false;
+                    currentTouchCard = card; // Set this card as the touched one
 
-                    // Clear any existing preview timeout
                     clearTimeout(previewTimeout);
 
-                    // Start checking for scroll after a delay
                     previewTimeout = setTimeout(() => {
-                        if (!hasStartedPreview) {
+                        if (!hasStartedPreview && currentTouchCard === card) {
                             const currentY = e.touches && e.touches[0] ? e.touches[0].clientY : touchStartY;
                             const currentX = e.touches && e.touches[0] ? e.touches[0].clientX : touchStartX;
                             const deltaY = Math.abs(currentY - touchStartY);
                             const deltaX = Math.abs(currentX - touchStartX);
 
-                            // Check if user is still touching and has moved
                             if (deltaY > 5 || deltaX > 5) {
                                 startPreview();
                             }
                         }
                     }, 400);
-                }, { passive: true });
+                }, { passive: false }); // Changed to non-passive so we can stopPropagation
 
                 card.addEventListener('touchmove', function(e) {
+                    // Only handle if this is the card that was originally touched
+                    if (currentTouchCard !== card) return;
+
+                    e.stopPropagation();
+
                     const touchY = e.touches[0].clientY;
                     const touchX = e.touches[0].clientX;
                     const deltaY = Math.abs(touchY - touchStartY);
                     const deltaX = Math.abs(touchX - touchStartX);
                     const touchDuration = Date.now() - touchStartTime;
 
-                    // If user has moved enough and held long enough, start preview
                     if ((deltaY > 10 || deltaX > 10) && touchDuration > 300 && !hasStartedPreview) {
                         startPreview();
                     }
-                }, { passive: true });
+                }, { passive: false });
 
                 card.addEventListener('touchend', function(e) {
-                    clearTimeout(previewTimeout);
+                    // Only handle if this is the card that was originally touched
+                    if (currentTouchCard !== card) return;
 
-                    if (!hasStartedPreview) {
-                        // Regular tap - let the link work normally
-                        return;
-                    } else {
-                        // Was previewing - prevent navigation but keep video playing
+                    clearTimeout(previewTimeout);
+                    currentTouchCard = null; // Clear the touched card
+
+                    if (hasStartedPreview) {
                         e.preventDefault();
                         e.stopPropagation();
-                        // Video continues playing until another card is touched
                     }
                 });
 
@@ -770,18 +769,13 @@
                     if (hasStartedPreview) return;
 
                     hasStartedPreview = true;
-
-                    // Stop any current preview
                     stopCurrentPreview();
 
-                    // Set this as the current preview
-                    currentPreviewCard = card;
-                    currentPreviewVideo = video;
+                    currentPreviewCard = card; // Make sure we're using the correct card
+                    currentPreviewVideo = video; // Make sure we're using the correct video
 
-                    // Add preview class
                     card.classList.add('preview-active');
 
-                    // Load and play video
                     if (!isVideoLoaded && previewSrc) {
                         video.src = previewSrc;
                         video.load();
@@ -796,39 +790,65 @@
             }
             // Desktop hover handling
             else {
-                card.addEventListener('mouseenter', function() {
-                    hoverTimeout = setTimeout(() => {
-                        if (!isVideoLoaded && previewSrc) {
-                            video.src = previewSrc;
-                            video.load();
-                            isVideoLoaded = true;
-                        }
+                    card.addEventListener('mouseenter', function() {
+        hoverTimeout = setTimeout(() => {
+            if (!isVideoLoaded && previewSrc) {
+                video.src = previewSrc;
 
-                        video.currentTime = 0;
-                        video.play().catch(e => {
-                            console.log('Video play failed:', e);
-                        });
-                    }, 500);
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    clearTimeout(hoverTimeout);
-                    video.pause();
+                // Wait for video to be ready before playing
+                const handleCanPlay = function() {
                     video.currentTime = 0;
+
+                    const handlePlaying = function() {
+                        card.classList.add('video-playing');
+                        card.classList.add('preview-active'); // Add this for consistency
+                        video.removeEventListener('playing', handlePlaying);
+                    };
+
+                    video.addEventListener('playing', handlePlaying);
+
+                    video.play().catch(e => {
+                        console.log('Video play failed:', e);
+                        video.removeEventListener('playing', handlePlaying);
+                    });
+
+                    video.removeEventListener('canplay', handleCanPlay);
+                };
+
+                video.addEventListener('canplay', handleCanPlay);
+                video.load();
+                isVideoLoaded = true;
+            } else if (isVideoLoaded) {
+                // Video already loaded, just play it
+                video.currentTime = 0;
+
+                const handlePlaying = function() {
+                    card.classList.add('video-playing');
+                    card.classList.add('preview-active');
+                    video.removeEventListener('playing', handlePlaying);
+                };
+
+                video.addEventListener('playing', handlePlaying);
+
+                video.play().catch(e => {
+                    console.log('Video play failed:', e);
+                    video.removeEventListener('playing', handlePlaying);
                 });
+            }
+        }, 500);
+    });
+
+    card.addEventListener('mouseleave', function() {
+        clearTimeout(hoverTimeout);
+        video.pause();
+        video.currentTime = 0;
+        card.classList.remove('video-playing');
+        card.classList.remove('preview-active'); // Add this for consistency
+    });
             }
         });
 
-        // Stop preview when scrolling the page or touching outside
         if (isMobile) {
-            let scrollTimeout;
-            window.addEventListener('scroll', function() {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    stopCurrentPreview();
-                }, 1000);
-            }, { passive: true });
-
             // Stop preview when touching outside of cards
             document.addEventListener('touchstart', function(e) {
                 const touchedCard = e.target.closest('.card');
@@ -838,11 +858,6 @@
             }, { passive: true });
         }
     });
-
-
-
-
-
 
 
 
