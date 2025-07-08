@@ -20,19 +20,19 @@
             --accent-color: #97a7b3;
             --primary-color-dark: rgba(24, 30, 0, 1);
             --join-now-hover: #6bdd00;
-            /* --text-color: #fff;
+/*             --text-color: #fff;
             --background-color: #fff !important;
             --primary-color: rgb(221, 6, 109);
             --primary-color-hover: rgba(221, 6, 109, .7);
             --secondary-color: #222;
             --accent-color: #b6bae8;
-            --primary-color-dark: rgba(221, 6, 109, .13);*/
-            /* --text-color: #fff;
+            --primary-color-dark: rgba(221, 6, 109, .13); */
+     /*        --text-color: #fff;
             --background-color: #120606;
             --primary-color: #e00000;
             --primary-color-hover: #c50606;
             --secondary-color: #991515;
-            --accent-color: #f23b3b;*/
+            --accent-color: #f23b3b; */
         }
         * {
             margin: 0;
@@ -326,7 +326,7 @@
             display: none;
             max-width: 480px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
+            background: #191919;
             backdrop-filter: blur(20px);
             border-radius: 15px;
             padding: 40px;
@@ -608,7 +608,7 @@
         }
 
         .green {
-            color: #7fff00;
+            color: var(--primary-color);
         }
 
         .plan-subtitle {
@@ -869,13 +869,173 @@
 
         .pricing-card.selected {
             border: 2px solid var(--primary-color);
-            box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 0 30px rgba(107, 244, 4, 0.3)
         }
 
         .premium-card.deselected {
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: none;
         }
+
+
+
+
+
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-hover) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .faq-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .faq-accordion {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+            .faq-item:hover {
+                background: #232323;
+            }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: none;
+            border: none;
+            color: #cbcbcb;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+            .faq-question:hover {
+                color: #aaa;
+            }
+
+            .faq-question::after {
+                content: '+';
+                position: absolute;
+                right: 2rem;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 1.5rem;
+                font-weight: 300;
+                color: var(--primary-color);
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                line-height: 1;
+            }
+
+            .faq-question::before {
+                display: none;
+            }
+
+        .faq-item.active .faq-answer-content {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.15s;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+        }
+
+        .faq-answer-content {
+            padding: 0 2rem 2rem 2rem;
+            color: #cbcbcb;
+            line-height: 1.7;
+            font-size: 1.3rem;
+            transform: translateY(-15px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .faq-item.active .faq-question {
+            color: #555;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        @@media (max-width: 768px) {
+            body
+
+        {
+            padding: 1rem;
+        }
+
+        .faq-title {
+            font-size: 2rem;
+        }
+
+        .faq-question {
+            padding: 1.25rem 3rem 1.25rem 1.5rem;
+            font-size: 1rem;
+        }
+
+            .faq-question::after {
+                right: 1.5rem;
+            }
+        }
+        .faq-item.active .faq-question::after {
+            content: '×';
+            transform: translateY(-50%);
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            font-size: 0.95rem;
+        }
+        
     </style>
 </head>
 <body>
@@ -959,6 +1119,7 @@
         </div>
 
 
+
         <div class="trust-section">
             Secure, discreet checkout
         </div>
@@ -969,6 +1130,90 @@
             <div class="credit-card">💳 American Express</div>
             <div class="credit-card">💳 PayPal</div>
         </div>
+
+            <div class="faq-container">
+               
+
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Why should I join PornWorship.com?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                It’s not just porn—it’s a lifestyle. Track your watch time, earn badges, complete tasks, unlock exclusive content, and join a commmunity of gooners like you.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What makes this different from free porn sites?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                You get an all-in-one Gooning platform: stats tracked for you, largest library of curated Gooning videos, porn caption photos, and even a 24/7 livestream with chat.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Is my payment information safe?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                ✅ Fully encrypted + discreet billing. It won’t say PornWorship on your bank statement—no one will ever know.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Can I cancel anytime?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes! Cancel any time with one click. You still get your full 30 days even if you cancel early.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What if I join and don’t like it?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                We've had thousands say they wish they signed up sooner! </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Is this site run by real gooners?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Hell yes. We're a team of devs from all around the world, and we actually met in a gooning Discord server!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Will people see I joined?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Nope. 100% private. 🕵️‍♂️ Your account is anonymous and your billing is discreet.
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         <div class="account-creation" id="accountForm">
             <div class="selected-plan-summary" id="planSummary">
@@ -1085,6 +1330,7 @@
             document.querySelector('.user-stats').classList.add('hidden');
             document.querySelector('.trust-section').classList.add('hidden');
             document.querySelector('.credit-cards').classList.add('hidden');
+            document.querySelector('.faq-container').style.display="none";
 
             // Update header
             document.querySelector('.header h1').textContent = 'Almost there!';
@@ -1124,6 +1370,24 @@
                 document.querySelector('.user-stats').classList.remove('hidden');
                 document.querySelector('.trust-section').classList.remove('hidden');
                 document.querySelector('.credit-cards').classList.remove('hidden');
+                document.querySelector('.faq-container').style.display="block";
+
+                // need to reset selected card here:
+                       // Reset selected card here:
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Reset premium card deselected state
+            const premiumCard = document.querySelector('.premium-card');
+            if (premiumCard) {
+                premiumCard.classList.remove('deselected');
+            }
+
+            // Clear selected card reference
+            selectedCard = null;
+
+
 
                 // Reset header
                 document.querySelector('.header h1').textContent = 'Choose Your Plan';
@@ -1201,5 +1465,34 @@
             });
         });
     </script>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                     const faqItems = document.querySelectorAll('.faq-item');
+
+                     faqItems.forEach(item => {
+                         const question = item.querySelector('.faq-question');
+
+                         question.addEventListener('click', () => {
+                             const isActive = item.classList.contains('active');
+
+                             // Close all other items
+                             faqItems.forEach(otherItem => {
+                                 if (otherItem !== item) {
+                                     otherItem.classList.remove('active');
+                                 }
+                             });
+
+                             // Toggle current item
+                             if (isActive) {
+                                 item.classList.remove('active');
+                             } else {
+                                 item.classList.add('active');
+                             }
+                         });
+                     });
+                 });
+        </script>
 </body>
 </html>
