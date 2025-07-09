@@ -914,8 +914,7 @@
         }
 
         .faq-accordion {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+             border-radius: 16px;
             border: 1px solid var(--border-color);
             overflow: hidden;
             backdrop-filter: blur(10px);
@@ -924,18 +923,20 @@
             flex-direction: column;
             gap: 1rem;
             padding: 1rem;
-        }
+            background-color: #111;
+         }
 
         .faq-item {
             border: 1px solid var(--border-color);
             border-radius: 12px;
             transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.05);
         }
 
             .faq-item:hover {
-                background: #232323;
+                background: #212121;
+                transition: all 1s ease;
             }
 
         .faq-question {
@@ -1274,6 +1275,7 @@
             <h2 style="text-align: center; margin-bottom: 30px; color: white;">Let's create your account</h2>
 
             <form id="signupForm" onsubmit="handleSignup(event)">
+                    @Html.AntiForgeryToken()
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -1462,12 +1464,12 @@
                 const password = document.getElementById('password').value;
                 const userGuid = getCookie('userGuid');
                 const submitBtn = event.target.querySelector('button[type="submit"]');
-                const formData = {
-                        email: email,
-                        password: password,
-                        plan: selectedPlanData.name,
-                        userGuid: userGuid
-                };
+            const formData = {
+                Email: email,        // Capital E to match C# property
+                Password: password,   // Capital P to match C# property
+                Subscription_Tier: selectedPlanData.name,  // If User has a Plan property
+                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+            };
                 // Add loading state
                 submitBtn.innerHTML = 'Creating Account...';
                 submitBtn.disabled = true;
@@ -1476,7 +1478,8 @@
                 $.ajax({
                     type: "POST",
                     url: '/User/JoinNow',
-                        data:  $.param(formData), 
+                        data:  $.param(formData),
+                                contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
                     success: function (response) {
                         const toast = Toastify({
                             text: response.message,

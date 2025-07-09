@@ -39,7 +39,16 @@
             color: deepskyblue;
             font-weight: 700;
         }
-
+        @@media(max-width: 1000px){
+        .footer-top-row{
+            flex-direction: column !important;
+            align-items: center;
+        }
+       
+        #timer{
+            font-size: 19px;
+        }
+    }
         @@media(min-width: 520px) {
             .username-txt {
                 font-size: 14px !important;
@@ -141,7 +150,7 @@
         }
 
             .join-now:hover {
-                background-color: var(--join-now-hover);
+                background-color: var(--primary-color);
             }
 
         .login {
@@ -1220,26 +1229,11 @@
     }
     .footer-box{
         display: flex;
-        justify-content: center;
+        justify-content: center;        
         padding-bottom: 40px !important;
     }
-    @@media(min-width: 1000px){
-        .footer-box{
-            padding-bottom: 0px !important;
-        }    
-    }
-    @@media(max-width: 1000px){
-        .footer-top-row{
-            flex-direction: column !important;
-            align-items: center;
-        }
-        .footer-box{
-            margin-top: -56px !important;
-        }
-        #timer{
-            font-size: 19px;
-        }
-    }
+ 
+    
     
     .center-footer{
         display: flex;
@@ -1407,7 +1401,7 @@
 
     }
     .login-btn:hover{
-        background-color: var(--primary-color-hover);
+        background-color: var(--primary-color);
         transition: 300ms;
     }
 .join-now-btn-small{
