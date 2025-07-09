@@ -19,6 +19,28 @@
           padding-bottom: 108px !important;
           margin-top: -150px !important;
         }
+        .comments-section{
+            padding: 0px 0px 25px 0px !important;
+            max-width: 90% !important;
+            max-height: 500px !important;
+         }
+        .comment{
+            margin: 0 !important;
+
+        }
+        .comments-input-container{
+            margin-top: 10px;
+        }
+        .comments-header-title{
+            margin-bottom: 10px;
+            padding-top: 14px;
+        }   
+        .comments-top{
+            margin-bottom: 10px;
+        }
+        .comments-cont{
+ 
+        }
     }
     <!-- DIAMOND AND LIKE BUTTONS -->
     .o-icon-svg {
@@ -1022,9 +1044,13 @@
             z-index: 1;
         }
 
+
+    
         .reply-border{
             border-radius:0px 0px 0px 30px !important;
             margin-left: -10px !important;
+            border-left: 1px solid #292929 !important;
+            border-bottom: 1px solid #292929 !important;
         }
         .replies-container{
             width: 100%;
@@ -1199,13 +1225,12 @@
             position: sticky;
             top: 0px;
             z-index: 9;
-            background-color: #070707;
+            background-color: #141414;
             padding-bottom: 15px;
             height: 100px;
             margin: 0 !important;
             border-bottom: 1px solid #262626;
-            border-top: 10px solid black !important;
-        }
+         }
         .comments-username{
             color: var(--accent-color);
             margin-right: 10px;
@@ -1547,7 +1572,7 @@
         }
         .comments-section {            
             position: relative;
-            padding: 0px 15px  !important;
+            padding:  15px  ;
             align-items: center;
             border-radius: 12px !important;
             margin-top: 0px !important;
@@ -1555,8 +1580,8 @@
             overflow-y: scroll;
             outline: 1px solid #222;
             overflow-x: hidden;
-            height: 800px;
-            background-color: #070707;
+            height: 690px;
+            background-color: #121212;
         }
         .black-nav{
             background: #000;
@@ -1565,9 +1590,9 @@
             display: flex;
             gap: 8px;
             padding: 10px;
-            border-bottom: 1px solid #111 !important;
-            border-left: 1px solid #191919;
-            position: relative;
+/*             border-bottom: 1px solid #111 !important;
+ *//*             border-left: 1px solid #191919;
+ */            position: relative;
             border-radius: 10px 0px 0px 20px; 
             margin-left: 5px;
             margin-top: 15px;
@@ -1608,6 +1633,7 @@
      font-size: 1.5rem;
      color: #999;
      font-weight: 700;
+     margin-top: 20px;
  }
      
  </style>    
@@ -1801,6 +1827,10 @@
 
     #toggleSidebar{
         margin-bottom: -5px !important;
+    }
+
+    .reply {
+        border-left: 1px solid #292929 !important;
     }
 </style>
 
@@ -2045,7 +2075,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="comment-body">
+                    <div class="comment-body reply">
                         <div class="comment-top">
                             <div class="content">
                                 <span class="comments-username">${data.comment.user.username}</span>
