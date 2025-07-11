@@ -11,17 +11,17 @@
             <div class="profile-avatar">R</div>
             <div class="profile-info">
                 <h1>@@@Model.Username</h1>
-                <div class="bottom-info">
-                    <div class="subscription-tier">
-                        <div class="tier-box">
-                            <span class="tier-label">Tier</span>
-                            <span class="tier-value">@Model.Subscription_Tier</span>
-                        </div>
-                    </div>
+                <div class="bottom-info">                    
                     <div class="join-date">
                         <div class="date-box">
                             <span class="date-label">Date Joined</span>
                             <span class="date-value">@Model.FormattedJoinDateDMY</span>
+                        </div>
+                    </div>
+                    <div class="subscription-tier">
+                        <div class="tier-box">
+                            <span class="tier-label">Tier</span>
+                            <span class="tier-value">@Model.Subscription_Tier</span>
                         </div>
                     </div>
                 </div>
@@ -1509,8 +1509,7 @@
     }
 
     .bottom-info {
-        flex-direction: column;
-        gap: 0.8rem;
+         gap: 0.8rem;
         width: 100%;
     }
 
