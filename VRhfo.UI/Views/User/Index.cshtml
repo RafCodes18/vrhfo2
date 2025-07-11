@@ -7,69 +7,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <div class="profile-container">
     <div class="container">
-        <!-- Profile Header -->
         <div class="profile-header">
+            <div class="profile-avatar">R</div>
             <div class="profile-info">
-                <div class="avatar">
-                    @Model.AvatarLetter
-                </div>
-                <div class="user-details">
-                    <h1>@@@Model.Username</h1>
-                    <div class="user-meta">
-                        <div class="meta-item">
-                            <div class="meta-label">Joined</div>
-                            <div class="meta-value">Jul 04, 2025</div>
+                <h1>@@@Model.Username</h1>
+                <div class="bottom-info">
+                    <div class="subscription-tier">
+                        <div class="tier-box">
+                            <span class="tier-label">Tier</span>
+                            <span class="tier-value">@Model.Subscription_Tier</span>
                         </div>
-                        <div class="meta-item tier-premium">
-                            <div class="meta-label">Tier</div>
-                            <div class="meta-value">@Model.Subscription_Tier</div>
+                    </div>
+                    <div class="join-date">
+                        <div class="date-box">
+                            <span class="date-label">Date Joined</span>
+                            <span class="date-value">@Model.FormattedJoinDateDMY</span>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Streak Display -->
-            <div class="streak-display">
-                <div class="streak-number">15</div>
-                <div class="streak-label">Day Streak 🔥</div>
-            </div>
-
-            <!-- Stats Grid -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">2h 34m</div>
-                    <div class="stat-label">Today</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">5h 12m</div>
-                    <div class="stat-label">This Week</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">23h</div>
-                    <div class="stat-label">This Month</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">234h</div>
-                    <div class="stat-label">Lifetime</div>
-                </div>
-            </div>
         </div>
 
-        <!-- Content Grid -->
-        <div class="content-grid">
-            <!-- Profile Badges -->
-            <div class="content-section">
-                <div class="section-title">
-                    <div class="section-icon">🏆</div>
-                    Profile Badges
-                </div>
-                <div class="badges-grid">
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <h3>Profile Badges</h3>
+                 <div class="badges-grid">
                     <div class="badge-item">
                         <div class="badge-container">
-                            <div class="badge badge-1min">
+                             <div class="badge badge-1min ">
                                 <div class="badge-content">
-                                    <div class="watch-time-label">WATCH TIME</div>
-
                                     <svg class="hologram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <circle cx="12" cy="12" r="10" stroke="#00ccff" stroke-width="1.5" />
                                         <path d="M12 6v6l4 2" stroke="#00ffff" stroke-width="2" />
@@ -82,7 +49,7 @@
 
                     <div class="badge-item">
                         <div class="badge-container">
-                            <div class="badge badge-3hour not-achieved">
+                             <div class="badge badge-3hour">
                                 <div class="badge-content">
                                     <svg class="hologram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <circle cx="12" cy="12" r="10" stroke="#8b4513cc" stroke-width="1.5" />
@@ -96,7 +63,7 @@
 
                     <div class="badge-item">
                         <div class="badge-container">
-                            <div class="badge badge-6hour not-achieved">
+                             <div class="badge badge-6hour">
                                 <div class="badge-content">
                                     <svg class="hologram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <circle cx="12" cy="12" r="10" stroke="#c0c0c0cc" stroke-width="1.5" />
@@ -110,7 +77,7 @@
 
                     <div class="badge-item">
                         <div class="badge-container">
-                            <div class="badge badge-9hour  ">
+                            <div class="badge badge-9hour  not-achieved">
                                 <div class="badge-content">
                                     <svg class="hologram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#3182ce" />
@@ -124,7 +91,7 @@
 
                     <div class="badge-item">
                         <div class="badge-container">
-                            <div class="badge badge-24hour  ">
+                            <div class="badge badge-24hour  not-achieved">
                                 <div class="badge-content">
                                     <svg class="hologram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#4299e1" />
@@ -139,7 +106,7 @@
 
                     <div class="badge-item">
                         <div class="badge-container">
-                            <div class="badge badge-1week">
+                            <div class="badge badge-1week  not-achieved">
                                 <div class="badge-content">
                                     <svg class="hologram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M12 2L22 8.5v7L12 22 2 15.5v-7L12 2z" stroke="#00d4ff" />
@@ -154,539 +121,255 @@
                     </div>
                 </div>
             </div>
+            <div class="stat-card">
+                <h3>Streaks</h3>
+                <div class="streaks-container">
+                    <div class="emoji">
+                        🔥
+                    </div>
+                    <div class="streaks">
+                        <p class="current">Current: <span class="prim">4</span> Days</p>
+                        <p>Longest: <span class="prim">12</span> days</p>
+                    </div>
+                </div>
+            </div>
 
-            <!-- Completed Tasks -->
-            <div class="content-section">
-                <div class="section-title">
-                    <div class="section-icon">✅</div>
-                    Completed Tasks
+            <div class="stat-card">
+                <h3>Watch Time</h3>
+                <div class="watch-time-stats">
+                    <div class="time-stat">
+                        <span class="time-value">0s</span>
+                        <div class="time-label">Today</div>
+                    </div>
+                    <div class="time-stat">
+                        <span class="time-value">9s</span>
+                        <div class="time-label">This Week</div>
+                    </div>
+                    <div class="time-stat">
+                        <span class="time-value">23h</span>
+                        <div class="time-label">This Month</div>
+                    </div>
+                    <div class="time-stat lifetime-stat">
+                        <span class="time-value lifetime-value">234h</span>
+                        <div class="time-label lifetime-label">Lifetime</div>
+                    </div>
                 </div>
-                <div class="task-item">
-                    <div class="task-checkbox">✓</div>
-                    <div class="task-text">Watch 5 videos today</div>
-                    <div class="task-reward">+10 XP</div>
+            </div>
+
+        </div>
+
+        <div class="tasks-section">
+            <h2 class="section-header">Completed Tasks</h2>
+            <div class="tasks-grid">
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Like 3 videos</div>
+                    </div>
+                    <div class="task-xp">+15xp</div>
                 </div>
-                <div class="task-item">
-                    <div class="task-checkbox">✓</div>
-                    <div class="task-text">Daily login streak</div>
-                    <div class="task-reward">+5 XP</div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Like 3 videos</div>
+                    </div>
+                    <div class="task-xp">+15xp</div>
                 </div>
-                <div class="task-item">
-                    <div class="task-checkbox">✓</div>
-                    <div class="task-text">Rate 3 videos</div>
-                    <div class="task-reward">+15 XP</div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Like 3 videos</div>
+                    </div>
+                    <div class="task-xp">+15xp</div>
                 </div>
-                <div class="task-item">
-                    <div class="task-checkbox">✓</div>
-                    <div class="task-text">Share a playlist</div>
-                    <div class="task-reward">+20 XP</div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Like 3 videos</div>
+                    </div>
+                    <div class="task-xp">+15xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Like 3 videos</div>
+                    </div>
+                    <div class="task-xp">+15xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Like 3 videos</div>
+                    </div>
+                    <div class="task-xp">+15xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Like 3 videos</div>
+                    </div>
+                    <div class="task-xp">+15xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Like 3 videos</div>
+                    </div>
+                    <div class="task-xp">+15xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Like 3 videos</div>
+                    </div>
+                    <div class="task-xp">+15xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Watch for 30 minutes</div>
+                    </div>
+                    <div class="task-xp">+25xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Complete daily challenge</div>
+                    </div>
+                    <div class="task-xp">+50xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Share a video</div>
+                    </div>
+                    <div class="task-xp">+20xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Subscribe to premium</div>
+                    </div>
+                    <div class="task-xp">+100xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Comment on 5 videos</div>
+                    </div>
+                    <div class="task-xp">+30xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Follow 10 creators</div>
+                    </div>
+                    <div class="task-xp">+40xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Complete profile setup</div>
+                    </div>
+                    <div class="task-xp">+60xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Upload first video</div>
+                    </div>
+                    <div class="task-xp">+80xp</div>
+                </div>
+                <div class="task-card">
+                    <div class="task-content">
+                        <div class="task-checkmark">✓</div>
+                        <div class="task-text">Join community chat</div>
+                    </div>
+                    <div class="task-xp">+35xp</div>
                 </div>
             </div>
         </div>
 
-        <!-- Watch History -->
-        <div class="content-section" style="margin-top: 24px;">
-            <div class="section-title">
-                <div class="section-icon">📺</div>
-                Watch History
+        <div class="watch-history">
+            <h2 class="section-header">Watch History</h2>
+            <div class="history-item">
+                <div class="history-thumbnail">🎬</div>
+                <div class="history-info">
+                    <div class="history-title">hypnosis porn trance</div>
+                    <div class="history-duration">01:30:49</div>
+                </div>
+                <div class="history-time">2 hours ago</div>
             </div>
             <div class="history-item">
-                <div class="history-title">Introduction to Machine Learning</div>
-                <div class="history-meta">
-                    <span>Duration: 1:30:49</span>
-                    <span>2 hours ago</span>
+                <div class="history-thumbnail">🎭</div>
+                <div class="history-info">
+                    <div class="history-title">mindbreak compilation</div>
+                    <div class="history-duration">00:45:23</div>
                 </div>
+                <div class="history-time">1 day ago</div>
             </div>
             <div class="history-item">
-                <div class="history-title">Advanced JavaScript Concepts</div>
-                <div class="history-meta">
-                    <span>Duration: 45:22</span>
-                    <span>1 day ago</span>
+                <div class="history-thumbnail">🌀</div>
+                <div class="history-info">
+                    <div class="history-title">spirals and patterns</div>
+                    <div class="history-duration">02:15:17</div>
                 </div>
+                <div class="history-time">3 days ago</div>
             </div>
             <div class="history-item">
-                <div class="history-title">React Hooks Deep Dive</div>
-                <div class="history-meta">
-                    <span>Duration: 1:15:30</span>
-                    <span>2 days ago</span>
+                <div class="history-thumbnail">🎵</div>
+                <div class="history-info">
+                    <div class="history-title">audio triggers session</div>
+                    <div class="history-duration">01:08:45</div>
                 </div>
+                <div class="history-time">5 days ago</div>
             </div>
             <div class="history-item">
-                <div class="history-title">CSS Grid vs Flexbox</div>
-                <div class="history-meta">
-                    <span>Duration: 32:15</span>
-                    <span>3 days ago</span>
+                <div class="history-thumbnail">💫</div>
+                <div class="history-info">
+                    <div class="history-title">subliminal messages</div>
+                    <div class="history-duration">00:52:30</div>
                 </div>
+                <div class="history-time">1 week ago</div>
             </div>
         </div>
     </div>
 </div>
 <style>
-    .profile-container{
-        width: 100%;
-    }
-    :root {
-        --text-color: #000;
-        --background-color: #000;
-        --primary-color: #7fff00;
-        --primary-color-hover: rgba(191, 255, 0, .7);
-        --primary-color-card-hover: rgba(291, 255, 200, .1);
-        --secondary-color: #262727;
-        --accent-color: #97a7b3;
-        --primary-color-dark: rgba(24, 30, 0, 1);
-        --join-now-hover: #6bdd00;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background: var(--background-color);
-        min-height: 100vh;
-        color: #ffffff;
-        overflow-x: hidden;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-    .main{
-        width: 1200px !important;
-
-    }
-    .page{
-        width: 100% !important;
-    }
-    .profile-header {
-        background: var(--secondary-color);
-        backdrop-filter: blur(20px);
-        border-radius: 24px;
-        padding: 32px;
-        margin-bottom: 24px;
-        border: 1px solid var(--primary-color);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    .badge.not-achieved {
+        filter: grayscale(100%) brightness(0.5);
+        opacity: 0.5;
+        cursor: not-allowed;
         position: relative;
-        overflow: hidden;
     }
-
-        .profile-header::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary-color), var(--join-now-hover), var(--primary-color), var(--accent-color));
-            border-radius: 24px;
-            z-index: -1;
-            opacity: 0.3;
-            animation: borderGlow 3s ease-in-out infinite;
-        }
-
-    @@keyframes borderGlow {
-        0%, 100%
-
-    {
-        opacity: 0.3;
-    }
-
-    50% {
-        opacity: 0.6;
-    }
-
-    }
-
-    .profile-info {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-        margin-bottom: 24px;
-    }
-
-    .avatar {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--join-now-hover) 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 48px;
-        font-weight: bold;
-        color: var(--background-color);
+    .header {
+        text-align: center;
+        margin-bottom: 50px;
         position: relative;
-        overflow: hidden;
     }
 
-        .avatar::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary-color), var(--join-now-hover), var(--primary-color), var(--accent-color));
-            border-radius: 50%;
-            z-index: -1;
-            animation: rotate 3s linear infinite;
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00ffff, #0080ff, #8000ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
         }
 
-    @@keyframes rotate {
-        from
-
-    {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-
-    }
-
-    .user-details h1 {
-        font-size: 2.5rem;
-        margin-bottom: 8px;
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--join-now-hover) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .user-meta {
-        display: flex;
-        gap: 24px;
-        flex-wrap: wrap;
-    }
-
-    .meta-item {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 12px 16px;
-        border-radius: 12px;
-        font-size: 0.9rem;
-        backdrop-filter: blur(10px);
-        border: 1px solid var(--accent-color);
-    }
-
-    .meta-label {
-        color: var(--accent-color);
-        font-size: 0.8rem;
-        margin-bottom: 4px;
-    }
-
-    .meta-value {
-        font-weight: 600;
-        color: #ffffff;
-    }
-
-    .tier-premium {
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--join-now-hover) 100%);
-        color: var(--background-color);
-        border: 1px solid var(--primary-color);
-    }
-
-        .tier-premium .meta-label {
-            color: var(--primary-color-dark);
+        .header p {
+            color: #00ccff;
+            font-size: 1.2em;
+            opacity: 0.9;
+            animation: subtitlePulse 2s ease-in-out infinite alternate;
         }
-
-        .tier-premium .meta-value {
-            color: var(--background-color);
-        }
-
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
-        margin-top: 24px;
-    }
-
-    .stat-card {
-        background: var(--secondary-color);
-        backdrop-filter: blur(20px);
-        border-radius: 16px;
-        padding: 20px;
-        border: 1px solid var(--accent-color);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            background: var(--primary-color-card-hover);
-            border-color: var(--primary-color);
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--join-now-hover));
-        }
-
-    .stat-value {
-        font-size: 2rem;
-        font-weight: bold;
-        color: var(--primary-color);
-        margin-bottom: 8px;
-    }
-
-    .stat-label {
-        color: var(--accent-color);
-        font-size: 0.9rem;
-    }
-
-    .content-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 24px;
-        margin-top: 24px;
-    }
-
-    .content-section {
-        background: var(--secondary-color);
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        padding: 24px;
-        border: 1px solid var(--accent-color);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .section-title {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 20px;
-        color: #ffffff;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .section-icon {
-        width: 24px;
-        height: 24px;
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--join-now-hover) 100%);
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--background-color);
-        font-size: 12px;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    .badge-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 12px;
-    }
-
-    .badge {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        padding: 16px;
-        text-align: center;
-        transition: all 0.3s ease;
-        border: 1px solid var(--accent-color);
-    }
-
-        .badge:hover {
-            transform: scale(1.05);
-            background: var(--primary-color-card-hover);
-            border-color: var(--primary-color);
-        }
-
-    .badge-icon {
-        font-size: 24px;
-    }
-
-    .badge-name {
-        font-size: 0.8rem;
-        color: var(--accent-color);
-    }
-
-    .badge-earned {
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--join-now-hover) 100%);
-        color: var(--background-color);
-        border: 1px solid var(--primary-color);
-    }
-
-        .badge-earned .badge-name {
-            color: var(--primary-color-dark);
-        }
-
-    .history-item {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 12px;
-        border: 1px solid var(--accent-color);
-        transition: all 0.3s ease;
-    }
-
-        .history-item:hover {
-            background: var(--primary-color-card-hover);
-            transform: translateX(5px);
-            border-color: var(--primary-color);
-        }
-
-    .history-title {
-        font-weight: 600;
-        margin-bottom: 8px;
-        color: #ffffff;
-    }
-
-    .history-meta {
-        display: flex;
-        justify-content: space-between;
-        color: var(--accent-color);
-        font-size: 0.8rem;
-    }
-
-    .task-item {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 12px;
-        border: 1px solid var(--accent-color);
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .task-checkbox {
-        width: 20px;
-        height: 20px;
-        border-radius: 4px;
-        background: var(--primary-color);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--background-color);
-        font-size: 12px;
-    }
-
-    .task-text {
-        flex: 1;
-        color: #ffffff;
-    }
-
-    .task-reward {
-        color: var(--primary-color);
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-
-    .streak-display {
-        text-align: center;
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--join-now-hover) 100%);
-        border-radius: 16px;
-        padding: 20px;
-        margin-bottom: 16px;
-    }
-
-    .streak-number {
-        font-size: 3rem;
-        font-weight: bold;
-        color: var(--background-color);
-        margin-bottom: 8px;
-    }
-
-    .streak-label {
-        color: var(--primary-color-dark);
-        font-size: 0.9rem;
-    }
-
-    @@media (max-width: 768px) {
-        .container
-        
-    {margin-top: 100px;
-            margin-top: 80px;
-    }
-
-    .profile-header {
-        padding: 20px;
-    }
-
-    .profile-info {
-        flex-direction: column;
-        text-align: center;
-        gap: 16px;
-    }
-
-    .avatar {
-        width: 100px;
-        height: 100px;
-        font-size: 40px;
-    }
-
-    .user-details h1 {
-        font-size: 2rem;
-    }
-
-    .user-meta {
-        justify-content: center;
-    }
-
-    .stats-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-
-    .content-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .streak-number {
-        font-size: 2.5rem;
-    }
-
-    }
-
-    @@media (max-width: 480px) {
-        .stats-grid
-
-    {
-        grid-template-columns: 1fr;
-    }
-
-    .badge-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    }
-
-
-
-
-
-
-
 
     .badges-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+         margin-top: 20px;
     }
 
     .badge-item {
@@ -694,37 +377,26 @@
         flex-direction: column;
         align-items: center;
         position: relative;
-        transform: scale(.4rem);
+        transform: scale(.01rem);
     }
 
     .badge-container {
         position: relative;
+        width: 100px;
+        height: 100px;
         margin-bottom: 20px;
     }
 
     .badge {
-        width: 130px;
-        height: 130px;
-        /* border-radius: 50%; */
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
     }
-
-    .watch-time-label {
-        position: absolute;
-        top: -25px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 9px;
-        font-weight: bold;
-        letter-spacing: 0.5px;
-        text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
-        z-index: 3;
-        color: #00ffff;
-    }
-
+ 
     /* 1 Minute Badge - Basic */
     .badge-1min {
         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -1225,21 +897,777 @@
     }
 
     }
+    .locked-badge{
+        color: white;
+    }
+    .profile-container{
+        width: 100%;
+    }
+    :root {
+        --text-color: #000;
+        --background-color: #000;
+        --primary-color: #7fff00;
+        --primary-color-hover: rgba(191, 255, 0, .7);
+        --primary-color-card-hover: rgba(291, 255, 200, .1);
+        --secondary-color: #262727;
+        --accent-color: #97a7b3;
+        --primary-color-dark: rgba(24, 30, 0, 1);
+        --join-now-hover: #6bdd00;
+    }
 
-    .badge.not-achieved {
-        filter: grayscale(100%) brightness(0.5);
-        opacity: 0.5;
-        cursor: not-allowed;
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        overflow-x: hidden;
         position: relative;
     }
 
-        /* Optional: add lock icon */
-        .badge.not-achieved::after {
-            content: "🔒";
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            font-size: 1rem;
-            color: #ccc;
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(127, 255, 0, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(127, 255, 0, 0.05) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(127, 255, 0, 0.08) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundPulse 20s ease-in-out infinite;
         }
+
+    @@keyframes backgroundPulse {
+        0%, 100%
+
+    {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        padding: 2rem;
+        background: rgba(38, 39, 39, 0.4);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        border: 1px solid rgba(127, 255, 0, 0.2);
+        animation: slideInFromTop 0.8s ease-out;
+        transition: all 0.3s ease;
+    }
+
+        .profile-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(127, 255, 0, 0.1);
+        }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-color), var(--join-now-hover));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--background-color);
+        position: relative;
+        overflow: hidden;
+        animation: avatarGlow 3s ease-in-out infinite;
+        flex-shrink: 0;
+    }
+
+    @@keyframes avatarGlow {
+        0%, 100%
+
+    {
+        box-shadow: 0 0 20px rgba(127, 255, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(127, 255, 0, 0.6);
+    }
+
+    }
+
+    .profile-info {
+        min-width: 0;
+    }
+
+        .profile-info h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            word-break: break-all;
+        }
+
+    .bottom-info {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .subscription-tier, .join-date {
+        flex: 1;
+        min-width: 180px;
+    }
+
+    .tier-box, .date-box {
+        background: rgba(38, 39, 39, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(127, 255, 0, 0.3);
+        border-radius: 12px;
+        padding: 0.8rem 1.2rem;
+        display: block;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+
+        .tier-box:hover, .date-box:hover {
+            background: rgba(127, 255, 0, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(127, 255, 0, 0.2);
+        }
+
+    .tier-label, .date-label {
+        color: var(--accent-color);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    .tier-value, .date-value {
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 1.1rem;
+        display: block;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .stat-card {
+        background: rgba(38, 39, 39, 0.4);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        border: 1px solid rgba(127, 255, 0, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        animation: slideInFromBottom 0.8s ease-out;
+    }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: var(--primary-color-card-hover);
+            box-shadow: 0 25px 50px rgba(127, 255, 0, 0.15);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+    @@keyframes shimmer {
+        0%
+
+    {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+
+    }
+
+    .stat-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
+    .goon-meter {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 1rem auto;
+    }
+
+    .goon-meter-circle {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: conic-gradient( var(--primary-color) 0deg, var(--primary-color) 54deg, rgba(127, 255, 0, 0.2) 54deg, rgba(127, 255, 0, 0.2) 360deg );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .goon-meter-inner {
+        width: 80%;
+        height: 80%;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: 2px solid rgba(127, 255, 0, 0.3);
+    }
+
+    .goon-score {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .goon-label {
+        font-size: 0.8rem;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .watch-time-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .time-stat {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        border: 1px solid rgba(127, 255, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+        .time-stat:hover {
+            background: rgba(127, 255, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+    .time-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        display: block;
+    }
+
+    .time-label {
+        font-size: 0.8rem;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .lifetime-stat {
+        background: linear-gradient(135deg, rgba(127, 255, 0, 0.1), rgba(127, 255, 0, 0.05));
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid rgba(127, 255, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .lifetime-stat::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(127, 255, 0, 0.1), transparent);
+            animation: sweep 3s linear infinite;
+        }
+
+    @@keyframes sweep {
+        0%
+
+    {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+
+    }
+
+    .lifetime-value {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--primary-color);
+        text-shadow: 0 0 20px rgba(127, 255, 0, 0.5);
+        position: relative;
+        z-index: 1;
+    }
+
+    .lifetime-label {
+        font-size: 1rem;
+        color: var(--text-color);
+        margin-top: 0.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .tasks-section {
+        margin-bottom: 3rem;
+    }
+
+    .section-header {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--primary-color);
+        position: relative;
+        display: inline-block;
+    }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+
+    .tasks-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        max-height: 500px;
+        overflow-y: auto;
+        padding-right: 0.5rem;
+    }
+
+        /* Custom scrollbar for tasks grid */
+        .tasks-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .tasks-grid::-webkit-scrollbar-track {
+            background: rgba(38, 39, 39, 0.4);
+            border-radius: 10px;
+        }
+
+        .tasks-grid::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+            opacity: 0.7;
+        }
+
+            .tasks-grid::-webkit-scrollbar-thumb:hover {
+                background: var(--primary-color-hover);
+            }
+
+    .task-card {
+        background: rgba(38, 39, 39, 0.4);
+        backdrop-filter: blur(20px);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid rgba(127, 255, 0, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--text-color);
+        animation: fadeIn 0.8s ease-out;
+    }
+
+        .task-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(127, 255, 0, 0.1);
+        }
+
+    .task-content {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .task-checkmark {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--background-color);
+        font-weight: 700;
+        font-size: 0.8rem;
+        box-shadow: 0 0 10px rgba(127, 255, 0, 0.3);
+        flex-shrink: 0;
+    }
+
+    .task-text {
+        color: white;
+        font-weight: 500;
+    }
+
+    .task-xp {
+        background: linear-gradient(135deg, var(--primary-color), var(--join-now-hover));
+        color: var(--background-color);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        box-shadow: 0 2px 10px rgba(127, 255, 0, 0.3);
+        flex-shrink: 0;
+    }
+
+    .watch-history {
+        background: rgba(38, 39, 39, 0.4);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        border: 1px solid rgba(127, 255, 0, 0.2);
+        animation: slideInFromRight 0.8s ease-out;
+    }
+
+    .history-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(127, 255, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        gap: 1rem;
+    }
+
+        .history-item:hover {
+            background: rgba(127, 255, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+    .history-thumbnail {
+        width: 60px;
+        height: 40px;
+        background: linear-gradient(135deg, var(--primary-color), var(--join-now-hover));
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--background-color);
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .history-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .history-title {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+        word-break: break-word;
+    }
+
+    .history-duration {
+        color: var(--accent-color);
+        font-size: 0.9rem;
+    }
+
+    .history-time {
+        color: var(--accent-color);
+        font-size: 0.8rem;
+        opacity: 0.7;
+        flex-shrink: 0;
+    }
+
+    @@keyframes slideInFromTop {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    @@keyframes slideInFromBottom {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    @@keyframes slideInFromRight {
+        from
+
+    {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    }
+
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+    }
+
+    @@media (max-width: 768px) {
+        .container
+    {
+            margin-top: 90px;
+            padding: 1rem;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+
+    .profile-info h1 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .bottom-info {
+        flex-direction: column;
+        gap: 0.8rem;
+        width: 100%;
+    }
+
+    .subscription-tier, .join-date {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .tier-box, .date-box {
+        padding: 1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .watch-time-stats {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .tasks-grid {
+        grid-template-columns: 1fr;
+        max-height: 400px;
+    }
+
+    .task-card {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .task-content {
+        width: 100%;
+    }
+
+    .task-xp {
+        align-self: flex-end;
+    }
+
+    .goon-meter {
+        width: 120px;
+        height: 120px;
+    }
+
+    .goon-score {
+        font-size: 1.5rem;
+    }
+
+    .lifetime-value {
+        font-size: 1.8rem;
+    }
+
+    .watch-history {
+        padding: 1.5rem;
+    }
+
+    .history-item {
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 1rem;
+    }
+
+    .history-thumbnail {
+        width: 50px;
+        height: 35px;
+    }
+
+    .history-info {
+        width: 100%;
+    }
+
+    .history-title {
+        font-size: 0.9rem;
+    }
+
+    .history-duration {
+        font-size: 0.8rem;
+    }
+
+    .history-time {
+        font-size: 0.75rem;
+        align-self: flex-end;
+    }
+
+    }
+
+    @@media (max-width: 480px) {
+        .profile-info h1
+
+    {
+        font-size: 1.2rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    .section-header {
+        font-size: 1.5rem;
+    }
+
+    .tasks-grid {
+        max-height: 350px;
+    }
+
+    .task-card {
+        padding: 0.8rem;
+    }
+
+    .subscription-tier, .join-date {
+        min-width: 150px;
+    }
+
+    .tier-box, .date-box {
+        padding: 0.8rem;
+    }
+
+    .tier-value, .date-value {
+        font-size: 0.9rem;
+    }
+
+    .watch-history {
+        padding: 1rem;
+    }
+
+    .history-item {
+        padding: 0.8rem;
+    }
+
+    }
+
+    .emoji {
+        font-size: 80px;
+    }
+
+    .streaks-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: -20px;
+    }
+
+    .streaks p {
+        color: var(--accent-color);
+        font-size: .93rem;
+    }
+
+    .prim {
+        color: var(--primary-color);
+    }
+
+    .streaks .current {
+        font-size: 1.7rem;
+        margin-bottom: 10px;
+    }
 </style>

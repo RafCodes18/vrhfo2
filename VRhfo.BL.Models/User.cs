@@ -34,7 +34,7 @@ namespace VRhfo.BL.Models
         public int GoonScore { get; set; }
 
 
-        public string FormattedUploadDateDMY
+        public string FormattedJoinDateDMY
         {
             get
             {
@@ -51,5 +51,6 @@ namespace VRhfo.BL.Models
         public string? PasswordResetToken { get; set; }
 
         public DateTime? PasswordResetTokenExpiration { get; set; }
+
     }
 }
