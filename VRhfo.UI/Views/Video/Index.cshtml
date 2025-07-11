@@ -40,7 +40,7 @@
         padding: 0px; /* Moved padding from .card-container to here */
         width: 100%;
         overflow:hidden;
-        margin: 0px 20px !important;
+        margin: 0px   !important;
      }
 
     .vid-img {
@@ -81,6 +81,11 @@
         }
     }
 
+    @@media (max-width: 1000px) {
+        .card-container {
+             padding: 10px  !important;
+        }
+    }
     @@media (max-width: 660px) {
 
         .card{
@@ -690,10 +695,16 @@
             font-size: xx-small;
         }
      }
+     
+    @@media(max-width: 514px) {
+        .card-container {
+             padding: 0 !important;
+        }
+    }
     @@media(max-width: 550px) {
         .card-container {
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        }
+         }
  
        
         .likes{
