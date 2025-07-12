@@ -77,7 +77,7 @@
 
                     <div class="badge-item">
                         <div class="badge-container">
-                            <div class="badge badge-9hour  not-achieved">
+                            <div class="badge badge-9hour">
                                 <div class="badge-content">
                                     <svg class="hologram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#3182ce" />
@@ -91,7 +91,7 @@
 
                     <div class="badge-item">
                         <div class="badge-container">
-                            <div class="badge badge-24hour  not-achieved">
+                            <div class="badge badge-24hour">
                                 <div class="badge-content">
                                     <svg class="hologram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#4299e1" />
@@ -106,7 +106,7 @@
 
                     <div class="badge-item">
                         <div class="badge-container">
-                            <div class="badge badge-1week  not-achieved">
+                            <div class="badge badge-1week ">
                                 <div class="badge-content">
                                     <svg class="hologram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M12 2L22 8.5v7L12 22 2 15.5v-7L12 2z" stroke="#00d4ff" />
@@ -292,46 +292,44 @@
 
         <div class="watch-history">
             <h2 class="section-header">Watch History</h2>
-            <div class="history-item">
-                <div class="history-thumbnail">🎬</div>
-                <div class="history-info">
-                    <div class="history-title">hypnosis porn trance</div>
-                    <div class="history-duration">01:30:49</div>
+
+            @foreach(var item in Model.VideosWatchedToday)
+            {
+                <div class="history-item">
+                    <div class="history-thumbnail"><img height="40" width="30" src="@item.ThumbnailUrl" /></div>
+                    <div class="history-info">
+                        <div class="history-title">@item.Title</div>
+                        <div class="history-duration">@item.FormattedDuration</div>
+                    </div>
+                    <div class="history-time">2 hours ago</div>
                 </div>
-                <div class="history-time">2 hours ago</div>
-            </div>
-            <div class="history-item">
-                <div class="history-thumbnail">🎭</div>
-                <div class="history-info">
-                    <div class="history-title">mindbreak compilation</div>
-                    <div class="history-duration">00:45:23</div>
+            }
+            <p style="color: var(--accent-color)">Past week</p>
+            @foreach (var item in Model.VideosWatchedPastWeek)
+            {
+                <a asp-action="Watch" asp-controller="Video" asp-route-title="@item.Title">
+                <div class="history-item">
+                    <div class="history-thumbnail"><img height="40" width="50"src="@item.ThumbnailUrl" /></div>
+                    <div class="history-info">
+                        <div class="history-title">@item.Title</div>
+                        <div class="history-duration">@item.FormattedDuration</div>
+                    </div>
+                    <div class="history-time">1 week ago</div>
                 </div>
-                <div class="history-time">1 day ago</div>
-            </div>
-            <div class="history-item">
-                <div class="history-thumbnail">🌀</div>
-                <div class="history-info">
-                    <div class="history-title">spirals and patterns</div>
-                    <div class="history-duration">02:15:17</div>
+                </a>
+            }
+            <p style="color: var(--accent-color)">All previous</p>
+            @foreach (var item in Model.RestOfVideosWatched)
+            {
+                <div class="history-item">
+                    <div class="history-thumbnail"><img height="40" width="30" src="@item.ThumbnailUrl" /></div>
+                    <div class="history-info">
+                        <div class="history-title">@item.Title</div>
+                        <div class="history-duration">@item.FormattedDuration</div>
+                    </div>
+                    <div class="history-time">3 weeks ago</div>
                 </div>
-                <div class="history-time">3 days ago</div>
-            </div>
-            <div class="history-item">
-                <div class="history-thumbnail">🎵</div>
-                <div class="history-info">
-                    <div class="history-title">audio triggers session</div>
-                    <div class="history-duration">01:08:45</div>
-                </div>
-                <div class="history-time">5 days ago</div>
-            </div>
-            <div class="history-item">
-                <div class="history-thumbnail">💫</div>
-                <div class="history-info">
-                    <div class="history-title">subliminal messages</div>
-                    <div class="history-duration">00:52:30</div>
-                </div>
-                <div class="history-time">1 week ago</div>
-            </div>
+            }
         </div>
     </div>
 </div>
@@ -1277,7 +1275,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.5rem;
-        max-height: 500px;
+        max-height: 250px;
         overflow-y: auto;
         padding-right: 0.5rem;
     }
