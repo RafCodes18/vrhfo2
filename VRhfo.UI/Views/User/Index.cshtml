@@ -292,7 +292,10 @@
 
         <div class="watch-history">
             <h2 class="section-header">Watch History</h2>
-
+            @if (Model.VideosWatchedToday.Count == 0)
+            {
+                <p style="color: var(--accent-color)">Nothing to show</p>
+            }
             @foreach(var item in Model.VideosWatchedToday)
             {
                 <div class="history-item">
@@ -304,9 +307,13 @@
                     <div class="history-time">2 hours ago</div>
                 </div>
             }
-            <p style="color: var(--accent-color)">Past week</p>
-            @foreach (var item in Model.VideosWatchedPastWeek)
+            <p style="color: var(--primary-color)">Past week</p>             
+            @if (Model.VideosWatchedPastWeek.Count == 0)
             {
+                <p style="color: var(--accent-color)">Nothing to show</p>
+            }
+            @foreach (var item in Model.VideosWatchedPastWeek)
+            {                        
                 <a asp-action="Watch" asp-controller="Video" asp-route-title="@item.Title">
                 <div class="history-item">
                     <div class="history-thumbnail"><img height="40" width="50"src="@item.ThumbnailUrl" /></div>
@@ -318,7 +325,11 @@
                 </div>
                 </a>
             }
-            <p style="color: var(--accent-color)">All previous</p>
+            <p style="color: var(--primary-color)">All previous</p>
+            @if (Model.RestOfVideosWatched.Count == 0)
+            {
+                <p style="color: var(--accent-color)">Nothing to show</p>
+            }
             @foreach (var item in Model.RestOfVideosWatched)
             {
                 <div class="history-item">
