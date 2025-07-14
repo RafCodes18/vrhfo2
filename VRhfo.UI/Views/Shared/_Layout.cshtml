@@ -865,7 +865,7 @@
             border: 1px solid rgba(127, 255, 0, 0.2);
             border-radius: 25px;
             color: var(--primary-color);
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1034,8 +1034,24 @@
             
             .username-btn {
                 padding: 0.6rem 1rem;
-                font-size: 0.6rem;
+                font-size: 0.9rem;
             }
+        }
+         @@media (max-width: 468px) {
+ 
+            .dropdown-menuz {
+                right: -10px;
+                min-width: 200px;
+            }
+            
+            .username-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.7rem;
+            }
+        }
+
+        .curr-streak{
+            color: var(--accent-color) !important;
         }
     </style>
 </head>
@@ -1115,7 +1131,7 @@
                 
                                                     <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username" class="dropdown-item">
                                                         <span class="icon">⚙️</span>
-                                                        <span>Manage Account</span>
+                                                        <span>Settings</span>
                                                     </a>
 
                                                     <a asp-action="logout" asp-controller="User" class="dropdown-item logout">
@@ -1169,7 +1185,7 @@
                     
                     <div class="breaker"></div>
                     <a class="sb-link" asp-action="Captions" asp-controller="Home">Porn Captions</a>
-                    <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Top">Top Creators</a>
+                    <a class="sb-link" asp-action="Index" asp-controller="Video" asp-route-category="Top">Top Gooners</a>
 
                     <div class="your-stats-container">
                 @if (Authenticate.IsAuthenticated(Context) && username != "")
@@ -1202,6 +1218,7 @@
                     </div>
                       @if (Authenticate.IsAuthenticated(Context) && username != "")
                 {
+                    <p class="curr-streak">🔥 Current Streak: 1 day </p>
                                 <div class="account-settings-link">
                                     <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username">Account Settings</a>
                                 </div>     
