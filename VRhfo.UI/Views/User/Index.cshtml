@@ -345,6 +345,26 @@
     </div>
 </div>
 <style>
+    .black-nav{
+        background: #000;
+    }
+    /* Smooth scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--background-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 4px;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--join-now-hover);
+        }
     .badge.not-achieved {
         filter: grayscale(100%) brightness(0.5);
         opacity: 0.5;
@@ -1492,167 +1512,187 @@
     }
 
     @@media (max-width: 768px) {
-        .container
-    {
-            margin-top: 90px;
+            .container
+        {
+                margin-top: 60px;
+                padding: 1rem;
+        }
+
+        .profile-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+            padding: 1.5rem;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+        }
+
+        .profile-info h1 {
+            font-size: 1.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .bottom-info {
+             gap: 0.8rem;
+            width: 100%;
+        }
+
+        .subscription-tier, .join-date {
+            min-width: auto;
+            width: 100%;
+        }
+
+        .tier-box, .date-box {
             padding: 1rem;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .watch-time-stats {
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+
+        .tasks-grid {
+            grid-template-columns: 1fr;
+            max-height: 400px;
+        }
+
+        .task-card {
+            padding: 1rem;
+            flex-direction: column;
+            align-items: flex-start;
+         }
+
+        .task-content {
+            width: 100%;
+        }
+
+        .task-xp {
+            align-self: flex-end;
+        }
+
+        .goon-meter {
+            width: 120px;
+            height: 120px;
+        }
+
+        .goon-score {
+            font-size: 1.5rem;
+        }
+
+        .lifetime-value {
+            font-size: 1.8rem;
+        }
+
+        .watch-history {
+            padding: 1.5rem;
+        }
+
+        .history-item {
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 1rem;
+        }
+
+        .history-thumbnail {
+            width: 50px;
+            height: 35px;
+        }
+
+        .history-info {
+            width: 100%;
+        }
+
+        .history-title {
+            font-size: 0.9rem;
+        }
+
+        .history-duration {
+            font-size: 0.8rem;
+        }
+
+        .history-time {
+            font-size: 0.75rem;
+            align-self: flex-end;
+        }
+
     }
 
-    .profile-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-        padding: 1.5rem;
-    }
-
-    .profile-avatar {
-        width: 80px;
-        height: 80px;
-        font-size: 2rem;
-    }
-
-    .profile-info h1 {
-        font-size: 1.5rem;
-        line-height: 1.2;
-        margin-bottom: 1rem;
-    }
-
-    .bottom-info {
-         gap: 0.8rem;
-        width: 100%;
-    }
-
-    .subscription-tier, .join-date {
-        min-width: auto;
-        width: 100%;
-    }
-
-    .tier-box, .date-box {
-        padding: 1rem;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .watch-time-stats {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-    }
-
-    .tasks-grid {
-        grid-template-columns: 1fr;
-        max-height: 400px;
-    }
-
-    .task-card {
-        padding: 1rem;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.8rem;
-    }
-
-    .task-content {
-        width: 100%;
-    }
-
-    .task-xp {
-        align-self: flex-end;
-    }
-
-    .goon-meter {
-        width: 120px;
-        height: 120px;
-    }
-
-    .goon-score {
-        font-size: 1.5rem;
-    }
-
-    .lifetime-value {
-        font-size: 1.8rem;
-    }
-
-    .watch-history {
-        padding: 1.5rem;
-    }
-
-    .history-item {
-        align-items: flex-start;
-        gap: 0.8rem;
-        padding: 1rem;
-    }
-
-    .history-thumbnail {
-        width: 50px;
-        height: 35px;
-    }
-
-    .history-info {
-        width: 100%;
-    }
-
-    .history-title {
-        font-size: 0.9rem;
-    }
-
-    .history-duration {
-        font-size: 0.8rem;
-    }
-
-    .history-time {
-        font-size: 0.75rem;
-        align-self: flex-end;
-    }
-
+    @@media(min-width: 769px){
+        .container{
+            margin-top: 40px !important;
+        }
     }
 
     @@media (max-width: 480px) {
         .profile-info h1
+        {
+            font-size: 1.2rem;
+        }
 
-    {
-        font-size: 1.2rem;
+        .stat-card {
+            padding: 1.5rem;
+        }
+
+        .section-header {
+            font-size: 1.5rem;
+        }
+
+        .tasks-grid {
+            max-height: 350px;
+        }
+
+        .task-card {
+            padding: 0.8rem;
+        }
+
+        .subscription-tier, .join-date {
+            min-width: 150px;
+        }
+
+        .tier-box, .date-box {
+            padding: 0.8rem;
+        }
+
+        .tier-value, .date-value {
+            font-size: 0.9rem;
+        }
+
+        .watch-history {
+            padding: 1rem;
+        }
+
+        .history-item {
+            padding: 0.8rem;
+        }
+
     }
 
-    .stat-card {
-        padding: 1.5rem;
-    }
 
-    .section-header {
-        font-size: 1.5rem;
-    }
+    @@media (min-width: 480px) {
+         
 
-    .tasks-grid {
-        max-height: 350px;
-    }
+        .subscription-tier, .join-date {
+            min-width: 150px;
+        }
 
-    .task-card {
-        padding: 0.8rem;
-    }
+        .tier-box, .date-box {
+            padding: 0.8rem;
+        }
 
-    .subscription-tier, .join-date {
-        min-width: 150px;
+        .tier-value, .date-value {
+            font-size: 0.9rem;
+        }      
     }
-
-    .tier-box, .date-box {
-        padding: 0.8rem;
-    }
-
-    .tier-value, .date-value {
-        font-size: 0.9rem;
-    }
-
-    .watch-history {
-        padding: 1rem;
-    }
-
-    .history-item {
-        padding: 0.8rem;
-    }
-
-    }
-
     .emoji {
         font-size: 80px;
     }

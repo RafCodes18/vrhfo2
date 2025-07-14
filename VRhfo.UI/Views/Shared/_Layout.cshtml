@@ -259,72 +259,9 @@
         .right-lnk:hover{
             color: #e058bb !important;
         }
-        .welcum{
-            white-space: nowrap;
-            bottom: 0;
-            top: auto;
+   
 
-        }       
-
-        .dropdown  {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #121212;
-            min-width: 170px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 999;
-            border-radius: 8px;
-            padding: 0px !important;
-            font-size: large;
-            margin-left: -14px;
-            margin-top: 3px;
-            -moz-box-shadow: 0 0 3px #ccc;
-            -webkit-box-shadow: 0 0 3px #ccc;
-            box-shadow: 0 0 3px #ccc;
-             
-        }
-        @@media(min-width: 430px){
-            .dropdown-content{
-                margin-left: -90px !important;
-            }
-        } 
-            .dropdown-content a {
-                color: white;
-                padding: 15px 5px 10px 12px;
-                text-decoration: none;
-                display: block;
-                transition: background-color 0.4s ease;
-                border-bottom: 1px solid #444;
-                z-index: 999 !important;
-            }
-                .dropdown-content a:hover {
-                    background-color: #222;
-                    color: white !important;
-                    transform: scale(1);
-                    z-index: 999 !important;
-                }
-        .welcum:hover .dropdown-content {
-            display: block;
-            z-index: 999;
-        }
-
-        .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
-        }
-        .forgot{
-            font-size: small;
-            padding: 11px !important;
-        }      
-
-        .categories-content{
-            margin-left: 40px;
-        }
-
+  
         .categories-dropdown-container {
             display: flex;
             justify-content: space-evenly;
@@ -892,6 +829,214 @@
             border-bottom: none !important;
             transition-duration: 0s !important;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         /* User Menu Container */
+        .user-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Username Button */
+        .username-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.2rem;
+            background: rgba(127, 255, 0, 0.1);
+            border: 1px solid rgba(127, 255, 0, 0.2);
+            border-radius: 25px;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .username-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(127, 255, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .username-btn:hover::before {
+            left: 100%;
+        }
+
+        .username-btn:hover {
+            background: rgba(127, 255, 0, 0.2);
+            border-color: var(--primary-color);
+            box-shadow: var(--btn-hover-shadow);
+            transform: translateY(-2px);
+        }
+
+        .username-btn::after {
+            content: '▼';
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .user-menu:hover .username-btn::after {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menuz {
+            position: absolute !important;
+            top: calc(100% + 15px);
+            right: 0;
+            min-width: 220px;
+            background: rgba(38, 39, 39, 0.95);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(127, 255, 0, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            display: hidden !important;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(127, 255, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            z-index: 1001;
+        }
+
+        /* Dropdown glow effect */
+        .dropdown-menuz::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(127, 255, 0, 0.3) 0%, 
+                rgba(127, 255, 0, 0.1) 25%, 
+                transparent 50%, 
+                rgba(127, 255, 0, 0.1) 75%, 
+                rgba(127, 255, 0, 0.3) 100%);
+            border-radius: 18px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .user-menu:hover .dropdown-menuz::before {
+            opacity: 1;
+        }
+
+        /* Show dropdown on hover */
+        .user-menu:hover .dropdown-menuz {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Dropdown items */
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.2rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(127, 255, 0, 0.1), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+
+        .dropdown-item:hover::before {
+            left: 100%;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(127, 255, 0, 0.08);
+            color: var(--primary-color);
+            transform: translateX(5px);
+            box-shadow: inset 3px 0 0 var(--primary-color);
+        }
+
+        /* Icons */
+        .dropdown-item .icon {
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 5px rgba(127, 255, 0, 0.3));
+        }
+
+        .dropdown-item:hover .icon {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(127, 255, 0, 0.6));
+        }
+
+        /* Special styling for logout */
+        .dropdown-item.logout {
+            border-top: 1px solid rgba(127, 255, 0, 0.1);
+            color: #ff6b6b;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-item.logout:hover {
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff8a8a;
+            box-shadow: inset 3px 0 0 #ff6b6b;
+        }
+
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+ 
+            .dropdown-menuz {
+                right: -10px;
+                min-width: 200px;
+            }
+            
+            .username-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.6rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -949,34 +1094,38 @@
                                     <!--WELCOME USER-->
                                 <ul class="navbar-nav">
 
-                                    <li class="nav-item welcum">
-@*                                          <img src="/img/bell.png" height="20" width="22" />
- *@                                        <p class="nav-link text-light dropdown">
-                                            <!--diamond logo for premium -->
-                                            <span class="diamond">
-                                               @*  <svg class="o-iconD o-icon-svgD " viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M8.06419 14.7411c-.10982-.0012-.21803-.0265-.31697-.0742-.09894-.0477-.18618-.1166-.25554-.2017L.672817 6.15741c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.5931c.06641-.10241.15756-.18643.26503-.2443.10747-.05787.2278-.08772.34985-.08679l8.695.06208c.1236.00146.2448.03333.3531.0928.1083.05946.2002.14469.2677.24815l2.4389 3.70997c.0882.13302.1318.29072.1244.4502-.0075.15947-.0655.31243-.1658.43665L8.63276 14.475c-.06879.0842-.15557.1519-.25396.1981-.0984.0462-.2059.0698-.31461.069v-.001z" fill="#37C4B3"></path>
-                                                    <path d="M10.9376 5.80361L8.06418 14.743 5.08044 5.76223l-4.578103-.0335c-.012524-.16198.028313-.3236.116275-.46018L3.00522 1.59306c.06943-.10727.16597-.19429.27984-.25225l2.91083 4.4293 3.60848.02562 2.84773-4.38792c.1124.05814.2109.14485.2838.25423L15.3748 5.373c.09.13702.1332.2995.1231.46313l-4.5603-.0335v.00098z" fill="#53E7D3"></path>
-                                                    <path d="M7.96372 1.29253h.00788l2.966 4.51109-5.87486-.04237 2.90098-4.46872z" fill="#B9F5ED"></path>
-                                                    <path opacity=".1" d="M2.64359 6.17018s4.98999 8.46842 4.84809 8.29592L.672817 6.15639c-.10166-.1231-.161673-.27526-.171411-.43461-.009738-.15935.0313-.31768.117215-.45224L3.00522 1.59307c.06618-.10278.15723-.18719.26472-.24541.10748-.05823.22793-.08837.35016-.08765l1.97077.01379c-.12214-.00082-.24253.02917-.35.08722-.10748.05804-.19858.14226-.26488.24486l-2.3866 3.67647c-.08614.13466-.12731.29319-.11757.45275.00974.15955.06988.3119.17177.43508z" fill="#000"></path>
-                                                </svg> *@
-                                            </span> <a asp-controller="User" asp-action="Index"></a>
-                                        </p>
-                                        <div class="dropdown">
-                                            <span class="username-txt">@@@username &#x25BC;</span>
-                                            <div class="dropdown-content">
-                                                <a class="top-DD-link" asp-action="Index" asp-controller="User" asp-route-username="@username">  <img src="@Url.Content("~/img/user.png")" height="25" width="25" class="m-1"/>Profile</a>
-                                                <a asp-action="Liked" asp-controller="Home"><img src="@Url.Content("~/img/like.svg")" class="m-1" />Favorites</a>
-                                                <a asp-action="Upload" asp-controller="Video"><img src="@Url.Content("~/img/upload.png")" height="25" width="25" class="m-1" /> Upload +</a>
-                                                <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username"><i class="fa-solid fa-gear settings-gear"></i>Manage Account</a>
-@*                                                 <a asp-action="ForgotPassword" asp-controller="User" class="forgot">Forgot Password</a><!-- this will just be change username and password page, user can select which -->
- *@                                                <a class="forgot bottom-DD-link" asp-action="Logout" asp-controller="User"><i class="fa fa-sign-out log-out" aria-hidden="true"></i>Logout</a>
-                                            </div>
-                                        </div>
+                                    <li class="nav-item">
+                                       <!-- User Menu -->
+                                          <div class="user-menu">
+                                                <div class="username-btn">
+                                                    <span>@@@username</span>
+                                                </div>
+            
+                                                <!-- Dropdown Menu -->
+                                                <div class="dropdown-menuz">
+                                                    <a asp-action="Index" asp-controller="User" asp-route-username="@username" class="dropdown-item">
+                                                        <span class="icon">👤</span>
+                                                        <span>Profile</span>
+                                                    </a>
+                
+                                                    <a asp-action="Liked" asp-controller="Home" class="dropdown-item">
+                                                        <span class="icon"><img src="@Url.Content("~/img/like.svg")" class="m-1" height="20" width="20" /></span>
+                                                        <span>Favorites</span>
+                                                    </a>
+                
+                                                    <a asp-action="ManageAccount" asp-controller="User" asp-route-username="@username" class="dropdown-item">
+                                                        <span class="icon">⚙️</span>
+                                                        <span>Manage Account</span>
+                                                    </a>
+
+                                                    <a asp-action="logout" asp-controller="User" class="dropdown-item logout">
+                                                        <span class="icon">🚪</span>
+                                                        <span>Logout</span>
+                                                    </a>
+                                                </div>
+                                          </div>
                                     </li>
-                                    @* <li class="nav-item">
-                                        <a class="nav-link text-light login" asp-controller="User" asp-action="Logout">Logout</a>
-                                    </li> *@
+ 
                                 </ul>
                             </div>
                         }
@@ -1215,11 +1364,14 @@
     gap: 6px;
 }
 
- 
+ @@media(max-width: 420px){
+     .account-settings-link a{
+        padding-bottom: 90px !important;
+     }
+ }
     .account-settings-link a{
         text-decoration: underline !important;
-        padding-bottom: 90px !important;
-    }
+     }
     .log-out{
         margin-right: 5px !important;
     }
