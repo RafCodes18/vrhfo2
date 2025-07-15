@@ -22,7 +22,7 @@
         }
         .comments-section{
              max-width: 94% !important;
-
+             padding: 0px 15px !important;
           }
     /*       .reply-border .content{
               flex-direction: column;
@@ -46,7 +46,7 @@
             font-size: 14px !important;
         }
         .comments-input-container{
-            margin-top: 10px;
+            margin-top: 6px;
         }
         .comments-header-title{
             margin-bottom: 10px;
@@ -54,6 +54,9 @@
         }   
         .comments-top{
             margin-bottom: 10px;
+        }
+        .comments-header{
+            padding: 0 !important;
         }
     }
     <!-- DIAMOND AND LIKE BUTTONS -->
@@ -563,10 +566,6 @@
             .username-txt2 {
                     font-size: small !important;
                 }
-
-            .vid-details-top-row{
-                margin-top: 3px;
-            }
             .views-txt{
                 margin-bottom: 4px;
                 font-size: x-small !important;
@@ -578,6 +577,9 @@
 
             .sug-img {
                 max-width: 190px !important;
+            }
+            .username-btn{
+                margin-top: 6px !important;
             }
         }
 
@@ -595,6 +597,11 @@
         font-optical-sizing: auto;
         font-style: normal;
     
+    }
+    @@media(max-width: 1000px){
+        .user-menu{
+            margin-top: 10px;
+        }
     }
 </style>
 
@@ -1196,6 +1203,7 @@
             .category-txt{
                 font-size: small !important;
             }
+ 
         }
 
         .add-left{
@@ -1459,14 +1467,15 @@
             position: absolute;
             right: 0;
             bottom: 0;
-            background: #000;
-            color: inherit;
+            background: rgba(127, 255, 0, 0.1);
+            outline: 1px solid rgba(127, 255, 0, 0.2);
+            color: var(--primary-color);
             border: none;
+            border-radius: 10px;
             padding: 0;
             font: inherit;
             cursor: pointer;
-            outline: 1px solid var(--primary-color);
-            padding: 5px;
+             padding: 5px;
             transition: all .3s ease;
             -webkit-transition: all .3s ease;
             z-index: 99;
