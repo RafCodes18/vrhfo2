@@ -41,6 +41,42 @@ namespace VRhfo.UI.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult UpdateUsername([FromBody] string username)
+        {
+            // Update logic
+            return Json(new { success = true });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult UpdateEmail([FromBody] string email)
+        {
+            // Update logic
+            return Json(new { success = true });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult UpdatePassword([FromBody] string password)
+        {
+            // Update logic
+            return Json(new { success = true });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult VerifyPassword([FromBody] PasswordDto input)
+        {
+            var user = GetCurrentUser(); // however you grab current user
+            bool success = UserManager.VerifyPassword(user.Password, input.Password); // or _userManager.CheckPasswordAsync()
+            return Json(new { success });
+        }
+
+
+        public class PasswordDto { public string Password { get; set; } }
+
+        [HttpPost]
         public ActionResult SaveSessionData([FromBody] SessionDto data)
         {
             // Example: data contains SessionStart, SessionEnd, SessionDurationSeconds, WatchTimeSeconds
@@ -333,8 +369,7 @@ namespace VRhfo.UI.Controllers
         }
 
 
-
-
+    
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("user");

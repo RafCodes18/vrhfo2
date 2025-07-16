@@ -552,5 +552,10 @@ namespace VRhfo.BL
                 throw; // Handle exceptions according to your application's error handling strategy
             }
         }
+
+        public static bool VerifyPassword(object hashedPassword, string password)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
