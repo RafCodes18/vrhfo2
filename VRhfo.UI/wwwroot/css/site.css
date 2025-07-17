@@ -1,5 +1,5 @@
 :root {
-    /* OLD->   --primary-color: #d4ff00;  fix me
+    /* OLD->   --primary-color: #d4ff00;  fix me fffffftestinggit
 */
     --text-color: #000;
     --background-color: #000;
@@ -11,7 +11,7 @@
     --primary-color-dark: rgba(24, 30, 0, 1);
     --join-now-hover: #6bdd00;
     /* --text-color: #fff;
-    --background-color: #fff !important;
+    --background-color: #fff !important; 
     --primary-color: rgb(221, 6, 109);
     --primary-color-hover: rgba(221, 6, 109, .7);
     --secondary-color: #222;
